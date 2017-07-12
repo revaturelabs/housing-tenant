@@ -1,0 +1,14 @@
+# DOCKER
+Dockerfile*
+docker-compose*
+.dockerignore
+
+# GIT
+.git
+.gitignore
+
+# PROJECT
+.vscode
+LICENSE*
+node_modules
+README.md
