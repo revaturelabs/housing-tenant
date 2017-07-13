@@ -68,5 +68,6 @@
     <None Include="NotInBuildScripts\ApartmentComplex_1.sql" />
     <None Include="NotInBuildScripts\Apartment.sql" />
     <None Include="Schemas\Person.sql" />
+    <None Include="Schemas\Request.sql" />
   </ItemGroup>
 </Project>
