@@ -80,5 +80,7 @@
     <None Include="NotInBuildScripts\Maintenance.sql" />
     <None Include="NotInBuildScripts\Complaint.sql" />
     <None Include="NotInBuildScripts\BatchLookup.sql" />
+    <None Include="NotInBuildScripts\Batch.sql" />
+    <None Include="NotInBuildScripts\ArrivalInformation.sql" />
   </ItemGroup>
 </Project>
