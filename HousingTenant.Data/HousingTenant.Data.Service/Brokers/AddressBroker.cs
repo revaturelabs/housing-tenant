@@ -12,7 +12,18 @@ namespace HousingTenant.Data.Service.Brokers
     {
 
       //Make Call to EF Context
-      return null;
+      object context = new object();
+      //context = DBCOnnection();
+
+      var myAddress = new Address();
+
+
+
+      
+
+      //Map it
+
+      //return it
     }
   }
 }
