@@ -76,5 +76,6 @@
     <None Include="NotInBuildScripts\RequestLookup.sql" />
     <None Include="NotInBuildScripts\Request.sql" />
     <None Include="NotInBuildScripts\Supply.sql" />
+    <None Include="NotInBuildScripts\MaintenanceLookup.sql" />
   </ItemGroup>
 </Project>
