@@ -8,3 +8,4 @@
   ,Zip int not null
   ,Active bit not null default(1)
 )
+ 
