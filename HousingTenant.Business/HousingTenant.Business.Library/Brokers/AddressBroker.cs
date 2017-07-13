@@ -10,6 +10,24 @@ namespace HousingTenant.Business.Library.Brokers
 {
   public class AddressBroker
   {
-    
+    public Address GetAddress()
+    {
+      return new Address();
+    }
+
+    public Address CreateAddress()
+    {
+      throw new NotImplementedException();
+    }
+
+    public Address UpdateAddress()
+    {
+      throw new NotImplementedException();
+    }
+
+    public Address DeleteAddress()
+    {
+      throw new NotImplementedException();
+    }
   }
 }
