@@ -72,5 +72,6 @@
     <None Include="Schemas\Arrival.sql" />
     <None Include="Schemas\Batch.sql" />
     <None Include="NotInBuildScripts\Gender.sql" />
+    <None Include="NotInBuildScripts\Person.sql" />
   </ItemGroup>
 </Project>
