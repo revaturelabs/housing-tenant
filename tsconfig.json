@@ -13,6 +13,6 @@
     "target": "es5"
   },
   "include": [
-    "src/HousingTenant.Client/**/*"
+    "src/HousingTenant.Client/ts/**/*"
   ]
 }
