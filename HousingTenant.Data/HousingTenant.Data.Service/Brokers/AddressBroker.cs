@@ -17,15 +17,12 @@ namespace HousingTenant.Data.Service.Brokers
 
       var myAddress = new Address();
 
-      throw new NotImplementedException();
-
-
-
-      
 
       //Map it
 
       //return it
+
+      return myAddress;
     }
   }
 }
