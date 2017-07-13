@@ -1,1 +1,1 @@
-﻿CREATE SCHEMA [Address]
+﻿create schema Address
