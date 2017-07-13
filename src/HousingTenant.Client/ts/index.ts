@@ -3,7 +3,7 @@ import 'angular-route';
 
 ng.module('buttonsDemo1', ['ngMaterial'])
 
-.controller('AppCtrl', function($scope) {
+.controller('AddressButtonCtrl', function($scope) {
   $scope.title1 = 'Button';
   $scope.title4 = 'Warn';
   $scope.isDisabled = true;
