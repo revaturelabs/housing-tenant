@@ -58,8 +58,11 @@
   <ItemGroup>
     <Folder Include="Properties" />
     <Folder Include="Schemas" />
+    <Folder Include="NotInBuildScripts" />
   </ItemGroup>
   <ItemGroup>
-    <Build Include="Schemas\Address.sql" />
+    <None Include="NotInBuildScripts\Address.sql" />
+    <None Include="NotInBuildScripts\Database.sql" />
+    <None Include="Schemas\Address.sql" />
   </ItemGroup>
 </Project>
