@@ -4,7 +4,7 @@
     "baseUrl": ".",
     "charset": "utf-8",
     "module": "commonjs",
-    "outDir": "out",
+    "outDir": "js",
     "paths": {
       "*": [
         "node_modules/*"
