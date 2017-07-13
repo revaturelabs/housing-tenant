@@ -58,10 +58,10 @@
   <ItemGroup>
     <Folder Include="Properties" />
     <Folder Include="Schemas" />
-    <Folder Include="Tables" />
+    <Folder Include="BuildScripts" />
   </ItemGroup>
   <ItemGroup>
     <Build Include="Schemas\Address.sql" />
-    <Build Include="Tables\Address.sql" />
+    <Build Include="BuildScripts\Address.sql" />
   </ItemGroup>
 </Project>
