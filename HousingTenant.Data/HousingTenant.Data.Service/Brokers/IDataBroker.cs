@@ -7,5 +7,6 @@ namespace HousingTenant.Data.Service.Brokers
 {
     interface IDataBroker
     {
+      T Get<T>();
     }
 }
