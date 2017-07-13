@@ -11,7 +11,7 @@ namespace HousingTenant.Data.Tests
     public class DataBrokerAddressTests
     {
         [Test]
-        void GetAddressTest()
+        public void GetAddressTest()
         {
             DataBroker broker = new DataBroker();
             Address test = broker.GetAddressByID(1);
@@ -21,6 +21,8 @@ namespace HousingTenant.Data.Tests
             Assert.NotNull(test.City);
             Assert.NotNull(test.State);
             Assert.NotNull(test.Zip);
+
+            Console.WriteLine(test.Address1 + test.City + test.State + test.Zip);
         }
 
     }

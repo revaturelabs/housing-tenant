@@ -14,7 +14,7 @@ namespace HousingTenant.Data.Library
         public Address GetAddressByID(int addressID)
         {
             // Database, give me a thing
-            Address address = new DataModels.Address()
+            Address address = new Address()
             {
                 Address1 = "1234 Nowhere St.",
                 Address2 = "Apt, 5",
