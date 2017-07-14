@@ -7,3 +7,4 @@
   ,ArrivalTime time
   ,HasCar bit not null
 )
+ 
