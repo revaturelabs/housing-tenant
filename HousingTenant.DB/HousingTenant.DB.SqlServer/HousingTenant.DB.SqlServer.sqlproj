@@ -78,5 +78,7 @@
     <None Include="NotInBuildScripts\Supply.sql" />
     <None Include="NotInBuildScripts\MaintenanceLookup.sql" />
     <None Include="NotInBuildScripts\Maintenance.sql" />
+    <None Include="NotInBuildScripts\Complaint.sql" />
+    <None Include="NotInBuildScripts\BatchLookup.sql" />
   </ItemGroup>
 </Project>
