@@ -10,7 +10,7 @@ namespace HousingTenant.Business.Tests.AddressTests
   [TestFixture]
   public class AddressBrokerTests
   {
-    [Test]
+    [Test] 
     public void GetAddress()
     {
       AddressBroker ab = new AddressBroker();
