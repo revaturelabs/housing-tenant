@@ -26,7 +26,9 @@ namespace HousingTenant.Business.Tests.BatchTests
       b.StartTime = DateTime.Now;
       b.EndTime = DateTime.Now;
 
-      Assert.IsNotNull(b);
+      Assert.IsNotEmpty(b.BatchName);
+      Assert.IsNotNull(b.StartTime);
+      Assert.IsNotNull(b.EndTime);
     }
   }
 }
