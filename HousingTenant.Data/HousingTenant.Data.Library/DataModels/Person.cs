@@ -8,9 +8,13 @@ namespace HousingTenant.Data.Library.DataModels
     public class Person
     {
         public string firstName { get; set; }
-        public string lastName { get; set; }
+
         public Gender gender { get; set; }
+
+        public string lastName { get; set; }
+
         public string email { get; set; }
+
         public string phoneNumber { get; set; }
     }
 }
