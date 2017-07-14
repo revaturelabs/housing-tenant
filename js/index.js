@@ -4,11 +4,11 @@ var ng = require("angular");
 require("angular-route");
 require("angular-material");
 require("./home/controller");
-var ngHousingTenant = ng.module('ngHousingTenant', ['ngHome', 'ngMaterial']);
+var ngHousingTenant = ng.module('ngHousingTenant', ['ngHome', 'ngRoute', 'ngMaterial']);
 ngHousingTenant.config(['$routeProvider', function ($routeProvider) {
         $routeProvider
             .when('/', {
-            controller: 'AppCtrl',
+            controller: 'homeController',
             templateUrl: 'ts/home/template.html'
         })
             .otherwise({

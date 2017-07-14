@@ -3,17 +3,15 @@ import 'angular-route';
 import 'angular-material';
 import './home/controller';
 
-var ngHousingTenant = ng.module('ngHousingTenant', ['ngHome','ngMaterial'])
+var ngHousingTenant = ng.module('ngHousingTenant', ['ngHome', 'ngRoute', 'ngMaterial'])
 
 ngHousingTenant.config(['$routeProvider', function($routeProvider){
   $routeProvider
     .when('/',{
-      controller: 'AppCtrl',
+      controller: 'homeController',
       templateUrl: 'ts/home/template.html'
     })
     .otherwise({
       redirectTo: '/'
     });
 }]);
-
-

@@ -63,14 +63,14 @@
 /******/ 	__webpack_require__.p = "";
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 5);
+/******/ 	return __webpack_require__(__webpack_require__.s = 6);
 /******/ })
 /************************************************************************/
 /******/ ([
 /* 0 */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(12);
+__webpack_require__(13);
 module.exports = angular;
 
 
@@ -82,11 +82,11 @@ module.exports = angular;
 __webpack_require__(0);
 
 // Load Angular and dependent libs
-__webpack_require__(7);
-__webpack_require__(9);
+__webpack_require__(8);
+__webpack_require__(10);
 
 // Now load Angular Material
-__webpack_require__(10);
+__webpack_require__(11);
 
 // Export namespace
 module.exports = 'ngMaterial';
@@ -99,34 +99,76 @@ module.exports = 'ngMaterial';
 "use strict";
 
 Object.defineProperty(exports, "__esModule", { value: true });
-var module_1 = __webpack_require__(4);
-module_1.home.controller('AppCtrl', function ($scope) {
-    $scope.title1 = 'Button';
-    $scope.title4 = 'Warn';
-    $scope.isDisabled = true;
-    $scope.googleUrl = 'http://google.com';
-});
+var ng = __webpack_require__(0);
+__webpack_require__(1);
+var home = ng.module('ngHome', []);
+exports.home = home;
 
 
 /***/ }),
 /* 3 */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(11);
-module.exports = 'ngRoute';
+"use strict";
+
+Object.defineProperty(exports, "__esModule", { value: true });
+var module_1 = __webpack_require__(2);
+__webpack_require__(5);
+// h.controller('AppCtrl', function($scope) {
+//   $scope.title1 = 'Button';
+//   $scope.title4 = 'Warn';
+//   $scope.isDisabled = true;
+//   $scope.googleUrl = 'http://google.com';
+// });
+var Entity = (function () {
+    function Entity(t, v) {
+        this.text = t;
+        this.value = v;
+    }
+    return Entity;
+}());
+var Address = (function () {
+    function Address() {
+        this.Address1 = 'NotAvailable';
+        this.Address2 = 'NotAvailable';
+        this.City = 'NotAvailable';
+        this.State = 'NotAvailable';
+        this.Zip = 0;
+    }
+    Address.prototype.getAddress = function (res) {
+        this.Address1 = res.data.address1;
+        this.Address2 = res.data.address2;
+        this.City = res.data.city;
+        this.State = res.data.state;
+        this.Zip = res.data.zip;
+    };
+    return Address;
+}());
+module_1.home.controller('homeController', ['$scope', 'homeFactory', function ($scope, homeFactory) {
+        $scope.myAddress = new Address();
+        $scope.entities = [
+            new Entity('Address', 'Address')
+        ];
+        $scope.processRequest = function (id) {
+            homeFactory.getAddress(id, $scope.myAddress);
+            // var p = new Promise();
+            // p.resolve(function (pass, fail) {
+            //   if (true) {
+            //     pass();
+            //   } else {
+            //     fail();
+            //   }
+            // });
+        };
+    }]);
 
 
 /***/ }),
 /* 4 */
 /***/ (function(module, exports, __webpack_require__) {
 
-"use strict";
-
-Object.defineProperty(exports, "__esModule", { value: true });
-var ng = __webpack_require__(0);
-__webpack_require__(1);
-var home = ng.module('ngHome', []);
-exports.home = home;
+__webpack_require__(12);
+module.exports = 'ngRoute';
 
 
 /***/ }),
@@ -136,15 +178,58 @@ exports.home = home;
 "use strict";
 
 Object.defineProperty(exports, "__esModule", { value: true });
+var module_1 = __webpack_require__(2);
+var pObj;
+var sObj;
+function success(res) {
+    //this.a = 'banana';
+    //pObj.name = res.data.name;
+    //console.log(obj1);
+    //console.log(res);
+    //console.log(tempObj);
+    //console.log(res.data);
+    // (function () {});
+    // fn.apply() || fn.call();
+    if (pObj) {
+        pObj.name = res.data.name;
+    }
+    if (sObj) {
+        sObj.name = res.data.name;
+    }
+}
+function failure(err) {
+    console.log(err);
+}
+var obj1 = {
+    b: 'hello'
+};
+module_1.home.factory('homeFactory', ['$http', function ($http) {
+        return {
+            getAddress: function (id, obj) {
+                $http.get('http://localhost:53948/api/address/getaddress' /*+ id*/ + '/').then(function (res) {
+                    obj.getAddress(res);
+                }, failure);
+            }
+        };
+    }]);
+
+
+/***/ }),
+/* 6 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+Object.defineProperty(exports, "__esModule", { value: true });
 var ng = __webpack_require__(0);
-__webpack_require__(3);
+__webpack_require__(4);
 __webpack_require__(1);
-__webpack_require__(2);
-var ngHousingTenant = ng.module('ngHousingTenant', ['ngHome', 'ngMaterial']);
+__webpack_require__(3);
+var ngHousingTenant = ng.module('ngHousingTenant', ['ngHome', 'ngRoute', 'ngMaterial']);
 ngHousingTenant.config(['$routeProvider', function ($routeProvider) {
         $routeProvider
             .when('/', {
-            controller: 'AppCtrl',
+            controller: 'homeController',
             templateUrl: 'ts/home/template.html'
         })
             .otherwise({
@@ -154,7 +239,7 @@ ngHousingTenant.config(['$routeProvider', function ($routeProvider) {
 
 
 /***/ }),
-/* 6 */
+/* 7 */
 /***/ (function(module, exports) {
 
 /**
@@ -4314,15 +4399,15 @@ angular.module('ngAnimate', [], function initAngularHelpers() {
 
 
 /***/ }),
-/* 7 */
+/* 8 */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(6);
+__webpack_require__(7);
 module.exports = 'ngAnimate';
 
 
 /***/ }),
-/* 8 */
+/* 9 */
 /***/ (function(module, exports) {
 
 /**
@@ -4731,15 +4816,15 @@ ngAriaModule.directive('ngShow', ['$aria', function($aria) {
 
 
 /***/ }),
-/* 9 */
+/* 10 */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(8);
+__webpack_require__(9);
 module.exports = 'ngAria';
 
 
 /***/ }),
-/* 10 */
+/* 11 */
 /***/ (function(module, exports) {
 
 /*!
@@ -40749,7 +40834,7 @@ angular.module("material.core").constant("$MD_THEME_CSS", "md-autocomplete.md-TH
 })(window, window.angular);;window.ngMaterial={version:{full: "1.1.4"}};
 
 /***/ }),
-/* 11 */
+/* 12 */
 /***/ (function(module, exports) {
 
 /**
@@ -41984,7 +42069,7 @@ function ngViewFillContentFactory($compile, $controller, $route) {
 
 
 /***/ }),
-/* 12 */
+/* 13 */
 /***/ (function(module, exports) {
 
 /**
