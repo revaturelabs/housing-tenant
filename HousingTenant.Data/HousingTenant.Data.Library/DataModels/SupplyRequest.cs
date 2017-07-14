@@ -19,7 +19,9 @@ namespace HousingTenant.Data.Library.DataModels
         public string lastName { get; set; }
 
         public DateTime timeOfRequest { get; set; }
-        
-        public List<bool> supplies = new List<bool>((int)Supplies.numSupplies);
+
+        public bool[] supplies = new bool[(int)Supplies.numSupplies];
+
+       
     }
 }

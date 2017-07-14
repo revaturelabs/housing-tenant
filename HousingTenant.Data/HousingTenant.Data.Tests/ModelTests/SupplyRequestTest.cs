@@ -16,7 +16,10 @@ namespace HousingTenant.Data.Tests.ModelTests
 
             Assert.IsNotNull(test);
 
-            Assert.IsTrue(test.supplies.Count == (int)Supplies.numSupplies);
+            //test.supplies[(int)Supplies.Sponges] = true;
+
+            Assert.IsFalse(test.supplies[(int)Supplies.Sponges]);
+            
         }
     }
 }
