@@ -1,5 +1,6 @@
 ﻿using HousingTenant.Data.Library.Models;
 using HousingTenant.Data.Service.Brokers;
+using HousingTenant.Data.Service.Models;
 using NUnit.Framework;
 using System;
 using System.Collections.Generic;
@@ -15,7 +16,7 @@ namespace HousingTenant.Data.Tests
      public void AddressBrokerTest()
     {
       AddressBroker ab = new AddressBroker();
-      Address testAddress = ab.Get();
+      AddressAPI testAddress = ab.Get();
 
       Assert.NotNull(testAddress.Address1);
       Assert.NotNull(testAddress.Address2);
