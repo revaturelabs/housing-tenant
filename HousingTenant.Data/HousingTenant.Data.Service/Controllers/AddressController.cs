@@ -10,7 +10,7 @@ using HousingTenant.Data.Service.Brokers;
 
 namespace HousingTenant.Data.Service.Controllers
 {
-    [Route("api/[controller]")]
+    [Route("api/[controller]/[action]")]
     public class AddressController : Controller
     {
     // GET: api/values 
@@ -25,7 +25,7 @@ namespace HousingTenant.Data.Service.Controllers
         [HttpGet("{id}")]
         public string Get(int id)
         {
-            return "value";
+          return "value";
         }
 
         // POST api/values
