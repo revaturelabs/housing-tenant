@@ -2,10 +2,16 @@
 Object.defineProperty(exports, "__esModule", { value: true });
 var ng = require("angular");
 require("angular-route");
-ng.module('buttonsDemo1', ['ngMaterial'])
-    .controller('AppCtrl', function ($scope) {
-    $scope.title1 = 'Button';
-    $scope.title4 = 'Warn';
-    $scope.isDisabled = true;
-    $scope.googleUrl = 'http://google.com';
-});
+require("angular-material");
+require("./home/controller");
+var ngHousingTenant = ng.module('ngHousingTenant', ['ngHome', 'ngMaterial']);
+ngHousingTenant.config(['$routeProvider', function ($routeProvider) {
+        $routeProvider
+            .when('/', {
+            controller: 'AppCtrl',
+            templateUrl: 'ts/home/template.html'
+        })
+            .otherwise({
+            redirectTo: '/'
+        });
+    }]);
