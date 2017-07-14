@@ -10,9 +10,9 @@ namespace HousingTenant.Business.Library.Brokers
 {
   public class AddressBroker
   {
-    public Address GetAddress()
+    public Address GetAddress(Address address)
     {
-      return new Address();
+      return address;
     }
 
     public Address CreateAddress()
