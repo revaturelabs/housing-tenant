@@ -16,7 +16,7 @@ namespace HousingTenant.Business.Library.Models
     public string Apartment { get; set; }
     public DateTime Arrival { get; set; }
     public string BatchName { get; set; }
-    //public List<Request> Request { get; set; }
+    public List<Request> Request { get; set; }
     public bool HasCar { get; set; }
   }
 }
