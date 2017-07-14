@@ -1,4 +1,5 @@
-﻿using HousingTenant.Data.Service.Models;
+﻿using HousingTenant.Data.Library;
+using HousingTenant.Data.Service.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -12,17 +13,23 @@ namespace HousingTenant.Data.Service.Brokers
     {
 
       //Make Call to EF Context
-      object context = new object();
+      //object context = new object();
       //context = DBCOnnection();
+      //use the databroker instead
 
-      var myAddress = new Address();
+      DataBroker db = new DataBroker();
 
+      var myAddress = db.GetAddressByID(1);
+
+      var myApiAddress = new Address();
 
       //Map it
 
+      //Mapping by hand for now for the test
+
       //return it
 
-      return myAddress;
+      return myApiAddress;
     }
   }
 }
