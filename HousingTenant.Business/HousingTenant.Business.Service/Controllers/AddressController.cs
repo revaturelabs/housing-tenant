@@ -9,50 +9,51 @@ using System.Net.Http;
 
 namespace HousingTenant.Business.Service.Controllers
 {
-    [Route("api/[controller]")]
+    [Route("api/[controller]/[action]")]
     public class AddressController : Controller
     {
-        // GET: api/values
-        [HttpGet]
-        public IEnumerable<string> Get()
-        {
-            return new string[] { "value1", "value2" };
-        }
+    // GET: api/values
+    [HttpGet]
+    public IEnumerable<string> Get()
+    {
+      return new string[] { "value1", "value2" };
+    }
 
-        // GET api/values/5
-        [HttpGet("{id}")]
-        public string Get(int id)
-        {
-            return "value";
-        }
+    // GET api/values/5
+    [HttpGet("{id}")]
+    public string Get(int id)
+    {
+      return "value";
+    }
 
-        // POST api/values
-        [HttpPost]
-        public void Post([FromBody]string value)
-        {
-        }
+    // POST api/values
+    [HttpPost]
+    public void Post([FromBody]string value)
+    {
+    }
 
-        // PUT api/values/5
-        [HttpPut("{id}")]
-        public void Put(int id, [FromBody]string value)
-        {
-        }
+    // PUT api/values/5
+    [HttpPut("{id}")]
+    public void Put(int id, [FromBody]string value)
+    {
+    }
 
-        // DELETE api/values/5
-        [HttpDelete("{id}")]
-        public void Delete(int id)
-        {
-        }
-        
+    // DELETE api/values/5
+    [HttpDelete("{id}")]
+    public void Delete(int id)
+    {
+    }
+
     [HttpGet]
         public async Task<string> GetAddress()
     {
       var client = new HttpClient();
-      var response = await client.GetAsync("http://localhost:52639/api/read/getpizzatoppings", HttpCompletionOption.ResponseContentRead);
+      var response = await client.GetAsync("http://localhost:54529/api/address/get", HttpCompletionOption.ResponseContentRead);
       //response.Content.
       if (response.IsSuccessStatusCode)
       {
         var z = response.Content.ReadAsStringAsync().Result;
+        //Do some logic here
         return z;
       }
       return "nothing";
