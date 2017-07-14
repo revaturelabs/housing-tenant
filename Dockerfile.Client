@@ -1,4 +1,4 @@
-FROM microsoft/dotnet:1.1-runtime
+FROM node:8-slim
 WORKDIR /app
-COPY . /app
+COPY ./src/HousingTenant.Client /app
 EXPOSE 80
