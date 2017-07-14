@@ -2,8 +2,8 @@
 using System.Collections.Generic;
 using System.Text;
 using HousingTenant.Data.Library;
-using HousingTenant.Data.Library.DataModels;
 using NUnit.Framework;
+using HousingTenant.Data.Library.Models;
 
 namespace HousingTenant.Data.Tests
 {
