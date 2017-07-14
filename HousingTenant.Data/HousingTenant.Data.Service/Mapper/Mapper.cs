@@ -1,4 +1,5 @@
 ﻿using AutoMapper;
+using HousingTenant.Data.Service.Models;
 //using HousingTenant.Data.Service.Models;
 //using HousingTenant.Data.Library.DataModels;
 using System;
@@ -10,7 +11,7 @@ namespace HousingTenant.Data.Service.Mapper
 {
     public class Mapper1
     {
-    private MapperConfiguration AddressEntity_AddressAPI = new MapperConfiguration(c => c.CreateMap<Library.Models.Address, Library.Models.Address>());
+    private MapperConfiguration AddressEntity_AddressAPI = new MapperConfiguration(c => c.CreateMap<Library.Models.Address, AddressAPI>());
 
 
     public T AddressEntitytoAddressAPI<T>(Library.Models.Address a)

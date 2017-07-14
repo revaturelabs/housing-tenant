@@ -5,12 +5,13 @@ using System.Linq;
 using System.Threading.Tasks;
 using HousingTenant.Data.Service.Mapper;
 using HousingTenant.Data.Library.Models;
+using HousingTenant.Data.Service.Models;
 
 namespace HousingTenant.Data.Service.Brokers
 {
   public class AddressBroker
   {
-    public Address Get()
+    public AddressAPI Get()
     {
 
       //Make Call to EF Context
@@ -22,13 +23,13 @@ namespace HousingTenant.Data.Service.Brokers
 
       var myAddress = db.GetAddressByID(1);
 
-      var myApiAddress = new Address();
+      var myApiAddress = new AddressAPI();
 
       //Map it
 
       Mapper1 map = new Mapper1();
 
-      myApiAddress = map.AddressEntitytoAddressAPI<Address>(myAddress);
+      myApiAddress = map.AddressEntitytoAddressAPI<AddressAPI>(myAddress);
 
       return myApiAddress;
     }
