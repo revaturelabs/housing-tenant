@@ -4,6 +4,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using HousingTenant.Data.Service.Mapper;
 
 namespace HousingTenant.Data.Service.Brokers
 {
@@ -25,9 +26,9 @@ namespace HousingTenant.Data.Service.Brokers
 
       //Map it
 
-      //Mapping by hand for now for the test
+      Mapper1 map = new Mapper1();
 
-      //return it
+      myApiAddress = map.AddressEntitytoAddressAPI<Address>(myAddress);
 
       return myApiAddress;
     }
