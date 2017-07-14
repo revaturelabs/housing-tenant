@@ -1,13 +1,17 @@
 import * as ng from 'angular';
 import 'angular-route';
+import 'angular-material';
+import './home/controller';
 
-ng.module('buttonsDemo1', ['ngMaterial'])
-.controller('AppCtrl', function($scope) {
-  $scope.title1 = 'Button';
-  $scope.title4 = 'Warn';
-  $scope.isDisabled = true;
+var ngHousingTenant = ng.module('ngHousingTenant', ['ngHome', 'ngRoute', 'ngMaterial'])
 
-  $scope.googleUrl = 'http://google.com';
-
-});
-
+ngHousingTenant.config(['$routeProvider', function($routeProvider){
+  $routeProvider
+    .when('/',{
+      controller: 'homeController',
+      templateUrl: 'ts/home/template.html'
+    })
+    .otherwise({
+      redirectTo: '/'
+    });
+}]);

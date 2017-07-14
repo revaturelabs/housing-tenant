@@ -1,17 +1,18 @@
 <!DOCTYPE html>
-<html lang="en" data-ng-app="Housing-Tenant">
+<html lang="en">
   <head>
     <meta charset="utf-8">
-    <meta name="viewport", content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="./css/angular-material.min.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="..\..\node_modules\angular-material\angular-material.css"> 
   </head>
 
-  <body>
+  <body data-ng-app="ngHousingTenant">
     <h1>Push the Button!</h1>
-
-    <div ng-controller="AppCtrl">
-      <button>Button</button>
-    </div>
-
+    <!-- <input type="text" data-ng-model="model">
+    <p>{{model}}</p> -->
+    
+    <div data-ng-view></div>
+    
+    <script src="..\..\public\script.bundle.js"></script>
   </body>
 </html>
