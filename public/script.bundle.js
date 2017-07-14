@@ -92,7 +92,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 var ng = __webpack_require__(1);
 __webpack_require__(0);
 ng.module('buttonsDemo1', ['ngMaterial'])
-    .controller('AddressButtonCtrl', function ($scope) {
+    .controller('AppCtrl', function ($scope) {
     $scope.title1 = 'Button';
     $scope.title4 = 'Warn';
     $scope.isDisabled = true;
