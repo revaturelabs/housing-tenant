@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using HousingTenant.Data.Service.Models;
 using Newtonsoft.Json;
+using HousingTenant.Data.Service.Brokers;
 
 // For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 
@@ -14,11 +15,11 @@ namespace HousingTenant.Data.Service.Controllers
     public class AddressController : Controller
     {
     // GET: api/values
-    AddressController a = new AddressController();
+    AddressBroker ab = new AddressBroker();
         [HttpGet]
         public string Get()
         {
-          return JsonConvert.SerializeObject(a.Get());
+          return JsonConvert.SerializeObject(ab.Get());
         }
 
         // GET api/values/5
