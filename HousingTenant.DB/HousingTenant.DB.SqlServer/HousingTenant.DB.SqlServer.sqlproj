@@ -70,5 +70,6 @@
     <None Include="Schemas\Person.sql" />
     <None Include="Schemas\Request.sql" />
     <None Include="Schemas\Arrival.sql" />
+    <None Include="Schemas\Batch.sql" />
   </ItemGroup>
 </Project>
