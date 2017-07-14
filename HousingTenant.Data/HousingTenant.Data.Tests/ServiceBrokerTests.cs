@@ -1,5 +1,5 @@
-﻿using HousingTenant.Data.Service.Brokers;
-using HousingTenant.Data.Service.Models;
+﻿using HousingTenant.Data.Library.Models;
+using HousingTenant.Data.Service.Brokers;
 using NUnit.Framework;
 using System;
 using System.Collections.Generic;

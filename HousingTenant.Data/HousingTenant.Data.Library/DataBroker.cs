@@ -1,10 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
-
-
-
-using HousingTenant.Data.Library.DataModels;
+using HousingTenant.Data.Library.Models;
 
 namespace HousingTenant.Data.Library
 {
@@ -20,7 +17,7 @@ namespace HousingTenant.Data.Library
                 Address2 = "Apt, 5",
                 City = "Reston",
                 State = "VA",
-                Zip = "18555"
+                Zip = 18555
             };
 
             return address;

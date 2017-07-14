@@ -1,10 +1,10 @@
 ﻿using HousingTenant.Data.Library;
-using HousingTenant.Data.Service.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using HousingTenant.Data.Service.Mapper;
+using HousingTenant.Data.Library.Models;
 
 namespace HousingTenant.Data.Service.Brokers
 {
