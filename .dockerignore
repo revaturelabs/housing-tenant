@@ -8,6 +8,7 @@ docker-compose*
 .gitignore
 
 # PROJECT
+.vagrant
 .vscode
 LICENSE*
 node_modules
