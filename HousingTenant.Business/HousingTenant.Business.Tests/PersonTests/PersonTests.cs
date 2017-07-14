@@ -12,7 +12,7 @@ namespace HousingTenant.Business.Tests.PersonTests
     [Test]
     public void PersonModelPropertiesTest()
     {
-      Person p = new Person();
+      Person p = new Person(); 
 
       p.FirstName = "Daniel";
       p.LastName = "Larner";
