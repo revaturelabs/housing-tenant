@@ -14,7 +14,7 @@ namespace HousingTenant.Data.Service.Controllers
     [Route("api/[controller]")]
     public class AddressController : Controller
     {
-    // GET: api/values
+    // GET: api/values 
     AddressBroker ab = new AddressBroker();
         [HttpGet]
         public string Get()
