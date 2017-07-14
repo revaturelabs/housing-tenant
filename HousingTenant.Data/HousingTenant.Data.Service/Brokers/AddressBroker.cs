@@ -10,7 +10,7 @@ namespace HousingTenant.Data.Service.Brokers
 {
   public class AddressBroker
   {
-    Address Get()
+    public Address Get()
     {
 
       //Make Call to EF Context

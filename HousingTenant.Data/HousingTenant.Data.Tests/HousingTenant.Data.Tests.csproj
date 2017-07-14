@@ -12,6 +12,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\HousingTenant.Data.Library\HousingTenant.Data.Library.csproj" />
+    <ProjectReference Include="..\HousingTenant.Data.Service\HousingTenant.Data.Service.csproj" />
   </ItemGroup>
 
   <ItemGroup>
