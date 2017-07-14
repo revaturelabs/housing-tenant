@@ -16,5 +16,16 @@ namespace HousingTenant.Data.Tests.ModelTests
 
             Assert.IsNotNull(test);
         }
+
+        [Test]
+        public void SetMaintenanceRequest()
+        {
+            var test = new MaintenanceRequest();
+
+            test.content = "I am a test object";
+            test.firstName = "FirstNameBro";
+            test.lastName = "LastNameDude";
+            test.timeOfRequest = DateTime.Now;
+        }
     }
 }
