@@ -74,5 +74,6 @@
     <None Include="NotInBuildScripts\Gender.sql" />
     <None Include="NotInBuildScripts\Person.sql" />
     <None Include="NotInBuildScripts\RequestLookup.sql" />
+    <None Include="NotInBuildScripts\Request.sql" />
   </ItemGroup>
 </Project>
