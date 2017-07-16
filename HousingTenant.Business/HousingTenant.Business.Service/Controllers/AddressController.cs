@@ -4,6 +4,9 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using System.Net.Http;
+using HousingTenant.Business.Library.Brokers;
+using Newtonsoft.Json;
+using HousingTenant.Business.Library.Models;
 
 // For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 
@@ -52,11 +55,15 @@ namespace HousingTenant.Business.Service.Controllers
       //response.Content.
       if (response.IsSuccessStatusCode)
       {
-        var z = response.Content.ReadAsStringAsync().Result;
-        //Do some logic here
-        return z;
+        var addressJson = response.Content.ReadAsStringAsync().Result;
+        var myObject = JsonConvert.DeserializeObject<Address>(addressJson);
+        AddressBroker ab = new AddressBroker();
+        var libraryAddress = ab.GetAddress(myObject);
+
+        var serializedString = JsonConvert.SerializeObject(libraryAddress);
+        return serializedString;
       }
       return "nothing";
     }
-    }
+  }
 }
