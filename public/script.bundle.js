@@ -136,11 +136,11 @@ var Address = (function () {
         this.Zip = 0;
     }
     Address.prototype.getAddress = function (res) {
-        this.Address1 = res.data.address1;
-        this.Address2 = res.data.address2;
-        this.City = res.data.city;
-        this.State = res.data.state;
-        this.Zip = res.data.zip;
+        this.Address1 = res.data.Address1;
+        this.Address2 = res.data.Address2;
+        this.City = res.data.City;
+        this.State = res.data.State;
+        this.Zip = res.data.Zip;
     };
     return Address;
 }());
@@ -200,9 +200,9 @@ function success(res) {
 function failure(err) {
     console.log(err);
 }
-var obj1 = {
-    b: 'hello'
-};
+// var obj1 = {
+//   b: 'hello'
+// };
 module_1.home.factory('homeFactory', ['$http', function ($http) {
         return {
             getAddress: function (id, obj) {

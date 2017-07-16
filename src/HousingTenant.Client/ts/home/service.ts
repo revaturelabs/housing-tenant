@@ -26,9 +26,9 @@ function failure (err) {
   console.log(err);
 }
 
-var obj1 = {
-  b: 'hello'
-};
+// var obj1 = {
+//   b: 'hello'
+// };
 
 h.factory('homeFactory', ['$http', function ($http) {
   return {

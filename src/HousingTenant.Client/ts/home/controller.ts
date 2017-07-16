@@ -36,11 +36,11 @@ class Address {
   }
 
   getAddress(res: any){
-    this.Address1 = res.data.address1;
-    this.Address2 = res.data.address2;
-    this.City = res.data.city;
-    this.State = res.data.state;
-    this.Zip = res.data.zip;
+    this.Address1 = res.data.Address1;
+    this.Address2 = res.data.Address2;
+    this.City = res.data.City;
+    this.State = res.data.State;
+    this.Zip = res.data.Zip;
   }
 }
 

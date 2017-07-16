@@ -22,9 +22,9 @@ function success(res) {
 function failure(err) {
     console.log(err);
 }
-var obj1 = {
-    b: 'hello'
-};
+// var obj1 = {
+//   b: 'hello'
+// };
 module_1.home.factory('homeFactory', ['$http', function ($http) {
         return {
             getAddress: function (id, obj) {
