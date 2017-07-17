@@ -14,7 +14,14 @@ namespace HousingTenant.Data.Tests.DataBrokerTests
         {
             DataBroker tb = new DataBroker();
 
+            var data = tb.GetPeopleList();
 
+            foreach(var item in data)
+            {
+                Console.WriteLine(item.FirstName+'\n');
+            }
+
+            Assert.IsNotNull(data);
         }
     }
 }
