@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.Text;
+using HousingTenant.Data.Library;
 
 namespace HousingTenant.Data.Tests.DataBrokerTests
 {
@@ -11,6 +12,8 @@ namespace HousingTenant.Data.Tests.DataBrokerTests
         [Test]
         public void TestGetPeople()
         {
+            DataBroker tb = new DataBroker();
+
 
         }
     }
