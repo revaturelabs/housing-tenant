@@ -6,8 +6,8 @@ namespace HousingTenant.Data.Library.DataModels
 {
     public class ArrivalInformation
     {
-        DateTime arrivalDate { get; set; }
-        bool hasCar { get; set; }
-        Batch batch { get; set; }
+        public DateTime arrivalDate { get; set; }
+        public bool hasCar { get; set; }
+        public Batch batch { get; set; }
     }
 }
