@@ -1,6 +1,6 @@
 module.exports = {
-  entry: './js/index.js',
+  entry: './src/HousingTenant.Client/js/index.js',
   output: {
-    filename: './public/script.bundle.js'
+    filename: './src/HousingTenant.Client/public/script.bundle.js'
   }
 }
