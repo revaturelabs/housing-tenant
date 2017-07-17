@@ -7,23 +7,32 @@ using HousingTenant.Data.Library.Models;
 
 namespace HousingTenant.Data.Tests
 {
-    [TestFixture]
-    public class DataBrokerAddressTests
+  [TestFixture]
+  public class DataBrokerAddressTests
+  {
+    [Test]
+    public void GetAddressTest()
     {
-        [Test]
-        public void GetAddressTest()
-        {
-            DataBroker broker = new DataBroker();
-            Address test = broker.GetAddressByID(1);
+      DataBroker broker = new DataBroker();
+      Address test = broker.GetAddressByID(1);
 
-            Assert.NotNull(test);
-            Assert.NotNull(test.Address1);
-            Assert.NotNull(test.City);
-            Assert.NotNull(test.State);
-            Assert.NotNull(test.Zip);
+      Assert.NotNull(test);
+      Assert.NotNull(test.Address1);
+      Assert.NotNull(test.City);
+      Assert.NotNull(test.State);
+      Assert.NotNull(test.Zip);
 
-            Console.WriteLine(test.Address1 + test.City + test.State + test.Zip);
-        }
-
+      Console.WriteLine(test.Address1 + test.City + test.State + test.Zip);
     }
+
+    [Test]
+    public void GetAddressesTest()
+    {
+      DataBroker bkr = new DataBroker();
+      List<Address> test = bkr.GetAddresses();
+      Assert.NotNull(test);
+
+      Console.WriteLine(test[0].Address1);
+    }
+  }
 }

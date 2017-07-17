@@ -5,9 +5,12 @@ using HousingTenant.Data.Library.Models;
 
 namespace HousingTenant.Data.Library
 {
-    public class DataBroker
+  public class DataBroker
+  {
+
+    public Address GetAddressByID(int addressID)
     {
-        static TenantDBContext context = new TenantDBContext();
+        private static TenantDBContext context = new TenantDBContext();
 
         public Address GetAddressByID(int addressID)
         {
@@ -24,10 +27,19 @@ namespace HousingTenant.Data.Library
             return address;
         }
 
+        public List<Address> GetAddresses()
+        {
+            TenantDBContext ctx = new TenantDBContext();
+            var addresses = new List<Address>();
+            foreach(var item in ctx.Address)
+            {
+                addresses.Add(item);
+            }
+            return addresses;
+        }
 
         public List<Person> GetPeopleList( )
         {
-
             try
             {
                 var everyone = new List<Person>();
@@ -44,7 +56,6 @@ namespace HousingTenant.Data.Library
                 Console.WriteLine("Could not get Person object out of Context\n" + e.Message);
                 return null;
             }
-
         }
     }
 }
