@@ -11,6 +11,6 @@ namespace HousingTenant.Business.Library.Models
     public string Content { get; set; }
     public string RequestType { get; set; }
     public DateTime Time { get; set; }
-    public bool Active { get; set; }
+    public bool Status { get; set; }
   }
 }
