@@ -9,7 +9,7 @@ namespace HousingTenant.Business.Library.Models
     public string ComplexName { get; set; }
     public Address Address { get; set; }
     public int NumBeds { get; set; }
-    public string Gender { get; set; }
+    public Gender Gender { get; set; }
     public bool WalkingDistance { get; set; }
   }
 }
