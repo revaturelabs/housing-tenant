@@ -7,7 +7,8 @@ namespace HousingTenant.Data.Library
 {
     public class DataBroker
     {
-        
+        static TenantDBContext context = new TenantDBContext();
+
         public Address GetAddressByID(int addressID)
         {
             // Database, give me a thing
@@ -21,6 +22,29 @@ namespace HousingTenant.Data.Library
             };
 
             return address;
+        }
+
+
+        public List<Person> GetPeopleList( )
+        {
+
+            try
+            {
+                var everyone = new List<Person>();
+                foreach (var item in context.Person)
+                {
+                    everyone.Add(item);
+                }
+
+                return everyone;
+            }
+
+            catch(InvalidOperationException e)
+            {
+                Console.WriteLine("Could not get Person object out of Context\n" + e.Message);
+                return null;
+            }
+
         }
     }
 }
