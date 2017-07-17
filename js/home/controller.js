@@ -2,12 +2,6 @@
 Object.defineProperty(exports, "__esModule", { value: true });
 var module_1 = require("./module");
 require("./service");
-// h.controller('AppCtrl', function($scope) {
-//   $scope.title1 = 'Button';
-//   $scope.title4 = 'Warn';
-//   $scope.isDisabled = true;
-//   $scope.googleUrl = 'http://google.com';
-// });
 var Entity = (function () {
     function Entity(t, v) {
         this.text = t;
@@ -39,13 +33,5 @@ module_1.home.controller('homeController', ['$scope', 'homeFactory', function ($
         ];
         $scope.processRequest = function (id) {
             homeFactory.getAddress(id, $scope.myAddress);
-            // var p = new Promise();
-            // p.resolve(function (pass, fail) {
-            //   if (true) {
-            //     pass();
-            //   } else {
-            //     fail();
-            //   }
-            // });
         };
     }]);

@@ -101,7 +101,7 @@ module.exports = 'ngMaterial';
 Object.defineProperty(exports, "__esModule", { value: true });
 var ng = __webpack_require__(0);
 __webpack_require__(1);
-var home = ng.module('ngHome', []);
+var home = ng.module('ngHome', ['ngMaterial']);
 exports.home = home;
 
 
@@ -114,12 +114,6 @@ exports.home = home;
 Object.defineProperty(exports, "__esModule", { value: true });
 var module_1 = __webpack_require__(2);
 __webpack_require__(5);
-// h.controller('AppCtrl', function($scope) {
-//   $scope.title1 = 'Button';
-//   $scope.title4 = 'Warn';
-//   $scope.isDisabled = true;
-//   $scope.googleUrl = 'http://google.com';
-// });
 var Entity = (function () {
     function Entity(t, v) {
         this.text = t;
@@ -151,14 +145,6 @@ module_1.home.controller('homeController', ['$scope', 'homeFactory', function ($
         ];
         $scope.processRequest = function (id) {
             homeFactory.getAddress(id, $scope.myAddress);
-            // var p = new Promise();
-            // p.resolve(function (pass, fail) {
-            //   if (true) {
-            //     pass();
-            //   } else {
-            //     fail();
-            //   }
-            // });
         };
     }]);
 
