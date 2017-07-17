@@ -12,9 +12,12 @@ using HousingTenant.Business.Library.Models;
 
 namespace HousingTenant.Business.Service.Controllers
 {
+  
     [Route("api/[controller]/[action]")]
     public class AddressController : Controller
     {
+    private readonly string _DATAHOST = "localhost:54529";
+
     // GET: api/values
     [HttpGet]
     public IEnumerable<string> Get()
@@ -51,7 +54,8 @@ namespace HousingTenant.Business.Service.Controllers
         public async Task<string> GetAddress()
     {
       var client = new HttpClient();
-      var response = await client.GetAsync("http://localhost:54529/api/address/get", HttpCompletionOption.ResponseContentRead);
+      string url = "http://" + _DATAHOST + "/api/address/get";
+      var response = await client.GetAsync(url, HttpCompletionOption.ResponseContentRead);
       //response.Content.
       if (response.IsSuccessStatusCode)
       {
