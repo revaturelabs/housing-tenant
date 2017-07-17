@@ -1,10 +1,10 @@
 {
   "compilerOptions": {
     "alwaysStrict": true,
-    "baseUrl": ".",
+    "baseUrl": "./src/HousingTenant.Client/",
     "charset": "utf-8",
     "module": "commonjs",
-    "outDir": "js",
+    "outDir": "./src/HousingTenant.Client/js",
     "paths": {
       "*": [
         "node_modules/*"

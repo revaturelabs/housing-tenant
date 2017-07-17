@@ -63,14 +63,14 @@
 /******/ 	__webpack_require__.p = "";
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 6);
+/******/ 	return __webpack_require__(__webpack_require__.s = 13);
 /******/ })
 /************************************************************************/
 /******/ ([
 /* 0 */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(13);
+__webpack_require__(11);
 module.exports = angular;
 
 
@@ -82,11 +82,11 @@ module.exports = angular;
 __webpack_require__(0);
 
 // Load Angular and dependent libs
+__webpack_require__(6);
 __webpack_require__(8);
-__webpack_require__(10);
 
 // Now load Angular Material
-__webpack_require__(11);
+__webpack_require__(9);
 
 // Export namespace
 module.exports = 'ngMaterial';
@@ -109,11 +109,19 @@ exports.home = home;
 /* 3 */
 /***/ (function(module, exports, __webpack_require__) {
 
+__webpack_require__(10);
+module.exports = 'ngRoute';
+
+
+/***/ }),
+/* 4 */
+/***/ (function(module, exports, __webpack_require__) {
+
 "use strict";
 
 Object.defineProperty(exports, "__esModule", { value: true });
 var module_1 = __webpack_require__(2);
-__webpack_require__(5);
+__webpack_require__(12);
 var Entity = (function () {
     function Entity(t, v) {
         this.text = t;
@@ -150,82 +158,7 @@ module_1.home.controller('homeController', ['$scope', 'homeFactory', function ($
 
 
 /***/ }),
-/* 4 */
-/***/ (function(module, exports, __webpack_require__) {
-
-__webpack_require__(12);
-module.exports = 'ngRoute';
-
-
-/***/ }),
 /* 5 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-Object.defineProperty(exports, "__esModule", { value: true });
-var module_1 = __webpack_require__(2);
-var pObj;
-var sObj;
-function success(res) {
-    //this.a = 'banana';
-    //pObj.name = res.data.name;
-    //console.log(obj1);
-    //console.log(res);
-    //console.log(tempObj);
-    //console.log(res.data);
-    // (function () {});
-    // fn.apply() || fn.call();
-    if (pObj) {
-        pObj.name = res.data.name;
-    }
-    if (sObj) {
-        sObj.name = res.data.name;
-    }
-}
-function failure(err) {
-    console.log(err);
-}
-// var obj1 = {
-//   b: 'hello'
-// };
-module_1.home.factory('homeFactory', ['$http', function ($http) {
-        return {
-            getAddress: function (id, obj) {
-                $http.get('http://localhost:53948/api/address/getaddress' /*+ id*/ + '/').then(function (res) {
-                    obj.getAddress(res);
-                }, failure);
-            }
-        };
-    }]);
-
-
-/***/ }),
-/* 6 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-Object.defineProperty(exports, "__esModule", { value: true });
-var ng = __webpack_require__(0);
-__webpack_require__(4);
-__webpack_require__(1);
-__webpack_require__(3);
-var ngHousingTenant = ng.module('ngHousingTenant', ['ngHome', 'ngRoute', 'ngMaterial']);
-ngHousingTenant.config(['$routeProvider', function ($routeProvider) {
-        $routeProvider
-            .when('/', {
-            controller: 'homeController',
-            templateUrl: 'ts/home/template.html'
-        })
-            .otherwise({
-            redirectTo: '/'
-        });
-    }]);
-
-
-/***/ }),
-/* 7 */
 /***/ (function(module, exports) {
 
 /**
@@ -4385,15 +4318,15 @@ angular.module('ngAnimate', [], function initAngularHelpers() {
 
 
 /***/ }),
-/* 8 */
+/* 6 */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(7);
+__webpack_require__(5);
 module.exports = 'ngAnimate';
 
 
 /***/ }),
-/* 9 */
+/* 7 */
 /***/ (function(module, exports) {
 
 /**
@@ -4802,15 +4735,15 @@ ngAriaModule.directive('ngShow', ['$aria', function($aria) {
 
 
 /***/ }),
-/* 10 */
+/* 8 */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(9);
+__webpack_require__(7);
 module.exports = 'ngAria';
 
 
 /***/ }),
-/* 11 */
+/* 9 */
 /***/ (function(module, exports) {
 
 /*!
@@ -40820,7 +40753,7 @@ angular.module("material.core").constant("$MD_THEME_CSS", "md-autocomplete.md-TH
 })(window, window.angular);;window.ngMaterial={version:{full: "1.1.4"}};
 
 /***/ }),
-/* 12 */
+/* 10 */
 /***/ (function(module, exports) {
 
 /**
@@ -42055,7 +41988,7 @@ function ngViewFillContentFactory($compile, $controller, $route) {
 
 
 /***/ }),
-/* 13 */
+/* 11 */
 /***/ (function(module, exports) {
 
 /**
@@ -75889,6 +75822,52 @@ $provide.value("$locale", {
 })(window);
 
 !window.angular.$$csp().noInlineStyle && window.angular.element(document.head).prepend('<style type="text/css">@charset "UTF-8";[ng\\:cloak],[ng-cloak],[data-ng-cloak],[x-ng-cloak],.ng-cloak,.x-ng-cloak,.ng-hide:not(.ng-hide-animate){display:none !important;}ng\\:form{display:block;}.ng-animate-shim{visibility:hidden;}.ng-anchor{position:absolute;}</style>');
+
+/***/ }),
+/* 12 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+Object.defineProperty(exports, "__esModule", { value: true });
+var module_1 = __webpack_require__(2);
+function failure(err) {
+    console.log(err);
+}
+module_1.home.factory('homeFactory', ['$http', function ($http) {
+        return {
+            getAddress: function (id, obj) {
+                $http.get('http://localhost:53948/api/address/getaddress' /*+ id*/ + '/').then(function (res) {
+                    obj.getAddress(res);
+                }, failure);
+            }
+        };
+    }]);
+
+
+/***/ }),
+/* 13 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+Object.defineProperty(exports, "__esModule", { value: true });
+var ng = __webpack_require__(0);
+__webpack_require__(3);
+__webpack_require__(1);
+__webpack_require__(4);
+var ngHousingTenant = ng.module('ngHousingTenant', ['ngHome', 'ngRoute', 'ngMaterial']);
+ngHousingTenant.config(['$routeProvider', function ($routeProvider) {
+        $routeProvider
+            .when('/', {
+            controller: 'homeController',
+            templateUrl: 'ts/home/template.html'
+        })
+            .otherwise({
+            redirectTo: '/'
+        });
+    }]);
+
 
 /***/ })
 /******/ ]);

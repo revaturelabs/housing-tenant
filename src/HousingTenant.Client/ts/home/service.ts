@@ -13,3 +13,4 @@ h.factory('homeFactory', ['$http', function ($http) {
     }
   }
 }]);
+ 
