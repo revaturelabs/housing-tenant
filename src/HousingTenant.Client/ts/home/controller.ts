@@ -1,15 +1,6 @@
 import { home as h } from './module';
 import './service';
 
-// h.controller('AppCtrl', function($scope) {
-//   $scope.title1 = 'Button';
-//   $scope.title4 = 'Warn';
-//   $scope.isDisabled = true;
-
-//   $scope.googleUrl = 'http://google.com';
-
-// });
-
 class Entity {
   text: string;
   value: string;
@@ -52,13 +43,5 @@ h.controller('homeController', ['$scope', 'homeFactory', function ($scope, homeF
 
   $scope.processRequest = function (id) {
     homeFactory.getAddress(id, $scope.myAddress);
-    // var p = new Promise();
-    // p.resolve(function (pass, fail) {
-    //   if (true) {
-    //     pass();
-    //   } else {
-    //     fail();
-    //   }
-    // });
   }
 }]);
