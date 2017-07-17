@@ -27,8 +27,9 @@ namespace HousingTenant.Business.Service
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            // Add framework services.
-            services.AddMvc();
+      // Add framework services.
+      services.AddCors(o => o.AddPolicy("default", b => b.AllowAnyOrigin()));
+      services.AddMvc();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -37,7 +38,8 @@ namespace HousingTenant.Business.Service
             loggerFactory.AddConsole(Configuration.GetSection("Logging"));
             loggerFactory.AddDebug();
 
-            app.UseMvc();
+      app.UseCors("default");
+      app.UseMvc();
         }
     }
 }
