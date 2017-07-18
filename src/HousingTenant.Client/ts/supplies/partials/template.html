@@ -1,9 +1,12 @@
 <section>
    <div>
+      <h2>Supply Requests</h2>
+   </div>
+   <div>
       <table class="table table-striped table-bordered">
-         <thead>
+         <thead class="thead">
             <tr>
-               <th>Request Name</th>
+               <th class="">Request Name</th>
                <th>Soap?</th>
                <th>Toilet Paper?</th>
                <th>Paper Towels?</th>
@@ -26,6 +29,42 @@
             </tr>
          </tbody>  
       </table>
+      <div>
+         <md-button class="md-raised md-primary" type="button" ng-click="openModal()">New Supply Request</md-button>
+      </div>
+   </div>
+
+   <div id="AddRequestModal" class="modal">
+      <section class="modal-content">
+         <header class="modal-header">
+            <span class="close" ng-click="closeModal()">&times;</span>
+            <h2>Add New Supply Request</h2>
+         </header>
+         <main class="modal-body">
+            <form>
+               <label for="name">Name</label>
+               <input type="text" id="name" ng-model="n">
+               <label for="soap">Soap?</label>
+               <input type="checkbox" id="soap" ng-model="s">
+               <label for="tp">ToiletPaper?</label>
+               <input type="checkbox" id="tp" ng-model="tp">
+               <label for="ptowel">PaperTowels?</label>
+               <input type="checkbox" id="ptowel" ng-model="pt">
+               <label for="dsoap">DishSoap?</label>
+               <input type="checkbox" id="dsoap" ng-model="ds">
+               <label for="trash">TrashBags?</label>
+               <input type="checkbox" id="trash" ng-model="tb">
+               <label for="dish">DishwasherDetergent?</label>
+               <input type="checkbox" id="dish" ng-model="dd">
+               <label for="sponge">Sponges?</label>
+               <input type="checkbox" id="sponge" ng-model="sp">
+            </form>
+         </main>
+         <footer class="modal-footer">
+            <md-button class="md-raised md-primary" type="button" ng-click="addRequest(n,s,tp,pt,ds,tb,dd,sp)">Submit</md-button>
+            <!--<button type="button" ng-click="addRequest(rr)">Submit</button>-->
+         </footer>
+      </section>
 
    </div>
 </section>
