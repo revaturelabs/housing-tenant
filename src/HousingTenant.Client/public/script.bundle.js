@@ -63,14 +63,14 @@
 /******/ 	__webpack_require__.p = "";
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 13);
+/******/ 	return __webpack_require__(__webpack_require__.s = 14);
 /******/ })
 /************************************************************************/
 /******/ ([
 /* 0 */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(11);
+__webpack_require__(12);
 module.exports = angular;
 
 
@@ -82,11 +82,11 @@ module.exports = angular;
 __webpack_require__(0);
 
 // Load Angular and dependent libs
-__webpack_require__(6);
-__webpack_require__(8);
+__webpack_require__(7);
+__webpack_require__(9);
 
 // Now load Angular Material
-__webpack_require__(9);
+__webpack_require__(10);
 
 // Export namespace
 module.exports = 'ngMaterial';
@@ -109,7 +109,7 @@ exports.home = home;
 /* 3 */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(10);
+__webpack_require__(11);
 module.exports = 'ngRoute';
 
 
@@ -121,7 +121,7 @@ module.exports = 'ngRoute';
 
 Object.defineProperty(exports, "__esModule", { value: true });
 var module_1 = __webpack_require__(2);
-__webpack_require__(12);
+__webpack_require__(13);
 var Entity = (function () {
     function Entity(t, v) {
         this.text = t;
@@ -159,6 +159,34 @@ module_1.home.controller('homeController', ['$scope', 'homeFactory', function ($
 
 /***/ }),
 /* 5 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+Object.defineProperty(exports, "__esModule", { value: true });
+var module_1 = __webpack_require__(15);
+var Request = (function () {
+    function Request(n) {
+        this.Name = n;
+        this.Soap = true;
+        this.ToiletPaper = false;
+        this.PaperTowels = false;
+        this.DishSoap = true;
+        this.TrashBags = false;
+        this.DishwasherDetergent = false;
+        this.Sponges = false;
+    }
+    return Request;
+}());
+var supplyController = module_1.supplyModule.controller('suppliesCtrl', ['$scope', function ($scope) {
+        $scope.requestList = [
+            new Request('First Request'), new Request('Second Request'), new Request('Third Request')
+        ];
+    }]);
+
+
+/***/ }),
+/* 6 */
 /***/ (function(module, exports) {
 
 /**
@@ -4318,15 +4346,15 @@ angular.module('ngAnimate', [], function initAngularHelpers() {
 
 
 /***/ }),
-/* 6 */
+/* 7 */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(5);
+__webpack_require__(6);
 module.exports = 'ngAnimate';
 
 
 /***/ }),
-/* 7 */
+/* 8 */
 /***/ (function(module, exports) {
 
 /**
@@ -4735,15 +4763,15 @@ ngAriaModule.directive('ngShow', ['$aria', function($aria) {
 
 
 /***/ }),
-/* 8 */
+/* 9 */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(7);
+__webpack_require__(8);
 module.exports = 'ngAria';
 
 
 /***/ }),
-/* 9 */
+/* 10 */
 /***/ (function(module, exports) {
 
 /*!
@@ -40753,7 +40781,7 @@ angular.module("material.core").constant("$MD_THEME_CSS", "md-autocomplete.md-TH
 })(window, window.angular);;window.ngMaterial={version:{full: "1.1.4"}};
 
 /***/ }),
-/* 10 */
+/* 11 */
 /***/ (function(module, exports) {
 
 /**
@@ -41988,7 +42016,7 @@ function ngViewFillContentFactory($compile, $controller, $route) {
 
 
 /***/ }),
-/* 11 */
+/* 12 */
 /***/ (function(module, exports) {
 
 /**
@@ -75824,7 +75852,7 @@ $provide.value("$locale", {
 !window.angular.$$csp().noInlineStyle && window.angular.element(document.head).prepend('<style type="text/css">@charset "UTF-8";[ng\\:cloak],[ng-cloak],[data-ng-cloak],[x-ng-cloak],.ng-cloak,.x-ng-cloak,.ng-hide:not(.ng-hide-animate){display:none !important;}ng\\:form{display:block;}.ng-animate-shim{visibility:hidden;}.ng-anchor{position:absolute;}</style>');
 
 /***/ }),
-/* 12 */
+/* 13 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -75846,7 +75874,7 @@ module_1.home.factory('homeFactory', ['$http', function ($http) {
 
 
 /***/ }),
-/* 13 */
+/* 14 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -75856,17 +75884,34 @@ var ng = __webpack_require__(0);
 __webpack_require__(3);
 __webpack_require__(1);
 __webpack_require__(4);
-var ngHousingTenant = ng.module('ngHousingTenant', ['ngHome', 'ngRoute', 'ngMaterial']);
+__webpack_require__(5);
+var ngHousingTenant = ng.module('ngHousingTenant', ['ngRoute', 'ngMaterial', 'ngHome', 'supplyModule']);
 ngHousingTenant.config(['$routeProvider', function ($routeProvider) {
         $routeProvider
             .when('/', {
             controller: 'homeController',
             templateUrl: 'ts/home/template.html'
         })
+            .when('/supplies', {
+            controller: 'suppliesCtrl',
+            templateUrl: 'ts/supplies/partials/template.html'
+        })
             .otherwise({
             redirectTo: '/'
         });
     }]);
+
+
+/***/ }),
+/* 15 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+Object.defineProperty(exports, "__esModule", { value: true });
+var ng = __webpack_require__(0);
+var supplyModule = ng.module('supplyModule', []);
+exports.supplyModule = supplyModule;
 
 
 /***/ })

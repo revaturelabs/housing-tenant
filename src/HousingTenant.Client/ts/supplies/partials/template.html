@@ -1,9 +1,32 @@
 <section>
    <div>
-      <ul>
-         <li><a href="">First Request</a></li>
-         <li><a href="">Second Request</a></li>
-         <li><a href="">Third Request</a></li>
-      </ul>
+      <table class="table table-striped table-bordered">
+         <thead>
+            <tr>
+               <th>Request Name</th>
+               <th>Soap?</th>
+               <th>Toilet Paper?</th>
+               <th>Paper Towels?</th>
+               <th>Dish Soap?</th>
+               <th>Trash Bags?</th>
+               <th>Dishwasher Detergent?</th>
+               <th>Sponges?</th>
+            </tr>
+         </thead>
+         <tbody>
+            <tr ng-repeat="request in requestList">
+               <td>{{request.Name}}</td>
+               <!--<td>{{request.Soap}}</td>-->
+               <td><input type="checkbox" ng-value="request.Soap"></input></td>
+               <td>{{request.ToiletPaper}}</td>
+               <td>{{request.PaperTowels}}</td>
+               <td>{{request.DishSoap}}</td>
+               <td>{{request.TrashBags}}</td>
+               <td>{{request.DishwasherDetergent}}</td>
+               <td>{{request.Sponges}}</td>
+            </tr>
+         </tbody>  
+      </table>
+
    </div>
 </section>
