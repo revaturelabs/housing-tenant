@@ -3,10 +3,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace HousingTenant.Data.Service.Brokers
+namespace HousingTenant.Data.Service.Interface
 {
-    interface IDataBroker
+    public interface IBroker
     {
-      T Get<T>();
     }
 }
