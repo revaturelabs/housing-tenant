@@ -1,0 +1,13 @@
+{
+  "compilerOptions": {
+    "alwaysStrict": true,
+    "baseUrl": ".",
+    "charset": "utf-8",
+    "module": "commonjs",
+    "outDir": "tmp",
+    "target": "es5"
+  },
+  "files": [
+    "ngapp/**/*"
+  ]
+}
