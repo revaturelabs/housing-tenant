@@ -16,14 +16,13 @@
          <tbody>
             <tr ng-repeat="request in requestList">
                <td>{{request.Name}}</td>
-               <!--<td>{{request.Soap}}</td>-->
-               <td><input type="checkbox" ng-value="request.Soap"></input></td>
-               <td>{{request.ToiletPaper}}</td>
-               <td>{{request.PaperTowels}}</td>
-               <td>{{request.DishSoap}}</td>
-               <td>{{request.TrashBags}}</td>
-               <td>{{request.DishwasherDetergent}}</td>
-               <td>{{request.Sponges}}</td>
+               <td><input type="checkbox" ng-model="request.Soap"></input></td>
+               <td><input type="checkbox" ng-model="request.ToiletPaper"></input></td>
+               <td><input type="checkbox" ng-model="request.PaperTowels"></input></td>
+               <td><input type="checkbox" ng-model="request.DishSoap"></input></td>
+               <td><input type="checkbox" ng-model="request.TrashBags"></input></td>
+               <td><input type="checkbox" ng-model="request.DishwasherDetergent"></input></td>
+               <td><input type="checkbox" ng-model="request.Sponges"></input></td>
             </tr>
          </tbody>  
       </table>
