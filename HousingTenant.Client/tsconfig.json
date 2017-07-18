@@ -7,7 +7,7 @@
     "outDir": "tmp",
     "target": "es5"
   },
-  "files": [
+  "include": [
     "ngapp/**/*"
   ]
 }
