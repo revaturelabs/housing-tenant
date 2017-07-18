@@ -1,4 +1,5 @@
 import {supplyModule as sm} from './module';
+import './services';
 
 class Request {
    Name: string;
@@ -23,7 +24,7 @@ class Request {
 }
 
 
-var supplyController = sm.controller('suppliesCtrl', ['$scope', function($scope){
+var supplyController = sm.controller('suppliesCtrl', ['$scope', 'supplyRequestListSvc', function($scope, supplyRequestListSvc){
    
    var requestModal = document.getElementById('AddRequestModal');
    
@@ -67,6 +68,21 @@ var supplyController = sm.controller('suppliesCtrl', ['$scope', function($scope)
       if(event.target == requestModal){
          requestModal.style.display = 'none';
       }
+   }
+   
+   var address = {
+         Address1: "123 main",
+         Address2: "suit",
+         ApartmentNumber: "302",
+         City: "Reston",
+         State: "Florida",
+         ZipCode: "32792"
+   };
+
+   $scope.myListRequest = [];
+   $scope.testService = function(){
+      supplyRequestListSvc.requestList(address, $scope.myListRequest);
+      console.log($scope.myListRequest)
    }
 }]);
 
