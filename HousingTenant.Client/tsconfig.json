@@ -4,7 +4,7 @@
     "baseUrl": ".",
     "charset": "utf-8",
     "module": "commonjs",
-    "outDir": "tmp",
+    "outDir": "jsbin",
     "target": "es5"
   },
   "include": [
