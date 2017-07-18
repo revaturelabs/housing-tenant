@@ -17,13 +17,13 @@ namespace HousingTenant.Business.Tests.ApartmentTests
       a.ComplexName = "Worldgate";
       a.Address = new Address();
       a.NumBeds = 6;
-      a.Gender = 0;
+      //a.Gender = 0;
       a.WalkingDistance = true;
 
       Assert.IsNotNull(a.ComplexName);
       Assert.IsNotNull(a.Address);
       Assert.NotZero(a.NumBeds);
-      Assert.IsNotNull(a.Gender);
+      //Assert.IsNotNull(a.Gender);
       Assert.IsTrue(a.WalkingDistance);
     }
   }
