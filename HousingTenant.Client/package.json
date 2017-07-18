@@ -1,0 +1,14 @@
+{
+  "name": "housing-tenant-client",
+  "version": "0.1.0",
+  "description": "",
+  "scripts": {
+    "start": "http-server ./public -p 80"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "MIT",
+  "devDependencies": {
+    "http-server": "^0.10.0"
+  }
+}
