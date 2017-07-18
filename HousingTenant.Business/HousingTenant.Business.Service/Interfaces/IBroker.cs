@@ -5,7 +5,11 @@ using System.Threading.Tasks;
 
 namespace HousingTenant.Business.Service.Interfaces
 {
-    public interface IBroker
+    public interface IBroker<T>
     {
+        List<T> Get();
+        bool Create(T obj);
+        bool Delete(T obj);
+        bool Update(T obj);
     }
 }
