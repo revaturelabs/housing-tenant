@@ -37,17 +37,12 @@ var supplyController = sm.controller('suppliesCtrl', ['$scope', 'supplyRequestLi
          ZipCode: "32792"
    };
 
-   $scope.reqL = [];
 
-   $scope.goData = function(){
-      supplyRequestListSvc.getRequestList(address, $scope.myListRequest).then(function(data){
-          $scope.gotData = data;
-      });
-};
+      $scope.requestList;
+   
    $scope.testService = function(){
-         $scope.goData();
-         console.log($scope.gotData);
-   };
+      supplyRequestListSvc.getRequestList(address, $scope.requestList)
+   }
    
    var req1 = new Request;
    req1.Name = 'First Request';

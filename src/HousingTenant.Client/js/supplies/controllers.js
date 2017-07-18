@@ -25,15 +25,13 @@ var supplyController = module_1.supplyModule.controller('suppliesCtrl', ['$scope
             State: "Florida",
             ZipCode: "32792"
         };
-        $scope.reqL = [];
-        $scope.goData = function () {
+        var myfunction = function () {
             supplyRequestListSvc.getRequestList(address, $scope.myListRequest).then(function (data) {
-                $scope.gotData = data;
+                $scope.data = data;
             });
         };
         $scope.testService = function () {
-            $scope.goData();
-            console.log($scope.gotData);
+            myfunction;
         };
         var req1 = new Request;
         req1.Name = 'First Request';

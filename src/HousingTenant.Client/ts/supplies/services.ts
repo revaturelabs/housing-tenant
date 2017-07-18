@@ -15,7 +15,7 @@ var supplyService = sm.factory('supplyRequestListSvc', ['$http', function($http)
          $http.get('http://localhost:5000/api/values/', { params: address } ).then(
             function(res){
                console.log(res.data); 
-               return res.data;
+               requestList = res.data;
             }, function(err){
                console.log(err);
             });
