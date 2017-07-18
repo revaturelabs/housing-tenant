@@ -70,7 +70,7 @@ namespace HousingTenant.Business.Tests.RequestTests
             };
 
             var actual = request1.GetHashCode();
-            Assert.IsTrue(actual > 0);
+            Assert.IsTrue(actual != 0);
         }
         
         [Test]
