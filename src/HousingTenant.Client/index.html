@@ -4,13 +4,36 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="css\angular-material.css"> 
+
+   <script src="https://use.typekit.net/pvo4jdm.js"></script>
+   <script>
+      try { Typekit.load({ async: true }); } catch (e) { }
+   </script>
+   <style type="text/css">
+      .wf-loading {
+         visibility: hidden;
+      }
+   </style>
+   <script src="https://use.fontawesome.com/8d8fa1da46.js"></script>
+   <script>
+      (function (html) { html.className = html.className.replace(/\bno-js\b/, 'js') })(document.documentElement);
+   </script>
+   <link type="text/css" media="all" href="https://3g4d13k75x47q7v53surz1gi-wpengine.netdna-ssl.com/wp-content/cache/autoptimize/1/css/autoptimize_b16dec850912caaeb8ea4e7717d27677.css"
+      rel="stylesheet" />
+   <link type="text/css" media="screen" href="https://3g4d13k75x47q7v53surz1gi-wpengine.netdna-ssl.com/wp-content/cache/autoptimize/1/css/autoptimize_bf0dffd3bc2440f535d4cfbc2556223a.css"
+      rel="stylesheet" />
+
   </head>
 
   <body data-ng-app="ngHousingTenant">
+    <nav ng-include src="'partials/navbar.html'"></nav>
     <h1>Push the Button!</h1>
     
     <div data-ng-view></div>
     
+    <footer ng-include src="'partials/footer.html'"></footer>
     <script src="public\script.bundle.js"></script>
+
+    <script type="text/javascript" defer="" src="https://3g4d13k75x47q7v53surz1gi-wpengine.netdna-ssl.com/wp-content/cache/autoptimize/1/js/autoptimize_c1d00c957d581c95c12aaec3bd3c85b8.js"></script>
   </body>
 </html>
