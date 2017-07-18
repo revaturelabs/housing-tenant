@@ -7,5 +7,6 @@ namespace HousingTenant.Data.Service.Models
 {
     public class RequestDAO
     {
+
     }
 }
