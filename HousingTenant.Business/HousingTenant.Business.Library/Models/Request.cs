@@ -5,7 +5,8 @@ using System.Text;
 namespace HousingTenant.Business.Library.Models
 {
     /// <summary>
-    /// Represent a request for accommodation or supplies
+    /// Represent a "request" that is serves as the base class
+    /// for all types of request that can be submitted by a Tenant.
     /// </summary>
     public abstract class ARequest
     {
