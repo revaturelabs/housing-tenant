@@ -1,6 +1,7 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 var module_1 = require("./module");
+require("./services");
 var Request = (function () {
     function Request() {
         this.Name = " ";
@@ -14,8 +15,26 @@ var Request = (function () {
     }
     return Request;
 }());
-var supplyController = module_1.supplyModule.controller('suppliesCtrl', ['$scope', function ($scope) {
+var supplyController = module_1.supplyModule.controller('suppliesCtrl', ['$scope', 'supplyRequestListSvc', function ($scope, supplyRequestListSvc) {
         var requestModal = document.getElementById('AddRequestModal');
+        var address = {
+            Address1: "123 main",
+            Address2: "suit",
+            ApartmentNumber: "302",
+            City: "Reston",
+            State: "Florida",
+            ZipCode: "32792"
+        };
+        $scope.reqL = [];
+        $scope.goData = function () {
+            supplyRequestListSvc.getRequestList(address, $scope.myListRequest).then(function (data) {
+                $scope.gotData = data;
+            });
+        };
+        $scope.testService = function () {
+            $scope.goData();
+            console.log($scope.gotData);
+        };
         var req1 = new Request;
         req1.Name = 'First Request';
         var req2 = new Request;
@@ -27,6 +46,7 @@ var supplyController = module_1.supplyModule.controller('suppliesCtrl', ['$scope
         $scope.requestList.push(req2);
         $scope.requestList.push(req3);
         $scope.addRequest = function (n, s, tp, pt, ds, tb, dd, sp) {
+            console.log($scope.reqL);
             var request = {
                 Name: n,
                 Soap: s,

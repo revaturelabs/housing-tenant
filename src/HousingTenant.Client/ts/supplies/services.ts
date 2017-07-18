@@ -1,11 +1,21 @@
 import {supplyModule as sm} from './module';
 
+
+// var config = {
+//     params: {
+//         one: ,
+//         two: 
+//     }
+// }
+
 var supplyService = sm.factory('supplyRequestListSvc', ['$http', function($http){
    return {
       getRequestList: function(address, requestList){
-         $http.get("http://localhost/tenant/" + address).then(
+         console.log(address);
+         $http.get('http://localhost:5000/api/values/', { params: address } ).then(
             function(res){
-               requestList = res.data;
+               console.log(res.data); 
+               return res.data;
             }, function(err){
                console.log(err);
             });

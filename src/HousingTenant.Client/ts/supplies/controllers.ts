@@ -27,6 +27,27 @@ class Request {
 var supplyController = sm.controller('suppliesCtrl', ['$scope', 'supplyRequestListSvc', function($scope, supplyRequestListSvc){
    
    var requestModal = document.getElementById('AddRequestModal');
+
+   var address = {
+         Address1: "123 main",
+         Address2: "suit",
+         ApartmentNumber: "302",
+         City: "Reston",
+         State: "Florida",
+         ZipCode: "32792"
+   };
+
+   $scope.reqL = [];
+
+   $scope.goData = function(){
+      supplyRequestListSvc.getRequestList(address, $scope.myListRequest).then(function(data){
+          $scope.gotData = data;
+      });
+};
+   $scope.testService = function(){
+         $scope.goData();
+         console.log($scope.gotData);
+   };
    
    var req1 = new Request;
    req1.Name = 'First Request';
@@ -41,6 +62,7 @@ var supplyController = sm.controller('suppliesCtrl', ['$scope', 'supplyRequestLi
    $scope.requestList.push(req3);
 
    $scope.addRequest = function(n,s,tp,pt,ds,tb,dd,sp){
+         console.log($scope.reqL);
       var request = {
             Name: n,
             Soap: s,
@@ -70,20 +92,7 @@ var supplyController = sm.controller('suppliesCtrl', ['$scope', 'supplyRequestLi
       }
    }
    
-   var address = {
-         Address1: "123 main",
-         Address2: "suit",
-         ApartmentNumber: "302",
-         City: "Reston",
-         State: "Florida",
-         ZipCode: "32792"
-   };
-
-   $scope.myListRequest = [];
-   $scope.testService = function(){
-      supplyRequestListSvc.requestList(address, $scope.myListRequest);
-      console.log($scope.myListRequest)
-   }
+   
 }]);
 
 
