@@ -31,8 +31,9 @@ namespace HousingTenant.Data.Service.Controllers
 
         // POST api/values
         [HttpPost]
-        public void Post([FromBody]string value)
+        public bool Post([FromBody]RequestDAO value)
         {
+            return rb.Create (value);
         }
 
         /*// PUT api/values/5
