@@ -27,8 +27,8 @@ namespace HousingTenant.Business.Library.Models
             {
                 var newRequest = obj as MaintenanceRequest;
 
-                return newRequest.Initiator.Address.Equals(Initiator.Address) &&
-                   newRequest.Description.ToLower().Equals(Description.ToLower()) &&
+            return newRequest.Initiator.Address.Equals(Initiator.Address) &&
+               newRequest.Description.ToLower().Equals(Description.ToLower()) &&
                    (newRequest.Status == StatusEnum.PENDING || newRequest.Status == StatusEnum.INWORK) &&
                    (Status == StatusEnum.PENDING || Status == StatusEnum.INWORK);
             }
