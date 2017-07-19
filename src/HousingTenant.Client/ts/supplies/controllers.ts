@@ -25,8 +25,10 @@ var supplyController = sm.controller('suppliesCtrl', ['$scope', 'supplyRequestLi
                   dishSoap: ds,
                   trashBags: tb,
                   dishwasherDetergent: dd,
-                  sponges: sp
-            }
+                  sponges: sp,
+                  requestType : 1
+            };
+
             supplyRequestListSvc.postRequest(request);
             $scope.closeModal();
       }

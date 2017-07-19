@@ -13,9 +13,7 @@ var supplyService = sm.factory('supplyRequestListSvc', ['$http', function($http)
             });
       },
       postRequest: function(request){
-            console.log('before');
             console.log(request);
-            console.log('after');
             $http({
                   method: 'POST',
                   url: 'http://localhost:5000/api/values/',
@@ -28,10 +26,8 @@ var supplyService = sm.factory('supplyRequestListSvc', ['$http', function($http)
                   },
                   data: {request}
             }).then(function(res){
-                  console.log('succ');
                   console.log(res);
             }, function(err){
-                  console.log('err');
                   console.log(err);
             });
       }
