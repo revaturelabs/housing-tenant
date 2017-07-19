@@ -22,7 +22,7 @@ namespace HousingTenant.Business.Service.Controllers
             return rb.Get ();
         }
 
-        [HttpGet]
+        [HttpGet("{value}")]
         public IEnumerable<ARequest> Get([FromBody] Apartment value)
         {
             return rb.Get (value);
