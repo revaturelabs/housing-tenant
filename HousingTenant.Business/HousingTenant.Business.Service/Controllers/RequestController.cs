@@ -17,9 +17,9 @@ namespace HousingTenant.Business.Service.Controllers
 
         // GET: api/values
         [HttpGet]
-        public IEnumerable<string> Get()
+        public IEnumerable<ARequest> Get()
         {
-            return new string[] { "value1", "value2" };
+            return rb.Get ();
         }
 
         // GET api/values/5
