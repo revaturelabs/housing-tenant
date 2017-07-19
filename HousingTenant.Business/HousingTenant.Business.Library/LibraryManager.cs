@@ -10,21 +10,20 @@ namespace HousingTenant.Business.Library
 
       public IApartment PackApartment(IApartment apartment, List<IPerson> tenants, List<ARequest> requests)
       {
-         if (apartment == null)
+         if (apartment != null)
          {
-            return null;
-         }
+             foreach (var tenant in tenants)
+             {
+                 apartment.AddTenant(tenant);
+             }
 
-         foreach (var tenant in tenants)
-         {
-            apartment.AddTenant(tenant);
+             foreach (var request in requests)
+             {
+                 apartment.AddRequest(request);
+             }
+             return apartment;
          }
-
-         foreach (var request in requests)
-         {
-            apartment.AddRequest(request);
-         }
-         return apartment;
+         return null;
       }
 
       public IApartment ValidateApartment(IApartment apartment)
