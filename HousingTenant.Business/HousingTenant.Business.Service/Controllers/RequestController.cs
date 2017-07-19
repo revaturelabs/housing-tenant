@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using HousingTenant.Business.Service.Brokers;
 using HousingTenant.Business.Library.Models;
+using HousingTenant.Business.Service.Models;
 
 // For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 
@@ -22,6 +23,12 @@ namespace HousingTenant.Business.Service.Controllers
             return rb.Get ();
         }
 
+        [HttpGet("{value}")]
+        public IEnumerable<ARequest> Get([FromBody] Apartment value)
+        {
+            return rb.Get (value);
+        }
+
         // GET api/values/5
         /*[HttpGet("{id}")]
         public string Get(int id)
@@ -31,7 +38,7 @@ namespace HousingTenant.Business.Service.Controllers
 
         // POST api/values
         [HttpPost]
-        public bool Post([FromBody]ARequest value)
+        public bool Post([FromBody]Request value)
         {
             return rb.Create (value);
         }

@@ -8,11 +8,12 @@ namespace HousingTenant.Business.Service.Interfaces
     /// <summary>
     /// The base interface for all Brokers used by the Business Service
     /// </summary>
-    public interface IBroker<T>
+    public interface IBroker<T,U,V>
     {
         
         List<T> Get();
-        bool Create(T obj);
+        List<T> Get(U obj);
+        bool Create(V obj);
         bool Delete(T obj);
         bool Update(T obj);
     }
