@@ -1,89 +1,50 @@
-import {supplyModule as sm} from './module';
+import { supplyModule as sm } from './module';
 import './services';
 
-class Request {
-   Name: string;
-   Soap: boolean;
-   ToiletPaper : boolean;
-   PaperTowels : boolean;
-   DishSoap : boolean;
-   TrashBags : boolean;
-   DishwasherDetergent : boolean;
-   Sponges : boolean;
+var supplyController = sm.controller('suppliesCtrl', ['$scope', 'supplyRequestListSvc', function ($scope, supplyRequestListSvc) {
 
-   constructor(){
-      this.Name = " ";   
-      this.Soap = true;
-      this.ToiletPaper = false;
-      this.PaperTowels = false;
-      this.DishSoap = true;
-      this.TrashBags = false;
-      this.DishwasherDetergent = false;
-      this.Sponges = false;
-   }
-}
+      var requestModal = document.getElementById('AddRequestModal');
 
+      var address = {
+            Address1: "123 main",
+            Address2: "suit",
+            ApartmentNumber: "302",
+            City: "Reston",
+            State: "Florida",
+            ZipCode: "32792"
+      };
 
-var supplyController = sm.controller('suppliesCtrl', ['$scope', 'supplyRequestListSvc', function($scope, supplyRequestListSvc){
-   
-   var requestModal = document.getElementById('AddRequestModal');
-   
-   var req1 = new Request;
-   req1.Name = 'First Request';
-   var req2 = new Request;
-   req2.Name = 'Second Request';
-   var req3 = new Request;
-   req3.Name = 'Third Request';
+      supplyRequestListSvc.getRequestList(address, $scope);
 
-   $scope.requestList = [];
-   $scope.requestList.push(req1);
-   $scope.requestList.push(req2);
-   $scope.requestList.push(req3);
+      $scope.addRequest = function (n, s, tp, pt, ds, tb, dd, sp) {
+            var request = {
+                  name: n,
+                  soap: s,
+                  toiletPaper: tp,
+                  paperTowels: pt,
+                  dishSoap: ds,
+                  trashBags: tb,
+                  dishwasherDetergent: dd,
+                  sponges: sp,
+                  requestType : 1
+            };
 
-   $scope.addRequest = function(n,s,tp,pt,ds,tb,dd,sp){
-      var request = {
-            Name: n,
-            Soap: s,
-            ToiletPaper : tp,
-            PaperTowels : pt,
-            DishSoap : ds,
-            TrashBags : tb,
-            DishwasherDetergent : dd,
-            Sponges : sp
+            supplyRequestListSvc.postRequest(request);
+            $scope.closeModal();
       }
-      $scope.requestList.push(request);
-      $scope.closeModal();
 
-      console.log($scope.requestList);
-   }
-
-   $scope.openModal = function(){
-      requestModal.style.display = 'block';
-   }
-
-   $scope.closeModal = function(){
-      requestModal.style.display = 'none';
-   }
-   window.onclick = function(event){
-      if(event.target == requestModal){
-         requestModal.style.display = 'none';
+      $scope.openModal = function () {
+            requestModal.style.display = 'block';
       }
-   }
-   
-   var address = {
-         Address1: "123 main",
-         Address2: "suit",
-         ApartmentNumber: "302",
-         City: "Reston",
-         State: "Florida",
-         ZipCode: "32792"
-   };
 
-   $scope.myListRequest = [];
-   $scope.testService = function(){
-      supplyRequestListSvc.requestList(address, $scope.myListRequest);
-      console.log($scope.myListRequest)
-   }
+      $scope.closeModal = function () {
+            requestModal.style.display = 'none';
+      }
+      window.onclick = function (event) {
+            if (event.target == requestModal) {
+                  requestModal.style.display = 'none';
+            }
+      }
 }]);
 
 
