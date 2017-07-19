@@ -1,6 +1,5 @@
 import {supplyModule as sm} from './module';
 
-//var header = 
 var supplyService = sm.factory('supplyRequestListSvc', ['$http', function($http){
    return {
       getRequestList: function(address, scope){

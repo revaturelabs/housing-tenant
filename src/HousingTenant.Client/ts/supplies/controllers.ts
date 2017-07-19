@@ -1,7 +1,6 @@
 import { supplyModule as sm } from './module';
 import './services';
 
-
 var supplyController = sm.controller('suppliesCtrl', ['$scope', 'supplyRequestListSvc', function ($scope, supplyRequestListSvc) {
 
       var requestModal = document.getElementById('AddRequestModal');
@@ -17,10 +16,6 @@ var supplyController = sm.controller('suppliesCtrl', ['$scope', 'supplyRequestLi
 
       supplyRequestListSvc.getRequestList(address, $scope);
 
-      $scope.testService = function () {
-            //supplyRequestListSvc.getRequestList(address, $scope.reqList);
-      };
-
       $scope.addRequest = function (n, s, tp, pt, ds, tb, dd, sp) {
             var request = {
                   name: n,
@@ -32,7 +27,6 @@ var supplyController = sm.controller('suppliesCtrl', ['$scope', 'supplyRequestLi
                   dishwasherDetergent: dd,
                   sponges: sp
             }
-            //$scope.reqList.push(request);
             supplyRequestListSvc.postRequest(request);
             $scope.closeModal();
       }
@@ -49,8 +43,6 @@ var supplyController = sm.controller('suppliesCtrl', ['$scope', 'supplyRequestLi
                   requestModal.style.display = 'none';
             }
       }
-
-
 }]);
 
 
