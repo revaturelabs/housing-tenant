@@ -7,5 +7,7 @@ namespace HousingTenant.Business.Library
     public interface IPerson
     {
         string GetFullName();
+
+        bool IsValid();
     }
 }

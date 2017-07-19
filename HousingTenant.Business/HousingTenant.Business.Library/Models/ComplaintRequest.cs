@@ -49,6 +49,11 @@ namespace HousingTenant.Business.Library.Models
                Status.GetHashCode();
         }
 
+        public override bool IsValid()
+        {
+            return Accused != null && Complaint != null;
+        }
+
         /// <summary>
         /// Generate a string representation of this class
         /// </summary>
