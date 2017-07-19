@@ -21,7 +21,13 @@ namespace HousingTenant.Business.Service.Brokers
 
         public List<ARequest> Get()
         {
-            throw new NotImplementedException ();
+            var list = new List<ARequest> ();
+
+            list.Add (new MaintenanceRequest ());
+            list.Add (new SupplyRequest ());
+            list.Add (new ComplaintRequest ());
+
+            return list;
         }
 
         public List<ARequest> Get(Apartment obj)
