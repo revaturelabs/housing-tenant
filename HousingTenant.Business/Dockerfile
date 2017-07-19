@@ -4,4 +4,4 @@ COPY . /app
 RUN dotnet restore
 RUN dotnet build
 WORKDIR HousingTenant.Business.Service
-CMD ["ASPNETCORE_URLS=\"https://*:80\"", "dotnet", "run"]
+CMD ["ASPNETCORE_URLS=\"http://*:80\"", "dotnet", "run"]
