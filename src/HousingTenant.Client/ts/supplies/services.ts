@@ -1,24 +1,40 @@
 import {supplyModule as sm} from './module';
 
-
-// var config = {
-//     params: {
-//         one: ,
-//         two: 
-//     }
-// }
-
+//var header = 
 var supplyService = sm.factory('supplyRequestListSvc', ['$http', function($http){
    return {
-      getRequestList: function(address, requestList){
-         console.log(address);
+      getRequestList: function(address, scope){
          $http.get('http://localhost:5000/api/values/', { params: address } ).then(
             function(res){
                console.log(res.data); 
-               requestList = res.data;
+                  scope.reqList = res.data;
+                  console.log(scope.reqList);
             }, function(err){
                console.log(err);
             });
+      },
+      postRequest: function(request){
+            console.log('before');
+            console.log(request);
+            console.log('after');
+            $http({
+                  method: 'POST',
+                  url: 'http://localhost:5000/api/values/',
+                  withCredentials: true,
+                  headers: {
+                        'Access-Control-Allow-Origin': 'http://localhost:5000',
+                        'Content-Type': 'application/json',
+                        'Access-Control-Allow-Credentials' : 'true',
+                        'Access-Control-Allow-Methods' : 'GET,PUT,POST,DELETE'
+                  },
+                  data: {request}
+            }).then(function(res){
+                  console.log('succ');
+                  console.log(res);
+            }, function(err){
+                  console.log('err');
+                  console.log(err);
+            });
       }
-   }
+   };
 }]);
