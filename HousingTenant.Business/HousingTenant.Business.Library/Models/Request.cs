@@ -17,6 +17,15 @@ namespace HousingTenant.Business.Library.Models
         public StatusEnum Status { get; set; }
 
         /// <summary>
+        /// Determine the validity of an instantiated object
+        /// of this class. To be valid depends upon the state
+        /// of the object that uniquely make it a valid object
+        /// </summary>
+        /// <returns>True if the properties of this object contain the minimum require values,
+        /// false otherwise</returns>
+        public abstract bool IsValid();
+        
+        /// <summary>
         /// Generate a string representation of this class
         /// </summary>
         /// <returns>

@@ -37,6 +37,11 @@ namespace HousingTenant.Business.Library.Models
             return Initiator.GetHashCode() + RequestedApartmentAddress.GetHashCode();
         }
 
+        public override bool IsValid()
+        {
+            return Reason != null && RequestedApartmentAddress != null;
+        }
+
         /// <summary>
         /// Generate a string representation of this class
         /// </summary>

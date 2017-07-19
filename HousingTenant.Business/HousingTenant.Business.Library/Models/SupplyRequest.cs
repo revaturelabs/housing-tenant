@@ -45,6 +45,11 @@ namespace HousingTenant.Business.Library.Models
             return Initiator.GetHashCode() + DateSubmitted.GetHashCode() + Status.GetHashCode();
         }
 
+        public override bool IsValid()
+        {
+            return _RequestItems.Count > 0;
+        }
+
         public override string ToString()
         {
             string items = "";

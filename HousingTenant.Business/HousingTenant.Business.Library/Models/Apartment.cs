@@ -64,7 +64,12 @@ namespace HousingTenant.Business.Library.Models
         {
          return Address.GetHashCode();
         }
-        
+
+        public bool IsValid()
+        {
+            return Beds > 0 && Bathrooms > 0 && Address != null;
+        }
+
         public List<ARequest> OpenRequests()
         {
             var requests = new List<ARequest>();

@@ -12,5 +12,7 @@ namespace HousingTenant.Business.Library
         bool AddTenant(IPerson tenant);
 
         List<ARequest> OpenRequests();
+
+        bool IsValid();
     }
 }
