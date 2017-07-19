@@ -31,8 +31,9 @@ namespace HousingTenant.Business.Service.Controllers
 
         // POST api/values
         [HttpPost]
-        public void Post([FromBody]string value)
+        public bool Post([FromBody]Person value)
         {
+            return pb.Create (value);
         }
 
         /*// PUT api/values/5
