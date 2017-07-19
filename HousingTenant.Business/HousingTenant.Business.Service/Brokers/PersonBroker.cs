@@ -21,7 +21,11 @@ namespace HousingTenant.Business.Service.Brokers
 
         public List<Person> Get()
         {
-            throw new NotImplementedException ();
+            var list = new List<Person> ();
+
+            list.Add (new Person { FirstName = "Me", LastName = "Again", ReportDate = DateTime.Now });
+
+            return list;
         }
 
         public List<Person> Get(string obj)
