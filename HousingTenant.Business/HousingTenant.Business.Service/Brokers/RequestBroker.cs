@@ -23,8 +23,8 @@ namespace HousingTenant.Business.Service.Brokers
         {
             var list = new List<ARequest> ();
 
-            list.Add (new MaintenanceRequest ());
-            list.Add (new SupplyRequest ());
+            list.Add (new MaintenanceRequest {Description = "Stuff Broke", Initiator = new Person { FirstName = "you", LastName = "there" }, DateSubmitted = DateTime.Now });
+            list.Add (new SupplyRequest { Initiator = new Person { FirstName = "you", LastName = "there" } });
             list.Add (new ComplaintRequest ());
 
             return list;
