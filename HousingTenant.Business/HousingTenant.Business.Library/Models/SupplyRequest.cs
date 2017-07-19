@@ -6,8 +6,16 @@ namespace HousingTenant.Business.Library.Models
 {
     public class SupplyRequest : ARequest
     {
-        public List<string> RequestItems { get; set; }
+        private List<string> _RequestItems;
+        public List<string> RequestItems {
+           get { return _RequestItems; }
+           set { _RequestItems = value; }
+        }
         
+        public SupplyRequest()
+        {
+            _RequestItems = new List<string>();
+        }
         /// <summary>
         /// Compares two Supply request by checking the address of the initiator
         /// date of the request and the status. If they are all equal then the
