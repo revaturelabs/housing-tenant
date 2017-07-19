@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using HousingTenant.Business.Service.Brokers;
 using HousingTenant.Business.Library.Models;
+using HousingTenant.Business.Service.Models;
 
 // For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 
@@ -37,7 +38,7 @@ namespace HousingTenant.Business.Service.Controllers
 
         // POST api/values
         [HttpPost]
-        public bool Post([FromBody]ARequest value)
+        public bool Post([FromBody]Request value)
         {
             return rb.Create (value);
         }

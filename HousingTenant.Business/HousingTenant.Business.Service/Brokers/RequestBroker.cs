@@ -4,12 +4,13 @@ using System.Linq;
 using System.Threading.Tasks;
 using HousingTenant.Business.Service.Interfaces;
 using HousingTenant.Business.Library.Models;
+using HousingTenant.Business.Service.Models;
 
 namespace HousingTenant.Business.Service.Brokers
 {
-    public class RequestBroker : IBroker<ARequest,Apartment>
+    public class RequestBroker : IBroker<ARequest,Apartment,Request>
     {
-        public bool Create(ARequest obj)
+        public bool Create(Request obj)
         {
             throw new NotImplementedException ();
         }
