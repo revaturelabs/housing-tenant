@@ -22,6 +22,12 @@ namespace HousingTenant.Business.Service.Controllers
             return rb.Get ();
         }
 
+        [HttpGet]
+        public IEnumerable<ARequest> Get([FromBody] Apartment value)
+        {
+            return rb.Get (value);
+        }
+
         // GET api/values/5
         /*[HttpGet("{id}")]
         public string Get(int id)
