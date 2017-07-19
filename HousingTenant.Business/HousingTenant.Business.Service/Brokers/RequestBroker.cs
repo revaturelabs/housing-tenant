@@ -7,7 +7,7 @@ using HousingTenant.Business.Library.Models;
 
 namespace HousingTenant.Business.Service.Brokers
 {
-    public class RequestBroker : IBroker<ARequest>
+    public class RequestBroker : IBroker<ARequest,Apartment>
     {
         public bool Create(ARequest obj)
         {
@@ -20,6 +20,11 @@ namespace HousingTenant.Business.Service.Brokers
         }
 
         public List<ARequest> Get()
+        {
+            throw new NotImplementedException ();
+        }
+
+        public List<ARequest> Get(Apartment obj)
         {
             throw new NotImplementedException ();
         }
