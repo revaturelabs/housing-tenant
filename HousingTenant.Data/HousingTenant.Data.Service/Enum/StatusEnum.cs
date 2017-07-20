@@ -5,10 +5,11 @@ using System.Threading.Tasks;
 
 namespace HousingTenant.Data.Service.Enum
 {
-    public enum RequestType
+    public enum StatusEnum
     {
-        Maintenance,
-        Supply,
-        Complaint
+        Pending,
+        Hold,
+        Completed,
+        Rejected
     }
 }
