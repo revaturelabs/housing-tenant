@@ -38,7 +38,7 @@ namespace HousingTenant.Business.Service.Controllers
 
         // POST api/values
         [HttpPost]
-        public bool Post([FromBody]Request value)
+        public bool Post([FromBody]RequestDTO value)
         {
             return rb.Create (value);
         }
