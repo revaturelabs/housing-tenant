@@ -134,6 +134,7 @@ __webpack_require__(17);
 //importing HTML
 __webpack_require__(20);
 __webpack_require__(21);
+__webpack_require__(22);
 //Testing GITLAB
 var ngHousingTenant = ng.module('ngHousingTenant', ['ngRoute', 'ngMaterial', 'ngHome', 'supplyModule']);
 ngHousingTenant.config(['$routeProvider', function ($routeProvider) {
@@ -75865,31 +75866,22 @@ var Address = (function () {
     };
     return Address;
 }());
-module_1.home.controller('homeController', ['$scope', 'homeFactory', function ($scope, homeFactory) {
+var myController = module_1.home.controller('homeController', ['$scope', 'homeFactory', '$http', function ($scope, homeFactory, $http) {
         $scope.myAddress = new Address();
         $scope.entities = [
             new Entity('Address', 'Address')
         ];
+        $scope.something = 'hello mock';
+        $scope.addNumbers = function (n1, n2) {
+            return n1 + n2;
+        };
+        $scope.seeYouLater = function () {
+            $http.get('./someurl').then(function (res) {
+                $scope.success = res;
+            });
+        };
         $scope.processRequest = function (id) {
             homeFactory.getAddress(id, $scope.myAddress);
-        };
-        $scope.openMenu = function () {
-            document.getElementById("mySidenav").style.width = "250px";
-            document.getElementById("main").style.marginLeft = "250px";
-        };
-        $scope.closeMenu = function () {
-            document.getElementById("mySidenav").style.width = "0";
-            document.getElementById("main").style.marginLeft = "0px";
-        };
-        $scope.displayPage = function (id) {
-            $scope.closeMenu();
-            switch (id) {
-                case "supplies":
-                    homeFactory.getSuppliesPage();
-                    break;
-                default:
-                    console.log("did nothing");
-            }
         };
     }]);
 
@@ -76035,6 +76027,12 @@ module.exports = __webpack_require__.p + "html/footer.html";
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports = __webpack_require__.p + "html/navbar.html";
+
+/***/ }),
+/* 22 */
+/***/ (function(module, exports, __webpack_require__) {
+
+module.exports = __webpack_require__.p + "html/sidebar.html";
 
 /***/ })
 /******/ ]);

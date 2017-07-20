@@ -10,11 +10,11 @@ import './supplies/controllers';
 //importing HTML
 import 'file-loader?name=[name].[ext]&outputPath=html/!./html/footer.html';
 import 'file-loader?name=[name].[ext]&outputPath=html/!./html/navbar.html';
-
+import 'file-loader?name=[name].[ext]&outputPath=html/!./html/sidebar.html';
 //Testing GITLAB
 
 
-var ngHousingTenant = ng.module('ngHousingTenant', ['ngRoute', 'ngMaterial','ngHome', 'supplyModule'])
+var ngHousingTenant = ng.module('ngHousingTenant', ['ngRoute', 'ngMaterial','ngHome', 'supplyModule']);
 
 ngHousingTenant.config(['$routeProvider', function($routeProvider){
   $routeProvider

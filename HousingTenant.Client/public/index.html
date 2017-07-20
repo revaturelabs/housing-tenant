@@ -28,16 +28,37 @@
     var wpum_frontend_js = { "ajax": "https:\/\/revature.com\/wp-admin\/admin-ajax.php", "checking_credentials": "Checking credentials...", "pwd_meter": "", "disable_ajax": "" };
   </script>
   <link type="text/css" rel="stylesheet" href="css/modal.css" />
+  <script type="text/javascript">
+    function openMenu() {
+      document.getElementById("mySidenav").style.width = "250px";
+      document.getElementById("main").style.marginLeft = "250px";
+    }
+    var closeMenu = function () {
+      document.getElementById("mySidenav").style.width = "0";
+      document.getElementById("main").style.marginLeft = "0px";
+    }
+    window.onclick = function (event) {
+      var sideNav = document.getElementById('mySidenav');
+      if (event.target == sideNav) {
+        sideNav.style.width = "0";
+        document.getElementById("main").style.marginLeft = "0px";;
+      }
+    }
+  </script>
 </head>
 
-  <body id="main" data-ng-app="ngHousingTenant">
-    <nav ng-include src="'html/navbar.html'"></nav>
-    <div data-ng-view></div>
+<body id="main" data-ng-app="ngHousingTenant">
+  <header>
+    <div ng-include="'html/sidebar.html'"></div>
+  </header>
 
-    <footer ng-include src="'html/footer.html'"></footer>
-    <script src="js\script.bundle.js"></script>
+  <nav ng-include src="'html/navbar.html'"></nav>
+  <div data-ng-view></div>
 
-    <script type="text/javascript" defer="" src="https://3g4d13k75x47q7v53surz1gi-wpengine.netdna-ssl.com/wp-content/cache/autoptimize/1/js/autoptimize_c1d00c957d581c95c12aaec3bd3c85b8.js"></script>
-  </body>
+  <footer ng-include src="'html/footer.html'"></footer>
+  <script src="js\script.bundle.js"></script>
+
+  <script type="text/javascript" defer="" src="https://3g4d13k75x47q7v53surz1gi-wpengine.netdna-ssl.com/wp-content/cache/autoptimize/1/js/autoptimize_c1d00c957d581c95c12aaec3bd3c85b8.js"></script>
+</body>
 
 </html>
