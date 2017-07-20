@@ -1,4 +1,4 @@
-<section>
+<!-- <section>
   <form action="">
     <md-button class="md-raised md-primary" type="button" data-ng-click="processRequest(0)">Get the Address</md-button>
   </form>
@@ -17,4 +17,14 @@
       <p>Zip: {{myAddress.Zip}}</p>
     </section>
   </article>
-</section>
+</section> -->
+
+<div id="mySidenav" class="sidenav">
+  <a href="javascript:void(0)" class="closebtn" data-ng-click="closeMenu()">&times;</a>
+  <a href="#" data-ng-click="displayPage('supplies')">Supplies</a>
+  <a href="#" data-ng-click="displayPage('maintenance')">Maintenance</a>
+  <a href="#" data-ng-click="displayPage('complaint')">Complaints</a>
+  <a href="#" data-ng-click="displayPage('housing')">Housing</a>
+</div>
+
+<span style="font-size:30px;cursor:pointer" data-ng-click="openMenu()">&#9776</span>
