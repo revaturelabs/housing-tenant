@@ -22,7 +22,9 @@ namespace HousingTenant.Data.Service.Controllers
         [HttpGet]
         public List<RequestDTO> Get()
         {
-            return srb.GetAll ();
+            var list = new List<RequestDTO> ();
+            list.Add (new RequestDTO { Initiator = new PersonDTO { FirstName = "Jason", LastName = "Todd" } , DateSubmitted = DateTime.Now, Description = "Test" });
+            return list;
         }
 
         /*// GET api/values/5
