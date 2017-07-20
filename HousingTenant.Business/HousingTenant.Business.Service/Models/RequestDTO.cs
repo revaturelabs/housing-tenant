@@ -9,11 +9,11 @@ namespace HousingTenant.Business.Service.Models
     public class RequestDTO
     {
         public bool Urgent { get; set; }
-        public PersonDTO Initiator { get; set; }
+        public Person Initiator { get; set; }
         public DateTime DateSubmitted { get; set; }
         public DateTime DateModified { get; set; }
         public StatusEnum Status { get; set; }
-        public PersonDTO Accused { get; set; }
+        public Person Accused { get; set; }
         public string Complaint { get; set; }
         public string Description { get; set; }
         public string Reason { get; set; }
