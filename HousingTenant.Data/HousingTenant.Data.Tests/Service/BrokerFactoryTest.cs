@@ -14,10 +14,9 @@ namespace HousingTenant.Data.Tests.Service
         [Test]
         public void GetBrokerTest()
         {
-            var sb = new BrokerFactory<RequestDAO>().Create();
-            var actual = sb.Equals (new ServiceBroker<RequestDAO> ());
+            var actual = new BrokerFactory<RequestDAO>().Create();
 
-            Assert.IsTrue (actual);
+            Assert.IsNotNull (actual);
         }
     }
 }
