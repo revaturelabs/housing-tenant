@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using System.Text;
 using HousingTenant.Data.Library.DataModels;
-using HousingTenant.Data.Library.Models;
 using NUnit.Framework;
 
 namespace HousingTenant.Data.Tests.Library.ModelTests
@@ -13,7 +12,7 @@ namespace HousingTenant.Data.Tests.Library.ModelTests
         [Test]
         public void GetAllTest()
         {
-            var lb = new LibraryBroker<Request> ();
+            var lb = new LibraryBroker<Object> ();
             var actual = lb.GetAll ();
             var expected = 0;
 
