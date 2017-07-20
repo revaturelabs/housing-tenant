@@ -3,10 +3,11 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using HousingTenant.Data.Service.Enum;
+using HousingTenant.Data.Service.Interfaces;
 
 namespace HousingTenant.Data.Service.Models
 {
-    public class RequestDAO
+    public class RequestDAO : IModel
     {
         public bool Urgent { get; set; }
         public string Title { get; set; }
