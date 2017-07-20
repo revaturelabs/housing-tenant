@@ -98,7 +98,7 @@ module.exports = 'ngMaterial';
 Object.defineProperty(exports, "__esModule", { value: true });
 var ng = __webpack_require__(0);
 __webpack_require__(1);
-__webpack_require__(15);
+__webpack_require__(16);
 var home = ng.module('ngHome', ['ngMaterial']);
 exports.home = home;
 
@@ -111,7 +111,7 @@ exports.home = home;
 
 Object.defineProperty(exports, "__esModule", { value: true });
 var ng = __webpack_require__(0);
-__webpack_require__(18);
+__webpack_require__(19);
 var supplyModule = ng.module('supplyModule', []);
 exports.supplyModule = supplyModule;
 
@@ -128,13 +128,14 @@ __webpack_require__(6);
 __webpack_require__(1);
 //importing CSS
 __webpack_require__(13);
-//importing TS
 __webpack_require__(14);
-__webpack_require__(17);
+//importing TS
+__webpack_require__(15);
+__webpack_require__(18);
 //importing HTML
-__webpack_require__(20);
 __webpack_require__(21);
 __webpack_require__(22);
+__webpack_require__(23);
 //Testing GITLAB
 var ngHousingTenant = ng.module('ngHousingTenant', ['ngRoute', 'ngMaterial', 'ngHome', 'supplyModule']);
 ngHousingTenant.config(['$routeProvider', function ($routeProvider) {
@@ -75837,11 +75838,17 @@ module.exports = __webpack_require__.p + "css/index.css";
 /* 14 */
 /***/ (function(module, exports, __webpack_require__) {
 
+module.exports = __webpack_require__.p + "css/modal.css";
+
+/***/ }),
+/* 15 */
+/***/ (function(module, exports, __webpack_require__) {
+
 "use strict";
 
 Object.defineProperty(exports, "__esModule", { value: true });
 var module_1 = __webpack_require__(2);
-__webpack_require__(16);
+__webpack_require__(17);
 var Entity = (function () {
     function Entity(t, v) {
         this.text = t;
@@ -75887,13 +75894,13 @@ var myController = module_1.home.controller('homeController', ['$scope', 'homeFa
 
 
 /***/ }),
-/* 15 */
+/* 16 */
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports = __webpack_require__.p + "ngapp/home/partials/template.html";
 
 /***/ }),
-/* 16 */
+/* 17 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -75920,14 +75927,14 @@ module_1.home.factory('homeFactory', ['$http', function ($http) {
 
 
 /***/ }),
-/* 17 */
+/* 18 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 Object.defineProperty(exports, "__esModule", { value: true });
 var module_1 = __webpack_require__(3);
-__webpack_require__(19);
+__webpack_require__(20);
 var supplyController = module_1.supplyModule.controller('suppliesCtrl', ['$scope', 'supplyRequestListSvc', function ($scope, supplyRequestListSvc) {
         var requestModal = document.getElementById('AddRequestModal');
         var address = {
@@ -75969,13 +75976,13 @@ var supplyController = module_1.supplyModule.controller('suppliesCtrl', ['$scope
 
 
 /***/ }),
-/* 18 */
+/* 19 */
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports = __webpack_require__.p + "ngapp/supplies/partials/template.html";
 
 /***/ }),
-/* 19 */
+/* 20 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -76017,19 +76024,19 @@ var supplyService = module_1.supplyModule.factory('supplyRequestListSvc', ['$htt
 
 
 /***/ }),
-/* 20 */
+/* 21 */
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports = __webpack_require__.p + "html/footer.html";
 
 /***/ }),
-/* 21 */
+/* 22 */
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports = __webpack_require__.p + "html/navbar.html";
 
 /***/ }),
-/* 22 */
+/* 23 */
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports = __webpack_require__.p + "html/sidebar.html";
