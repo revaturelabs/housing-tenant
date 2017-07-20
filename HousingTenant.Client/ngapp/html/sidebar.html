@@ -1,10 +1,10 @@
-<div id="mySidenav" class="sidenav">
-  <a href="javascript:void(0)" class="closebtn" onclick="closeMenu()">&times;</a>
-  <a href="#!/supplies">Supplies</a>
-  <a href="#!/maintenance">Maintenance</a>
-  <a href="#!/complaints">Complaints</a>
-  <a href="#!/housing">Housing</a>
+ <div id="mySidenav" class="sidenav">
+  <a href="javascript:void(0)" class="closebtn" data-ng-click="closeMenu()"><b>&times;</b></a>
+  <a href="javascript:void(0)" data-ng-click="displayPage('supplies')">Supplies</a>
+  <a href="javascript:void(0)" data-ng-click="displayPage('maintenance')">Maintenance</a>
+  <a href="javascript:void(0)" data-ng-click="displayPage('complaint')">Complaints</a>
+  <a href="javascript:void(0)" data-ng-click="displayPage('housing')">Housing</a>
 </div>
 
-<span style="font-size:30px;cursor:pointer" onclick="openMenu()">&#9776</span>
+<span style="font-size:30px;cursor:pointer" data-ng-click="openMenu()">&#9776</span>
 
