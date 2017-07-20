@@ -3,28 +3,27 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using HousingTenant.Data.Service.Interfaces;
-using HousingTenant.Data.Service.Models;
 
-namespace HousingTenant.Data.Service.Brokers
+namespace HousingTenant.Data.Service.Abstract
 {
-    public class RequestBroker //: IBroker<RequestDAO>
+    public abstract class ABroker<T> : IBroker<T>
     {
-        public bool Create(RequestDAO obj)
+        public bool Create(T obj)
         {
             throw new NotImplementedException ();
         }
 
-        public bool Delete(RequestDAO obj)
+        public bool Delete(T obj)
         {
             throw new NotImplementedException ();
         }
 
-        public List<RequestDAO> Get()
+        public List<T> Get()
         {
             throw new NotImplementedException ();
         }
 
-        public bool Update(RequestDAO obj)
+        public bool Update(T obj)
         {
             throw new NotImplementedException ();
         }
