@@ -66,6 +66,8 @@ namespace HousingTenant.Business.Service.Controllers
         [HttpGet("{id}")]
         public string Get(int id)
         {
+            // Left inplace for possible changes that include
+            // getting an Apartment by an ID
             return "value";
         }
 
