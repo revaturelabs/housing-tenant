@@ -6,6 +6,7 @@ module.exports = function(config) {
       'jasmine'
     ],
 
+    ///used to put files together if webpack was not added
     files: [
       'test/index.js'
     ],
