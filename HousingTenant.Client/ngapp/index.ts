@@ -26,6 +26,7 @@ ngHousingTenant.config(['$routeProvider', function($routeProvider){
       controller: 'suppliesCtrl',
       templateUrl: 'ngapp/supplies/partials/template.html'
     })
+    .
     .otherwise({
       redirectTo: '/'
     });
