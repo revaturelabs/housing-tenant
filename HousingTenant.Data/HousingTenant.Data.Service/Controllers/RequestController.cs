@@ -5,6 +5,8 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using HousingTenant.Data.Service.Brokers;
 using HousingTenant.Data.Service.Models;
+using HousingTenant.Data.Service.Interfaces;
+using HousingTenant.Data.Service.Factory;
 
 // For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 
@@ -14,12 +16,13 @@ namespace HousingTenant.Data.Service.Controllers
     public class RequestController : Controller
     {
         private static RequestBroker rb = new RequestBroker ();
+        private static IBroker<RequestDTO> srb = new BrokerFactory<RequestDTO> ().Create ();
 
         // GET: api/values
         [HttpGet]
         public IEnumerable<RequestDTO> Get()
         {
-            return rb.Get ();
+            return srb.GetAll ();
         }
 
         /*// GET api/values/5
@@ -33,7 +36,7 @@ namespace HousingTenant.Data.Service.Controllers
         [HttpPost]
         public bool Post([FromBody]RequestDTO value)
         {
-            return rb.Create (value);
+            return srb.Create (value);
         }
 
         /*// PUT api/values/5
