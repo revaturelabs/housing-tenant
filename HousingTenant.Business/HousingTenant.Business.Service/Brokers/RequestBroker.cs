@@ -8,9 +8,9 @@ using HousingTenant.Business.Service.Models;
 
 namespace HousingTenant.Business.Service.Brokers
 {
-    public class RequestBroker : IBroker<ARequest,Apartment,Request>
+    public class RequestBroker : IBroker<ARequest,Apartment,RequestDTO>
     {
-        public bool Create(Request obj)
+        public bool Create(RequestDTO obj)
         {
             throw new NotImplementedException ();
         }
