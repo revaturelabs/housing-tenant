@@ -10,7 +10,12 @@ h.factory('homeFactory', ['$http', function ($http) {
       $http.get('http://localhost:53948/api/address/getaddress' /*+ id*/ + '/').then(function (res) {
         obj.getAddress(res);
       }, failure);
-    }
+    }, 
+    getSuppliesPage: function () {
+      $http.get('ngapp/supplies/partials/template.html').then(function (res){
+        document.getElementById("body").innerHTML = res.data;
+      }, failure);
+    },
   }
 }]);
  

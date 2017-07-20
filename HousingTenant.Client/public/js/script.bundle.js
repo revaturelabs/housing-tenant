@@ -75881,6 +75881,16 @@ module_1.home.controller('homeController', ['$scope', 'homeFactory', function ($
             document.getElementById("mySidenav").style.width = "0";
             document.getElementById("main").style.marginLeft = "0px";
         };
+        $scope.displayPage = function (id) {
+            $scope.closeMenu();
+            switch (id) {
+                case "supplies":
+                    homeFactory.getSuppliesPage();
+                    break;
+                default:
+                    console.log("did nothing");
+            }
+        };
     }]);
 
 
@@ -75907,7 +75917,12 @@ module_1.home.factory('homeFactory', ['$http', function ($http) {
                 $http.get('http://localhost:53948/api/address/getaddress' /*+ id*/ + '/').then(function (res) {
                     obj.getAddress(res);
                 }, failure);
-            }
+            },
+            getSuppliesPage: function () {
+                $http.get('ngapp/supplies/partials/template.html').then(function (res) {
+                    document.getElementById("body").innerHTML = res.data;
+                }, failure);
+            },
         };
     }]);
 
