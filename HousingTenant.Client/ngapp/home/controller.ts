@@ -1,8 +1,6 @@
 import { home as h } from './module';
 import './service';
 
-
-
 class Entity {
   text: string;
   value: string;
@@ -37,32 +35,25 @@ class Address {
   }
 }
 
-h.controller('homeController', ['$scope', 'homeFactory', function ($scope, homeFactory) {
+var myController = h.controller('homeController', ['$scope', 'homeFactory', '$http', function ($scope, homeFactory, $http) {
   $scope.myAddress = new Address();
   $scope.entities = [
     new Entity('Address', 'Address')
   ];
 
+  $scope.something = 'hello mock';
+  $scope.addNumbers = function(n1,n2){
+    return n1+n2;
+  }
+
+  $scope.seeYouLater = function(){
+    $http.get('./someurl').then(function(res){
+      $scope.success = res;
+    });
+  };
+
   $scope.processRequest = function (id) {
     homeFactory.getAddress(id, $scope.myAddress);
   }
-  $scope.openMenu = function () {
-    document.getElementById("mySidenav").style.width = "250px";
-    document.getElementById("main").style.marginLeft = "250px";
-  }
-  $scope.closeMenu = function () {
-    document.getElementById("mySidenav").style.width = "0";
-    document.getElementById("main").style.marginLeft = "0px";
-  }
-  $scope.displayPage = function (id){
-    $scope.closeMenu();
-    switch(id){
-      case "supplies":
-      homeFactory.getSuppliesPage();
-      break;
-
-      default:
-      console.log("did nothing");
-    }
-  }
+  
 }]);
