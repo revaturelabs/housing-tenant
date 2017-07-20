@@ -46,4 +46,14 @@ h.controller('homeController', ['$scope', 'homeFactory', function ($scope, homeF
   $scope.processRequest = function (id) {
     homeFactory.getAddress(id, $scope.myAddress);
   }
+
+  $scope.openMenu = function () {
+    document.getElementById("mySidenav").style.width = "250px";
+    document.getElementById("main").style.marginLeft = "250px";
+  }
+
+  $scope.closeMenu = function () {
+    document.getElementById("mySidenav").style.width = "0";
+    document.getElementById("main").style.marginLeft = "0px";
+  }
 }]);
