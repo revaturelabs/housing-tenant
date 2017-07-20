@@ -2,20 +2,27 @@ import * as ng from 'angular';
 import 'angular-route';
 import 'angular-material';
 
+//importing CSS
+import './css/index.css';
+//importing TS
 import './home/controller';
 import './supplies/controllers';
+//importing HTML
+import 'file-loader?name=[name].[ext]&outputPath=html/!./html/footer.html';
+import 'file-loader?name=[name].[ext]&outputPath=html/!./html/navbar.html';
 
-var ngHousingTenant = ng.module('ngHousingTenant', ['ngRoute', 'ngMaterial','ngHome', 'supplyModule' ])
+
+var ngHousingTenant = ng.module('ngHousingTenant', ['ngRoute', 'ngMaterial','ngHome', 'supplyModule'])
 
 ngHousingTenant.config(['$routeProvider', function($routeProvider){
   $routeProvider
     .when('/',{
       controller: 'homeController',
-      templateUrl: 'ts/home/partials/template.html'
+      templateUrl: 'ngapp/home/partials/template.html'
     })
     .when('/supplies', {
       controller: 'suppliesCtrl',
-      templateUrl: 'ts/supplies/partials/template.html'
+      templateUrl: 'ngapp/supplies/partials/template.html'
     })
     .otherwise({
       redirectTo: '/'
