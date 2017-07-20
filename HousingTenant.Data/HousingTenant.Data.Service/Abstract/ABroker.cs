@@ -8,22 +8,22 @@ namespace HousingTenant.Data.Service.Abstract
 {
     public abstract class ABroker<T> : IBroker<T> where T : IModel
     {
-        public bool Create(T obj)
+        public virtual bool Create(T obj)
         {
             throw new NotImplementedException ();
         }
 
-        public bool Delete(T obj)
+        public virtual bool Delete(T obj)
         {
             throw new NotImplementedException ();
         }
 
-        public List<T> Get()
+        public virtual List<T> Get()
         {
             throw new NotImplementedException ();
         }
 
-        public bool Update(T obj)
+        public virtual bool Update(T obj)
         {
             throw new NotImplementedException ();
         }
