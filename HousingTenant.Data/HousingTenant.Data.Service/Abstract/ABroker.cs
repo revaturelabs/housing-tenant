@@ -6,7 +6,7 @@ using HousingTenant.Data.Service.Interfaces;
 
 namespace HousingTenant.Data.Service.Abstract
 {
-    public abstract class ABroker<T> : IBroker<T>
+    public abstract class ABroker<T> : IBroker<T> where T : IModel
     {
         public bool Create(T obj)
         {
