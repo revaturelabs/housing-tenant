@@ -7,13 +7,13 @@ using HousingTenant.Data.Service.Interfaces;
 
 namespace HousingTenant.Data.Service.Models
 {
-    public class ServiceBroker<T> : ABroker<T> where T : IModel
+    public class ServiceBroker<T> : ABroker<T> where T : IModel, new()
     {
         public override List<T> Get()
         {
             var list = new List<T> ();
 
-
+            list.Add (new T());
 
             return list;
         }
