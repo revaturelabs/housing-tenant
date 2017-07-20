@@ -9,7 +9,7 @@ namespace HousingTenant.Data.Service.Models
 {
     public class ServiceBroker<T> : ABroker<T> where T : IModel, new()
     {
-        public override List<T> Get()
+        public override List<T> GetAll()
         {
             var list = new List<T> ();
 

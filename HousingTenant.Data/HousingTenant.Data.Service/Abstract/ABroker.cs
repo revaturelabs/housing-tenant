@@ -18,7 +18,7 @@ namespace HousingTenant.Data.Service.Abstract
             throw new NotImplementedException ();
         }
 
-        public virtual List<T> Get()
+        public virtual List<T> GetAll()
         {
             throw new NotImplementedException ();
         }

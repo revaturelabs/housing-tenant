@@ -7,7 +7,7 @@ namespace HousingTenant.Data.Service.Interfaces
 {
     public interface IBroker<T> where T : IModel
     {
-        List<T> Get();
+        List<T> GetAll();
         bool Create(T obj);
         bool Update(T obj);
         bool Delete(T obj);
