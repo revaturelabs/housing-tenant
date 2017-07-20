@@ -4,6 +4,7 @@ import 'angular-material';
 
 //importing CSS
 import './css/index.css';
+import './css/modal.css';
 //importing TS
 import './home/controller';
 import './supplies/controllers';
