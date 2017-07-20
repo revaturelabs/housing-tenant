@@ -8,5 +8,7 @@ namespace HousingTenant.Data.Service.Models
 {
     public class PersonDTO : IModel
     {
+        public string FirstName { set; get; }
+        public string LastName { get; set; }
     }
 }
