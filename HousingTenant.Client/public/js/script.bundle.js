@@ -134,6 +134,7 @@ __webpack_require__(17);
 //importing HTML
 __webpack_require__(20);
 __webpack_require__(21);
+//Testing GITLAB
 var ngHousingTenant = ng.module('ngHousingTenant', ['ngRoute', 'ngMaterial', 'ngHome', 'supplyModule']);
 ngHousingTenant.config(['$routeProvider', function ($routeProvider) {
         $routeProvider
@@ -75871,6 +75872,14 @@ module_1.home.controller('homeController', ['$scope', 'homeFactory', function ($
         ];
         $scope.processRequest = function (id) {
             homeFactory.getAddress(id, $scope.myAddress);
+        };
+        $scope.openMenu = function () {
+            document.getElementById("mySidenav").style.width = "250px";
+            document.getElementById("main").style.marginLeft = "250px";
+        };
+        $scope.closeMenu = function () {
+            document.getElementById("mySidenav").style.width = "0";
+            document.getElementById("main").style.marginLeft = "0px";
         };
     }]);
 
