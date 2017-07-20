@@ -17,7 +17,7 @@ namespace HousingTenant.Data.Service.Controllers
 
         // GET: api/values
         [HttpGet]
-        public IEnumerable<RequestDAO> Get()
+        public IEnumerable<RequestDTO> Get()
         {
             return rb.Get ();
         }
@@ -31,7 +31,7 @@ namespace HousingTenant.Data.Service.Controllers
 
         // POST api/values
         [HttpPost]
-        public bool Post([FromBody]RequestDAO value)
+        public bool Post([FromBody]RequestDTO value)
         {
             return rb.Create (value);
         }

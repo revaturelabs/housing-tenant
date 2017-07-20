@@ -2,13 +2,11 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using HousingTenant.Data.Service.Interfaces;
 
 namespace HousingTenant.Data.Service.Models
 {
-    public class BatchAPI
+    public class PersonDTO : IModel
     {
-      public string BatchName { get; set; }
-      public DateTime StartDate { get; set; }
-      public DateTime EndDate { get; set; }
     }
 }

@@ -6,7 +6,7 @@ using HousingTenant.Data.Service.Interfaces;
 
 namespace HousingTenant.Data.Service.Models
 {
-    public class AddressDAO : IModel
+    public class AddressDTO : IModel
     {
     }
 }
