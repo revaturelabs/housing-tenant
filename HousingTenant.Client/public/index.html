@@ -31,6 +31,10 @@
 </head>
 
   <body id="main" data-ng-app="ngHousingTenant">
+    <header>
+      <div ng-include="'html/sidebar.html'"></div>      
+    </header>
+
     <nav ng-include src="'html/navbar.html'"></nav>
     <div data-ng-view></div>
 
