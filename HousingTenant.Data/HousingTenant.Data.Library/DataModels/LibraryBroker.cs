@@ -7,9 +7,9 @@ namespace HousingTenant.Data.Library.DataModels
 {
     public class LibraryBroker<T> : ABroker<T>
     {
-        public override List<T> Get()
+        public override List<T> GetAll()
         {
-            return base.Get ();
+            return base.GetAll ();
         }
 
         public override bool Create(T obj)

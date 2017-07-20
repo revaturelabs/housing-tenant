@@ -6,7 +6,7 @@ namespace HousingTenant.Data.Library.Interfaces
 {
     public interface IBroker<T>
     {
-        List<T> Get();
+        List<T> GetAll();
         bool Create(T obj);
     }
 }
