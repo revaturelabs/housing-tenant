@@ -20,7 +20,7 @@ namespace HousingTenant.Data.Service.Controllers
 
         // GET: api/values
         [HttpGet]
-        public IEnumerable<RequestDTO> Get()
+        public List<RequestDTO> Get()
         {
             return srb.GetAll ();
         }
