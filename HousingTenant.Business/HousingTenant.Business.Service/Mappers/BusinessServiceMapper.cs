@@ -1,4 +1,5 @@
-﻿using HousingTenant.Business.Library.Models;
+﻿using HousingTenant.Business.Library;
+using HousingTenant.Business.Library.Models;
 using HousingTenant.Business.Service.Models;
 using System;
 using System.Collections.Generic;
@@ -8,7 +9,12 @@ using System.Threading.Tasks;
 namespace HousingTenant.Business.Service.Mappers
 {
     public class BusinessServiceMapper
-   {
+    {
+        public Apartment MapToApartment(IApartment iapartment)
+        {
+         return null;
+        }
+
         public ARequest MapToARequest(RequestDTO requestDto)
         {
             ARequest request = null;
@@ -75,6 +81,16 @@ namespace HousingTenant.Business.Service.Mappers
                 requests.Add(MapToARequest(r));
             }
             return requests;
+        }
+
+        public List<IPerson> MapToIPersonList(List<Person> persons)
+        {
+            var ipersons = new List<IPerson>();
+            foreach(var p in persons)
+            {
+                ipersons.Add(p);
+            }
+            return ipersons;
         }
     }
 }
