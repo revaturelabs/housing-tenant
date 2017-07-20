@@ -10,16 +10,16 @@ namespace HousingTenant.Data.Service.Models
     public class RequestDAO : IModel
     {
         public bool Urgent { get; set; }
-        public string Title { get; set; }
+        public Person Initiator { get; set; }
+        public DateTime DateSubmitted { get; set; }
+        public DateTime DateModified { get; set; }
+        public StatusEnum Status { get; set; }
+        public Person Accused { get; set; }
+        public string Complaint { get; set; }
         public string Description { get; set; }
-        public DateTime CreatedDate { get; set; }
-        public DateTime ModifiedDate { get; set; }
-        public string RequestorName { get; set; }
-        public int PropertyId { get; set; }
-        public string RepName { get; set; }
-        public string Action { get; set; }
-
-        public RequestType Type { get; set; }
-        public Status Status { get; set; }
+        public string Reason { get; set; }
+        public Address RequestedApartmentAddress { get; set; }
+        public List<string> RequestItems { get; set; }
+        public int Type { get; set; }
     }
 }
