@@ -14,7 +14,7 @@ namespace HousingTenant.Data.Tests.Service
         [Test]
         public void GetBrokerTest()
         {
-            var actual = new BrokerFactory<RequestDAO>().Create();
+            var actual = new BrokerFactory<RequestDTO>().Create();
 
             Assert.IsNotNull (actual);
         }
