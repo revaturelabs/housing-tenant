@@ -65,13 +65,18 @@ namespace HousingTenant.Business.Library.Models
             return FirstName.GetHashCode() + LastName.GetHashCode();
         }
 
-        /// <summary>
-        /// Generate a string representation of this object
-        /// </summary>
-        /// <returns>
-        /// String representation of this object instance
-        /// </returns>
-        public override string ToString()
+        public bool IsValid()
+        {
+            return FirstName != null && LastName != null && Address != null;
+        }
+
+      /// <summary>
+      /// Generate a string representation of this object
+      /// </summary>
+      /// <returns>
+      /// String representation of this object instance
+      /// </returns>
+      public override string ToString()
         {
             return string.Format("{0} {1}\n{2}\n{3}",
                FirstName, LastName, EmailAddress, PhoneNumber);

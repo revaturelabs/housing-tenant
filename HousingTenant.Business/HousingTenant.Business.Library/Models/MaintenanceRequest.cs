@@ -48,16 +48,21 @@ namespace HousingTenant.Business.Library.Models
                Status.GetHashCode();
         }
 
-         /// <summary>
-         /// Generate a string representation of this class
-         /// </summary>
-         /// <returns>
-         /// String representation of this class instance
-         /// </returns>
-         public override string ToString()
-         {
-             return string.Format("{0}\n Description: {1} Status: {2}",
-                base.ToString(), Description, Status);
-         }
+        public override bool IsValid()
+        {
+            return Description != null;
+        }
+
+        /// <summary>
+        /// Generate a string representation of this class
+        /// </summary>
+        /// <returns>
+        /// String representation of this class instance
+        /// </returns>
+        public override string ToString()
+        {
+            return string.Format("{0}\n Description: {1} Status: {2}",
+               base.ToString(), Description, Status);
+        }
    }
 }
