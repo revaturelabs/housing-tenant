@@ -5,7 +5,7 @@ using HousingTenant.Data.Library.DataModels;
 
 namespace HousingTenant.Data.Library.Factory
 {
-    public class BrokerFactory<T>
+    public class BrokerFactory<T> where T : new()
     {
         public LibraryBroker<T> Create()
         {
