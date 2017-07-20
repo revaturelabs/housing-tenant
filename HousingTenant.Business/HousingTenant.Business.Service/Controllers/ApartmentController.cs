@@ -25,20 +25,20 @@ namespace HousingTenant.Business.Service.Controllers
         public Apartment Get(Address address)
         {
             // Make call to Data Service API for Aparment by Address
-            //var apartmentUrl = string.Format("apartment/{0}", address);
+            var apartmentUrl = string.Format("apartment/{0}", address);
             //var aRequest = await client.GetAsync(apartmentUrl, HttpCompletionOption.ResponseContentRead);
             // Deserialize aRequest to an Apartment object
             //var emptyApartment = JsonConvert.DeserializeObject<Apartment>(aRequest.Content.ReadAsStringAsync().Result);
 
             // Make call to Data Service API for Person by Name
-            //var personUrl = string.Format("person/{0}", address);
+            var personUrl = string.Format("person/{0}", address);
             //var pRequest = await client.GetAsync(personUrl, HttpCompletionOption.ResponseContentRead);
             // Deserialize pRequest to a Person object
             /// *** Cannot deserialize into an Interface Model/Mapping needed *** ///
             //var persons = JsonConvert.DeserializeObject<List<IPerson>>(pRequest.Content.ReadAsStringAsync().Result);
 
             // Make call to Data Service API for Request by Address
-            //var requestUrl = string.Format("request/{0}", address);
+            var requestUrl = string.Format("request/{0}", address);
             /// *** Cannot deserialize to an ABSTRACT class. Need model *** ///
             //var rRequest = await client.GetAsync(requestUrl, HttpCompletionOption.ResponseContentRead);
             // Deserialize rRequest into Request objects
