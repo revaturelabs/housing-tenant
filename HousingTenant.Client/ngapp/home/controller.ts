@@ -54,7 +54,6 @@ h.controller('homeController', ['$scope', 'homeFactory', function ($scope, homeF
     document.getElementById("mySidenav").style.width = "0";
     document.getElementById("main").style.marginLeft = "0px";
   }
-
   $scope.displayPage = function (id){
     $scope.closeMenu();
     switch(id){
