@@ -6,7 +6,12 @@ var supplyService = sm.factory('supplyRequestListSvc', ['$http', function($http)
          $http.get('http://localhost:5000/api/request/', { params: aptidstring } ).then(
             function(res){
                console.log(res.data); 
-                  scope.reqList = res.data;
+                  scope.reqList = {};
+                  res.data.forEach(element => {
+                        if(element.type == 3){
+                              scope.reqList.push(element);
+                        }
+                  });
                   console.log(scope.reqList);
             }, function(err){
                console.log(err);

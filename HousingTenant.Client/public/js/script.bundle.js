@@ -170,8 +170,8 @@ ngHousingTenant.config(['$routeProvider', '$locationProvider', function ($routeP
             controller: 'maintenanceCtrl',
             templateUrl: 'ngapp/maintenance/partials/template.html'
         })
-            .when('/complaints/:personid', {
-            controller: 'personCtrl',
+            .when('/complaints/:aptid', {
+            controller: 'complaintsCtrl',
             templateUrl: 'ngapp/complaints/partials/template.html'
         })
             .otherwise({
@@ -75966,18 +75966,36 @@ var supplyController = module_1.supplyModule.controller('suppliesCtrl', ['$scope
         var requestModal = document.getElementById('AddRequestModal');
         var aptid = $routeParams.aptid;
         supplyRequestListSvc.getRequestList(aptid, $scope);
-        $scope.addRequest = function (n, s, tp, pt, ds, tb, dd, sp) {
+        $scope.addRequest = function (d, s, tp, pt, ds, tb, dd, sp) {
+            console.log($scope.trash);
+            console.log(tb);
             var request = {
-                name: n,
-                soap: s,
-                toiletPaper: tp,
-                paperTowels: pt,
-                dishSoap: ds,
-                trashBags: tb,
-                dishwasherDetergent: dd,
-                sponges: sp,
-                requestType: 1
+                description: d,
+                initiator: 'Current User',
+                requestItems: [],
+                datesubmitted: Date.now()
             };
+            if (s == true) {
+                request.requestItems.push('Soap');
+            }
+            if (tp == true) {
+                request.requestItems.push('Toilet Paper');
+            }
+            if (pt == true) {
+                request.requestItems.push('Paper Towels');
+            }
+            if (ds == true) {
+                request.requestItems.push('Dishwasher Soap');
+            }
+            if (tb == true) {
+                request.requestItems.push('Trash Bags');
+            }
+            if (dd == true) {
+                request.requestItems.push('Dish Soap');
+            }
+            if (sp == true) {
+                request.requestItems.push('Sponges');
+            }
             supplyRequestListSvc.postRequest(request);
             $scope.closeModal();
         };
@@ -76014,7 +76032,12 @@ var supplyService = module_1.supplyModule.factory('supplyRequestListSvc', ['$htt
             getRequestList: function (aptidstring, scope) {
                 $http.get('http://localhost:5000/api/request/', { params: aptidstring }).then(function (res) {
                     console.log(res.data);
-                    scope.reqList = res.data;
+                    scope.reqList = {};
+                    res.data.forEach(function (element) {
+                        if (element.type == 3) {
+                            scope.reqList.push(element);
+                        }
+                    });
                     console.log(scope.reqList);
                 }, function (err) {
                     console.log(err);
