@@ -12,9 +12,8 @@ namespace HousingTenant.Business.Service.Models
         public DateTime DateModified { get; set; }
         public StatusEnum Status { get; set; }
         public Person Accused { get; set; }
-        public string Complaint { get; set; }
+        public string RequestId { get; set; }
         public string Description { get; set; }
-        public string Reason { get; set; }
         public Address RequestedApartmentAddress { get; set; }
         public List<string> RequestItems { get; set; }
         public int Type { get; set; }

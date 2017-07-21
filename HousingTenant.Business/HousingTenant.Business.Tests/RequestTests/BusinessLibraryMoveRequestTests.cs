@@ -15,7 +15,7 @@ namespace HousingTenant.Business.Tests.RequestTests
             var request1 = new MoveRequest {
                 Initiator = new Person { FirstName = "Jane", LastName = "Doe",
                   Address = new Address { Address1 = "7 Joe Ln", ApartmentNumber = "2N", City = "Reston", State = "VA", ZipCode = "12345" } },
-                Reason = "Roommates party too much",
+                Description = "Roommates party too much",
                 RequestedApartmentAddress = new Address { Address1 = "7 Joe Ln", ApartmentNumber = "2N", City = "Reston", State = "VA", ZipCode = "12345" },
                 DateSubmitted = DateTime.Now,
                 Status = StatusEnum.PENDING
@@ -24,7 +24,7 @@ namespace HousingTenant.Business.Tests.RequestTests
             var request2 = new MoveRequest {
                 Initiator = new Person { FirstName = "Jane", LastName = "Doe",
                   Address = new Address { Address1 = "7 Joe Ln", ApartmentNumber = "2N", City = "Reston", State = "VA", ZipCode = "12345" } },
-                Reason = "Roommates party too much",
+                Description = "Roommates party too much",
                 RequestedApartmentAddress = new Address { Address1 = "7 Joe Ln", ApartmentNumber = "2N", City = "Reston", State = "VA", ZipCode = "12345" },
                 DateSubmitted = DateTime.Now,
                 Status = StatusEnum.PENDING
@@ -39,7 +39,7 @@ namespace HousingTenant.Business.Tests.RequestTests
             var request1 = new MoveRequest {
                 Initiator = new Person { FirstName = "Jane", LastName = "Doe",
                   Address = new Address { Address1 = "7 Joe Ln", ApartmentNumber = "2N", City = "Reston", State = "VA", ZipCode = "12345" } },
-                Reason = "Roommates party too much",
+                Description = "Roommates party too much",
                 RequestedApartmentAddress = new Address { Address1 = "7 Joe Ln", ApartmentNumber = "2N", City = "Reston", State = "VA", ZipCode = "12345" },
                 DateSubmitted = DateTime.Now,
                 Status = StatusEnum.PENDING
@@ -48,7 +48,7 @@ namespace HousingTenant.Business.Tests.RequestTests
             var request2 = new MoveRequest {
                 Initiator = new Person { FirstName = "Jane", LastName = "Doe",
                    Address = new Address { Address1 = "7 Joe Ln", ApartmentNumber = "2N", City = "Reston", State = "VA", ZipCode = "12345" } },
-                Reason = "Roommates party too much",
+                Description = "Roommates party too much",
                 RequestedApartmentAddress = new Address { Address1 = "5 Joe Ln", ApartmentNumber = "2N", City = "Reston", State = "VA", ZipCode = "12345" },
                 DateSubmitted = DateTime.Now,
                 Status = StatusEnum.PENDING
@@ -64,7 +64,7 @@ namespace HousingTenant.Business.Tests.RequestTests
             var request1 = new MoveRequest {
                 Initiator = new Person { FirstName = "Jane", LastName = "Doe",
                   Address = new Address { Address1 = "7 Joe Ln", ApartmentNumber = "2N", City = "Reston", State = "VA", ZipCode = "12345" } },
-                Reason = "Roommates party too much",
+                Description = "Roommates party too much",
                 RequestedApartmentAddress = new Address { Address1 = "7 Joe Ln", ApartmentNumber = "2N", City = "Reston", State = "VA", ZipCode = "12345" },
                 DateSubmitted = DateTime.Now,
                 Status = StatusEnum.PENDING
@@ -79,7 +79,7 @@ namespace HousingTenant.Business.Tests.RequestTests
             var request1 = new MoveRequest {
                 Initiator = new Person { FirstName = "Jane", LastName = "Doe",
                   Address = new Address { Address1 = "7 Joe Ln", ApartmentNumber = "2N", City = "Reston", State = "VA", ZipCode = "12345" } },
-                Reason = "Roommates party too much",
+                Description = "Roommates party too much",
                 RequestedApartmentAddress = new Address { Address1 = "7 Joe Ln", ApartmentNumber = "2N", City = "Reston", State = "VA", ZipCode = "12345" },
                 DateSubmitted = DateTime.Now,
                 Status = StatusEnum.PENDING

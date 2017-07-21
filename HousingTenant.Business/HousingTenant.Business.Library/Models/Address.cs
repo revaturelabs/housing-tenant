@@ -12,18 +12,7 @@ namespace HousingTenant.Business.Library.Models
         public string City { get; set; }
         public string State { get; set; }
         public string ZipCode { get; set; }
-
-        /// <summary>
-        /// Compares two Address for equality using each property
-        /// of the address class
-        /// </summary>
-        /// <param name="obj">
-        /// The object that this Address is being compared
-        /// </param>
-        /// <returns>
-        /// True if all the properties compared are the same,
-        /// false otherwise
-        /// </returns>
+      
         public override bool Equals(object obj)
         {
             if (obj != null && obj.GetType() == GetType())
@@ -37,13 +26,7 @@ namespace HousingTenant.Business.Library.Models
             }
             return false;
         }
-
-        /// <summary>
-        /// Generage a unique number for this object
-        /// </summary>
-        /// <returns>
-        /// A number that represent this class
-        /// </returns>
+      
         public override int GetHashCode()
         {
             return Address1.GetHashCode() +
@@ -52,13 +35,7 @@ namespace HousingTenant.Business.Library.Models
                State.GetHashCode() +
                ZipCode.GetHashCode();
         }
-
-        /// <summary>
-        /// Generate a string representation of this class
-        /// </summary>
-        /// <returns>
-        /// String representation of this class instance
-        /// </returns>
+      
         public override string ToString()
         {
             return string.Format("{0} Apt {1},\n{2} {3} {4}",

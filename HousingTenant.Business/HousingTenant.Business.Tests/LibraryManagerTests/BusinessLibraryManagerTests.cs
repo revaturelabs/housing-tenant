@@ -46,7 +46,7 @@ namespace HousingTenant.Business.Tests.LibraryManagerTests
         [Test]
         public void LibraryManagerValidateRequestPositiveTest()
         {
-            var request = new ComplaintRequest { Accused = new Person { FirstName = "Paul", LastName = "Jones" }, Complaint = "Serious problems man!" };
+            var request = new ComplaintRequest { Accused = new Person { FirstName = "Paul", LastName = "Jones" }, Description = "Serious problems man!" };
 
             var actual = request.IsValid();
 
@@ -56,7 +56,7 @@ namespace HousingTenant.Business.Tests.LibraryManagerTests
         [Test]
         public void LibraryManagerValidateRequestNegativeTest()
         {
-            var request = new ComplaintRequest { Complaint = "Serious problems man!" };
+            var request = new ComplaintRequest { Description = "Serious problems man!" };
 
             var actual = request.IsValid();
 

@@ -4,21 +4,10 @@ using System.Text;
 
 namespace HousingTenant.Business.Library.Models
 {
-    /// <summary>
-    /// Represent a Tenant living in an Apartment provided
-    /// by Revature. The following attributes are necessary
-    /// for Revature to manage and assign persons to apartments:
-    /// -Name
-    /// -Gender
-    /// -Contact information
-    /// -if they have their own transportation
-    /// -the date they intend to report
-    /// Upon arrival, a person is expected to be provided access
-    /// to their assigned apartment
-    /// </summary>
     public class Person : IPerson
     {
         public bool HasCar { get; set; }
+        public string PersonId { get; set; }
         public string FirstName { get; set; }
         public string LastName { get; set; }
         public string EmailAddress { get; set; }

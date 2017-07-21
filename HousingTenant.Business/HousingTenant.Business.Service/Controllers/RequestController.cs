@@ -31,6 +31,16 @@ namespace HousingTenant.Business.Service.Controllers
          return requestDtos;
       }
 
+      [HttpGet("{id}")]
+      public async Task<RequestDTO> Get(string id)
+      {
+         var uri = string.Format("{0}/{1}", "request", id);
+         var request = await client.GetAsync(uri, HttpCompletionOption.ResponseContentRead);
+         var requestDto = JsonConvert.DeserializeObject<RequestDTO>(request.Content.ReadAsStringAsync().Result);
+
+         return requestDto;
+      }
+
       [HttpGet("{address}")]
       public async Task<List<RequestDTO>> Get([FromBody] Address address)
       {
@@ -108,11 +118,10 @@ namespace HousingTenant.Business.Service.Controllers
       }
 
       // DELETE api/values/5
-      [HttpDelete("{requestdto}")]
-      public void Delete(RequestDTO requestdto)
+      [HttpDelete("{id}")]
+      public void Delete(string id)
       {
-         var arequest = ServiceMapper.MapToARequest(requestdto);
-         client.DeleteAsync(arequest.ToString());
+         client.DeleteAsync(id);
       }
    }
 }

@@ -16,7 +16,7 @@ namespace HousingTenant.Business.Tests.RequestTests
             {
                 Accused = new Person { FirstName = "John", LastName = "Doe" },
                 Initiator = new Person { FirstName = "Jane", LastName = "Doe" },
-                Complaint = "He hit me!",
+                Description = "He hit me!",
                 DateSubmitted = DateTime.Now,
                 Status = StatusEnum.PENDING
             };
@@ -25,7 +25,7 @@ namespace HousingTenant.Business.Tests.RequestTests
             {
                 Accused = new Person { FirstName = "John", LastName = "Doe" },
                 Initiator = new Person { FirstName = "Jane", LastName = "Doe" },
-                Complaint = "He hit me!",
+                Description = "He hit me!",
                 DateSubmitted = DateTime.Now,
                 Status = StatusEnum.PENDING
             };
@@ -40,7 +40,7 @@ namespace HousingTenant.Business.Tests.RequestTests
             {
                 Accused = new Person { FirstName = "John", LastName = "Doe" },
                 Initiator = new Person { FirstName = "Jane", LastName = "Doe" },
-                Complaint = "He hit me!",
+                Description = "He hit me!",
                 DateSubmitted = DateTime.Now,
                 Status = StatusEnum.PENDING
             };
@@ -49,7 +49,7 @@ namespace HousingTenant.Business.Tests.RequestTests
             {
                 Accused = new Person { FirstName = "John", LastName = "Doe" },
                 Initiator = new Person { FirstName = "James", LastName = "Doe" },
-                Complaint = "He hit me!",
+                Description = "He hit me!",
                 DateSubmitted = DateTime.Now,
                 Status = StatusEnum.PENDING
             };
@@ -64,7 +64,7 @@ namespace HousingTenant.Business.Tests.RequestTests
             {
                 Accused = new Person { FirstName = "John", LastName = "Doe" },
                 Initiator = new Person { FirstName = "Jane", LastName = "Doe" },
-                Complaint = "He hit me!",
+                Description = "He hit me!",
                 DateSubmitted = DateTime.Now,
                 Status = StatusEnum.PENDING
             };
@@ -80,7 +80,7 @@ namespace HousingTenant.Business.Tests.RequestTests
             {
                Accused = new Person { FirstName = "John", LastName = "Doe" },
                Initiator = new Person { FirstName = "Jane", LastName = "Doe" },
-               Complaint = "He hit me!",
+               Description = "He hit me!",
                DateSubmitted = DateTime.Now,
                Status = StatusEnum.PENDING
             };

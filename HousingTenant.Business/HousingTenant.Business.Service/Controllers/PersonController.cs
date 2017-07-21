@@ -33,7 +33,7 @@ namespace HousingTenant.Business.Service.Controllers
 
         // GET api/person/5
         [HttpGet("{id}")]
-        public async Task<Person> Get(int id)
+        public async Task<Person> Get(string id)
         {
             var uri = string.Format("{0}/{1}", "person", id);
             var person = await client.GetAsync(uri, HttpCompletionOption.ResponseContentRead);
@@ -71,10 +71,10 @@ namespace HousingTenant.Business.Service.Controllers
 
         // DELETE api/values/5
         [HttpDelete("{id}")]
-        public void Delete(Person person)
+        public void Delete(string id)
         {
             // FirstName << space >> LastName
-            client.DeleteAsync(person.GetFullName());
+            client.DeleteAsync(id);
         }
     }
 }
