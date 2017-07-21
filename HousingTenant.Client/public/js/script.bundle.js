@@ -165,6 +165,7 @@ __webpack_require__(29);
 __webpack_require__(30);
 __webpack_require__(31);
 //Testing GITLAB
+//Testing Bundle
 var ngHousingTenant = ng.module('ngHousingTenant', ['ngRoute', 'ngMaterial', 'ngHome', 'supplyModule', 'aptModule', 'maintenanceModule']);
 ngHousingTenant.config(['$routeProvider', '$locationProvider', function ($routeProvider, $locationProvider) {
         $routeProvider
