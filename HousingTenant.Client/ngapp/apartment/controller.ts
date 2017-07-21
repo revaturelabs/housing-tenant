@@ -15,7 +15,6 @@ var x = 5;
 
 var apartmentController = am.controller('aptCtrl', ['$scope', 'aptFactory', function ($scope, aptFactory) {
    var requestModal;
-
    aptFactory.getApartment($scope, address);
 
 }]);

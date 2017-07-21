@@ -2,11 +2,9 @@ import { supplyModule as sm } from './module';
 import './services';
 
 var supplyController = sm.controller('suppliesCtrl', ['$scope', 'supplyRequestListSvc', '$routeParams', function ($scope, supplyRequestListSvc, $routeParams) {
+      var requestModal = document.getElementById('AddRequestModal');
       
       var aptid = $routeParams.aptid; 
-      var requestModal = document.getElementById('AddRequestModal');
-
-
       supplyRequestListSvc.getRequestList(aptid, $scope);
 
       $scope.addRequest = function (n, s, tp, pt, ds, tb, dd, sp) {
