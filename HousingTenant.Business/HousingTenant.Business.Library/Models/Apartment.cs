@@ -14,6 +14,7 @@ namespace HousingTenant.Business.Library.Models
 
         public int Beds { get; set; }
         public int Bathrooms { get; set; }
+        public string ApartmentId { get; set; }
         public string ComplexName { get; set; }
         public Address Address { get; set; }
         

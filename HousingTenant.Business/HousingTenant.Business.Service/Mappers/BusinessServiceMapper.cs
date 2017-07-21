@@ -7,10 +7,6 @@ namespace HousingTenant.Business.Service.Mappers
 {
     public class BusinessServiceMapper
     {
-        public Apartment MapToApartment(IApartment iapartment)
-        {
-         return null;
-        }
 
         public ARequest MapToARequest(RequestDTO requestDto)
         {
@@ -22,50 +18,32 @@ namespace HousingTenant.Business.Service.Mappers
                    case 0:
                       request = new ComplaintRequest
                       {
-                          Initiator = requestDto.Initiator,
-                          Accused = requestDto.Accused,
-                          Complaint = requestDto.Complaint,
-                          DateSubmitted = requestDto.DateSubmitted,
-                          DateModified = requestDto.DateModified,
-                          Status = requestDto.Status,
-                          Urgent = requestDto.Urgent
+                          Accused = requestDto.Accused
                       };
                       break;
                    case 1:
-                      request = new MaintenanceRequest
-                      {
-                          Initiator = requestDto.Initiator,
-                          Description = requestDto.Description,
-                          DateSubmitted = requestDto.DateSubmitted,
-                          DateModified = requestDto.DateModified,
-                          Status = requestDto.Status,
-                          Urgent = requestDto.Urgent
-                      };
+                      request = new MaintenanceRequest ();
                       break;
                    case 2:
                       request = new MoveRequest
                       {
-                          Initiator = requestDto.Initiator,
-                          RequestedApartmentAddress = requestDto.RequestedApartmentAddress,
-                          Reason = requestDto.Reason,
-                          DateSubmitted = requestDto.DateSubmitted,
-                          DateModified = requestDto.DateModified,
-                          Status = requestDto.Status,
-                          Urgent = requestDto.Urgent
+                          RequestedApartmentAddress = requestDto.RequestedApartmentAddress
                       };
                       break;
                    case 3:
                       request = new SupplyRequest
                       {
-                          Initiator = requestDto.Initiator,
-                          RequestItems = requestDto.RequestItems,
-                          DateSubmitted = requestDto.DateSubmitted,
-                          DateModified = requestDto.DateModified,
-                          Status = requestDto.Status,
-                          Urgent = requestDto.Urgent
+                          RequestItems = requestDto.RequestItems
                       };
                       break;
                 }
+                request.RequestId = requestDto.RequestId;
+                request.Initiator = requestDto.Initiator;
+                request.Description = requestDto.Description;
+                request.DateSubmitted = requestDto.DateSubmitted;
+                request.DateModified = requestDto.DateModified;
+                request.Status = requestDto.Status;
+                request.Urgent = requestDto.Urgent;
             }
             return request;
         }

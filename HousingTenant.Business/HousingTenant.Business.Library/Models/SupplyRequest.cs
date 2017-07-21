@@ -16,16 +16,7 @@ namespace HousingTenant.Business.Library.Models
         {
             _RequestItems = new List<string>();
         }
-        /// <summary>
-        /// Compares two Supply request by checking the address of the initiator
-        /// date of the request and the status. If they are all equal then the
-        /// requests are "deemed" equal and another Supply request from this 
-        /// address will not be allowed on that day unless the status change to
-        /// completed or rejected
-        /// </summary>
-        /// <param name="obj">the object to compare against this request</param>
-        /// <returns>true if initiator address, date submitted and status are equal,
-        /// false otherwise</returns>
+
         public override bool Equals(object obj)
         {
             if(obj != null && obj.GetType() == GetType())
