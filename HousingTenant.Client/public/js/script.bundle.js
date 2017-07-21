@@ -60,14 +60,14 @@
 /******/ 	__webpack_require__.p = "";
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 4);
+/******/ 	return __webpack_require__(__webpack_require__.s = 5);
 /******/ })
 /************************************************************************/
 /******/ ([
 /* 0 */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(5);
+__webpack_require__(6);
 module.exports = angular;
 
 
@@ -79,11 +79,11 @@ module.exports = angular;
 __webpack_require__(0);
 
 // Load Angular and dependent libs
-__webpack_require__(8);
-__webpack_require__(10);
+__webpack_require__(9);
+__webpack_require__(11);
 
 // Now load Angular Material
-__webpack_require__(12);
+__webpack_require__(13);
 
 // Export namespace
 module.exports = 'ngMaterial';
@@ -98,7 +98,7 @@ module.exports = 'ngMaterial';
 Object.defineProperty(exports, "__esModule", { value: true });
 var ng = __webpack_require__(0);
 __webpack_require__(1);
-__webpack_require__(15);
+__webpack_require__(16);
 var home = ng.module('ngHome', ['ngMaterial']);
 exports.home = home;
 
@@ -111,7 +111,7 @@ exports.home = home;
 
 Object.defineProperty(exports, "__esModule", { value: true });
 var ng = __webpack_require__(0);
-__webpack_require__(18);
+__webpack_require__(19);
 var supplyModule = ng.module('supplyModule', []);
 exports.supplyModule = supplyModule;
 
@@ -124,22 +124,40 @@ exports.supplyModule = supplyModule;
 
 Object.defineProperty(exports, "__esModule", { value: true });
 var ng = __webpack_require__(0);
-__webpack_require__(6);
+__webpack_require__(22);
+var apartmentModule = ng.module('aptModule', []);
+exports.apartmentModule = apartmentModule;
+
+
+/***/ }),
+/* 5 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+Object.defineProperty(exports, "__esModule", { value: true });
+var ng = __webpack_require__(0);
+__webpack_require__(7);
 __webpack_require__(1);
 //importing CSS
-__webpack_require__(13);
-//importing TS
 __webpack_require__(14);
-__webpack_require__(17);
-//importing HTML
-__webpack_require__(20);
+//importing TS
+__webpack_require__(15);
+__webpack_require__(18);
 __webpack_require__(21);
-__webpack_require__(22);
+//importing HTML
+__webpack_require__(24);
+__webpack_require__(25);
+__webpack_require__(26);
 //Testing GITLAB
-var ngHousingTenant = ng.module('ngHousingTenant', ['ngRoute', 'ngMaterial', 'ngHome', 'supplyModule']);
+var ngHousingTenant = ng.module('ngHousingTenant', ['ngRoute', 'ngMaterial', 'ngHome', 'supplyModule', 'aptModule']);
 ngHousingTenant.config(['$routeProvider', function ($routeProvider) {
         $routeProvider
-            .when('/', {
+            .when('/apartment', {
+            controller: 'aptCtrl',
+            templateUrl: 'ngapp/apartment/partials/template.html'
+        })
+            .when('/home', {
             controller: 'homeController',
             templateUrl: 'ngapp/home/partials/template.html'
         })
@@ -154,7 +172,7 @@ ngHousingTenant.config(['$routeProvider', function ($routeProvider) {
 
 
 /***/ }),
-/* 5 */
+/* 6 */
 /***/ (function(module, exports) {
 
 /**
@@ -33990,15 +34008,15 @@ $provide.value("$locale", {
 !window.angular.$$csp().noInlineStyle && window.angular.element(document.head).prepend('<style type="text/css">@charset "UTF-8";[ng\\:cloak],[ng-cloak],[data-ng-cloak],[x-ng-cloak],.ng-cloak,.x-ng-cloak,.ng-hide:not(.ng-hide-animate){display:none !important;}ng\\:form{display:block;}.ng-animate-shim{visibility:hidden;}.ng-anchor{position:absolute;}</style>');
 
 /***/ }),
-/* 6 */
+/* 7 */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(7);
+__webpack_require__(8);
 module.exports = 'ngRoute';
 
 
 /***/ }),
-/* 7 */
+/* 8 */
 /***/ (function(module, exports) {
 
 /**
@@ -35233,15 +35251,15 @@ function ngViewFillContentFactory($compile, $controller, $route) {
 
 
 /***/ }),
-/* 8 */
+/* 9 */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(9);
+__webpack_require__(10);
 module.exports = 'ngAnimate';
 
 
 /***/ }),
-/* 9 */
+/* 10 */
 /***/ (function(module, exports) {
 
 /**
@@ -39401,15 +39419,15 @@ angular.module('ngAnimate', [], function initAngularHelpers() {
 
 
 /***/ }),
-/* 10 */
+/* 11 */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(11);
+__webpack_require__(12);
 module.exports = 'ngAria';
 
 
 /***/ }),
-/* 11 */
+/* 12 */
 /***/ (function(module, exports) {
 
 /**
@@ -39818,7 +39836,7 @@ ngAriaModule.directive('ngShow', ['$aria', function($aria) {
 
 
 /***/ }),
-/* 12 */
+/* 13 */
 /***/ (function(module, exports) {
 
 /*!
@@ -75828,20 +75846,20 @@ angular.module("material.core").constant("$MD_THEME_CSS", "md-autocomplete.md-TH
 })(window, window.angular);;window.ngMaterial={version:{full: "1.1.4"}};
 
 /***/ }),
-/* 13 */
+/* 14 */
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports = __webpack_require__.p + "css/index.css";
 
 /***/ }),
-/* 14 */
+/* 15 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 Object.defineProperty(exports, "__esModule", { value: true });
 var module_1 = __webpack_require__(2);
-__webpack_require__(16);
+__webpack_require__(17);
 var Entity = (function () {
     function Entity(t, v) {
         this.text = t;
@@ -75887,13 +75905,13 @@ var myController = module_1.home.controller('homeController', ['$scope', 'homeFa
 
 
 /***/ }),
-/* 15 */
+/* 16 */
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports = __webpack_require__.p + "ngapp/home/partials/template.html";
 
 /***/ }),
-/* 16 */
+/* 17 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -75920,14 +75938,14 @@ module_1.home.factory('homeFactory', ['$http', function ($http) {
 
 
 /***/ }),
-/* 17 */
+/* 18 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 Object.defineProperty(exports, "__esModule", { value: true });
 var module_1 = __webpack_require__(3);
-__webpack_require__(19);
+__webpack_require__(20);
 var supplyController = module_1.supplyModule.controller('suppliesCtrl', ['$scope', 'supplyRequestListSvc', function ($scope, supplyRequestListSvc) {
         var requestModal = document.getElementById('AddRequestModal');
         var address = {
@@ -75969,13 +75987,13 @@ var supplyController = module_1.supplyModule.controller('suppliesCtrl', ['$scope
 
 
 /***/ }),
-/* 18 */
+/* 19 */
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports = __webpack_require__.p + "ngapp/supplies/partials/template.html";
 
 /***/ }),
-/* 19 */
+/* 20 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -76017,19 +76035,83 @@ var supplyService = module_1.supplyModule.factory('supplyRequestListSvc', ['$htt
 
 
 /***/ }),
-/* 20 */
+/* 21 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+Object.defineProperty(exports, "__esModule", { value: true });
+var module_1 = __webpack_require__(4);
+__webpack_require__(23);
+var address = {
+    Address1: "2100 Wilkes Court",
+    Address2: "",
+    ApartmentNumber: "102",
+    City: "Herndon",
+    State: "Virginia",
+    ZipCode: "20170"
+};
+var apartmentController = module_1.apartmentModule.controller('aptCtrl', ['$scope', 'aptFactory', function ($scope, aptFactory) {
+        var requestModal;
+        aptFactory.getApartment($scope, address);
+        // $scope.openModal = function (reqModalId) {
+        //    requestModal = document.getElementById(reqModalId);
+        //    requestModal.style.display = 'block';
+        // }
+        // $scope.closeModal = function (reqModalId) {
+        //    requestModal = document.getElementById(reqModalId);
+        //    requestModal.style.display = 'none';
+        // }
+        // window.onclick = function (event) {
+        //    if (event.target == requestModal) {
+        //       requestModal.style.display = 'none';
+        //    }
+        // }
+    }]);
+
+
+/***/ }),
+/* 22 */
+/***/ (function(module, exports, __webpack_require__) {
+
+module.exports = __webpack_require__.p + "ngapp/apartment/partials/template.html";
+
+/***/ }),
+/* 23 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+Object.defineProperty(exports, "__esModule", { value: true });
+var module_1 = __webpack_require__(4);
+var appartmentService = module_1.apartmentModule.factory('aptFactory', ['$htpp', function ($http) {
+        return {
+            getApartment: function (scope, address) {
+                $http.get('http://localhost:5000/api/values/', { params: address }).then(function (res) {
+                    console.log(res);
+                    scope.apartment;
+                }, function (err) {
+                    console.log(err);
+                });
+            }
+        };
+    }]);
+
+
+/***/ }),
+/* 24 */
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports = __webpack_require__.p + "html/footer.html";
 
 /***/ }),
-/* 21 */
+/* 25 */
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports = __webpack_require__.p + "html/navbar.html";
 
 /***/ }),
-/* 22 */
+/* 26 */
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports = __webpack_require__.p + "html/sidebar.html";
