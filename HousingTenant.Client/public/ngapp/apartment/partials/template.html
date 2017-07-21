@@ -2,6 +2,7 @@
    <md-card-title>
       <md-card-title-text>
          <span class="md-headline">Apartment</span>
+         <br/>
          <label for="beds">Number of Bedrooms</label>
          <div class="md-subhead" id="beds" ng-model="apartment">{{apartment.beds}}</div>
          <label for="baths">Number of bathrooms</label>
@@ -19,8 +20,8 @@
       </md-card-title-media>
    </md-card-title>
    <md-card-actions layout="row" layout-align="end center">
-      <md-button>Supplies</md-button>
-      <md-button>Maintance</md-button>
-      <md-button>Complaints</md-button>
+      <md-button data-ng-href="#!/supplies">Supplies</md-button>
+      <md-button data-ng-href="#!/maintenance">Maintenance</md-button>
+      <md-button data-ng-href="#!/complaints">Complaints</md-button>
    </md-card-actions>
 </md-card>
