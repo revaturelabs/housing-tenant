@@ -21,7 +21,6 @@ namespace HousingTenant.Data.Service.Controllers
         {
             var list = new List<RequestDTO> ();
             list.Add (new RequestDTO { Initiator = new PersonDTO { FirstName = "Jason", LastName = "Todd" } , DateSubmitted = DateTime.Now, Description = "Test" });
-            list.Add (srb.GetAll ()[0]);
             return list;
         }
 
