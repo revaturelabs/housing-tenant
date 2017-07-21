@@ -9,6 +9,7 @@ import './css/modal.css';
 import './home/controller';
 import './supplies/controllers';
 import './apartment/controller';
+import './maintenance/controller';
 //importing HTML
 import 'file-loader?name=[name].[ext]&outputPath=html/!./html/footer.html';
 import 'file-loader?name=[name].[ext]&outputPath=html/!./html/navbar.html';
@@ -16,7 +17,7 @@ import 'file-loader?name=[name].[ext]&outputPath=html/!./html/sidebar.html';
 //Testing GITLAB
 
 
-var ngHousingTenant = ng.module('ngHousingTenant', ['ngRoute', 'ngMaterial','ngHome', 'supplyModule', 'aptModule']);
+var ngHousingTenant = ng.module('ngHousingTenant', ['ngRoute', 'ngMaterial','ngHome', 'supplyModule', 'aptModule', 'maintenanceModule']);
 
 ngHousingTenant.config(['$routeProvider', function($routeProvider){
   $routeProvider
@@ -31,6 +32,10 @@ ngHousingTenant.config(['$routeProvider', function($routeProvider){
     .when('/supplies', {
       controller: 'suppliesCtrl',
       templateUrl: 'ngapp/supplies/partials/template.html'
+    })
+    .when('/maintenance', {
+      controller: 'maintenanceCtrl',
+      templateUrl: 'ngapp/maintenance/partials/template.html'
     })
     .otherwise({
       redirectTo: '/'
