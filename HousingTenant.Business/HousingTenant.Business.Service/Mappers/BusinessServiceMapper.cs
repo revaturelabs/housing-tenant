@@ -1,10 +1,7 @@
 ﻿using HousingTenant.Business.Library;
 using HousingTenant.Business.Library.Models;
 using HousingTenant.Business.Service.Models;
-using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 
 namespace HousingTenant.Business.Service.Mappers
 {
