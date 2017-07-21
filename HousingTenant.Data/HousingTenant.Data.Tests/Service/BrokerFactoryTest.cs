@@ -4,7 +4,6 @@ using System.Text;
 using NUnit.Framework;
 using HousingTenant.Data.Service.Factory;
 using HousingTenant.Data.Service.Models;
-using HousingTenant.Data.Service.Interfaces;
 
 namespace HousingTenant.Data.Tests.Service
 {
@@ -14,7 +13,7 @@ namespace HousingTenant.Data.Tests.Service
         [Test]
         public void GetBrokerTest()
         {
-            var actual = new BrokerFactory<RequestDTO>().Create();
+            var actual = new BrokerFactory<RequestDTO,Object>().Create();
 
             Assert.IsNotNull (actual);
         }

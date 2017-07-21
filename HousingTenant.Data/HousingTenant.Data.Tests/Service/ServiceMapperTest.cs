@@ -24,4 +24,3 @@ namespace HousingTenant.Data.Tests.Service
         }
     }
 }
-}
