@@ -23,9 +23,13 @@ namespace HousingTenant.Data.Service.Controllers
 
         // GET api/values/5
         [HttpGet("{id}")]
-        public string Get(int id)
+        public List<PersonDAO> Get(string id)
         {
-            return "value";
+            var list = new List<PersonDAO> ();
+            list.Add (new PersonDAO { LastName = "Todd", FirstName = "Jason" });
+            list.Add (new PersonDAO { LastName = "Json", FirstName = "Fred" });
+            var output = (from l in list where l.FirstName == "Jason" select l);
+            return output.ToList();
         }
 
         // POST api/values
