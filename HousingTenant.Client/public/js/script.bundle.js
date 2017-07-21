@@ -98,7 +98,7 @@ module.exports = 'ngMaterial';
 Object.defineProperty(exports, "__esModule", { value: true });
 var ng = __webpack_require__(0);
 __webpack_require__(1);
-__webpack_require__(17);
+__webpack_require__(18);
 var home = ng.module('ngHome', ['ngMaterial']);
 exports.home = home;
 
@@ -111,7 +111,7 @@ exports.home = home;
 
 Object.defineProperty(exports, "__esModule", { value: true });
 var ng = __webpack_require__(0);
-__webpack_require__(20);
+__webpack_require__(21);
 var supplyModule = ng.module('supplyModule', []);
 exports.supplyModule = supplyModule;
 
@@ -124,7 +124,7 @@ exports.supplyModule = supplyModule;
 
 Object.defineProperty(exports, "__esModule", { value: true });
 var ng = __webpack_require__(0);
-__webpack_require__(23);
+__webpack_require__(24);
 var apartmentModule = ng.module('aptModule', []);
 exports.apartmentModule = apartmentModule;
 
@@ -153,18 +153,19 @@ var ng = __webpack_require__(0);
 __webpack_require__(8);
 __webpack_require__(1);
 //importing CSS
-__webpack_require__(14);
 __webpack_require__(15);
-//importing TS
 __webpack_require__(16);
-__webpack_require__(19);
-__webpack_require__(22);
-//importing HTML
-__webpack_require__(25);
+//importing TS
+__webpack_require__(17);
+__webpack_require__(20);
+__webpack_require__(23);
 __webpack_require__(26);
-__webpack_require__(27);
+//importing HTML
+__webpack_require__(29);
+__webpack_require__(30);
+__webpack_require__(31);
 //Testing GITLAB
-var ngHousingTenant = ng.module('ngHousingTenant', ['ngRoute', 'ngMaterial', 'ngHome', 'supplyModule', 'aptModule']);
+var ngHousingTenant = ng.module('ngHousingTenant', ['ngRoute', 'ngMaterial', 'ngHome', 'supplyModule', 'aptModule', 'maintenanceModule']);
 ngHousingTenant.config(['$routeProvider', '$locationProvider', function ($routeProvider, $locationProvider) {
         $routeProvider
             .when('/apartment', {
@@ -75884,31 +75885,11 @@ module.exports = __webpack_require__.p + "css/modal.css";
 /* 17 */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__.p + "css/modal.css";
-
-/***/ }),
-/* 16 */
-/***/ (function(module, exports, __webpack_require__) {
-
-module.exports = __webpack_require__.p + "css/modal.css";
-
-/***/ }),
-/* 16 */
-/***/ (function(module, exports, __webpack_require__) {
-
 "use strict";
 
 Object.defineProperty(exports, "__esModule", { value: true });
 var module_1 = __webpack_require__(2);
-<<<<<<< HEAD
-<<<<<<< HEAD
-__webpack_require__(18);
-=======
 __webpack_require__(19);
->>>>>>> feature/create-layout-for-maintenance-webpage-and-link-it-to-menu
-=======
-__webpack_require__(18);
->>>>>>> feature/apartment-supplies-ui
 var Entity = (function () {
     function Entity(t, v) {
         this.text = t;
@@ -75954,29 +75935,13 @@ var myController = module_1.home.controller('homeController', ['$scope', 'homeFa
 
 
 /***/ }),
-<<<<<<< HEAD
-<<<<<<< HEAD
-/* 17 */
-=======
 /* 18 */
->>>>>>> feature/create-layout-for-maintenance-webpage-and-link-it-to-menu
-=======
-/* 17 */
->>>>>>> feature/apartment-supplies-ui
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports = __webpack_require__.p + "ngapp/home/partials/template.html";
 
 /***/ }),
-<<<<<<< HEAD
-<<<<<<< HEAD
-/* 18 */
-=======
 /* 19 */
->>>>>>> feature/create-layout-for-maintenance-webpage-and-link-it-to-menu
-=======
-/* 18 */
->>>>>>> feature/apartment-supplies-ui
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -76003,32 +75968,15 @@ module_1.home.factory('homeFactory', ['$http', function ($http) {
 
 
 /***/ }),
-<<<<<<< HEAD
-<<<<<<< HEAD
-/* 19 */
-=======
 /* 20 */
->>>>>>> feature/create-layout-for-maintenance-webpage-and-link-it-to-menu
-=======
-/* 19 */
->>>>>>> feature/apartment-supplies-ui
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 Object.defineProperty(exports, "__esModule", { value: true });
 var module_1 = __webpack_require__(3);
-<<<<<<< HEAD
-<<<<<<< HEAD
-__webpack_require__(21);
-=======
 __webpack_require__(22);
->>>>>>> feature/create-layout-for-maintenance-webpage-and-link-it-to-menu
-var supplyController = module_1.supplyModule.controller('suppliesCtrl', ['$scope', 'supplyRequestListSvc', function ($scope, supplyRequestListSvc) {
-=======
-__webpack_require__(21);
 var supplyController = module_1.supplyModule.controller('suppliesCtrl', ['$scope', 'supplyRequestListSvc', '$routeParams', function ($scope, supplyRequestListSvc, $routeParams) {
->>>>>>> feature/apartment-supplies-ui
         var requestModal = document.getElementById('AddRequestModal');
         var aptid = $routeParams.aptid;
         supplyRequestListSvc.getRequestList(aptid, $scope);
@@ -76079,29 +76027,13 @@ var supplyController = module_1.supplyModule.controller('suppliesCtrl', ['$scope
 
 
 /***/ }),
-<<<<<<< HEAD
-<<<<<<< HEAD
-/* 20 */
-=======
 /* 21 */
->>>>>>> feature/create-layout-for-maintenance-webpage-and-link-it-to-menu
-=======
-/* 20 */
->>>>>>> feature/apartment-supplies-ui
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports = __webpack_require__.p + "ngapp/supplies/partials/template.html";
 
 /***/ }),
-<<<<<<< HEAD
-<<<<<<< HEAD
-/* 21 */
-=======
 /* 22 */
->>>>>>> feature/create-layout-for-maintenance-webpage-and-link-it-to-menu
-=======
-/* 21 */
->>>>>>> feature/apartment-supplies-ui
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -76148,30 +76080,14 @@ var supplyService = module_1.supplyModule.factory('supplyRequestListSvc', ['$htt
 
 
 /***/ }),
-<<<<<<< HEAD
-<<<<<<< HEAD
-/* 22 */
-=======
 /* 23 */
->>>>>>> feature/create-layout-for-maintenance-webpage-and-link-it-to-menu
-=======
-/* 22 */
->>>>>>> feature/apartment-supplies-ui
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 Object.defineProperty(exports, "__esModule", { value: true });
 var module_1 = __webpack_require__(4);
-<<<<<<< HEAD
-<<<<<<< HEAD
-__webpack_require__(24);
-=======
 __webpack_require__(25);
->>>>>>> feature/create-layout-for-maintenance-webpage-and-link-it-to-menu
-=======
-__webpack_require__(24);
->>>>>>> feature/apartment-supplies-ui
 var address = {
     Address1: "2100 Wilkes Court",
     Address2: "",
@@ -76188,29 +76104,13 @@ var apartmentController = module_1.apartmentModule.controller('aptCtrl', ['$scop
 
 
 /***/ }),
-<<<<<<< HEAD
-<<<<<<< HEAD
-/* 23 */
-=======
 /* 24 */
->>>>>>> feature/create-layout-for-maintenance-webpage-and-link-it-to-menu
-=======
-/* 23 */
->>>>>>> feature/apartment-supplies-ui
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports = __webpack_require__.p + "ngapp/apartment/partials/template.html";
 
 /***/ }),
-<<<<<<< HEAD
-<<<<<<< HEAD
-/* 24 */
-=======
 /* 25 */
->>>>>>> feature/create-layout-for-maintenance-webpage-and-link-it-to-menu
-=======
-/* 24 */
->>>>>>> feature/apartment-supplies-ui
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -76312,10 +76212,6 @@ var appartmentService = module_1.apartmentModule.factory('aptFactory', ['$http',
 
 
 /***/ }),
-<<<<<<< HEAD
-<<<<<<< HEAD
-/* 25 */
-=======
 /* 26 */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -76361,38 +76257,18 @@ var maintenanceService = module_1.maintenanceModule.factory('maintenanceRequestL
 
 /***/ }),
 /* 29 */
->>>>>>> feature/create-layout-for-maintenance-webpage-and-link-it-to-menu
-=======
-/* 25 */
->>>>>>> feature/apartment-supplies-ui
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports = __webpack_require__.p + "html/footer.html";
 
 /***/ }),
-<<<<<<< HEAD
-<<<<<<< HEAD
-/* 26 */
-=======
 /* 30 */
->>>>>>> feature/create-layout-for-maintenance-webpage-and-link-it-to-menu
-=======
-/* 26 */
->>>>>>> feature/apartment-supplies-ui
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports = __webpack_require__.p + "html/navbar.html";
 
 /***/ }),
-<<<<<<< HEAD
-<<<<<<< HEAD
-/* 27 */
-=======
 /* 31 */
->>>>>>> feature/create-layout-for-maintenance-webpage-and-link-it-to-menu
-=======
-/* 27 */
->>>>>>> feature/apartment-supplies-ui
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports = __webpack_require__.p + "html/sidebar.html";
