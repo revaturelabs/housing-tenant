@@ -20,8 +20,8 @@
       </md-card-title-media>
    </md-card-title>
    <md-card-actions layout="row" layout-align="end center">
-      <md-button data-ng-href="#!/supplies" data-ng-model="supplyReq">Supplies {{supplyReq}}</md-button>
-      <md-button data-ng-href="#!/maintenance" data-ng-model="maintenanceReq">Maintenance {{maintenanceReq}}</md-button>
-      <md-button data-ng-href="#!/complaints" data-ng-model="complaintReq">Complaints {{complaintReq}}</md-button>
+      <md-button data-ng-href="#!/supplies/{{apartment.guid}}" data-ng-model="supplyReq">Supplies {{supplyReq}}</md-button>
+      <md-button data-ng-href="#!/maintenance/{{apartment.guid}}" data-ng-model="maintenanceReq">Maintenance {{maintenanceReq}}</md-button>
+      <md-button data-ng-href="#!/complaints/{{person.guid}}" data-ng-model="complaintReq">Complaints {{complaintReq}}</md-button>
    </md-card-actions>
 </md-card>

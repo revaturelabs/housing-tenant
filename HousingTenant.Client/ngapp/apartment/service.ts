@@ -85,6 +85,7 @@ var appartmentService = am.factory('aptFactory', ['$http', function ($http) {
                      console.log(scope.complaintReq);
                   };
                });
+               scope.apartment.guid = '03ae80e1-7227-48ef-8f76-30f5ebf6d89d';
                console.log(scope.apartment);
             }
          );

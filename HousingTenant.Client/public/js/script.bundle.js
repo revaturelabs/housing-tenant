@@ -98,7 +98,7 @@ module.exports = 'ngMaterial';
 Object.defineProperty(exports, "__esModule", { value: true });
 var ng = __webpack_require__(0);
 __webpack_require__(1);
-__webpack_require__(16);
+__webpack_require__(17);
 var home = ng.module('ngHome', ['ngMaterial']);
 exports.home = home;
 
@@ -111,7 +111,7 @@ exports.home = home;
 
 Object.defineProperty(exports, "__esModule", { value: true });
 var ng = __webpack_require__(0);
-__webpack_require__(19);
+__webpack_require__(20);
 var supplyModule = ng.module('supplyModule', []);
 exports.supplyModule = supplyModule;
 
@@ -124,7 +124,7 @@ exports.supplyModule = supplyModule;
 
 Object.defineProperty(exports, "__esModule", { value: true });
 var ng = __webpack_require__(0);
-__webpack_require__(22);
+__webpack_require__(23);
 var apartmentModule = ng.module('aptModule', []);
 exports.apartmentModule = apartmentModule;
 
@@ -141,17 +141,18 @@ __webpack_require__(7);
 __webpack_require__(1);
 //importing CSS
 __webpack_require__(14);
-//importing TS
 __webpack_require__(15);
-__webpack_require__(18);
-__webpack_require__(21);
+//importing TS
+__webpack_require__(16);
+__webpack_require__(19);
+__webpack_require__(22);
 //importing HTML
-__webpack_require__(24);
 __webpack_require__(25);
 __webpack_require__(26);
+__webpack_require__(27);
 //Testing GITLAB
 var ngHousingTenant = ng.module('ngHousingTenant', ['ngRoute', 'ngMaterial', 'ngHome', 'supplyModule', 'aptModule']);
-ngHousingTenant.config(['$routeProvider', function ($routeProvider) {
+ngHousingTenant.config(['$routeProvider', '$locationProvider', function ($routeProvider, $locationProvider) {
         $routeProvider
             .when('/apartment', {
             controller: 'aptCtrl',
@@ -161,13 +162,22 @@ ngHousingTenant.config(['$routeProvider', function ($routeProvider) {
             controller: 'homeController',
             templateUrl: 'ngapp/home/partials/template.html'
         })
-            .when('/supplies', {
+            .when('/supplies/:aptid', {
             controller: 'suppliesCtrl',
             templateUrl: 'ngapp/supplies/partials/template.html'
+        })
+            .when('/maintenance/:aptid', {
+            controller: 'maintenanceCtrl',
+            templateUrl: 'ngapp/maintenance/partials/template.html'
+        })
+            .when('/complaints/:personid', {
+            controller: 'personCtrl',
+            templateUrl: 'ngapp/complaints/partials/template.html'
         })
             .otherwise({
             redirectTo: '/'
         });
+        $locationProvider.html5Mode(false).hashPrefix('!');
     }]);
 
 
@@ -75855,11 +75865,17 @@ module.exports = __webpack_require__.p + "css/index.css";
 /* 15 */
 /***/ (function(module, exports, __webpack_require__) {
 
+module.exports = __webpack_require__.p + "css/modal.css";
+
+/***/ }),
+/* 16 */
+/***/ (function(module, exports, __webpack_require__) {
+
 "use strict";
 
 Object.defineProperty(exports, "__esModule", { value: true });
 var module_1 = __webpack_require__(2);
-__webpack_require__(17);
+__webpack_require__(18);
 var Entity = (function () {
     function Entity(t, v) {
         this.text = t;
@@ -75905,13 +75921,13 @@ var myController = module_1.home.controller('homeController', ['$scope', 'homeFa
 
 
 /***/ }),
-/* 16 */
+/* 17 */
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports = __webpack_require__.p + "ngapp/home/partials/template.html";
 
 /***/ }),
-/* 17 */
+/* 18 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -75938,25 +75954,18 @@ module_1.home.factory('homeFactory', ['$http', function ($http) {
 
 
 /***/ }),
-/* 18 */
+/* 19 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 Object.defineProperty(exports, "__esModule", { value: true });
 var module_1 = __webpack_require__(3);
-__webpack_require__(20);
-var supplyController = module_1.supplyModule.controller('suppliesCtrl', ['$scope', 'supplyRequestListSvc', function ($scope, supplyRequestListSvc) {
+__webpack_require__(21);
+var supplyController = module_1.supplyModule.controller('suppliesCtrl', ['$scope', 'supplyRequestListSvc', '$routeParams', function ($scope, supplyRequestListSvc, $routeParams) {
         var requestModal = document.getElementById('AddRequestModal');
-        var address = {
-            Address1: "123 main",
-            Address2: "suit",
-            ApartmentNumber: "302",
-            City: "Reston",
-            State: "Florida",
-            ZipCode: "32792"
-        };
-        supplyRequestListSvc.getRequestList(address, $scope);
+        var aptid = $routeParams.aptid;
+        supplyRequestListSvc.getRequestList(aptid, $scope);
         $scope.addRequest = function (n, s, tp, pt, ds, tb, dd, sp) {
             var request = {
                 name: n,
@@ -75987,13 +75996,13 @@ var supplyController = module_1.supplyModule.controller('suppliesCtrl', ['$scope
 
 
 /***/ }),
-/* 19 */
+/* 20 */
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports = __webpack_require__.p + "ngapp/supplies/partials/template.html";
 
 /***/ }),
-/* 20 */
+/* 21 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -76002,8 +76011,8 @@ Object.defineProperty(exports, "__esModule", { value: true });
 var module_1 = __webpack_require__(3);
 var supplyService = module_1.supplyModule.factory('supplyRequestListSvc', ['$http', function ($http) {
         return {
-            getRequestList: function (address, scope) {
-                $http.get('http://localhost:5000/api/values/', { params: address }).then(function (res) {
+            getRequestList: function (aptidstring, scope) {
+                $http.get('http://localhost:5000/api/request/', { params: aptidstring }).then(function (res) {
                     console.log(res.data);
                     scope.reqList = res.data;
                     console.log(scope.reqList);
@@ -76015,7 +76024,7 @@ var supplyService = module_1.supplyModule.factory('supplyRequestListSvc', ['$htt
                 console.log(request);
                 $http({
                     method: 'POST',
-                    url: 'http://localhost:5000/api/values/',
+                    url: 'http://localhost:5000/api/request/',
                     withCredentials: true,
                     headers: {
                         'Access-Control-Allow-Origin': 'http://localhost:5000',
@@ -76035,14 +76044,14 @@ var supplyService = module_1.supplyModule.factory('supplyRequestListSvc', ['$htt
 
 
 /***/ }),
-/* 21 */
+/* 22 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 Object.defineProperty(exports, "__esModule", { value: true });
 var module_1 = __webpack_require__(4);
-__webpack_require__(23);
+__webpack_require__(24);
 var address = {
     Address1: "2100 Wilkes Court",
     Address2: "",
@@ -76059,13 +76068,13 @@ var apartmentController = module_1.apartmentModule.controller('aptCtrl', ['$scop
 
 
 /***/ }),
-/* 22 */
+/* 23 */
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports = __webpack_require__.p + "ngapp/apartment/partials/template.html";
 
 /***/ }),
-/* 23 */
+/* 24 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -76075,13 +76084,20 @@ var module_1 = __webpack_require__(4);
 var appartmentService = module_1.apartmentModule.factory('aptFactory', ['$http', function ($http) {
         return {
             getApartment: function (scope, address) {
-                $http.get('http://localhost:5000/api/values/', { params: address }).then(function (res) {
+                $http.get('http://localhost:5000/api/apartment/', { params: address }).then(function (res) {
                     console.log(res);
                     scope.apartment = res.data;
                 }, function (err) {
                     console.log(err);
                     scope.apartment = {};
-                    scope.apartment.address = address;
+                    scope.apartment.address = {
+                        address1: "123 main",
+                        address2: "suit",
+                        apartmentNumber: "302",
+                        city: "Reston",
+                        state: "Florida",
+                        zipCode: "32792"
+                    };
                     scope.apartment.beds = 3;
                     scope.apartment.bathrooms = 2;
                     scope.apartment.complexname = 'Westerly At Worldgate';
@@ -76151,6 +76167,7 @@ var appartmentService = module_1.apartmentModule.factory('aptFactory', ['$http',
                         }
                         ;
                     });
+                    scope.apartment.guid = '03ae80e1-7227-48ef-8f76-30f5ebf6d89d';
                     console.log(scope.apartment);
                 });
             }
@@ -76159,19 +76176,19 @@ var appartmentService = module_1.apartmentModule.factory('aptFactory', ['$http',
 
 
 /***/ }),
-/* 24 */
+/* 25 */
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports = __webpack_require__.p + "html/footer.html";
 
 /***/ }),
-/* 25 */
+/* 26 */
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports = __webpack_require__.p + "html/navbar.html";
 
 /***/ }),
-/* 26 */
+/* 27 */
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports = __webpack_require__.p + "html/sidebar.html";

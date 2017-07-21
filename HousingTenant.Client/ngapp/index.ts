@@ -36,8 +36,8 @@ ngHousingTenant.config(['$routeProvider', '$locationProvider', function ($routeP
       controller: 'maintenanceCtrl',
       templateUrl: 'ngapp/maintenance/partials/template.html'
     })
-    .when('/complaints/:personid', {
-      controller: 'personCtrl',
+    .when('/complaints/:aptid', {
+      controller: 'complaintsCtrl',
       templateUrl: 'ngapp/complaints/partials/template.html'
     })
     .otherwise({
