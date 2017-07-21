@@ -75966,9 +75966,8 @@ var supplyController = module_1.supplyModule.controller('suppliesCtrl', ['$scope
         var requestModal = document.getElementById('AddRequestModal');
         var aptid = $routeParams.aptid;
         supplyRequestListSvc.getRequestList(aptid, $scope);
+        //delivers
         $scope.addRequest = function (d, s, tp, pt, ds, tb, dd, sp) {
-            console.log($scope.trash);
-            console.log(tb);
             var request = {
                 description: d,
                 initiator: 'Current User',

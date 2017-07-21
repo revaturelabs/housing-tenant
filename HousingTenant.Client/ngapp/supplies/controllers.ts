@@ -6,7 +6,7 @@ var supplyController = sm.controller('suppliesCtrl', ['$scope', 'supplyRequestLi
       
       var aptid = $routeParams.aptid; 
       supplyRequestListSvc.getRequestList(aptid, $scope);
-
+            //delivers
       $scope.addRequest = function (d, s, tp, pt, ds, tb, dd, sp) {
             var request = {
                   description : d,

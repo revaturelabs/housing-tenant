@@ -43,7 +43,7 @@
                <label for="name">Description</label>
                <input type="text" id="description" ng-model="d">
                <label for="soap">Soap?</label>
-               <input type="checkbox" id="soap" ng-model="s" value="soap">
+               <input type="checkbox" id="soap" ng-model="s">
                <label for="tp">ToiletPaper?</label>
                <input type="checkbox" id="tp" ng-model="tp">
                <label for="ptowel">PaperTowels?</label>
@@ -51,7 +51,7 @@
                <label for="dsoap">DishSoap?</label>
                <input type="checkbox" id="dsoap" ng-model="ds">
                <label for="trash">TrashBags?</label>
-               <input type="checkbox" id="trash" ng-model="trash" value="trash" name="trash">
+               <input type="checkbox" id="trash" ng-model="tb">
                <label for="dish">DishwasherDetergent?</label>
                <input type="checkbox" id="dish" ng-model="dd">
                <label for="sponge">Sponges?</label>
@@ -59,7 +59,7 @@
             </form>
          </main>
          <footer class="modal-footer">
-            <md-button class="md-raised md-primary" type="button" ng-click="addRequest(d,s,tp,pt,ds,trash,dd,sp)">Submit</md-button>
+            <md-button class="md-raised md-primary" type="button" ng-click="addRequest(d,s,tp,pt,ds,tb,dd,sp)">Submit</md-button>
          </footer>
       </section>
 
