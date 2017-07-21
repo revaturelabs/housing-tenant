@@ -1,26 +1,26 @@
-<section>
-   <div >
-      <label>Apartment Image</label>
-      <img src="https://upload.wikimedia.org/wikipedia/commons/f/f9/Phoenicopterus_ruber_in_S%C3%A3o_Paulo_Zoo.jpg" style="width:135px;height:400px;">   
-   </div>
-   <div>
-
-      <div>
+<md-card>
+   <md-card-title>
+      <md-card-title-text>
+         <span class="md-headline">Apartment</span>
          <label for="beds">Number of Bedrooms</label>
-         <div id="beds" ng-model="apartment">{apartment.beds}</textbox>
+         <div class="md-subhead" id="beds" ng-model="apartment">{{apartment.beds}}</div>
          <label for="baths">Number of bathrooms</label>
-         <div id="baths" ng-model="apartment">{apartment.bathrooms}</textbox>
+         <div class="md-subhead" id="baths" ng-model="apartment">{{apartment.bathrooms}}</div>
          <label for="complex">Name of Complex</label>
-         <div id="complex" ng-model="apartment">{apartment.complexname}</textbox>
-      </div>
-      <div>
-         <label for="address">Address</label>
-         <div id="address" ng-model="apartment">{apartment.address}> </div>
-      </div>
-      <div>
-         <ul>
-            <li ng-repeat="person in apartment.people" data-ng-model="apartment">{person.firstname} + " " + {person.lastname}</li>
-         </ul>
-      </div>
-   </div>
-</section>
+         <div class="md-subhead" id="complex" ng-model="apartment">{{apartment.complexname}}</div>
+         <label for="people">Roomates</label>
+         <div id="people" class="md-subhead" ng-repeat="person in apartment.people" data-ng-model="apartment">{{person.firstname}} {{person.lastname}}</div>
+      </span>
+      </md-card-title-text>
+      <md-card-title-media>
+         <div class="md-media-md card-media">
+            <img src="http://westerlyworldgateapts.com/assets/images/cache/exterior-4-434f5c656014ca5dd62d77eb78568e9c.jpg">
+         </div>
+      </md-card-title-media>
+   </md-card-title>
+   <md-card-actions layout="row" layout-align="end center">
+      <md-button>Supplies</md-button>
+      <md-button>Maintance</md-button>
+      <md-button>Complaints</md-button>
+   </md-card-actions>
+</md-card>

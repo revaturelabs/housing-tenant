@@ -76051,22 +76051,10 @@ var address = {
     State: "Virginia",
     ZipCode: "20170"
 };
+var x = 5;
 var apartmentController = module_1.apartmentModule.controller('aptCtrl', ['$scope', 'aptFactory', function ($scope, aptFactory) {
         var requestModal;
         aptFactory.getApartment($scope, address);
-        // $scope.openModal = function (reqModalId) {
-        //    requestModal = document.getElementById(reqModalId);
-        //    requestModal.style.display = 'block';
-        // }
-        // $scope.closeModal = function (reqModalId) {
-        //    requestModal = document.getElementById(reqModalId);
-        //    requestModal.style.display = 'none';
-        // }
-        // window.onclick = function (event) {
-        //    if (event.target == requestModal) {
-        //       requestModal.style.display = 'none';
-        //    }
-        // }
     }]);
 
 
@@ -76084,14 +76072,30 @@ module.exports = __webpack_require__.p + "ngapp/apartment/partials/template.html
 
 Object.defineProperty(exports, "__esModule", { value: true });
 var module_1 = __webpack_require__(4);
-var appartmentService = module_1.apartmentModule.factory('aptFactory', ['$htpp', function ($http) {
+var appartmentService = module_1.apartmentModule.factory('aptFactory', ['$http', function ($http) {
         return {
             getApartment: function (scope, address) {
                 $http.get('http://localhost:5000/api/values/', { params: address }).then(function (res) {
                     console.log(res);
-                    scope.apartment;
+                    scope.apartment = res.data;
                 }, function (err) {
                     console.log(err);
+                    scope.apartment = {};
+                    scope.apartment.address = address;
+                    scope.apartment.beds = 3;
+                    scope.apartment.bathrooms = 2;
+                    scope.apartment.complexname = 'Westerly At Worldgate';
+                    scope.apartment.people = [
+                        {
+                            firstname: 'Julian',
+                            lastname: 'Rojas'
+                        },
+                        {
+                            firstname: 'Jameson',
+                            lastname: 'Bruuuhhh'
+                        }
+                    ];
+                    console.log(scope.apartment);
                 });
             }
         };

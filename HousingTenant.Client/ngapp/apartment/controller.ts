@@ -10,23 +10,12 @@ var address = {
    ZipCode: "20170"
 };
 
+var x = 5;
+
 
 var apartmentController = am.controller('aptCtrl', ['$scope', 'aptFactory', function ($scope, aptFactory) {
    var requestModal;
 
    aptFactory.getApartment($scope, address);
 
-   // $scope.openModal = function (reqModalId) {
-   //    requestModal = document.getElementById(reqModalId);
-   //    requestModal.style.display = 'block';
-   // }
-   // $scope.closeModal = function (reqModalId) {
-   //    requestModal = document.getElementById(reqModalId);
-   //    requestModal.style.display = 'none';
-   // }
-   // window.onclick = function (event) {
-   //    if (event.target == requestModal) {
-   //       requestModal.style.display = 'none';
-   //    }
-   // }
 }]);
