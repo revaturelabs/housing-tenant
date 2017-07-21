@@ -28,7 +28,7 @@ namespace HousingTenant.Data.Service.Controllers
             var list = new List<PersonDAO> ();
             list.Add (new PersonDAO { LastName = "Todd", FirstName = "Jason" });
             list.Add (new PersonDAO { LastName = "Json", FirstName = "Fred" });
-            var output = (from l in list where l.FirstName == "Jason" select l);
+            var output = (from l in list where l.FirstName == id select l);
             return output.ToList();
         }
 

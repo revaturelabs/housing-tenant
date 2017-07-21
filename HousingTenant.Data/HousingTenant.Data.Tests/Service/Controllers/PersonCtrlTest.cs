@@ -18,7 +18,7 @@ namespace HousingTenant.Data.Tests.Service.Controllers
         }
 
         [Test]
-        public void GetAllTest()
+        public void GetAllPosTest()
         {
             var expected = pc.Get ();
             var actual = 0;
@@ -27,7 +27,7 @@ namespace HousingTenant.Data.Tests.Service.Controllers
         }
 
         [Test]
-        public void GetSpecificTest()
+        public void GetSpecificPosTest()
         {
             var expected = pc.Get ("Jason");
             var actual = 0;
@@ -36,9 +36,24 @@ namespace HousingTenant.Data.Tests.Service.Controllers
         }
 
         [Test]
-        public void PostTest()
+        public void PostPosTest()
         {
             Assert.IsTrue (pc.Post (new PersonDAO { FirstName = "some"}));
+        }
+
+        [Test]
+        public void GetSpecificNegTest()
+        {
+            var expected = pc.Get ("Test");
+            var actual = 0;
+
+            Assert.IsFalse (expected.Count > actual);
+        }
+
+        [Test]
+        public void PostNegTest()
+        {
+            Assert.IsFalse (pc.Post (new PersonDAO { }));
         }
     }
 }
