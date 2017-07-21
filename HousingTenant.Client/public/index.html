@@ -34,16 +34,18 @@
     function openMenu() {
       document.getElementById("mySidenav").style.width = "250px";
       document.getElementById("main").style.marginLeft = "250px";
+      console.log("opening");
     }
     var closeMenu = function () {
       document.getElementById("mySidenav").style.width = "0";
       document.getElementById("main").style.marginLeft = "0px";
+      console.log("closing");
     }
     window.onclick = function (event) {
       var sideNav = document.getElementById('mySidenav');
-      if (event.target == sideNav) {
-        sideNav.style.width = "0";
-        document.getElementById("main").style.marginLeft = "0px";;
+      var menuBtn = document.getElementById('menu_span');
+      if (event.target != sideNav && event.target != menuBtn) {
+        closeMenu();
       }
     }
   </script>

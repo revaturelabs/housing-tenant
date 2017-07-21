@@ -98,7 +98,7 @@ module.exports = 'ngMaterial';
 Object.defineProperty(exports, "__esModule", { value: true });
 var ng = __webpack_require__(0);
 __webpack_require__(1);
-__webpack_require__(16);
+__webpack_require__(17);
 var home = ng.module('ngHome', ['ngMaterial']);
 exports.home = home;
 
@@ -111,7 +111,7 @@ exports.home = home;
 
 Object.defineProperty(exports, "__esModule", { value: true });
 var ng = __webpack_require__(0);
-__webpack_require__(19);
+__webpack_require__(20);
 var supplyModule = ng.module('supplyModule', []);
 exports.supplyModule = supplyModule;
 
@@ -124,7 +124,7 @@ exports.supplyModule = supplyModule;
 
 Object.defineProperty(exports, "__esModule", { value: true });
 var ng = __webpack_require__(0);
-__webpack_require__(22);
+__webpack_require__(23);
 var apartmentModule = ng.module('aptModule', []);
 exports.apartmentModule = apartmentModule;
 
@@ -141,14 +141,15 @@ __webpack_require__(7);
 __webpack_require__(1);
 //importing CSS
 __webpack_require__(14);
-//importing TS
 __webpack_require__(15);
-__webpack_require__(18);
-__webpack_require__(21);
+//importing TS
+__webpack_require__(16);
+__webpack_require__(19);
+__webpack_require__(22);
 //importing HTML
-__webpack_require__(24);
 __webpack_require__(25);
 __webpack_require__(26);
+__webpack_require__(27);
 //Testing GITLAB
 var ngHousingTenant = ng.module('ngHousingTenant', ['ngRoute', 'ngMaterial', 'ngHome', 'supplyModule', 'aptModule']);
 ngHousingTenant.config(['$routeProvider', function ($routeProvider) {
@@ -75855,11 +75856,17 @@ module.exports = __webpack_require__.p + "css/index.css";
 /* 15 */
 /***/ (function(module, exports, __webpack_require__) {
 
+module.exports = __webpack_require__.p + "css/modal.css";
+
+/***/ }),
+/* 16 */
+/***/ (function(module, exports, __webpack_require__) {
+
 "use strict";
 
 Object.defineProperty(exports, "__esModule", { value: true });
 var module_1 = __webpack_require__(2);
-__webpack_require__(17);
+__webpack_require__(18);
 var Entity = (function () {
     function Entity(t, v) {
         this.text = t;
@@ -75905,13 +75912,13 @@ var myController = module_1.home.controller('homeController', ['$scope', 'homeFa
 
 
 /***/ }),
-/* 16 */
+/* 17 */
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports = __webpack_require__.p + "ngapp/home/partials/template.html";
 
 /***/ }),
-/* 17 */
+/* 18 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -75938,14 +75945,14 @@ module_1.home.factory('homeFactory', ['$http', function ($http) {
 
 
 /***/ }),
-/* 18 */
+/* 19 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 Object.defineProperty(exports, "__esModule", { value: true });
 var module_1 = __webpack_require__(3);
-__webpack_require__(20);
+__webpack_require__(21);
 var supplyController = module_1.supplyModule.controller('suppliesCtrl', ['$scope', 'supplyRequestListSvc', function ($scope, supplyRequestListSvc) {
         var requestModal = document.getElementById('AddRequestModal');
         var address = {
@@ -75987,13 +75994,13 @@ var supplyController = module_1.supplyModule.controller('suppliesCtrl', ['$scope
 
 
 /***/ }),
-/* 19 */
+/* 20 */
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports = __webpack_require__.p + "ngapp/supplies/partials/template.html";
 
 /***/ }),
-/* 20 */
+/* 21 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -76035,14 +76042,14 @@ var supplyService = module_1.supplyModule.factory('supplyRequestListSvc', ['$htt
 
 
 /***/ }),
-/* 21 */
+/* 22 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 Object.defineProperty(exports, "__esModule", { value: true });
 var module_1 = __webpack_require__(4);
-__webpack_require__(23);
+__webpack_require__(24);
 var address = {
     Address1: "2100 Wilkes Court",
     Address2: "",
@@ -76059,13 +76066,13 @@ var apartmentController = module_1.apartmentModule.controller('aptCtrl', ['$scop
 
 
 /***/ }),
-/* 22 */
+/* 23 */
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports = __webpack_require__.p + "ngapp/apartment/partials/template.html";
 
 /***/ }),
-/* 23 */
+/* 24 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -76159,19 +76166,19 @@ var appartmentService = module_1.apartmentModule.factory('aptFactory', ['$http',
 
 
 /***/ }),
-/* 24 */
+/* 25 */
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports = __webpack_require__.p + "html/footer.html";
 
 /***/ }),
-/* 25 */
+/* 26 */
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports = __webpack_require__.p + "html/navbar.html";
 
 /***/ }),
-/* 26 */
+/* 27 */
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports = __webpack_require__.p + "html/sidebar.html";
