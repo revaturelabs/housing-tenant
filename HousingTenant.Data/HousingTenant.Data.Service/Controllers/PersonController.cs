@@ -30,8 +30,16 @@ namespace HousingTenant.Data.Service.Controllers
 
         // POST api/values
         [HttpPost]
-        public void Post([FromBody]string value)
+        public bool Post([FromBody]PersonDAO value)
         {
+            var outcome = false;
+
+            if(value.FirstName != null)
+            {
+                outcome = true;
+            }
+
+            return outcome;
         }
     }
 }
