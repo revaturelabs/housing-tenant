@@ -2,11 +2,16 @@ import {supplyModule as sm} from './module';
 
 var supplyService = sm.factory('supplyRequestListSvc', ['$http', function($http){
    return {
-      getRequestList: function(address, scope){
-         $http.get('http://localhost:5000/api/values/', { params: address } ).then(
+      getRequestList: function(aptidstring, scope){
+         $http.get('http://localhost:5000/api/request/', { params: aptidstring } ).then(
             function(res){
                console.log(res.data); 
-                  scope.reqList = res.data;
+                  scope.reqList = {};
+                  res.data.forEach(element => {
+                        if(element.type == 3){
+                              scope.reqList.push(element);
+                        }
+                  });
                   console.log(scope.reqList);
             }, function(err){
                console.log(err);
@@ -16,7 +21,7 @@ var supplyService = sm.factory('supplyRequestListSvc', ['$http', function($http)
             console.log(request);
             $http({
                   method: 'POST',
-                  url: 'http://localhost:5000/api/values/',
+                  url: 'http://localhost:5000/api/request/',
                   withCredentials: true,
                   headers: {
                         'Access-Control-Allow-Origin': 'http://localhost:5000',

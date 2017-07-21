@@ -1,33 +1,40 @@
 import { supplyModule as sm } from './module';
 import './services';
 
-var supplyController = sm.controller('suppliesCtrl', ['$scope', 'supplyRequestListSvc', function ($scope, supplyRequestListSvc) {
-
+var supplyController = sm.controller('suppliesCtrl', ['$scope', 'supplyRequestListSvc', '$routeParams', function ($scope, supplyRequestListSvc, $routeParams) {
       var requestModal = document.getElementById('AddRequestModal');
-
-      var address = {
-            Address1: "123 main",
-            Address2: "suit",
-            ApartmentNumber: "302",
-            City: "Reston",
-            State: "Florida",
-            ZipCode: "32792"
-      };
-
-      supplyRequestListSvc.getRequestList(address, $scope);
-
-      $scope.addRequest = function (n, s, tp, pt, ds, tb, dd, sp) {
+      
+      var aptid = $routeParams.aptid; 
+      supplyRequestListSvc.getRequestList(aptid, $scope);
+            //delivers
+      $scope.addRequest = function (d, s, tp, pt, ds, tb, dd, sp) {
             var request = {
-                  name: n,
-                  soap: s,
-                  toiletPaper: tp,
-                  paperTowels: pt,
-                  dishSoap: ds,
-                  trashBags: tb,
-                  dishwasherDetergent: dd,
-                  sponges: sp,
-                  requestType : 1
+                  description : d,
+                  initiator : 'Current User',
+                  requestItems: [],
+                  datesubmitted: Date.now()
             };
+            if (s == true){
+                  request.requestItems.push('Soap')
+            }
+            if (tp == true){
+                  request.requestItems.push('Toilet Paper');
+            }
+            if (pt == true){
+                  request.requestItems.push('Paper Towels')
+            }
+            if (ds == true){
+                  request.requestItems.push('Dishwasher Soap');
+            }
+            if (tb == true){
+                  request.requestItems.push('Trash Bags')
+            }
+            if (dd == true){
+                  request.requestItems.push('Dish Soap');
+            }
+            if (sp == true){
+                  request.requestItems.push('Sponges');
+            }            
 
             supplyRequestListSvc.postRequest(request);
             $scope.closeModal();

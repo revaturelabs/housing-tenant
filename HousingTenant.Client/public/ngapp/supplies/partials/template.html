@@ -6,28 +6,26 @@
       <table class="table table-striped table-bordered">
          <thead class="thead">
             <tr>
-               <th class="">Request Name</th>
-               <th>Soap?</th>
-               <th>Toilet Paper?</th>
-               <th>Paper Towels?</th>
-               <th>Dish Soap?</th>
-               <th>Trash Bags?</th>
-               <th>Dishwasher Detergent?</th>
-               <th>Sponges?</th>
+               <th class="">Request Description</th>
+               <th>Initiator</th>
+               <th>Date Submitted</th>
+               <th>Status</th>
+               <th>Items Requested</th>
             </tr>
          </thead>
          <tbody>
             <tr ng-repeat="request in reqList">
-               <td>{{request.name}}</td>
-               <td><input type="checkbox" ng-model="request.soap"></input></td>
-               <td><input type="checkbox" ng-model="request.toiletPaper"></input></td>
-               <td><input type="checkbox" ng-model="request.paperTowels"></input></td>
-               <td><input type="checkbox" ng-model="request.dishSoap"></input></td>
-               <td><input type="checkbox" ng-model="request.trashBags"></input></td>
-               <td><input type="checkbox" ng-model="request.dishwasherDetergent"></input></td>
-               <td><input type="checkbox" ng-model="request.sponges"></input></td>
+               <td>{{request.description}}</td>
+               <td>{{request.initiator}}</td>
+               <td>{{request.datesubmitted}}</td>
+               <td>{{request.status}}</td>
+               <td>
+                  <md-list-item ng-repeat="item in request.requestitems">
+                     <p> {{ item }} </p>
+                  </md-list-item>
+               </td>
             </tr>
-         </tbody>  
+         </tbody>
       </table>
       <div>
          <md-button class="md-raised md-primary" type="button" ng-click="openModal()">New Supply Request</md-button>
@@ -42,8 +40,8 @@
          </header>
          <main class="modal-body">
             <form>
-               <label for="name">Name</label>
-               <input type="text" id="name" ng-model="n">
+               <label for="name">Description</label>
+               <input type="text" id="description" ng-model="d">
                <label for="soap">Soap?</label>
                <input type="checkbox" id="soap" ng-model="s">
                <label for="tp">ToiletPaper?</label>
@@ -57,11 +55,11 @@
                <label for="dish">DishwasherDetergent?</label>
                <input type="checkbox" id="dish" ng-model="dd">
                <label for="sponge">Sponges?</label>
-               <input type="checkbox" id="sponge" ng-model="sp">
+               <input type="checkbox" id="sponge" ng-value="sponge">
             </form>
          </main>
          <footer class="modal-footer">
-            <md-button class="md-raised md-primary" type="button" ng-click="addRequest(n,s,tp,pt,ds,tb,dd,sp)">Submit</md-button>
+            <md-button class="md-raised md-primary" type="button" ng-click="addRequest(d,s,tp,pt,ds,tb,dd,sp)">Submit</md-button>
          </footer>
       </section>
 

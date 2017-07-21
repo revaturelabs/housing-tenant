@@ -98,7 +98,7 @@ module.exports = 'ngMaterial';
 Object.defineProperty(exports, "__esModule", { value: true });
 var ng = __webpack_require__(0);
 __webpack_require__(1);
-__webpack_require__(18);
+__webpack_require__(17);
 var home = ng.module('ngHome', ['ngMaterial']);
 exports.home = home;
 
@@ -111,7 +111,7 @@ exports.home = home;
 
 Object.defineProperty(exports, "__esModule", { value: true });
 var ng = __webpack_require__(0);
-__webpack_require__(21);
+__webpack_require__(20);
 var supplyModule = ng.module('supplyModule', []);
 exports.supplyModule = supplyModule;
 
@@ -124,7 +124,7 @@ exports.supplyModule = supplyModule;
 
 Object.defineProperty(exports, "__esModule", { value: true });
 var ng = __webpack_require__(0);
-__webpack_require__(24);
+__webpack_require__(23);
 var apartmentModule = ng.module('aptModule', []);
 exports.apartmentModule = apartmentModule;
 
@@ -153,20 +153,19 @@ var ng = __webpack_require__(0);
 __webpack_require__(8);
 __webpack_require__(1);
 //importing CSS
+__webpack_require__(14);
 __webpack_require__(15);
-__webpack_require__(16);
 //importing TS
-__webpack_require__(17);
-__webpack_require__(20);
-__webpack_require__(23);
-__webpack_require__(26);
+__webpack_require__(16);
+__webpack_require__(19);
+__webpack_require__(22);
 //importing HTML
-__webpack_require__(29);
-__webpack_require__(30);
-__webpack_require__(31);
+__webpack_require__(25);
+__webpack_require__(26);
+__webpack_require__(27);
 //Testing GITLAB
-var ngHousingTenant = ng.module('ngHousingTenant', ['ngRoute', 'ngMaterial', 'ngHome', 'supplyModule', 'aptModule', 'maintenanceModule']);
-ngHousingTenant.config(['$routeProvider', function ($routeProvider) {
+var ngHousingTenant = ng.module('ngHousingTenant', ['ngRoute', 'ngMaterial', 'ngHome', 'supplyModule', 'aptModule']);
+ngHousingTenant.config(['$routeProvider', '$locationProvider', function ($routeProvider, $locationProvider) {
         $routeProvider
             .when('/apartment', {
             controller: 'aptCtrl',
@@ -176,17 +175,22 @@ ngHousingTenant.config(['$routeProvider', function ($routeProvider) {
             controller: 'homeController',
             templateUrl: 'ngapp/home/partials/template.html'
         })
-            .when('/supplies', {
+            .when('/supplies/:aptid', {
             controller: 'suppliesCtrl',
             templateUrl: 'ngapp/supplies/partials/template.html'
         })
-            .when('/maintenance', {
+            .when('/maintenance/:aptid', {
             controller: 'maintenanceCtrl',
             templateUrl: 'ngapp/maintenance/partials/template.html'
+        })
+            .when('/complaints/:aptid', {
+            controller: 'complaintsCtrl',
+            templateUrl: 'ngapp/complaints/partials/template.html'
         })
             .otherwise({
             redirectTo: '/'
         });
+        $locationProvider.html5Mode(false).hashPrefix('!');
     }]);
 
 
@@ -75886,15 +75890,25 @@ module.exports = __webpack_require__.p + "css/modal.css";
 /* 16 */
 /***/ (function(module, exports, __webpack_require__) {
 
+module.exports = __webpack_require__.p + "css/modal.css";
+
+/***/ }),
+/* 16 */
+/***/ (function(module, exports, __webpack_require__) {
+
 "use strict";
 
 Object.defineProperty(exports, "__esModule", { value: true });
 var module_1 = __webpack_require__(2);
 <<<<<<< HEAD
+<<<<<<< HEAD
 __webpack_require__(18);
 =======
 __webpack_require__(19);
 >>>>>>> feature/create-layout-for-maintenance-webpage-and-link-it-to-menu
+=======
+__webpack_require__(18);
+>>>>>>> feature/apartment-supplies-ui
 var Entity = (function () {
     function Entity(t, v) {
         this.text = t;
@@ -75941,20 +75955,28 @@ var myController = module_1.home.controller('homeController', ['$scope', 'homeFa
 
 /***/ }),
 <<<<<<< HEAD
+<<<<<<< HEAD
 /* 17 */
 =======
 /* 18 */
 >>>>>>> feature/create-layout-for-maintenance-webpage-and-link-it-to-menu
+=======
+/* 17 */
+>>>>>>> feature/apartment-supplies-ui
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports = __webpack_require__.p + "ngapp/home/partials/template.html";
 
 /***/ }),
 <<<<<<< HEAD
+<<<<<<< HEAD
 /* 18 */
 =======
 /* 19 */
 >>>>>>> feature/create-layout-for-maintenance-webpage-and-link-it-to-menu
+=======
+/* 18 */
+>>>>>>> feature/apartment-supplies-ui
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -75982,10 +76004,14 @@ module_1.home.factory('homeFactory', ['$http', function ($http) {
 
 /***/ }),
 <<<<<<< HEAD
+<<<<<<< HEAD
 /* 19 */
 =======
 /* 20 */
 >>>>>>> feature/create-layout-for-maintenance-webpage-and-link-it-to-menu
+=======
+/* 19 */
+>>>>>>> feature/apartment-supplies-ui
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -75993,33 +76019,48 @@ module_1.home.factory('homeFactory', ['$http', function ($http) {
 Object.defineProperty(exports, "__esModule", { value: true });
 var module_1 = __webpack_require__(3);
 <<<<<<< HEAD
+<<<<<<< HEAD
 __webpack_require__(21);
 =======
 __webpack_require__(22);
 >>>>>>> feature/create-layout-for-maintenance-webpage-and-link-it-to-menu
 var supplyController = module_1.supplyModule.controller('suppliesCtrl', ['$scope', 'supplyRequestListSvc', function ($scope, supplyRequestListSvc) {
+=======
+__webpack_require__(21);
+var supplyController = module_1.supplyModule.controller('suppliesCtrl', ['$scope', 'supplyRequestListSvc', '$routeParams', function ($scope, supplyRequestListSvc, $routeParams) {
+>>>>>>> feature/apartment-supplies-ui
         var requestModal = document.getElementById('AddRequestModal');
-        var address = {
-            Address1: "123 main",
-            Address2: "suit",
-            ApartmentNumber: "302",
-            City: "Reston",
-            State: "Florida",
-            ZipCode: "32792"
-        };
-        supplyRequestListSvc.getRequestList(address, $scope);
-        $scope.addRequest = function (n, s, tp, pt, ds, tb, dd, sp) {
+        var aptid = $routeParams.aptid;
+        supplyRequestListSvc.getRequestList(aptid, $scope);
+        //delivers
+        $scope.addRequest = function (d, s, tp, pt, ds, tb, dd, sp) {
             var request = {
-                name: n,
-                soap: s,
-                toiletPaper: tp,
-                paperTowels: pt,
-                dishSoap: ds,
-                trashBags: tb,
-                dishwasherDetergent: dd,
-                sponges: sp,
-                requestType: 1
+                description: d,
+                initiator: 'Current User',
+                requestItems: [],
+                datesubmitted: Date.now()
             };
+            if (s == true) {
+                request.requestItems.push('Soap');
+            }
+            if (tp == true) {
+                request.requestItems.push('Toilet Paper');
+            }
+            if (pt == true) {
+                request.requestItems.push('Paper Towels');
+            }
+            if (ds == true) {
+                request.requestItems.push('Dishwasher Soap');
+            }
+            if (tb == true) {
+                request.requestItems.push('Trash Bags');
+            }
+            if (dd == true) {
+                request.requestItems.push('Dish Soap');
+            }
+            if (sp == true) {
+                request.requestItems.push('Sponges');
+            }
             supplyRequestListSvc.postRequest(request);
             $scope.closeModal();
         };
@@ -76039,20 +76080,28 @@ var supplyController = module_1.supplyModule.controller('suppliesCtrl', ['$scope
 
 /***/ }),
 <<<<<<< HEAD
+<<<<<<< HEAD
 /* 20 */
 =======
 /* 21 */
 >>>>>>> feature/create-layout-for-maintenance-webpage-and-link-it-to-menu
+=======
+/* 20 */
+>>>>>>> feature/apartment-supplies-ui
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports = __webpack_require__.p + "ngapp/supplies/partials/template.html";
 
 /***/ }),
 <<<<<<< HEAD
+<<<<<<< HEAD
 /* 21 */
 =======
 /* 22 */
 >>>>>>> feature/create-layout-for-maintenance-webpage-and-link-it-to-menu
+=======
+/* 21 */
+>>>>>>> feature/apartment-supplies-ui
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -76061,10 +76110,15 @@ Object.defineProperty(exports, "__esModule", { value: true });
 var module_1 = __webpack_require__(3);
 var supplyService = module_1.supplyModule.factory('supplyRequestListSvc', ['$http', function ($http) {
         return {
-            getRequestList: function (address, scope) {
-                $http.get('http://localhost:5000/api/values/', { params: address }).then(function (res) {
+            getRequestList: function (aptidstring, scope) {
+                $http.get('http://localhost:5000/api/request/', { params: aptidstring }).then(function (res) {
                     console.log(res.data);
-                    scope.reqList = res.data;
+                    scope.reqList = {};
+                    res.data.forEach(function (element) {
+                        if (element.type == 3) {
+                            scope.reqList.push(element);
+                        }
+                    });
                     console.log(scope.reqList);
                 }, function (err) {
                     console.log(err);
@@ -76074,7 +76128,7 @@ var supplyService = module_1.supplyModule.factory('supplyRequestListSvc', ['$htt
                 console.log(request);
                 $http({
                     method: 'POST',
-                    url: 'http://localhost:5000/api/values/',
+                    url: 'http://localhost:5000/api/request/',
                     withCredentials: true,
                     headers: {
                         'Access-Control-Allow-Origin': 'http://localhost:5000',
@@ -76095,10 +76149,14 @@ var supplyService = module_1.supplyModule.factory('supplyRequestListSvc', ['$htt
 
 /***/ }),
 <<<<<<< HEAD
+<<<<<<< HEAD
 /* 22 */
 =======
 /* 23 */
 >>>>>>> feature/create-layout-for-maintenance-webpage-and-link-it-to-menu
+=======
+/* 22 */
+>>>>>>> feature/apartment-supplies-ui
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -76106,10 +76164,14 @@ var supplyService = module_1.supplyModule.factory('supplyRequestListSvc', ['$htt
 Object.defineProperty(exports, "__esModule", { value: true });
 var module_1 = __webpack_require__(4);
 <<<<<<< HEAD
+<<<<<<< HEAD
 __webpack_require__(24);
 =======
 __webpack_require__(25);
 >>>>>>> feature/create-layout-for-maintenance-webpage-and-link-it-to-menu
+=======
+__webpack_require__(24);
+>>>>>>> feature/apartment-supplies-ui
 var address = {
     Address1: "2100 Wilkes Court",
     Address2: "",
@@ -76127,20 +76189,28 @@ var apartmentController = module_1.apartmentModule.controller('aptCtrl', ['$scop
 
 /***/ }),
 <<<<<<< HEAD
+<<<<<<< HEAD
 /* 23 */
 =======
 /* 24 */
 >>>>>>> feature/create-layout-for-maintenance-webpage-and-link-it-to-menu
+=======
+/* 23 */
+>>>>>>> feature/apartment-supplies-ui
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports = __webpack_require__.p + "ngapp/apartment/partials/template.html";
 
 /***/ }),
 <<<<<<< HEAD
+<<<<<<< HEAD
 /* 24 */
 =======
 /* 25 */
 >>>>>>> feature/create-layout-for-maintenance-webpage-and-link-it-to-menu
+=======
+/* 24 */
+>>>>>>> feature/apartment-supplies-ui
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -76150,13 +76220,20 @@ var module_1 = __webpack_require__(4);
 var appartmentService = module_1.apartmentModule.factory('aptFactory', ['$http', function ($http) {
         return {
             getApartment: function (scope, address) {
-                $http.get('http://localhost:5000/api/values/', { params: address }).then(function (res) {
+                $http.get('http://localhost:5000/api/apartment/', { params: address }).then(function (res) {
                     console.log(res);
                     scope.apartment = res.data;
                 }, function (err) {
                     console.log(err);
                     scope.apartment = {};
-                    scope.apartment.address = address;
+                    scope.apartment.address = {
+                        address1: "123 main",
+                        address2: "suit",
+                        apartmentNumber: "302",
+                        city: "Reston",
+                        state: "Florida",
+                        zipCode: "32792"
+                    };
                     scope.apartment.beds = 3;
                     scope.apartment.bathrooms = 2;
                     scope.apartment.complexname = 'Westerly At Worldgate';
@@ -76226,6 +76303,7 @@ var appartmentService = module_1.apartmentModule.factory('aptFactory', ['$http',
                         }
                         ;
                     });
+                    scope.apartment.guid = '03ae80e1-7227-48ef-8f76-30f5ebf6d89d';
                     console.log(scope.apartment);
                 });
             }
@@ -76234,6 +76312,7 @@ var appartmentService = module_1.apartmentModule.factory('aptFactory', ['$http',
 
 
 /***/ }),
+<<<<<<< HEAD
 <<<<<<< HEAD
 /* 25 */
 =======
@@ -76283,26 +76362,37 @@ var maintenanceService = module_1.maintenanceModule.factory('maintenanceRequestL
 /***/ }),
 /* 29 */
 >>>>>>> feature/create-layout-for-maintenance-webpage-and-link-it-to-menu
+=======
+/* 25 */
+>>>>>>> feature/apartment-supplies-ui
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports = __webpack_require__.p + "html/footer.html";
 
 /***/ }),
 <<<<<<< HEAD
+<<<<<<< HEAD
 /* 26 */
 =======
 /* 30 */
 >>>>>>> feature/create-layout-for-maintenance-webpage-and-link-it-to-menu
+=======
+/* 26 */
+>>>>>>> feature/apartment-supplies-ui
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports = __webpack_require__.p + "html/navbar.html";
 
 /***/ }),
 <<<<<<< HEAD
+<<<<<<< HEAD
 /* 27 */
 =======
 /* 31 */
 >>>>>>> feature/create-layout-for-maintenance-webpage-and-link-it-to-menu
+=======
+/* 27 */
+>>>>>>> feature/apartment-supplies-ui
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports = __webpack_require__.p + "html/sidebar.html";
