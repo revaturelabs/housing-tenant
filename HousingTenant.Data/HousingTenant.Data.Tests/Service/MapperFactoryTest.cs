@@ -12,7 +12,9 @@ namespace HousingTenant.Data.Tests.Service
         [Test]
         public void GetMapperTest()
         {
+            var mt = new MapperFactory<Object, Object> ().Create();
 
+            Assert.IsNotNull (mt);
         }
     }
 }
