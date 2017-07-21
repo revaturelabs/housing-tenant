@@ -7,11 +7,11 @@ using HousingTenant.Data.Service.Interfaces;
 
 namespace HousingTenant.Data.Service.Factory
 {
-    public class BrokerFactory<T> where T : IModel, new()
+    public class BrokerFactory<T,U> where T : IModel, new() where U : new()
     {
-        public ServiceBroker<T> Create()
+        public ServiceBroker<T,U> Create()
         {
-            return new ServiceBroker<T>();
+            return new ServiceBroker<T,U>();
         }
     }
 }

@@ -6,6 +6,7 @@ using Microsoft.AspNetCore.Mvc;
 using HousingTenant.Data.Service.Models;
 using HousingTenant.Data.Service.Interfaces;
 using HousingTenant.Data.Service.Factory;
+using HousingTenant.Data.Library.Models;
 
 
 namespace HousingTenant.Data.Service.Controllers
@@ -13,7 +14,7 @@ namespace HousingTenant.Data.Service.Controllers
     [Route("api/[controller]")]
     public class RequestController : Controller
     {
-        private static IBroker<RequestDTO> srb = new BrokerFactory<RequestDTO> ().Create ();
+        private static IBroker<RequestDTO> srb = new BrokerFactory<RequestDTO,Request> ().Create ();
 
         [HttpGet]
         public List<RequestDTO> Get()
