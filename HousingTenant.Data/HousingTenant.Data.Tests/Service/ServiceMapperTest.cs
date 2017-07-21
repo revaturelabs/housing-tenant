@@ -9,16 +9,18 @@ namespace HousingTenant.Data.Tests.Service
     [TestFixture]
     public class ServiceMapperTest
     {
+        private ServiceMapper<object, object> sm = new ServiceMapper<object, object> ();
+
         [Test]
         public void MapToUTest()
         {
-
+            Assert.IsFalse (true);
         }
 
         [Test]
         public void MapToTTest()
         {
-
+            Assert.IsFalse (true);
         }
     }
 }
