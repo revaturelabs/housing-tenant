@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
-using HousingTenant.Business.Service.Brokers;
 using HousingTenant.Business.Library.Models;
 using System.Net.Http;
 using Newtonsoft.Json;
@@ -19,8 +18,6 @@ namespace HousingTenant.Business.Service.Controllers
    {
         HttpClient client = new HttpClient { BaseAddress = new Uri("http://localhost:50411/api/") };
         LibraryManager _LibraryManager = new LibraryManager();
-
-        private static PersonBroker pb = new PersonBroker ();
 
         // GET: api/persons
         [HttpGet]
