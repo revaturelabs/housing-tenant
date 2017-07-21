@@ -3,19 +3,18 @@ using System.Collections.Generic;
 using System.Text;
 using NUnit.Framework;
 using HousingTenant.Data.Service.Factory;
-using HousingTenant.Data.Service.Models;
 
 namespace HousingTenant.Data.Tests.Service
 {
     [TestFixture]
-    public class BrokerFactoryTest
+    public class MapperFactoryTest
     {
         [Test]
-        public void GetBrokerTest()
+        public void GetMapperTest()
         {
-            var actual = new BrokerFactory<RequestDTO,Object>().Create();
+            var mt = new MapperFactory<Object, Object> ().Create();
 
-            Assert.IsNotNull (actual);
+            Assert.IsNotNull (mt);
         }
     }
 }

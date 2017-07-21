@@ -4,18 +4,27 @@ using System.Linq;
 using System.Threading.Tasks;
 using HousingTenant.Data.Service.Abstract;
 using HousingTenant.Data.Service.Interfaces;
+using HousingTenant.Data.Service.Factory;
 
 namespace HousingTenant.Data.Service.Models
 {
-    public class ServiceBroker<T> : ABroker<T> where T : IModel, new()
+    public class ServiceBroker<T,U> : ABroker<T> where T : IModel, new() where U : new()
     {
+        private Library.Interfaces.IBroker<U> lb = new Library.Factory.BrokerFactory<U> ().Create();
+        private IMapper<T, U> sm = new MapperFactory<T, U> ().Create ();
+
         public override List<T> GetAll()
         {
-            var list = new List<T> ();
+            var output = new List<T> ();
+            var input = lb.GetAll ();
 
-            list.Add (new T());
+            foreach (var item in input)
+            {
+                output.Add (sm.MapToT (item));
+            }
+            
 
-            return list;
+            return output;
         }
 
         public override bool Create(T obj)
