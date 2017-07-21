@@ -6,7 +6,7 @@ using HousingTenant.Business.Library.Models;
 
 namespace HousingTenant.Business.Service.Models
 {
-    public class Request
+    public class RequestDTO
     {
         public bool Urgent { get; set; }
         public Person Initiator { get; set; }
