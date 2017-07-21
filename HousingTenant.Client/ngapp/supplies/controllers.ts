@@ -1,20 +1,13 @@
 import { supplyModule as sm } from './module';
 import './services';
 
-var supplyController = sm.controller('suppliesCtrl', ['$scope', 'supplyRequestListSvc', function ($scope, supplyRequestListSvc) {
-
+var supplyController = sm.controller('suppliesCtrl', ['$scope', 'supplyRequestListSvc', '$routeParams', function ($scope, supplyRequestListSvc, $routeParams) {
+      
+      var aptid = $routeParams.aptid; 
       var requestModal = document.getElementById('AddRequestModal');
 
-      var address = {
-            Address1: "123 main",
-            Address2: "suit",
-            ApartmentNumber: "302",
-            City: "Reston",
-            State: "Florida",
-            ZipCode: "32792"
-      };
 
-      supplyRequestListSvc.getRequestList(address, $scope);
+      supplyRequestListSvc.getRequestList(aptid, $scope);
 
       $scope.addRequest = function (n, s, tp, pt, ds, tb, dd, sp) {
             var request = {

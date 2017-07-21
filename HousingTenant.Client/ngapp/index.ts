@@ -16,23 +16,33 @@ import 'file-loader?name=[name].[ext]&outputPath=html/!./html/sidebar.html';
 //Testing GITLAB
 
 
-var ngHousingTenant = ng.module('ngHousingTenant', ['ngRoute', 'ngMaterial','ngHome', 'supplyModule', 'aptModule']);
+var ngHousingTenant = ng.module('ngHousingTenant', ['ngRoute', 'ngMaterial', 'ngHome', 'supplyModule', 'aptModule']);
 
-ngHousingTenant.config(['$routeProvider', function($routeProvider){
+ngHousingTenant.config(['$routeProvider', '$locationProvider', function ($routeProvider, $locationProvider) {
   $routeProvider
     .when('/apartment', {
       controller: 'aptCtrl',
       templateUrl: 'ngapp/apartment/partials/template.html'
     })
-    .when('/home',{
+    .when('/home', {
       controller: 'homeController',
       templateUrl: 'ngapp/home/partials/template.html'
     })
-    .when('/supplies', {
+    .when('/supplies/:aptid', {
       controller: 'suppliesCtrl',
       templateUrl: 'ngapp/supplies/partials/template.html'
+    })
+    .when('/maintenance/:aptid', {
+      controller: 'maintenanceCtrl',
+      templateUrl: 'ngapp/maintenance/partials/template.html'
+    })
+    .when('/complaints/:personid', {
+      controller: 'personCtrl',
+      templateUrl: 'ngapp/complaints/partials/template.html'
     })
     .otherwise({
       redirectTo: '/'
     });
+
+  $locationProvider.html5Mode(false).hashPrefix('!');
 }]);

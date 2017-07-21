@@ -3,7 +3,7 @@ import {supplyModule as sm} from './module';
 var supplyService = sm.factory('supplyRequestListSvc', ['$http', function($http){
    return {
       getRequestList: function(address, scope){
-         $http.get('http://localhost:5000/api/values/', { params: address } ).then(
+         $http.get('http://localhost:5000/api/request/', { params: address } ).then(
             function(res){
                console.log(res.data); 
                   scope.reqList = res.data;
