@@ -29,8 +29,9 @@ namespace HousingTenant.Data.Service.Controllers
 
         // POST api/values
         [HttpPost]
-        public void Post([FromBody]string value)
+        public bool Post([FromBody]ApartmentDAO value)
         {
+            return value.Address != null;
         }
     }
 }
