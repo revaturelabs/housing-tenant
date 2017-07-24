@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace HousingTenant.Business.Library
+namespace HousingTenant.Business.Library.Models
 {
     public interface IPerson
     {

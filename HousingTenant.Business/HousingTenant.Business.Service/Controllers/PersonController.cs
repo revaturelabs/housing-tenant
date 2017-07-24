@@ -16,16 +16,14 @@ namespace HousingTenant.Business.Service.Controllers
     [Route("api/[controller]")]
     public class PersonController : Controller
    {
-        HttpClient client = new HttpClient { BaseAddress = new Uri("http://localhost:50411/api/") };
+        HttpClient client = new HttpClient { BaseAddress = new Uri("https://housingtenantdata.azurewebsites.net/api/") };
         LibraryManager _LibraryManager = new LibraryManager();
 
         // GET: api/persons
         [HttpGet]
         public async Task<List<Person>> Get()
         {
-            // Ask Data API for all persons
             var persons = await client.GetAsync("person", HttpCompletionOption.ResponseContentRead);
-            // Deserialize response into a person list -- may not need to do this but not sure, so
             var personList = JsonConvert.DeserializeObject<List<Person>>(persons.Content.ReadAsStringAsync().Result);
 
             return personList;
@@ -73,7 +71,6 @@ namespace HousingTenant.Business.Service.Controllers
         [HttpDelete("{id}")]
         public void Delete(string id)
         {
-            // FirstName << space >> LastName
             client.DeleteAsync(id);
         }
     }

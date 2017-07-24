@@ -4,13 +4,13 @@ using System.Text;
 
 namespace HousingTenant.Business.Library.Models
 {
-    public class Apartment : IApartment
+    public class Apartment : IApartment, IComparable<Apartment>
     {
         private List<IPerson> _Persons;
-        public List<IPerson> Persons { get { return _Persons; } }
+        public List<IPerson> Persons { get { return _Persons; } set { _Persons = value; } }
 
         private List<ARequest> _Requests;
-        public List<ARequest> Requests { get { return _Requests; } }
+        public List<ARequest> Requests { get { return _Requests; } set { _Requests = value; } }
 
         public int Beds { get; set; }
         public int Bathrooms { get; set; }
@@ -90,5 +90,10 @@ namespace HousingTenant.Business.Library.Models
             return string.Format("{0}\n{1} Beds, {2} Bathrooms",
                Address,Beds,Bathrooms);
         }
-    }
+
+      public int CompareTo(Apartment other)
+      {
+         throw new NotImplementedException();
+      }
+   }
 }
