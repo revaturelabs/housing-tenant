@@ -14,14 +14,11 @@ var supplyController = sm.controller('suppliesCtrl', ['$scope', 'supplyRequestLi
                   requestItems: [],
                   datesubmitted: Date.now()
             }
-
-            form.forEach(element => {
-                  if(element.$viewValue == true){
-                        request.requestItems.push(element.$name)
+            Object.keys(form).forEach(element => {
+                  if(form[element] != null && form[element] != undefined &&  form[element].$viewValue == true){
+                        request.requestItems.push(form[element].$name)
                   }
-            });        
-
-            console.log(form);
+            });
             console.log(request);
 
             supplyRequestListSvc.postRequest(request);

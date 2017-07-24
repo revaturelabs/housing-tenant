@@ -75989,12 +75989,11 @@ var supplyController = module_1.supplyModule.controller('suppliesCtrl', ['$scope
                 requestItems: [],
                 datesubmitted: Date.now()
             };
-            form.forEach(function (element) {
-                if (element.$viewValue == true) {
-                    request.requestItems.push(element.$name);
+            Object.keys(form).forEach(function (element) {
+                if (form[element] != null && form[element] != undefined && form[element].$viewValue == true) {
+                    request.requestItems.push(form[element].$name);
                 }
             });
-            console.log(form);
             console.log(request);
             supplyRequestListSvc.postRequest(request);
             $scope.closeModal();
