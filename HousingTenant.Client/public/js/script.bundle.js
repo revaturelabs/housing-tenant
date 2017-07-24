@@ -75982,34 +75982,20 @@ var supplyController = module_1.supplyModule.controller('suppliesCtrl', ['$scope
         var aptid = $routeParams.aptid;
         supplyRequestListSvc.getRequestList(aptid, $scope);
         //delivers
-        $scope.addRequest = function (d, s, tp, pt, ds, tb, dd, sp) {
+        $scope.addRequest = function (form) {
             var request = {
-                description: d,
+                description: $scope.description,
                 initiator: 'Current User',
                 requestItems: [],
                 datesubmitted: Date.now()
             };
-            if (s == true) {
-                request.requestItems.push('Soap');
-            }
-            if (tp == true) {
-                request.requestItems.push('Toilet Paper');
-            }
-            if (pt == true) {
-                request.requestItems.push('Paper Towels');
-            }
-            if (ds == true) {
-                request.requestItems.push('Dishwasher Soap');
-            }
-            if (tb == true) {
-                request.requestItems.push('Trash Bags');
-            }
-            if (dd == true) {
-                request.requestItems.push('Dish Soap');
-            }
-            if (sp == true) {
-                request.requestItems.push('Sponges');
-            }
+            form.forEach(function (element) {
+                if (element.$viewValue == true) {
+                    request.requestItems.push(element.$name);
+                }
+            });
+            console.log(form);
+            console.log(request);
             supplyRequestListSvc.postRequest(request);
             $scope.closeModal();
         };
@@ -76044,7 +76030,7 @@ var module_1 = __webpack_require__(3);
 var supplyService = module_1.supplyModule.factory('supplyRequestListSvc', ['$http', function ($http) {
         return {
             getRequestList: function (aptidstring, scope) {
-                $http.get('http://localhost:5000/api/request/', { params: aptidstring }).then(function (res) {
+                $http.get('http://housingtenantbusiness.azurewebsites.net/api/request/', { params: aptidstring }).then(function (res) {
                     console.log(res.data);
                     scope.reqList = {};
                     res.data.forEach(function (element) {
@@ -76061,10 +76047,10 @@ var supplyService = module_1.supplyModule.factory('supplyRequestListSvc', ['$htt
                 console.log(request);
                 $http({
                     method: 'POST',
-                    url: 'http://localhost:5000/api/request/',
+                    url: 'http://housingtenantbusiness.azurewebsites.net/api/request/',
                     withCredentials: true,
                     headers: {
-                        'Access-Control-Allow-Origin': 'http://localhost:5000',
+                        'Access-Control-Allow-Origin': 'http://localhost',
                         'Content-Type': 'application/json',
                         'Access-Control-Allow-Credentials': 'true',
                         'Access-Control-Allow-Methods': 'GET,PUT,POST,DELETE'
@@ -76121,7 +76107,7 @@ var module_1 = __webpack_require__(4);
 var appartmentService = module_1.apartmentModule.factory('aptFactory', ['$http', function ($http) {
         return {
             getApartment: function (scope, address) {
-                $http.get('http://localhost:5000/api/apartment/', { params: address }).then(function (res) {
+                $http.get('http://housingtenantbusiness.azurewebsites.net/api/apartment/', { params: address }).then(function (res) {
                     console.log(res);
                     scope.apartment = res.data;
                 }, function (err) {
