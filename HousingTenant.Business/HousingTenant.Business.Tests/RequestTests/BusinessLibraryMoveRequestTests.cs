@@ -10,7 +10,7 @@ namespace HousingTenant.Business.Tests.RequestTests
     public class BusinessLibraryMoveRequestTests
     {
         [Test]
-        public void MoveRequestEqualsPositiveTest()
+        public void MoveRequestCompareToPositiveTest()
         {
             var request1 = new MoveRequest {
                 Initiator = new Person { FirstName = "Jane", LastName = "Doe",
@@ -30,11 +30,11 @@ namespace HousingTenant.Business.Tests.RequestTests
                 Status = StatusEnum.PENDING
             };
 
-            Assert.IsTrue(request1.Equals(request2));
+            Assert.IsTrue(request1.CompareTo(request2) == 0);
         }
 
         [Test]
-        public void MoveRequestEqualsNegativeTest()
+        public void MoveRequestCompareToNegativeTest()
         {
             var request1 = new MoveRequest {
                 Initiator = new Person { FirstName = "Jane", LastName = "Doe",
@@ -55,22 +55,7 @@ namespace HousingTenant.Business.Tests.RequestTests
             };
 
 
-            Assert.IsFalse(request1.Equals(request2));
-        }
-
-        [Test]
-        public void MoveRequestGetHashCodeTest()
-        {
-            var request1 = new MoveRequest {
-                Initiator = new Person { FirstName = "Jane", LastName = "Doe",
-                  Address = new Address { Address1 = "7 Joe Ln", ApartmentNumber = "2N", City = "Reston", State = "VA", ZipCode = "12345" } },
-                Description = "Roommates party too much",
-                RequestedApartmentAddress = new Address { Address1 = "7 Joe Ln", ApartmentNumber = "2N", City = "Reston", State = "VA", ZipCode = "12345" },
-                DateSubmitted = DateTime.Now,
-                Status = StatusEnum.PENDING
-            };
-            var actual = request1.GetHashCode();
-            Assert.IsTrue(actual != 0);
+            Assert.IsFalse(request1.CompareTo(request2) < 0);
         }
 
         [Test]

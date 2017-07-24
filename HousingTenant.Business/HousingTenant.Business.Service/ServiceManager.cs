@@ -32,13 +32,13 @@ namespace HousingTenant.Business.Service
             var address4 = new Address { Address1 = "7 James Ave.", ApartmentNumber = "2D", City = "Reston", State = "VA", ZipCode = "12345" };
 
             var person1 = new Person { FirstName = "John", LastName = "Doe",
-               Address = address1, EmailAddress = "john@doe.com", PhoneNumber = "(235)123-3256", Gender = GenderEnum.FEMALE, ReportDate = DateTime.Now, HasCar = false };
+               Address = address1, EmailAddress = "john@doe.com", PhoneNumber = "(235)123-3256", Gender = GenderEnum.FEMALE, ArrivalDate = DateTime.Now, HasCar = false };
             var person2 = new Person { FirstName = "Paul", LastName = "Carr",
-               Address = address1, EmailAddress = "paul@carr.com", PhoneNumber = "(775)123-3256", Gender = GenderEnum.FEMALE, ReportDate = DateTime.Now, HasCar = true };
+               Address = address1, EmailAddress = "paul@carr.com", PhoneNumber = "(775)123-3256", Gender = GenderEnum.FEMALE, ArrivalDate = DateTime.Now, HasCar = true };
             var person3 = new Person { FirstName = "Kevin", LastName = "Jones",
-               Address = address1, EmailAddress = "john@doe.com", PhoneNumber = "(235)123-3256", Gender = GenderEnum.FEMALE, ReportDate = DateTime.Now, HasCar = false };
+               Address = address1, EmailAddress = "john@doe.com", PhoneNumber = "(235)123-3256", Gender = GenderEnum.FEMALE, ArrivalDate = DateTime.Now, HasCar = false };
             var person4 = new Person { FirstName = "Peter", LastName = "Towns",
-               Address = address1, EmailAddress = "john@doe.com", PhoneNumber = "(235)123-3256", Gender = GenderEnum.FEMALE, ReportDate = DateTime.Now, HasCar = true };
+               Address = address1, EmailAddress = "john@doe.com", PhoneNumber = "(235)123-3256", Gender = GenderEnum.FEMALE, ArrivalDate = DateTime.Now, HasCar = true };
 
             var persList1 = new List<IPerson> { person1, person2, person3, person4 };
 

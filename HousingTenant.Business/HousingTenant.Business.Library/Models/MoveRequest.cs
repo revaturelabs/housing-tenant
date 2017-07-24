@@ -7,22 +7,20 @@ namespace HousingTenant.Business.Library.Models
     public class MoveRequest : ARequest
     {
         public Address RequestedApartmentAddress { get; set; }
-      
-        public override bool Equals(object obj)
-        {
-            if(obj != null && obj.GetType() == GetType())
-            {
-                var newMoveRequest = obj as MoveRequest;
 
-                return newMoveRequest.Initiator.Equals(Initiator) &&
-                   newMoveRequest.RequestedApartmentAddress.Equals(RequestedApartmentAddress);
-            }
-             return false;
-        }
-      
-        public override int GetHashCode()
+        public override int CompareTo(ARequest other)
         {
-            return Initiator.GetHashCode() + RequestedApartmentAddress.GetHashCode();
+            if (other != null && other.GetType() == GetType())
+            {
+                var otherRequest = other as MoveRequest;
+                var thisRequestString = string.Format("{0} {1} {2} {3}",
+                   Initiator, Description, RequestedApartmentAddress, (Status == StatusEnum.INWORK || Status == StatusEnum.PENDING ? StatusEnum.PENDING : StatusEnum.COMPLETED));
+                var otherRequestString = string.Format("{0} {1} {2} {3}",
+                   otherRequest.Initiator, otherRequest.Description, otherRequest.RequestedApartmentAddress, (otherRequest.Status == StatusEnum.INWORK || otherRequest.Status == StatusEnum.PENDING ? StatusEnum.PENDING : StatusEnum.COMPLETED));
+
+                return thisRequestString.CompareTo(otherRequestString);
+            }
+            return -1;
         }
 
         public override bool IsValid()

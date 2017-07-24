@@ -5,7 +5,7 @@ using System.Text;
 
 namespace HousingTenant.Business.Library.Models
 {
-    public interface IApartment
+    public interface IApartment : IComparable<IApartment>
     {
         bool AddRequest(ARequest request);
 

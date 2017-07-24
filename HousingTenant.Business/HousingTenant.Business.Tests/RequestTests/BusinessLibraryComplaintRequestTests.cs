@@ -10,7 +10,7 @@ namespace HousingTenant.Business.Tests.RequestTests
     public class BusinessLibraryComplaintRequestTests
     {
         [Test]
-        public void ComplaintRequestEqualsPositiveTest()
+        public void ComplaintRequestCompareToPositiveTest()
         {
             var request1 = new ComplaintRequest
             {
@@ -30,11 +30,11 @@ namespace HousingTenant.Business.Tests.RequestTests
                 Status = StatusEnum.PENDING
             };
 
-            Assert.IsTrue(request1.Equals(request2));
+            Assert.IsTrue(request1.CompareTo(request2) == 0);
         }
 
         [Test]
-        public void ComplaintRequestEqualsNegativeTest()
+        public void ComplaintRequestCompareToNegativeTest()
         {
             var request1 = new ComplaintRequest
             {
@@ -54,23 +54,7 @@ namespace HousingTenant.Business.Tests.RequestTests
                 Status = StatusEnum.PENDING
             };
 
-            Assert.IsFalse(request1.Equals(request2));
-        }
-        
-        [Test]
-        public void ComplaintRequestGetHashCodeTest()
-        {
-            var request1 = new ComplaintRequest
-            {
-                Accused = new Person { FirstName = "John", LastName = "Doe" },
-                Initiator = new Person { FirstName = "Jane", LastName = "Doe" },
-                Description = "He hit me!",
-                DateSubmitted = DateTime.Now,
-                Status = StatusEnum.PENDING
-            };
-
-            var actual = request1.GetHashCode();
-            Assert.IsTrue(actual != 0);
+            Assert.IsFalse(request1.CompareTo(request2) < 0);
         }
         
         [Test]

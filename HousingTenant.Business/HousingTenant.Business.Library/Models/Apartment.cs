@@ -4,7 +4,7 @@ using System.Text;
 
 namespace HousingTenant.Business.Library.Models
 {
-    public class Apartment : IApartment, IComparable<Apartment>
+    public class Apartment : IApartment
     {
         private List<IPerson> _Persons;
         public List<IPerson> Persons { get { return _Persons; } set { _Persons = value; } }
@@ -50,20 +50,15 @@ namespace HousingTenant.Business.Library.Models
             return false;
         }
 
-        public override bool Equals(object obj)
+        public int CompareTo(IApartment other)
         {
-            if(obj != null && obj.GetType() == GetType())
+            if(other != null)
             {
-                var newApartment = obj as Apartment;
+                var newApartment = other as Apartment;
 
-                return newApartment.Address.Equals(Address);
+                return Address.CompareTo(newApartment.Address);
             }
-            return false;
-        }
-
-        public override int GetHashCode()
-        {
-         return Address.GetHashCode();
+            return -1;
         }
 
         public bool IsValid()
@@ -90,10 +85,5 @@ namespace HousingTenant.Business.Library.Models
             return string.Format("{0}\n{1} Beds, {2} Bathrooms",
                Address,Beds,Bathrooms);
         }
-
-      public int CompareTo(Apartment other)
-      {
-         throw new NotImplementedException();
-      }
    }
 }

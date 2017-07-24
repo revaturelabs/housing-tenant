@@ -17,23 +17,19 @@ namespace HousingTenant.Business.Library.Models
             _RequestItems = new List<string>();
         }
 
-        public override bool Equals(object obj)
+        public override int CompareTo(ARequest other)
         {
-            if(obj != null && obj.GetType() == GetType())
+            if (other != null && other.GetType() == GetType())
             {
-                var newSupplyRequest = obj as SupplyRequest;
+                var otherRequest = other as SupplyRequest;
+                var thisRequestString = string.Format("{0} {1} {2}",
+                   Initiator.Address, DateSubmitted, (Status == StatusEnum.INWORK || Status == StatusEnum.PENDING ? StatusEnum.PENDING : StatusEnum.COMPLETED));
+                var otherRequestString = string.Format("{0} {1} {2}",
+                   otherRequest.Initiator.Address, DateSubmitted, (otherRequest.Status == StatusEnum.INWORK || otherRequest.Status == StatusEnum.PENDING ? StatusEnum.PENDING : StatusEnum.COMPLETED));
 
-                return newSupplyRequest.Initiator.Address.Equals(Initiator.Address) &&
-                   newSupplyRequest.DateSubmitted.Equals(DateSubmitted) &&
-                   (newSupplyRequest.Status == StatusEnum.PENDING || newSupplyRequest.Status == StatusEnum.INWORK) &&
-                   (Status == StatusEnum.PENDING || Status == StatusEnum.INWORK);
+                return thisRequestString.CompareTo(otherRequestString);
             }
-            return false;
-        }
-
-        public override int GetHashCode()
-        {
-            return Initiator.GetHashCode() + DateSubmitted.GetHashCode() + Status.GetHashCode();
+            return -1;
         }
 
         public override bool IsValid()

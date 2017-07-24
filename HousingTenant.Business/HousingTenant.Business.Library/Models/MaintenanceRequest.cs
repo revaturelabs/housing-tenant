@@ -6,25 +6,20 @@ namespace HousingTenant.Business.Library.Models
 {
     public class MaintenanceRequest : ARequest
     {
-        public override bool Equals(object obj)
-        {
-            if(obj != null && obj.GetType() == GetType())
-            {
-                var newRequest = obj as MaintenanceRequest;
 
-            return newRequest.Initiator.Address.Equals(Initiator.Address) &&
-               newRequest.Description.ToLower().Equals(Description.ToLower()) &&
-                   (newRequest.Status == StatusEnum.PENDING || newRequest.Status == StatusEnum.INWORK) &&
-                   (Status == StatusEnum.PENDING || Status == StatusEnum.INWORK);
-            }
-            return false;
-        }
-      
-        public override int GetHashCode()
+        public override int CompareTo(ARequest other)
         {
-            return Initiator.GetHashCode() + 
-               Description.GetHashCode() + 
-               Status.GetHashCode();
+            if (other != null && other.GetType() == GetType())
+            {
+                var otherRequest = other as MaintenanceRequest;
+                var thisRequestString = string.Format("{0} {1} {2}",
+                   Initiator.Address, Description, (Status == StatusEnum.INWORK || Status == StatusEnum.PENDING ? StatusEnum.PENDING : StatusEnum.COMPLETED));
+                var otherRequestString = string.Format("{0} {1} {2}",
+                   otherRequest.Initiator.Address, otherRequest.Description, (otherRequest.Status == StatusEnum.INWORK || otherRequest.Status == StatusEnum.PENDING ? StatusEnum.PENDING : StatusEnum.COMPLETED));
+
+                return thisRequestString.CompareTo(otherRequestString);
+            }
+            return -1;
         }
 
         public override bool IsValid()

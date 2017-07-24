@@ -7,28 +7,20 @@ namespace HousingTenant.Business.Library.Models
     public class ComplaintRequest : ARequest
     {
         public IPerson Accused { get; set; }
-      
-        public override bool Equals(object obj)
+        
+        public override int CompareTo(ARequest other)
         {
-            if(obj != null && obj.GetType() == GetType())
+            if(other != null && other.GetType() == GetType())
             {
-                var newComplaint = obj as ComplaintRequest;
-
-                return newComplaint.Initiator.Equals(Initiator) &&
-                   newComplaint.Accused.Equals(Accused) &&
-                   newComplaint.Description.ToLower().Equals(Description.ToLower()) &&
-                   (newComplaint.Status == StatusEnum.PENDING || newComplaint.Status == StatusEnum.INWORK) &&
-                   (Status == StatusEnum.PENDING || Status == StatusEnum.INWORK);
+                var otherRequest = other as ComplaintRequest;
+                var thisRequestString = string.Format("{0} {1} {2} {3}",
+                   Initiator, Accused,Description,(Status == StatusEnum.INWORK || Status == StatusEnum.PENDING ? StatusEnum.PENDING : StatusEnum.COMPLETED));
+                var otherRequestString = string.Format("{0} {1} {2} {3}",
+                   otherRequest.Initiator, otherRequest.Accused, otherRequest.Description, (otherRequest.Status == StatusEnum.INWORK || otherRequest.Status == StatusEnum.PENDING ? StatusEnum.PENDING : StatusEnum.COMPLETED));
+                
+                return thisRequestString.CompareTo(otherRequestString);
             }
-            return false;
-        }
-      
-        public override int GetHashCode()
-        {
-            return Initiator.GetHashCode() + 
-               Accused.GetHashCode() + 
-               Description.GetHashCode() +
-               Status.GetHashCode();
+            return -1;
         }
 
         public override bool IsValid()

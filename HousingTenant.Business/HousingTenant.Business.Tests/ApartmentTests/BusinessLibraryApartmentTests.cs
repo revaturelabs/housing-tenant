@@ -10,7 +10,7 @@ namespace HousingTenant.Business.Tests.ApartmentTests
     public class BusinessLibraryApartmentTests
     {
         [Test]
-        public void ApartmentEqualsPositiveTest()
+        public void ApartmentCompareToPositiveTest()
         {
             var apartment1 = new Apartment()
             {
@@ -26,11 +26,11 @@ namespace HousingTenant.Business.Tests.ApartmentTests
                 Beds = 6
             };
 
-            Assert.IsTrue(apartment1.Equals(apartment2));
+            Assert.IsTrue(apartment1.CompareTo(apartment2) == 0);
         }
 
         [Test]
-        public void ApartmentEqualsNegativeTest()
+        public void ApartmentCompareToNegativeTest()
         {
             var apartment1 = new Apartment()
             {
@@ -46,22 +46,7 @@ namespace HousingTenant.Business.Tests.ApartmentTests
                 Beds = 6
             };
 
-            Assert.IsFalse(apartment1.Equals(apartment2));
-        }
-
-        [Test]
-        public void ApartmentGetHashCodeTest()
-        {
-            var apartment1 = new Apartment()
-            {
-                Address = new Address { Address1 = "7 Dome Ln", ApartmentNumber = "2B", City = "Reston", State = "VA", ZipCode = "12345" },
-                Bathrooms = 2,
-                Beds = 6
-            };
-
-            var actual = apartment1.GetHashCode();
-
-            Assert.IsTrue(actual != 0);
+            Assert.IsFalse(apartment1.CompareTo(apartment2) < 0);
         }
         
         [Test]
