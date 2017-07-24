@@ -4,7 +4,7 @@ using System.Text;
 
 namespace HousingTenant.Business.Library.Models
 {
-    public abstract class ARequest
+    public abstract class ARequest : IComparable<ARequest>
     {
         public bool Urgent { get; set; }
         public string RequestId { get; set; }
@@ -13,7 +13,9 @@ namespace HousingTenant.Business.Library.Models
         public DateTime DateSubmitted { get; set; }
         public DateTime DateModified { get; set; }
         public StatusEnum Status { get; set; }
-      
+
+        public abstract int CompareTo(ARequest other);
+
         public abstract bool IsValid();
         
         public override string ToString()

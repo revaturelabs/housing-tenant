@@ -1,8 +1,5 @@
 ﻿using HousingTenant.Business.Library.Models;
 using NUnit.Framework;
-using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace HousingTenant.Business.Tests.AddressTests
 {
@@ -10,7 +7,7 @@ namespace HousingTenant.Business.Tests.AddressTests
     public class BusinessLibraryAddressTests
     {
         [Test]
-        public void AddressEqualsPostiveTest()
+        public void AddressCompareToPostiveTest()
         {
             var address1 = new Address
             {
@@ -30,11 +27,11 @@ namespace HousingTenant.Business.Tests.AddressTests
                 ZipCode = "12345"
             };
 
-            Assert.IsTrue(address1.Equals(address2));
+            Assert.IsTrue(address1.CompareTo(address2) == 0);
         }
 
         [Test]
-        public void AddressEqualsNegativeTest()
+        public void AddressCompareToNegativeTest()
         {
             var address1 = new Address
             {
@@ -54,23 +51,7 @@ namespace HousingTenant.Business.Tests.AddressTests
                 ZipCode = "12345"
             };
 
-            Assert.IsFalse(address1.Equals(address2));
-        }
-        
-        [Test]
-        public void AddressGetHashCodeTest()
-        {
-            var address1 = new Address
-            {
-                Address1 = "21 Fortress Lane",
-                ApartmentNumber = "45C",
-                City = "Reston",
-                State = "VA",
-                ZipCode = "12345"
-            };
-            var actual = address1.GetHashCode();
-
-            Assert.IsTrue(actual > 0);
+            Assert.IsFalse(address1.CompareTo(address2) < 0);
         }
         
         [Test]

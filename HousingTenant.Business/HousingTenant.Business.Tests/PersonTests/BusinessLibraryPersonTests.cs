@@ -10,7 +10,7 @@ namespace HousingTenant.Business.Tests.PersonTests
     public class BusinessLibraryPersonTests
     {
         [Test]
-        public void PersonEqualsPositiveTest()
+        public void PersonCompareToPositiveTest()
         {
             var person1 = new Person
             {
@@ -23,11 +23,11 @@ namespace HousingTenant.Business.Tests.PersonTests
                 LastName = "Doe"
             };
 
-            Assert.IsTrue(person1.Equals(person2));
+            Assert.IsTrue(person1.CompareTo(person2) == 0);
         }
 
         [Test]
-        public void PersonEqualsNegativeTest()
+        public void PersonCompareToNegativeTest()
         {
             var person1 = new Person
             {
@@ -36,11 +36,11 @@ namespace HousingTenant.Business.Tests.PersonTests
             };
             var person2 = new Person
             {
-                FirstName = "John",
+                FirstName = "Johnne",
                 LastName = "Dae"
             };
 
-            Assert.IsFalse(person1.Equals(person2));
+            Assert.IsFalse(person1.CompareTo(person2) > 0);
         }
 
         [Test]
@@ -56,19 +56,6 @@ namespace HousingTenant.Business.Tests.PersonTests
             var expected = "John Doe";
 
             Assert.IsTrue(actual.Equals(expected));
-        }
-
-        [Test]
-        public void PersonGetHashCodeTest()
-        {
-            var person1 = new Person
-            {
-               FirstName = "John",
-               LastName = "Doe"
-            };
-            var actual = person1.GetHashCode();
-
-            Assert.IsTrue(actual > 0);
         }
         
         [Test]
