@@ -17,7 +17,7 @@ namespace HousingTenant.Business.Service.Controllers
    [Route("api/[controller]")]
    public class RequestController : Controller
    {
-      HttpClient client = new HttpClient { BaseAddress = new Uri("http://localhost:50411/api/") };
+      HttpClient client = new HttpClient { BaseAddress = new Uri("https://housingtenantdata.azurewebsites.net/api/") };
       LibraryManager _LibraryManager = new LibraryManager();
       BusinessServiceMapper ServiceMapper = new BusinessServiceMapper();
 
