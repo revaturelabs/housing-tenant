@@ -4,7 +4,7 @@ import { apartmentModule as am } from './module';
 var appartmentService = am.factory('aptFactory', ['$http', function ($http) {
    return {
       getApartment: function (scope, address) {
-         $http.get('http://localhost:5000/api/apartment/', { params: address }).then(
+         $http.get('http://housingtenantbusiness.azurewebsites.net/api/apartment/', { params: address }).then(
             function (res) {
                console.log(res);
                scope.apartment = res.data;

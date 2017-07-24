@@ -39,27 +39,27 @@
             <h2>Add New Supply Request</h2>
          </header>
          <main class="modal-body">
-            <form>
+            <form name="supplyRequest">
                <label for="name">Description</label>
-               <input type="text" id="description" ng-model="d">
+               <input type="text" id="description" name="description" ng-model="description">
                <label for="soap">Soap?</label>
-               <input type="checkbox" id="soap" ng-model="s">
+               <input type="checkbox" id="soap" name="soap" ng-model="soap">
                <label for="tp">ToiletPaper?</label>
-               <input type="checkbox" id="tp" ng-model="tp">
+               <input type="checkbox" id="tp" name="toilet paper" ng-model="toiletPaper">
                <label for="ptowel">PaperTowels?</label>
-               <input type="checkbox" id="ptowel" ng-model="pt">
+               <input type="checkbox" id="ptowel" name="paper towel" ng-model="paperTowels">
                <label for="dsoap">DishSoap?</label>
-               <input type="checkbox" id="dsoap" ng-model="ds">
+               <input type="checkbox" id="dsoap" name="dish soap" ng-model="dishSoap">
                <label for="trash">TrashBags?</label>
-               <input type="checkbox" id="trash" ng-model="tb">
+               <input type="checkbox" id="trash" name="trash bag" ng-model="trashBag">
                <label for="dish">DishwasherDetergent?</label>
-               <input type="checkbox" id="dish" ng-model="dd">
+               <input type="checkbox" id="dish" name="dishwasher soap" ng-model="dishwasherSoap">
                <label for="sponge">Sponges?</label>
-               <input type="checkbox" id="sponge" ng-value="sponge">
+               <input type="checkbox" id="sponge" name="sponge" ng-model="sponge">
             </form>
          </main>
          <footer class="modal-footer">
-            <md-button class="md-raised md-primary" type="button" ng-click="addRequest(d,s,tp,pt,ds,tb,dd,sp)">Submit</md-button>
+            <md-button class="md-raised md-primary" type="button" ng-click="addRequest(supplyRequest)">Submit</md-button>
          </footer>
       </section>
 
