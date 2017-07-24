@@ -14,6 +14,6 @@ namespace HousingTenant.Data.Service.Models
         public string LastName { get; set; }
         public string EmailAddress { get; set; }
         public string PhoneNumber { get; set; }
-        public DateTime ReportDate { get; set; }
+        public DateTime ArrivalDate { get; set; }
     }
 }

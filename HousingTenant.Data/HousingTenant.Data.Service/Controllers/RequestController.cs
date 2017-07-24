@@ -14,18 +14,18 @@ namespace HousingTenant.Data.Service.Controllers
     [Route("api/[controller]")]
     public class RequestController : Controller
     {
-        private static IBroker<RequestDTO> srb = new BrokerFactory<RequestDTO,Request> ().Create ();
+        private static IBroker<RequestDAO> srb = new BrokerFactory<RequestDAO,Request> ().Create ();
 
         [HttpGet]
-        public List<RequestDTO> Get()
+        public List<RequestDAO> Get()
         {
-            var list = new List<RequestDTO> ();
-            list.Add (new RequestDTO { Initiator = new PersonDTO { FirstName = "Jason", LastName = "Todd" } , DateSubmitted = DateTime.Now, Description = "Test" });
+            var list = new List<RequestDAO> ();
+            list.Add (new RequestDAO { Initiator = new PersonDAO { FirstName = "Jason", LastName = "Todd" } , DateSubmitted = DateTime.Now, Description = "Test" });
             return list;
         }
 
         [HttpPost]
-        public bool Post([FromBody]RequestDTO value)
+        public bool Post([FromBody]RequestDAO value)
         {
             return srb.Create (value);
         }
