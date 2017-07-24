@@ -8,6 +8,7 @@ var supplyController = sm.controller('suppliesCtrl', ['$scope', 'supplyRequestLi
       supplyRequestListSvc.getRequestList(aptid, $scope);
             //delivers
       $scope.addRequest = function (form) {
+            console.log(form);
             var request = {
                   description : $scope.description,
                   initiator : 'Current User',

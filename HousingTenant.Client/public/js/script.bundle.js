@@ -75983,6 +75983,7 @@ var supplyController = module_1.supplyModule.controller('suppliesCtrl', ['$scope
         supplyRequestListSvc.getRequestList(aptid, $scope);
         //delivers
         $scope.addRequest = function (form) {
+            console.log(form);
             var request = {
                 description: $scope.description,
                 initiator: 'Current User',
