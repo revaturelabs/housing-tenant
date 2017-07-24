@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
+using HousingTenant.Data.Service.Models;
 
 // For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 
@@ -11,35 +12,24 @@ namespace HousingTenant.Data.Service.Controllers
     [Route("api/[controller]")]
     public class ApartmentController : Controller
     {
+        private List<ApartmentDAO> list = new List<ApartmentDAO> ();
         // GET: api/values
         [HttpGet]
-        public IEnumerable<string> Get()
+        public List<ApartmentDAO> Get()
         {
-            return new string[] { "value1", "value2" };
+            return list;
         }
 
         // GET api/values/5
         [HttpGet("{id}")]
-        public string Get(int id)
+        public ApartmentDAO Get(string id)
         {
-            return "value";
+            return (from v in list where v.ApartmentId == id select v).ToList()[0];
         }
 
         // POST api/values
         [HttpPost]
         public void Post([FromBody]string value)
-        {
-        }
-
-        // PUT api/values/5
-        [HttpPut("{id}")]
-        public void Put(int id, [FromBody]string value)
-        {
-        }
-
-        // DELETE api/values/5
-        [HttpDelete("{id}")]
-        public void Delete(int id)
         {
         }
     }
