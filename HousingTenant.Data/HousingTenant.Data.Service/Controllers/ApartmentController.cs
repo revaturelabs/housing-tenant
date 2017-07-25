@@ -13,6 +13,14 @@ namespace HousingTenant.Data.Service.Controllers
     public class ApartmentController : Controller
     {
         private List<ApartmentDAO> list = new List<ApartmentDAO> ();
+        
+        public ApartmentController()
+        {
+            list.Add (new ApartmentDAO { Address = new AddressDAO (), ApartmentId = "0", Bathrooms = 2, Beds = 3 });
+            list.Add (new ApartmentDAO { Address = new AddressDAO (), ApartmentId = "1", Bathrooms = 2, Beds = 3 });
+            list.Add (new ApartmentDAO { Address = new AddressDAO (), ApartmentId = "2", Bathrooms = 2, Beds = 3 });
+        }
+
         // GET: api/values
         [HttpGet]
         public List<ApartmentDAO> Get()
@@ -22,9 +30,9 @@ namespace HousingTenant.Data.Service.Controllers
 
         // GET api/values/5
         [HttpGet("{id}")]
-        public ApartmentDAO Get(string id)
+        public List<ApartmentDAO> Get(string id)
         {
-            return (from v in list where v.ApartmentId == id select v).ToList()[0];
+            return (from v in list where v.ApartmentId == id select v).ToList();
         }
 
         // POST api/values
