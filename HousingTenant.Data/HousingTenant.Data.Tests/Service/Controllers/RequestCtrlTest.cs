@@ -14,7 +14,7 @@ namespace HousingTenant.Data.Tests.Service.Controllers
         public void GetAllTest()
         {
             var ctrl = new RequestController ();
-            var actual = new List<RequestDTO>();
+            var actual = new List<RequestDAO>();
             var expected = 0;
 
             actual = ctrl.Get ();

@@ -6,9 +6,9 @@ using HousingTenant.Data.Service.Interfaces;
 
 namespace HousingTenant.Data.Service.Models
 {
-    public class PersonDTO : IModel
+    public class AddressDAO : IModel
     {
-        public string FirstName { set; get; }
-        public string LastName { get; set; }
+        public string Street1 { set; get; }
+        public string Street2 { get; set; }
     }
 }
