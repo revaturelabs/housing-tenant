@@ -7,11 +7,15 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
+using HousingTenant.Data.Library.AzModels;
 
 namespace HousingTenant.Data.Service
 {
     public class Startup
     {
+        //private IHostingEnvironment env;
+        //private IConfigurationRoot _Configuration;
+
         public Startup(IHostingEnvironment env)
         {
             var builder = new ConfigurationBuilder()
@@ -28,6 +32,8 @@ namespace HousingTenant.Data.Service
         public void ConfigureServices(IServiceCollection services)
         {
             // Add framework services.
+            services.AddSingleton(Configuration);
+            services.AddDbContext<HousingTenantDBContext>();
             services.AddMvc();
         }
 
@@ -36,7 +42,7 @@ namespace HousingTenant.Data.Service
         {
             loggerFactory.AddConsole(Configuration.GetSection("Logging"));
             loggerFactory.AddDebug();
-
+            app.UseDeveloperExceptionPage();
             app.UseMvc();
         }
     }
