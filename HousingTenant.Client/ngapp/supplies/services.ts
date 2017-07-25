@@ -27,7 +27,7 @@ var supplyService = sm.factory('supplyRequestListSvc', ['$http', function($http)
                         'Access-Control-Allow-Origin': '*',
                         'Content-Type': 'application/json',
                         'Access-Control-Allow-Credentials' : 'true',
-                        'Access-Control-Allow-Methods' : 'GET,PUT,POST,DELETE'
+                        'Access-Control-Allow-Methods' : 'POST'
                   },
                   data: {request}
             }).then(function(res){
