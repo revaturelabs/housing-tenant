@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
+//using Microsoft.AspNetCore.Cors;
 
 
 namespace HousingTenant.Business.Service
@@ -31,7 +32,7 @@ namespace HousingTenant.Business.Service
             //#149513569
             // Add framework services.
 
-            //services.AddCors(o => o.AddPolicy("default", b => b.AllowAnyOrigin().AllowAnyHeader()));
+            services.AddCors(o => o.AddPolicy("default", b => b.AllowAnyOrigin().AllowAnyHeader().AllowAnyMethod().AllowCredentials().SetPreflightMaxAge(TimeSpan.FromSeconds(2520))));
             services.AddMvc();
         }
 
