@@ -31,8 +31,8 @@ namespace HousingTenant.Business.Service.Controllers
          return requestDtos;
       }
 
-      [HttpGet("{id}")]
-      public async Task<RequestDTO> Get(string id)
+      [Route("id")]
+      public async Task<RequestDTO> Get([FromQuery]string id)
       {
          var uri = string.Format("{0}/{1}", "request", id);
          var request = await client.GetAsync(uri, HttpCompletionOption.ResponseContentRead);
@@ -41,7 +41,8 @@ namespace HousingTenant.Business.Service.Controllers
          return requestDto;
       }
 
-      [HttpGet("{address}")]
+      [HttpGet]
+      [HttpGet("address")]
       public async Task<List<RequestDTO>> Get([FromBody] Address address)
       {
          var uri = string.Format("{0}/{1}", "request", address);

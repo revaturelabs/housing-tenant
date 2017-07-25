@@ -29,7 +29,7 @@ namespace HousingTenant.Business.Library.Models
       
         public override string ToString()
         {
-            return string.Format("{0} Apt {1},\n{2} {3} {4}",
+            return string.Format("{0} {1} {2} {3} {4}",
                Address1, ApartmentNumber, City, State, ZipCode);
         }
     }

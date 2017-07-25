@@ -51,9 +51,12 @@ namespace HousingTenant.Business.Service.Mappers
         public List<ARequest> MapToARequestList(List<RequestDTO> dtorequests)
         {
             var requests = new List<ARequest>();
-            foreach (var r in dtorequests)
+            if (dtorequests != null)
             {
-                requests.Add(MapToARequest(r));
+                foreach (var r in dtorequests)
+                {
+                    requests.Add(MapToARequest(r));
+                }
             }
             return requests;
         }
@@ -61,9 +64,12 @@ namespace HousingTenant.Business.Service.Mappers
         public List<IPerson> MapToIPersonList(List<Person> persons)
         {
             var ipersons = new List<IPerson>();
-            foreach(var p in persons)
+            if (persons != null)
             {
-                ipersons.Add(p);
+                foreach (var p in persons)
+                {
+                   ipersons.Add(p);
+                }
             }
             return ipersons;
         }

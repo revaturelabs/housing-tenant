@@ -61,6 +61,38 @@ namespace HousingTenant.Business.Service
 
             return apartments;
         }
+        
+        public IApartment GetApartment()
+        {
+            var supplyList = new List<string> { "Soap", "Dishwashing Liquid", "Scruby Pad", "Paper Towel", "Toilet Paper" };
+
+            var address1 = new Address { Address1 = "7 James Ave.", ApartmentNumber = "2A", City = "Reston", State = "VA", ZipCode = "12345" };
+            var address2 = new Address { Address1 = "7 James Ave.", ApartmentNumber = "2B", City = "Reston", State = "VA", ZipCode = "12345" };
+
+            var person1 = new Person { FirstName = "John", LastName = "Doe", Address = address1, EmailAddress = "john@doe.com",
+               PhoneNumber = "(235)123-3256", Gender = GenderEnum.FEMALE, ArrivalDate = DateTime.Now, HasCar = false };
+            var person2 = new Person { FirstName = "Paul", LastName = "Carr", Address = address1, EmailAddress = "paul@carr.com",
+               PhoneNumber = "(775)123-3256", Gender = GenderEnum.FEMALE, ArrivalDate = DateTime.Now, HasCar = true };
+            var person3 = new Person { FirstName = "Kevin", LastName = "Jones", Address = address1,  EmailAddress = "john@doe.com",
+               PhoneNumber = "(235)123-3256", Gender = GenderEnum.FEMALE, ArrivalDate = DateTime.Now, HasCar = false };
+            var person4 = new Person { FirstName = "Peter", LastName = "Towns", Address = address1, EmailAddress = "john@doe.com",
+               PhoneNumber = "(235)123-3256", Gender = GenderEnum.FEMALE, ArrivalDate = DateTime.Now, HasCar = true };
+
+            var persList1 = new List<IPerson> { person1, person2, person3, person4 };
+
+            var request1 = new ComplaintRequest { Initiator = person1, Accused = person2,  Description = "Person1 is accusing Person2",
+               DateSubmitted = DateTime.Now, Status = StatusEnum.PENDING, Urgent = false };
+            var request2 = new MaintenanceRequest { Initiator = person2, Description = "Need my toilet fixed said person2",
+               DateSubmitted = DateTime.Now, Status = StatusEnum.PENDING,Urgent = false };
+            var request3 = new MoveRequest { Initiator = person3, Description = "Person3 request move to address2",
+               RequestedApartmentAddress = address2, DateSubmitted = DateTime.Now, Status = StatusEnum.PENDING, Urgent = false   };
+            var request4 = new SupplyRequest  { Initiator = person4, Description = "Person4 requesed supplies",
+               RequestItems = supplyList, DateSubmitted = DateTime.Now, Status = StatusEnum.PENDING,Urgent = false };
+
+            var reqsList1 = new List<ARequest> { request1, request2, request4 };
+
+            return new Apartment { Address = address1, Beds = 6, Bathrooms = 2, ComplexName = "Repo Apartment", Persons = persList1, Requests = reqsList1 };
+        }
 
         public List<ARequest> GetRequests()
         {
