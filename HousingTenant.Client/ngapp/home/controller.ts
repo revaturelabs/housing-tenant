@@ -1,13 +1,19 @@
 import { home as h } from './module';
 import './service';
+import '../apartment/service';
 
-class Entity {
-  text: string;
-  value: string;
+class Person {
+  FirstName: string;
+  LastName: string;
 
-  constructor(t: string, v: string) {
-    this.text = t;
-    this.value = v;
+  constructor(){
+    this.FirstName = 'John';
+    this.LastName = 'Doe';
+  }
+  
+  getPerson(res: any, id: number){
+    this.FirstName = res.data[id].firstName;
+    this.LastName = res.data[id].lastName;
   }
 }
 
@@ -35,11 +41,20 @@ class Address {
   }
 }
 
-var myController = h.controller('homeController', ['$scope', 'homeFactory', '$http', function ($scope, homeFactory, $http) {
-  $scope.myAddress = new Address();
-  $scope.entities = [
-    new Entity('Address', 'Address')
-  ];
+  
+
+var myController = h.controller('homeController', ['$scope', 'homeFactory', 'aptFactory', '$http', function ($scope, homeFactory, aptFactory, $http) {
+
+  $scope.myAddress = {
+   Address1: "2100 Wilkes Court",
+   Address2: "",
+   ApartmentNumber: "102",
+   City: "Herndon",
+   State: "Virgina",
+   ZipCode: "20105"
+  };
+  
+  $scope.myPerson = new Person();
 
   $scope.something = 'hello mock';
   $scope.addNumbers = function(n1,n2){
@@ -55,5 +70,15 @@ var myController = h.controller('homeController', ['$scope', 'homeFactory', '$ht
   $scope.processRequest = function (id) {
     homeFactory.getAddress(id, $scope.myAddress);
   }
+
+  $scope.processPerson = function(id){
+    homeFactory.getPerson(id, $scope.myPerson);
+  }
+
+  $scope.init = function(){
+    $scope.processPerson(0);
+  }
+
+  aptFactory.getApartment($scope, $scope.myAddress);
   
 }]);
