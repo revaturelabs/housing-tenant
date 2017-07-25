@@ -42,7 +42,7 @@ namespace HousingTenant.Business.Service.Controllers
       }
 
       [HttpGet]
-      [HttpGet("address")]
+      [Route("address")]
       public async Task<List<RequestDTO>> Get([FromBody] Address address)
       {
          var uri = string.Format("{0}/{1}", "request", address);
