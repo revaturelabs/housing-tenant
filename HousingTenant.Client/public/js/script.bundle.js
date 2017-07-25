@@ -75978,13 +75978,11 @@ module_1.home.factory('homeFactory', ['$http', function ($http) {
 Object.defineProperty(exports, "__esModule", { value: true });
 var module_1 = __webpack_require__(3);
 __webpack_require__(22);
-var angular = __webpack_require__(0);
 var supplyController = module_1.supplyModule.controller('suppliesCtrl', ['$scope', 'supplyRequestListSvc', '$routeParams', '$mdDialog', function ($scope, supplyRequestListSvc, $routeParams, $mdDialog) {
         var requestModal = document.getElementById('AddRequestModal');
         var aptid = $routeParams.aptid;
         supplyRequestListSvc.getRequestList(aptid, $scope);
         $scope.addRequest = function (form) {
-            console.log(form);
             var request = {
                 description: $scope.description,
                 initiator: 'Current User',
@@ -75996,15 +75994,14 @@ var supplyController = module_1.supplyModule.controller('suppliesCtrl', ['$scope
                     request.requestItems.push(form[element].$name);
                 }
             });
-            console.log(request);
             supplyRequestListSvc.postRequest(request);
             $scope.cancel();
         };
-        $scope.openModal = function (ev) {
+        $scope.openModal = function (event) {
             $mdDialog.show({
                 contentElement: '#AddRequestModal',
-                parent: angular.element(document.body),
-                targetEvent: ev,
+                parent: document.body,
+                targetEvent: event,
             });
         };
         $scope.cancel = function () {

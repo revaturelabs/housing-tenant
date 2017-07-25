@@ -1,14 +1,13 @@
 import { supplyModule as sm } from './module';
 import './services';
-import * as angular from 'angular';
 
 var supplyController = sm.controller('suppliesCtrl', ['$scope', 'supplyRequestListSvc', '$routeParams', '$mdDialog', function ($scope, supplyRequestListSvc, $routeParams, $mdDialog) {
       var requestModal = document.getElementById('AddRequestModal');
       
       var aptid = $routeParams.aptid; 
       supplyRequestListSvc.getRequestList(aptid, $scope);
+
       $scope.addRequest = function (form) {
-            console.log(form);
             var request = {
                   description : $scope.description,
                   initiator : 'Current User',
@@ -20,16 +19,14 @@ var supplyController = sm.controller('suppliesCtrl', ['$scope', 'supplyRequestLi
                         request.requestItems.push(form[element].$name)
                   }
             });
-            console.log(request);
-
             supplyRequestListSvc.postRequest(request);
             $scope.cancel();
       }
-      $scope.openModal = function(ev) {
+      $scope.openModal = function(event) {
             $mdDialog.show({
                   contentElement: '#AddRequestModal',
-                  parent: angular.element(document.body),
-                  targetEvent: ev,
+                  parent: document.body,
+                  targetEvent: event,
                   
             });
       };
