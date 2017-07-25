@@ -27,7 +27,7 @@ namespace HousingTenant.Data.Library.AzModels
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-            optionsBuilder.UseSqlServer(_config["ConnectionStrings:HousingTenantConnectionlocal"]);
+            optionsBuilder.UseSqlServer(_config["ConnectionStrings:HousingTenantConnectionAzure"]);
         }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)

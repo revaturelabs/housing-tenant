@@ -83,4 +83,7 @@
     <None Include="NotInBuildScripts\Batch.sql" />
     <None Include="NotInBuildScripts\ArrivalInformation.sql" />
   </ItemGroup>
+  <ItemGroup>
+    <PreDeploy Include="Script.PreDeployment.sql" />
+  </ItemGroup>
 </Project>
