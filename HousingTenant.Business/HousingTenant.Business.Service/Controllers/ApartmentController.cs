@@ -29,10 +29,8 @@ namespace HousingTenant.Business.Service.Controllers
             var ApartmentList = JsonConvert.DeserializeObject<List<Apartment>>(apartments.Content.ReadAsStringAsync().Result);
 
             return ApartmentList;
-         //return new ServiceManager().GetApartments();
-      }
+        }
         
-        //[HttpGet]
         [Route("id")]
         public async Task<IApartment> Get([FromQuery]string id)
         {
