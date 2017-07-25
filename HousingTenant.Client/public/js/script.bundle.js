@@ -76047,10 +76047,10 @@ var supplyService = module_1.supplyModule.factory('supplyRequestListSvc', ['$htt
                     url: 'http://housingtenantbusiness.azurewebsites.net/api/request/',
                     withCredentials: true,
                     headers: {
-                        'Access-Control-Allow-Origin': 'http://localhost',
+                        'Access-Control-Allow-Origin': '*',
                         'Content-Type': 'application/json',
                         'Access-Control-Allow-Credentials': 'true',
-                        'Access-Control-Allow-Methods': 'GET,PUT,POST,DELETE'
+                        'Access-Control-Allow-Methods': 'POST'
                     },
                     data: { request: request }
                 }).then(function (res) {
@@ -76104,7 +76104,7 @@ var module_1 = __webpack_require__(4);
 var appartmentService = module_1.apartmentModule.factory('aptFactory', ['$http', function ($http) {
         return {
             getApartment: function (scope, address) {
-                $http.get('http://housingtenantbusiness.azurewebsites.net/api/apartment/', { params: address }).then(function (res) {
+                $http.get('http://housingtenantbusiness.azurewebsites.net/api/apartment/address/', { params: address }).then(function (res) {
                     console.log(res);
                     scope.apartment = res.data;
                 }, function (err) {
