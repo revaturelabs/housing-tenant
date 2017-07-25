@@ -24,7 +24,7 @@ var supplyService = sm.factory('supplyRequestListSvc', ['$http', function($http)
                   url: 'http://housingtenantbusiness.azurewebsites.net/api/request/',
                   withCredentials: true,
                   headers: {
-                        'Access-Control-Allow-Origin': 'http://localhost',
+                        'Access-Control-Allow-Origin': '*',
                         'Content-Type': 'application/json',
                         'Access-Control-Allow-Credentials' : 'true',
                         'Access-Control-Allow-Methods' : 'GET,PUT,POST,DELETE'
