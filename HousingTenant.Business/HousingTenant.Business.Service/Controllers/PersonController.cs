@@ -30,8 +30,9 @@ namespace HousingTenant.Business.Service.Controllers
         }
 
         // GET api/person/5
-        [HttpGet("{id}")]
-        public async Task<Person> Get(string id)
+        //[HttpGet]
+        [HttpGet("id")]
+        public async Task<Person> Get([FromQuery]string id)
         {
             var uri = string.Format("{0}/{1}", "person", id);
             var person = await client.GetAsync(uri, HttpCompletionOption.ResponseContentRead);
@@ -41,8 +42,9 @@ namespace HousingTenant.Business.Service.Controllers
         }
         
         // Get api/persons/address
-        [HttpGet("{address}")]
-        public async Task<List<Person>> Get(Address address)
+        [HttpGet]
+        [Route("address")]
+        public async Task<List<Person>> Get([FromQuery]Address address)
         {
             var uri = string.Format("{0}/{1}", "person", address);
             var persons = await client.GetAsync(uri, HttpCompletionOption.ResponseContentRead);
@@ -71,7 +73,9 @@ namespace HousingTenant.Business.Service.Controllers
         [HttpDelete("{id}")]
         public void Delete(string id)
         {
-            client.DeleteAsync(id);
+            var deleteUri = string.Format("person/{0}", id);
+
+            client.DeleteAsync(deleteUri);
         }
     }
 }

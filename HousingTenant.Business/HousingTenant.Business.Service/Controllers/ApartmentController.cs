@@ -32,8 +32,9 @@ namespace HousingTenant.Business.Service.Controllers
          //return new ServiceManager().GetApartments();
       }
         
-        [HttpGet("{id}")]
-        public async Task<IApartment> Get(string id)
+        //[HttpGet]
+        [Route("id")]
+        public async Task<IApartment> Get([FromQuery]string id)
         {
             var uri = string.Format("apartment/{0}", id);
             var aRequest = await client.GetAsync(uri, HttpCompletionOption.ResponseContentRead);
@@ -52,8 +53,9 @@ namespace HousingTenant.Business.Service.Controllers
             return apartment as Apartment;
       }
 
-        [HttpGet("{address}")]
-        public async Task<IApartment> Get(Address address)
+        [HttpGet]
+        [Route("address")]
+        public async Task<IApartment> Get([FromQuery]Address address)
         {
             var apartmentUrl = string.Format("apartment/{0}", address);
             var aRequest = await client.GetAsync(apartmentUrl, HttpCompletionOption.ResponseContentRead);
@@ -92,7 +94,9 @@ namespace HousingTenant.Business.Service.Controllers
         [HttpDelete("{id}")]
         public void Delete(string id)
         {
-            client.DeleteAsync(id);
+            var deleteUri = string.Format("apartment/{0}", id);
+
+            client.DeleteAsync(deleteUri);
         }
     }
 }
