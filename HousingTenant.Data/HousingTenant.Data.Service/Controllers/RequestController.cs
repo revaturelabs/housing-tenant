@@ -6,7 +6,7 @@ using Microsoft.AspNetCore.Mvc;
 using HousingTenant.Data.Service.Models;
 using HousingTenant.Data.Service.Interfaces;
 using HousingTenant.Data.Service.Factory;
-using HousingTenant.Data.Library.Models;
+using HousingTenant.Data.Library.AzModels;
 
 
 namespace HousingTenant.Data.Service.Controllers
@@ -14,13 +14,17 @@ namespace HousingTenant.Data.Service.Controllers
     [Route("api/[controller]")]
     public class RequestController : Controller
     {
+        private IBroker<RequestDAO> broker;
+
+        public RequestController(HousingTenantDBContext context)
+        {
+            broker = new BrokerFactory<RequestDAO, Request> ().Create (context);
+        }
 
         [HttpGet]
         public List<RequestDAO> Get()
         {
-            var list = new List<RequestDAO> ();
-            list.Add (new RequestDAO { Initiator = new PersonDAO { FirstName = "Jason", LastName = "Todd" } , DateSubmitted = DateTime.Now, Description = "Test" });
-            return list;
+            return broker.GetAll();
         }
 
         [HttpPost]
