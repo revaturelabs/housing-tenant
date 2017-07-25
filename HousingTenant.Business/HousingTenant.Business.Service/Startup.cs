@@ -35,11 +35,11 @@ namespace HousingTenant.Business.Service
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IHostingEnvironment env, ILoggerFactory loggerFactory)
         {
+            app.UseCors("default");
             loggerFactory.AddConsole(Configuration.GetSection("Logging"));
             loggerFactory.AddDebug();
-
-      app.UseCors("default");
-      app.UseMvc();
+            app.UseDeveloperExceptionPage();
+            app.UseMvc();
         }
     }
 }
