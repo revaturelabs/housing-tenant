@@ -1,20 +1,26 @@
- <section id="body">
-  <form action="">
-    <md-button class="md-raised md-primary" type="button" data-ng-click="processRequest(0)">Get the Address</md-button>
-  </form>
+ <section id="mainHome" ng-init="init()">
+
+  <h1>Welcome, {{myPerson.FirstName}} {{myPerson.LastName}}</h1>
 
   <article>
     <header>
-      <h3>Address</h3>
+      <h3>My Apartment</h3>
     </header>
 
     <section>
-      <p>{{myAddress}}</p>
+      <!-- <p>{{apartment[0].complexName}}</p>
+      <p>Address1: {{apartment[0].address.address1}}</p>
+      <p>Address2: {{apartment[0].address.address2}}</p>
+      <p>City: {{apartment[0].address.city}}</p>
+      <p>State: {{apartment[0].address.state}}</p>
+      <p>Zip: {{apartment[0].address.zipCode}}</p> -->
+
+      <p>{{myAddress.ApartmentNumber}}</p>
       <p>Address1: {{myAddress.Address1}}</p>
       <p>Address2: {{myAddress.Address2}}</p>
       <p>City: {{myAddress.City}}</p>
       <p>State: {{myAddress.State}}</p>
-      <p>Zip: {{myAddress.Zip}}</p>
+      <p>Zip: {{myAddress.ZipCode}}</p>
     </section>
   </article>
 </section> 
