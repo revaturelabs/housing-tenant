@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.Text;
 using HousingTenant.Data.Library.Abstract;
 using Microsoft.EntityFrameworkCore;
-using HousingTenant.Data.Library.AzModels;
 using System.Linq;
 
 namespace HousingTenant.Data.Library.DataModels
@@ -16,6 +15,7 @@ namespace HousingTenant.Data.Library.DataModels
         {
             _Context = context;
         }
+
         public override List<T> GetAll()
         {
             var list = _Context.Set<T>();
