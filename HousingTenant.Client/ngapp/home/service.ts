@@ -7,8 +7,15 @@ function failure (err) {
 h.factory('homeFactory', ['$http', function ($http) {
   return {
     getAddress: function (id: number, obj) {
-      $http.get('http://localhost:53948/api/address/getaddress' /*+ id*/ + '/').then(function (res) {
+      $http.get('http://housingtenantbusiness.azurewebsites.net/api/address/' /*+ id*/ + '/').then(function (res) {
         obj.getAddress(res);
+      }, failure);
+    }, 
+    getPerson: function (id: number, obj) {
+      $http.get('http://housingtenantbusiness.azurewebsites.net/api/person' /*+ id*/ + '/').then(function (res) {
+        console.log(res);
+        console.log(res.data[id].firstName);
+        obj.getPerson(res, id);
       }, failure);
     }, 
     getSuppliesPage: function () {
