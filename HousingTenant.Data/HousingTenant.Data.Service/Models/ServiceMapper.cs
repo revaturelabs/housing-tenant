@@ -19,7 +19,7 @@ namespace HousingTenant.Data.Service.Models
 
         public T MapToT(U obj)
         {
-            return tTou.CreateMapper ().Map<T> (obj);
+            return uTot.CreateMapper ().Map<T> (obj);
         }
     }
 }
