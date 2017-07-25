@@ -111,8 +111,9 @@ exports.home = home;
 
 Object.defineProperty(exports, "__esModule", { value: true });
 var ng = __webpack_require__(0);
+__webpack_require__(1);
 __webpack_require__(21);
-var supplyModule = ng.module('supplyModule', []);
+var supplyModule = ng.module('supplyModule', ['ngMaterial']);
 exports.supplyModule = supplyModule;
 
 
@@ -75977,13 +75978,11 @@ module_1.home.factory('homeFactory', ['$http', function ($http) {
 Object.defineProperty(exports, "__esModule", { value: true });
 var module_1 = __webpack_require__(3);
 __webpack_require__(22);
-var supplyController = module_1.supplyModule.controller('suppliesCtrl', ['$scope', 'supplyRequestListSvc', '$routeParams', function ($scope, supplyRequestListSvc, $routeParams) {
+var supplyController = module_1.supplyModule.controller('suppliesCtrl', ['$scope', 'supplyRequestListSvc', '$routeParams', '$mdDialog', function ($scope, supplyRequestListSvc, $routeParams, $mdDialog) {
         var requestModal = document.getElementById('AddRequestModal');
         var aptid = $routeParams.aptid;
         supplyRequestListSvc.getRequestList(aptid, $scope);
-        //delivers
         $scope.addRequest = function (form) {
-            console.log(form);
             var request = {
                 description: $scope.description,
                 initiator: 'Current User',
@@ -75995,20 +75994,18 @@ var supplyController = module_1.supplyModule.controller('suppliesCtrl', ['$scope
                     request.requestItems.push(form[element].$name);
                 }
             });
-            console.log(request);
             supplyRequestListSvc.postRequest(request);
-            $scope.closeModal();
+            $scope.cancel();
         };
-        $scope.openModal = function () {
-            requestModal.style.display = 'block';
+        $scope.openModal = function (event) {
+            $mdDialog.show({
+                contentElement: '#AddRequestModal',
+                parent: document.body,
+                targetEvent: event,
+            });
         };
-        $scope.closeModal = function () {
-            requestModal.style.display = 'none';
-        };
-        window.onclick = function (event) {
-            if (event.target == requestModal) {
-                requestModal.style.display = 'none';
-            }
+        $scope.cancel = function () {
+            $mdDialog.cancel();
         };
     }]);
 
