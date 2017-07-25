@@ -46,29 +46,58 @@
             <md-dialog-content layout-padding>
                <div class="md-dialog-content">
                   <form name="supplyRequest" ng-cloak>
-                     <md-input-container>
+                     <md-input-container class="md-block">
                         <label for="name">Description</label>
-                        <input type="text" id="description" name="description" ng-model="description">
-                     </md-input-container>
-                     <md-input-container>
-                        <label for="soap">Soap?</label>
-                        <input type="checkbox" id="soap" name="soap" ng-model="soap">
+                        <input type="text" >
                      </md-input-container>
                      <md-input-container class="md-block">
-                        <label for="tp">ToiletPaper?</label>
-                        <input type="checkbox" id="tp" name="toilet paper" ng-model="toiletPaper">
+                        <md-checkbox id="soap" name="soap" ng-model="soap">
+                           Hand Soap
+                        </md-checkbox>
+                     </md-input-container>
+                     <md-input-container class="md-block">
+                        <md-checkbox id="tp" name="toilet paper" ng-model="toiletPaper">
+                           Toilet Paper
+                        </md-checkbox>
+                     </md-input-container>
+                     <md-input-container class="md-block">
+                        <md-checkbox id="ptowel" name="paper towel" ng-model="paperTowels" s>
+                           Paper Towels
+                        </md-checkbox>
+                     </md-input-container>
+                     <md-input-container class="md-block">
+                        <md-checkbox id="dsoap" name="dish soap" ng-model="dishSoap">
+                           Dish Soap
+                        </md-checkbox>
+                     </md-input-container>
+                     <md-input-container class="md-block">
+                        <md-checkbox id="trash" name="trash bag" ng-model="trashBag">
+                           Trash Bags
+                        </md-checkbox>
+                     </md-input-container>
+                     <md-input-container class="md-block">
+                        <md-checkbox id="dish" name="dishwasher soap" ng-model="dishwasherSoap">
+                           Dishwasher Detergent
+                        </md-checkbox>
+                     </md-input-container>
+                     <md-input-container class="md-block">
+                        <md-checkbox id="sponge" name="sponge" ng-model="sponge">
+                           Sponges
+                        </md-checkbox>
                      </md-input-container>
 
+
+                     <!--
                      <label for="ptowel">PaperTowels?</label>
-                     <input type="checkbox" id="ptowel" name="paper towel" ng-model="paperTowels">
-                     <label for="dsoap">DishSoap?</label>
-                     <input type="checkbox" id="dsoap" name="dish soap" ng-model="dishSoap">
-                     <label for="trash">TrashBags?</label>
+                     <input type="checkbox" id="ptowel" name="paper towel" ng-model="paperTowels">-->
+                     <!--<label for="dsoap">DishSoap?</label>
+                     <input type="checkbox" id="dsoap" name="dish soap" ng-model="dishSoap">-->
+                     <!--<label for="trash">TrashBags?</label>
                      <input type="checkbox" id="trash" name="trash bag" ng-model="trashBag">
                      <label for="dish">DishwasherDetergent?</label>
                      <input type="checkbox" id="dish" name="dishwasher soap" ng-model="dishwasherSoap">
                      <label for="sponge">Sponges?</label>
-                     <input type="checkbox" id="sponge" name="sponge" ng-model="sponge">
+                     <input type="checkbox" id="sponge" name="sponge" ng-model="sponge">-->
                   </form>
                </div>
             </md-dialog-content>
