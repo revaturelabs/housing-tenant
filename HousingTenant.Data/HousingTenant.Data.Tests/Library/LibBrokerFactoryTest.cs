@@ -9,12 +9,12 @@ namespace HousingTenant.Data.Tests.Library
     [TestFixture]
     public class LibBrokerFactoryTest
     {
-        [Test]
+        /*[Test]
         public void GetBrokerTest()
         {
             var actual = new BrokerFactory<Object> ().Create ();
 
             Assert.IsNotNull (actual);
-        }
+        }*/
     }
 }

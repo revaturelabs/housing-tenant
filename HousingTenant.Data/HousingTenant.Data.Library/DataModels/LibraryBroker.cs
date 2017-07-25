@@ -2,18 +2,25 @@
 using System.Collections.Generic;
 using System.Text;
 using HousingTenant.Data.Library.Abstract;
+using Microsoft.EntityFrameworkCore;
+using System.Linq;
 
 namespace HousingTenant.Data.Library.DataModels
 {
-    public class LibraryBroker<T> : ABroker<T> where T : new()
+    public class LibraryBroker<T> : ABroker<T> where T : class
     {
+        private DbContext _Context;
+
+        public LibraryBroker(DbContext context)
+        {
+            _Context = context;
+        }
+
         public override List<T> GetAll()
         {
-            var list = new List<T> ();
+            var list = _Context.Set<T>();
 
-            list.Add (new T ());
-
-            return list;
+            return list.ToList();
         }
 
         public override bool Create(T obj)

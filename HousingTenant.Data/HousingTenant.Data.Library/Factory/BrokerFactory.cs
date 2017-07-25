@@ -2,14 +2,15 @@
 using System.Collections.Generic;
 using System.Text;
 using HousingTenant.Data.Library.DataModels;
+using Microsoft.EntityFrameworkCore;
 
 namespace HousingTenant.Data.Library.Factory
 {
-    public class BrokerFactory<T> where T : new()
+    public class BrokerFactory<T> where T : class
     {
-        public LibraryBroker<T> Create()
+        public LibraryBroker<T> CreateLibBroker(DbContext context)
         {
-            return new LibraryBroker<T> ();
+            return new LibraryBroker<T> (context);
         }
     }
 }

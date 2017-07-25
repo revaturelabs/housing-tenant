@@ -10,12 +10,12 @@ namespace HousingTenant.Data.Tests.Service
     [TestFixture]
     public class BrokerFactoryTest
     {
-        [Test]
+        /*[Test]
         public void GetBrokerTest()
         {
             var actual = new BrokerFactory<RequestDAO,Object>().Create();
 
             Assert.IsNotNull (actual);
-        }
+        }*/
     }
 }

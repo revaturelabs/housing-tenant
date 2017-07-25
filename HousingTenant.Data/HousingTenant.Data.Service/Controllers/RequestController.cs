@@ -14,7 +14,6 @@ namespace HousingTenant.Data.Service.Controllers
     [Route("api/[controller]")]
     public class RequestController : Controller
     {
-        private static IBroker<RequestDAO> srb = new BrokerFactory<RequestDAO,Request> ().Create ();
 
         [HttpGet]
         public List<RequestDAO> Get()
@@ -27,7 +26,7 @@ namespace HousingTenant.Data.Service.Controllers
         [HttpPost]
         public bool Post([FromBody]RequestDAO value)
         {
-            return srb.Create (value);
+            return true;
         }
     }
 }
