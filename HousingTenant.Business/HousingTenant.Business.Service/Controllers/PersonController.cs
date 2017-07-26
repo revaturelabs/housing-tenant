@@ -24,29 +24,23 @@ namespace HousingTenant.Business.Service.Controllers
 
         // GET: api/persons
         [HttpGet]
-        public List<IPerson> Get()
-        //public async Task<List<Person>> Get()
+        public async Task<List<Person>> Get()
         {
-         //var persons = await client.GetAsync("person", HttpCompletionOption.ResponseContentRead);
-         //var personList = JsonConvert.DeserializeObject<List<Person>>(persons.Content.ReadAsStringAsync().Result);
+            var persons = await client.GetAsync("person", HttpCompletionOption.ResponseContentRead);
+            var personList = JsonConvert.DeserializeObject<List<Person>>(persons.Content.ReadAsStringAsync().Result);
 
-         //return personList;
-         return _ServiceManager.GetPersons();
+            return personList;
         }
 
         // GET api/person/5
-        //[HttpGet]
         [HttpGet("id")]
-        public IPerson Get([FromQuery]string id)
-        //public async Task<Person> Get([FromQuery]string id)
+        public async Task<Person> Get([FromQuery]string id)
         {
-         //var uri = string.Format("{0}/{1}", "person", id);
-         //var person = await client.GetAsync(uri, HttpCompletionOption.ResponseContentRead);
-         //var deserializedPerson = JsonConvert.DeserializeObject<Person>(person.Content.ReadAsStringAsync().Result);
+            var uri = string.Format("{0}/{1}", "person", id);
+            var person = await client.GetAsync(uri, HttpCompletionOption.ResponseContentRead);
+            var deserializedPerson = JsonConvert.DeserializeObject<Person>(person.Content.ReadAsStringAsync().Result);
 
-         //return deserializedPerson;
-
-         return _ServiceManager.GetPerson(id);
+            return deserializedPerson;
         }
         
         // Get api/persons/address
