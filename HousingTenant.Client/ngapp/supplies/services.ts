@@ -4,7 +4,7 @@ var supplyService = sm.factory('supplyRequestService', ['$http', function ($http
       return {
             getRequestList: function (aptidstring, scope) {
                   console.log(aptidstring);
-                  $http.get('http://housingtenantbusiness.azurewebsites.net/api/request/id', { params: aptidstring }).then(
+                  $http.get('http://housingtenantbusiness.azurewebsites.net/api/request/id?='+ aptidstring).then(
                         function (res) {
                               console.log(res.data);
                               scope.reqList = [];

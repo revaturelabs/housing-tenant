@@ -105,6 +105,30 @@ var appartmentService = am.factory('aptFactory', ['$http', function ($http) {
                console.log(scope.apartment);
             }
          );
+      },
+      getApartmentByGuid: function (scope, aptguid) {
+         $http.get('http://housingtenantbusiness.azurewebsites.net/api/apartment/id?=' + aptguid).then(
+            function (res) {
+               scope.apartment = res.data;
+               scope.supplyReq = 0;
+               scope.maintenanceReq = 0;
+               scope.complaintReq = 0;
+               scope.apartment.requests.forEach(element => {
+                  if (element.type == 1) {
+                     scope.supplyReq++;
+                     console.log(scope.maintenanceReq);
+                  } else if (element.type == 2) {
+                     scope.maintenanceReq++;
+                     console.log(scope.maintenanceReq);
+                  } else {
+                     scope.complaintReq++;
+                     console.log(scope.complaintReq);
+                  };
+               });
+               console.log(scope.apartment);
+            }, function (err) {
+               console.log(err);
+            });
       }
    };
 }]);

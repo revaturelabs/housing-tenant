@@ -219,6 +219,32 @@ var appartmentService = module_1.apartmentModule.factory('aptFactory', ['$http',
                     scope.apartment.guid = '03ae80e1-7227-48ef-8f76-30f5ebf6d89d';
                     console.log(scope.apartment);
                 });
+            },
+            getApartmentByGuid: function (scope, aptguid) {
+                $http.get('http://housingtenantbusiness.azurewebsites.net/api/apartment/id?=' + aptguid).then(function (res) {
+                    scope.apartment = res.data;
+                    scope.supplyReq = 0;
+                    scope.maintenanceReq = 0;
+                    scope.complaintReq = 0;
+                    scope.apartment.requests.forEach(function (element) {
+                        if (element.type == 1) {
+                            scope.supplyReq++;
+                            console.log(scope.maintenanceReq);
+                        }
+                        else if (element.type == 2) {
+                            scope.maintenanceReq++;
+                            console.log(scope.maintenanceReq);
+                        }
+                        else {
+                            scope.complaintReq++;
+                            console.log(scope.complaintReq);
+                        }
+                        ;
+                    });
+                    console.log(scope.apartment);
+                }, function (err) {
+                    console.log(err);
+                });
             }
         };
     }]);
@@ -76176,7 +76202,7 @@ var supplyService = module_1.supplyModule.factory('supplyRequestService', ['$htt
         return {
             getRequestList: function (aptidstring, scope) {
                 console.log(aptidstring);
-                $http.get('http://housingtenantbusiness.azurewebsites.net/api/request/id', { params: aptidstring }).then(function (res) {
+                $http.get('http://housingtenantbusiness.azurewebsites.net/api/request/id?=' + aptidstring).then(function (res) {
                     console.log(res.data);
                     scope.reqList = [];
                     res.data.forEach(function (element) {
@@ -76311,7 +76337,7 @@ var module_1 = __webpack_require__(6);
 var maintenanceService = module_1.maintenanceModule.factory('maintenanceRequestService', ['$http', function ($http) {
         return {
             getRequestList: function (aptguid, scope) {
-                $http.get('http://housingtenantbusiness.azurewebsites.net/api/request', { params: aptguid }).then(function (res) {
+                $http.get('http://housingtenantbusiness.azurewebsites.net/api/request/id?=' + aptguid).then(function (res) {
                     scope.reqList = [];
                     res.data.forEach(function (element) {
                         if (element.type === 1) {
