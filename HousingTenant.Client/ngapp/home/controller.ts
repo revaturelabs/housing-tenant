@@ -2,20 +2,7 @@ import { home as h } from './module';
 import './service';
 import '../apartment/service';
 
-class Person {
-  FirstName: string;
-  LastName: string;
 
-  constructor(){
-    this.FirstName = 'John';
-    this.LastName = 'Doe';
-  }
-  
-  getPerson(res: any, id: number){
-    this.FirstName = res.data[id].firstName;
-    this.LastName = res.data[id].lastName;
-  }
-}
 
 class Address {
   Address1: string;
@@ -33,26 +20,35 @@ class Address {
   }
 
   getAddress(res: any){
-    this.Address1 = res.data.Address1;
-    this.Address2 = res.data.Address2;
-    this.City = res.data.City;
-    this.State = res.data.State;
-    this.Zip = res.data.Zip;
+    this.Address1 = res.address1;
+    this.Address2 = res.address2;
+    this.City = res.city;
+    this.State = res.state;
+    this.Zip = res.zipCode;
   }
 }
 
+class Person {
+  FirstName: string;
+  LastName: string;
+  Address: Address;
+
+  constructor(){
+    this.FirstName = 'John';
+    this.LastName = 'Doe';
+  }
   
+  getPerson(res: any, id: number, address: Address){
+    this.FirstName = res.data[id].firstName;
+    this.LastName = res.data[id].lastName;
+    address.getAddress(res.data[id].address);
+    this.Address = address;
+  }
+}
 
 var myController = h.controller('homeController', ['$scope', 'homeFactory', 'aptFactory', '$http', function ($scope, homeFactory, aptFactory, $http) {
 
-  $scope.myAddress = {
-   Address1: "2100 Wilkes Court",
-   Address2: "",
-   ApartmentNumber: "102",
-   City: "Herndon",
-   State: "Virgina",
-   ZipCode: "20105"
-  };
+  $scope.myAddress = new Address();
   
   $scope.myPerson = new Person();
 
@@ -72,11 +68,11 @@ var myController = h.controller('homeController', ['$scope', 'homeFactory', 'apt
   }
 
   $scope.processPerson = function(id){
-    homeFactory.getPerson(id, $scope.myPerson);
+    homeFactory.getPerson(id, $scope.myPerson, $scope.myAddress);
   }
 
   $scope.init = function(){
-    $scope.processPerson(0);
+    $scope.processPerson(1);
   }
 
   aptFactory.getApartment($scope, $scope.myAddress);
