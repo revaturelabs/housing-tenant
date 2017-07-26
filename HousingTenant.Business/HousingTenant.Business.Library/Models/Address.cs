@@ -26,7 +26,12 @@ namespace HousingTenant.Business.Library.Models
             }
             return -1;
         }
-      
+
+        public bool IsValid()
+        {
+            return Address1 != null && ApartmentNumber != null && City != null && State != null && ZipCode != null;
+        }
+
         public override string ToString()
         {
             return string.Format("{0} {1} {2} {3} {4}",

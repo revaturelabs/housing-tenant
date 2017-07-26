@@ -6,72 +6,123 @@ using System.Collections.Generic;
 namespace HousingTenant.Business.Service.Mappers
 {
     public class BusinessServiceMapper
-    {
+   {
 
-        public ARequest MapToARequest(RequestDTO requestDto)
-        {
-            ARequest request = null;
-            if (requestDto != null)
+      public ARequest MapToARequest(RequestDTO requestDto)
+      {
+         ARequest request = null;
+         if (requestDto != null)
+         {
+            switch (requestDto.Type)
             {
-                switch (requestDto.Type)
-                {
-                   case 0:
-                      request = new ComplaintRequest
-                      {
-                          Accused = requestDto.Accused
-                      };
-                      break;
-                   case 1:
-                      request = new MaintenanceRequest ();
-                      break;
-                   case 2:
-                      request = new MoveRequest
-                      {
-                          RequestedApartmentAddress = requestDto.RequestedApartmentAddress
-                      };
-                      break;
-                   case 3:
-                      request = new SupplyRequest
-                      {
-                          RequestItems = requestDto.RequestItems
-                      };
-                      break;
-                }
-                request.RequestId = requestDto.RequestId;
-                request.Initiator = requestDto.Initiator;
-                request.Description = requestDto.Description;
-                request.DateSubmitted = requestDto.DateSubmitted;
-                request.DateModified = requestDto.DateModified;
-                request.Status = requestDto.Status;
-                request.Urgent = requestDto.Urgent;
+               case 0:
+                  request = new ComplaintRequest
+                  {
+                     Accused = requestDto.Accused
+                  };
+                  break;
+               case 1:
+                  request = new MaintenanceRequest();
+                  break;
+               case 2:
+                  request = new MoveRequest
+                  {
+                     RequestedApartmentAddress = requestDto.RequestedApartmentAddress
+                  };
+                  break;
+               case 3:
+                  request = new SupplyRequest
+                  {
+                     RequestItems = requestDto.RequestItems
+                  };
+                  break;
             }
-            return request;
-        }
+            request.RequestId = requestDto.RequestId;
+            request.Initiator = requestDto.Initiator;
+            request.Description = requestDto.Description;
+            request.DateSubmitted = requestDto.DateSubmitted;
+            request.DateModified = requestDto.DateModified;
+            request.Status = requestDto.Status;
+            request.Urgent = requestDto.Urgent;
+         }
+         return request;
+      }
 
-        public List<ARequest> MapToARequestList(List<RequestDTO> dtorequests)
-        {
-            var requests = new List<ARequest>();
-            if (dtorequests != null)
+      public RequestDTO MapToRequestDTO(ARequest arequest)
+      {
+         RequestDTO requestdto = new RequestDTO();
+         if (arequest != null)
+         {
+            if (arequest is ComplaintRequest)
             {
-                foreach (var r in dtorequests)
-                {
-                    requests.Add(MapToARequest(r));
-                }
+               requestdto.Type = 0;
+               requestdto.Accused = (Person)((ComplaintRequest)arequest).Accused;
             }
-            return requests;
-        }
+            else if (arequest is MaintenanceRequest)
+            {
+               requestdto.Type = 1;
+            }
+            else if (arequest is MoveRequest)
+            {
+               requestdto.Type = 2;
+               requestdto.RequestedApartmentAddress = ((MoveRequest)arequest).RequestedApartmentAddress;
+            }
+            else
+            {
+               requestdto.Type = 3;
+               requestdto.RequestItems = ((SupplyRequest)arequest).RequestItems;
+            }
+            requestdto.ApartmentId = arequest.ApartmentId;
+            requestdto.Initiator = (Person)arequest.Initiator;
+            requestdto.Description = arequest.Description;
+            requestdto.DateModified = arequest.DateModified;
+            requestdto.DateSubmitted = arequest.DateSubmitted;
+            requestdto.RequestId = arequest.RequestId;
+            requestdto.Status = arequest.Status;
+            requestdto.Urgent = arequest.Urgent;
+         }
 
-        public List<IPerson> MapToIPersonList(List<Person> persons)
-        {
-            var ipersons = new List<IPerson>();
-            if (persons != null)
+         return requestdto;
+      }
+
+      public List<RequestDTO> MapToRequestDTOList(List<ARequest> requestList)
+      {
+         var RequestDTOList = new List<RequestDTO>();
+         if (requestList != null)
+         {
+            foreach (var request in requestList)
             {
-                foreach (var p in persons)
-                {
-                   ipersons.Add(p);
-                }
+               RequestDTOList.Add(MapToRequestDTO(request));
             }
-            return ipersons;
-        }
-    }
+         }
+
+         return RequestDTOList;
+      }
+
+      public List<ARequest> MapToARequestList(List<RequestDTO> dtorequests)
+      {
+         var requests = new List<ARequest>();
+         if (dtorequests != null)
+         {
+            foreach (var r in dtorequests)
+            {
+               requests.Add(MapToARequest(r));
+            }
+         }
+         return requests;
+      }
+
+      public List<IPerson> MapToIPersonList(List<Person> persons)
+      {
+         var ipersons = new List<IPerson>();
+         if (persons != null)
+         {
+            foreach (var p in persons)
+            {
+               ipersons.Add(p);
+            }
+         }
+         return ipersons;
+      }
+   }
 }

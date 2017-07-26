@@ -20,54 +20,67 @@ namespace HousingTenant.Business.Service.Controllers
       HttpClient client = new HttpClient { BaseAddress = new Uri("https://housingtenantdata.azurewebsites.net/api/") };
       LibraryManager _LibraryManager = new LibraryManager();
       BusinessServiceMapper ServiceMapper = new BusinessServiceMapper();
+      ServiceManager _ServiceManager = new ServiceManager();
 
       // GET: api/values
       [HttpGet]
-      public async Task<List<RequestDTO>> Get()
+      public List<RequestDTO> Get()
+      //public async Task<List<RequestDTO>> Get()
       {
-         var requests = await client.GetAsync("request", HttpCompletionOption.ResponseContentRead);
-         var requestDtos = JsonConvert.DeserializeObject<List<RequestDTO>>(requests.Content.ReadAsStringAsync().Result);
+         //var requests = await client.GetAsync("request", HttpCompletionOption.ResponseContentRead);
+         //var requestDtos = JsonConvert.DeserializeObject<List<RequestDTO>>(requests.Content.ReadAsStringAsync().Result);
 
-         return requestDtos;
+         //return requestDtos;
+         return ServiceMapper.MapToRequestDTOList(_ServiceManager.GetRequests());
       }
 
       [Route("id")]
-      public async Task<RequestDTO> Get([FromQuery]string id)
+      public RequestDTO Get([FromQuery]string id)
+      //public async Task<RequestDTO> Get([FromQuery]string id)
       {
-         var uri = string.Format("{0}/{1}", "request", id);
-         var request = await client.GetAsync(uri, HttpCompletionOption.ResponseContentRead);
-         var requestDto = JsonConvert.DeserializeObject<RequestDTO>(request.Content.ReadAsStringAsync().Result);
+         //var uri = string.Format("{0}/{1}", "request", id);
+         //var request = await client.GetAsync(uri, HttpCompletionOption.ResponseContentRead);
+         //var requestDto = JsonConvert.DeserializeObject<RequestDTO>(request.Content.ReadAsStringAsync().Result);
 
-         return requestDto;
+         //return requestDto;
+         return ServiceMapper.MapToRequestDTO(_ServiceManager.GetRequest(id));
       }
 
       [HttpGet]
       [Route("address")]
-      public async Task<List<RequestDTO>> Get([FromBody] Address address)
+      public List<RequestDTO> Get([FromBody]Address address)
+      //public async Task<List<RequestDTO>> Get([FromBody] Address address)
       {
-         var uri = string.Format("{0}/{1}", "request", address);
-         var requests = await client.GetAsync(uri, HttpCompletionOption.ResponseContentRead);
-         var requestDtos = JsonConvert.DeserializeObject<List<RequestDTO>>(requests.Content.ReadAsStringAsync().Result);
+         //if (address.IsValid())
+         //{
+         //    var uri = string.Format("{0}/{1}", "request", address);
+         //    var requests = await client.GetAsync(uri, HttpCompletionOption.ResponseContentRead);
+         //    var requestDtos = JsonConvert.DeserializeObject<List<RequestDTO>>(requests.Content.ReadAsStringAsync().Result);
 
-         return requestDtos;
+         //    return requestDtos;
+         //}
+         //return new List<RequestDTO>();
+         return ServiceMapper.MapToRequestDTOList(_ServiceManager.GetRequests(address));
       }
 
       // POST api/values
       [HttpPost]
       public void Post([FromBody]RequestDTO request)
       {
-         var vARequest = _LibraryManager.ValidateRequest(ServiceMapper.MapToARequest(request));
-         if (vARequest != null)
-         {
-            client.PostAsJsonAsync("request", vARequest);
-         }
+         //var vARequest = _LibraryManager.ValidateRequest(ServiceMapper.MapToARequest(request));
+         //if (vARequest != null)
+         //{
+         //   client.PostAsJsonAsync("request", vARequest);
+         //}
+         _ServiceManager.AddRequest(ServiceMapper.MapToARequest(request));
       }
 
        // POST api/values
        [HttpPost("{ComplaintRequest}")]
-       public void Post([FromBody]ComplaintRequest request)
+       [Route("complaintrequest")]
+       public void PostComplaintRequest([FromBody]RequestDTO request)
        {
-            var vARequest = _LibraryManager.ValidateRequest(request);
+           var vARequest = _LibraryManager.ValidateRequest(ServiceMapper.MapToARequest(request));
            if (vARequest != null)
            {
                client.PostAsJsonAsync("request", vARequest);
@@ -76,9 +89,10 @@ namespace HousingTenant.Business.Service.Controllers
 
       // POST api/values
       [HttpPost("{MaintenaneRequest}")]
-      public void Post([FromBody]MaintenanceRequest request)
+      [Route("maintenancerequest")]
+      public void PostMaintenanceRequest([FromBody]RequestDTO request)
       {
-         var vARequest = _LibraryManager.ValidateRequest(request);
+         var vARequest = _LibraryManager.ValidateRequest(ServiceMapper.MapToARequest(request));
          if (vARequest != null)
          {
             client.PostAsJsonAsync("request", vARequest);
@@ -87,9 +101,10 @@ namespace HousingTenant.Business.Service.Controllers
 
       // POST api/values
       [HttpPost("{MoveRequest}")]
-      public void Post([FromBody]MoveRequest request)
+      [Route("moverequest")]
+      public void PostMoveRequest([FromBody]RequestDTO request)
       {
-         var vARequest = _LibraryManager.ValidateRequest(request);
+         var vARequest = _LibraryManager.ValidateRequest(ServiceMapper.MapToARequest(request));
          if (vARequest != null)
          {
             client.PostAsJsonAsync("request", vARequest);
@@ -98,9 +113,10 @@ namespace HousingTenant.Business.Service.Controllers
 
       // POST api/values
       [HttpPost("{SupplyRequest}")]
-      public void Post([FromBody]SupplyRequest request)
+      [Route("supplyrequest")]
+      public void PostSupplyRequest([FromBody]RequestDTO request)
       {
-         var vARequest = _LibraryManager.ValidateRequest(request);
+         var vARequest = _LibraryManager.ValidateRequest(ServiceMapper.MapToARequest(request));
          if (vARequest != null)
          {
             client.PostAsJsonAsync("request", vARequest);
@@ -108,7 +124,7 @@ namespace HousingTenant.Business.Service.Controllers
       }
 
       // PUT api/values/5
-      [HttpPut("{id}")]
+      [HttpPut]
       public void Put(int id, [FromBody]RequestDTO request)
       {
          var vARequest = _LibraryManager.ValidateRequest(ServiceMapper.MapToARequest(request));
@@ -119,10 +135,10 @@ namespace HousingTenant.Business.Service.Controllers
       }
 
       // DELETE api/values/5
-      [HttpDelete("{id}")]
+      [HttpDelete]
       public void Delete(string id)
       {
-         client.DeleteAsync(id);
+         client.DeleteAsync("request/" + id);
       }
    }
 }

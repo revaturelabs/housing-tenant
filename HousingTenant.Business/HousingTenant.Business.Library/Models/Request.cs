@@ -7,6 +7,7 @@ namespace HousingTenant.Business.Library.Models
     public abstract class ARequest : IComparable<ARequest>
     {
         public bool Urgent { get; set; }
+        public string ApartmentId { get; set; }
         public string RequestId { get; set; }
         public string Description { get; set; }
         public Person Initiator { get; set; }
