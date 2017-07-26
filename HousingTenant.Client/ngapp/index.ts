@@ -29,15 +29,15 @@ ngHousingTenant.config(['$routeProvider', '$locationProvider', function ($routeP
       controller: 'homeController',
       templateUrl: 'ngapp/home/partials/template.html'
     })
-    .when('/supplies/:aptid', {
+    .when('/supplies/:aptguid', {
       controller: 'suppliesCtrl',
       templateUrl: 'ngapp/supplies/partials/template.html'
     })
-    .when('/maintenance/:aptid', {
+    .when('/maintenance/:aptguid', {
       controller: 'maintenanceCtrl',
       templateUrl: 'ngapp/maintenance/partials/template.html'
     })
-    .when('/complaints/:aptid', {
+    .when('/complaints/:aptguid', {
       controller: 'complaintsCtrl',
       templateUrl: 'ngapp/complaints/partials/template.html'
     })
