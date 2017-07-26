@@ -41,6 +41,9 @@ namespace HousingTenant.Data.Service.Controllers
                            DateModified = r.DateModified,
                            DateSubmitted = r.DateSubmitted,
                            Initiator = p.Personguid,
+                           PersonIdAccused = (from p2 in Person
+                                              where p2.PersonId == r.PersonIdAccused
+                                              select p2.Personguid).ToList(),
                            Status = stat.Status1,
                            Description = r.Description,
                            RequestItems = (from r2 in req

@@ -14,7 +14,7 @@ namespace HousingTenant.Data.Service.Models
         public bool IsUrgent { get; set; }
         public Guid Initiator { get; set; }
         public DateTime DateSubmitted { get; set; }
-        public Guid? PersonIdAccused { get; set; }
+        public List<Guid> PersonIdAccused { get; set; }
         public string Description { get; set; }
         public DateTime? DateModified { get; set; }
         public string Status { get; set; }
