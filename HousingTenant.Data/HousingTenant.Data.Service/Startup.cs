@@ -8,6 +8,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using HousingTenant.Data.Library.AzModels;
+using Newtonsoft.Json.Serialization;
 
 namespace HousingTenant.Data.Service
 {
@@ -35,7 +36,10 @@ namespace HousingTenant.Data.Service
             services.AddCors(o => o.AddPolicy("default", b => b.AllowAnyOrigin().AllowAnyHeader().AllowAnyMethod().AllowCredentials().SetPreflightMaxAge(TimeSpan.FromSeconds(2520))));
             services.AddSingleton(Configuration);
             services.AddDbContext<HousingTenantDBContext>();
-            services.AddMvc();
+            services.AddMvc()
+                .AddJsonOptions(config => {
+                    config.SerializerSettings.ContractResolver = new CamelCasePropertyNamesContractResolver();
+                });
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
