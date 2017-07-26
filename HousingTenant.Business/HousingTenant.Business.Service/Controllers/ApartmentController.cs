@@ -24,37 +24,32 @@ namespace HousingTenant.Business.Service.Controllers
 
       // GET: api/values
         [HttpGet]
-        public List<IApartment> Get()
-        //public async Task<List<Apartment>> Get()
+        public async Task<List<Apartment>> Get()
         {
-         //var apartments = await client.GetAsync("apartment", HttpCompletionOption.ResponseContentRead);
-         //var ApartmentList = JsonConvert.DeserializeObject<List<Apartment>>(apartments.Content.ReadAsStringAsync().Result);
+            var apartments = await client.GetAsync("apartment", HttpCompletionOption.ResponseContentRead);
+            var ApartmentList = JsonConvert.DeserializeObject<List<Apartment>>(apartments.Content.ReadAsStringAsync().Result);
 
-         //return ApartmentList;
-         return _ServiceManager.GetApartments();
+            return ApartmentList;
         }
         
         [Route("id")]
-        public IApartment Get([FromQuery]string id)
-        //public async Task<IApartment> Get([FromQuery]string id)
+        public async Task<IApartment> Get([FromQuery]string id)
         {
-         //var uri = string.Format("apartment/{0}", id);
-         //var aRequest = await client.GetAsync(uri, HttpCompletionOption.ResponseContentRead);
-         //var emptyApartment = JsonConvert.DeserializeObject<Apartment>(aRequest.Content.ReadAsStringAsync().Result);
+            var uri = string.Format("apartment/{0}", id);
+            var aRequest = await client.GetAsync(uri, HttpCompletionOption.ResponseContentRead);
+            var emptyApartment = JsonConvert.DeserializeObject<Apartment>(aRequest.Content.ReadAsStringAsync().Result);
 
-         //var personUrl = string.Format("person/{0}", emptyApartment.Address);
-         //var pRequest = await client.GetAsync(personUrl, HttpCompletionOption.ResponseContentRead);
-         //var persons = JsonConvert.DeserializeObject<List<Person>>(pRequest.Content.ReadAsStringAsync().Result);
+            var personUrl = string.Format("person/{0}", emptyApartment.Address);
+            var pRequest = await client.GetAsync(personUrl, HttpCompletionOption.ResponseContentRead);
+            var persons = JsonConvert.DeserializeObject<List<Person>>(pRequest.Content.ReadAsStringAsync().Result);
 
-         //var requestUrl = string.Format("request/{0}", emptyApartment.Address);
-         //var rRequest = await client.GetAsync(requestUrl, HttpCompletionOption.ResponseContentRead);
-         //var requests = JsonConvert.DeserializeObject<List<RequestDTO>>(rRequest.Content.ReadAsStringAsync().Result);
+            var requestUrl = string.Format("request/{0}", emptyApartment.Address);
+            var rRequest = await client.GetAsync(requestUrl, HttpCompletionOption.ResponseContentRead);
+            var requests = JsonConvert.DeserializeObject<List<RequestDTO>>(rRequest.Content.ReadAsStringAsync().Result);
 
-         //var apartment = _LibraryManager.PackApartment(emptyApartment, ServiceMapper.MapToIPersonList(persons), ServiceMapper.MapToARequestList(requests));
+            var apartment = _LibraryManager.PackApartment(emptyApartment, ServiceMapper.MapToIPersonList(persons), ServiceMapper.MapToARequestList(requests));
 
-         //return apartment as Apartment;
-
-         return _ServiceManager.GetApartment(id);
+            return apartment as Apartment;
       }
 
         [HttpGet]
