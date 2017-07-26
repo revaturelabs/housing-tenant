@@ -178,6 +178,12 @@ namespace HousingTenant.Data.Library.AzModels
 
                 entity.Property(e => e.StatusId).HasDefaultValueSql("1");
 
+                entity.HasOne(d => d.Apartment)
+                    .WithMany(p => p.Request)
+                    .HasForeignKey(d => d.ApartmentId)
+                    .OnDelete(DeleteBehavior.Restrict)
+                    .HasConstraintName("FK_Request_Request_ApartmentId");
+
                 entity.HasOne(d => d.InitiatorNavigation)
                     .WithMany(p => p.RequestInitiatorNavigation)
                     .HasForeignKey(d => d.Initiator)
@@ -209,8 +215,6 @@ namespace HousingTenant.Data.Library.AzModels
             modelBuilder.Entity<Status>(entity =>
             {
                 entity.ToTable("Status", "Request");
-
-                entity.Property(e => e.StatusId).ValueGeneratedNever();
 
                 entity.Property(e => e.Active).HasDefaultValueSql("1");
 
