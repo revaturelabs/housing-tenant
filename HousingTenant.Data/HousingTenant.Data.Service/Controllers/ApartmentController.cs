@@ -72,14 +72,22 @@ namespace HousingTenant.Data.Service.Controllers
                                 ZipCode = add.Zip
                             }
                         });
-            return list.ToList()[0];
+
+            var output = new ApartmentDAO();
+
+            if(list.ToList().Count > 0)
+            {
+                output = list.ToList ()[0];
+            }
+
+            return output;
         }
 
         // POST api/values
         [HttpPost]
         public bool Post([FromBody]ApartmentDAO value)
         {
-            return value.Address != null;
+            return value.Address.Address1 != null;
         }
     }
 }
