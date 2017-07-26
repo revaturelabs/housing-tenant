@@ -10,8 +10,8 @@ namespace HousingTenant.Business.Service
    {
       static List<string> supplyList = new List<string> { "Soap", "Dishwashing Liquid", "Scruby Pad", "Paper Towel", "Toilet Paper" };
 
-      static Address address1 = new Address { Address1 = "7 James Ave.", ApartmentNumber = "2A", City = "Reston", State = "VA", ZipCode = "12345" };
-      static Address address2 = new Address { Address1 = "7 James Ave.", ApartmentNumber = "2B", City = "Reston", State = "VA", ZipCode = "12345" };
+      static Address address1 = new Address { Address1 = "2100 Wilkes Court", ApartmentNumber = "102", City = "Herndon", State = "Virginia", ZipCode = "20170" };
+      static Address address2 = new Address { Address1 = "2100 Wilkes Court", ApartmentNumber = "101", City = "Herndon", State = "Virginia", ZipCode = "20170" };
       static Address address3 = new Address { Address1 = "7 James Ave.", ApartmentNumber = "2C", City = "Reston", State = "VA", ZipCode = "12345" };
       static Address address4 = new Address { Address1 = "7 James Ave.", ApartmentNumber = "2D", City = "Reston", State = "VA", ZipCode = "12345" };
 
