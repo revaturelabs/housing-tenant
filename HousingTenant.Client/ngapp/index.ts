@@ -10,6 +10,8 @@ import './home/controller';
 import './supplies/controllers';
 import './apartment/controller';
 import './maintenance/controller';
+import './complaints/controller';
+
 //importing HTML
 import 'file-loader?name=[name].[ext]&outputPath=html/!./html/footer.html';
 import 'file-loader?name=[name].[ext]&outputPath=html/!./html/navbar.html';
@@ -17,7 +19,7 @@ import 'file-loader?name=[name].[ext]&outputPath=html/!./html/sidebar.html';
 //Testing GITLAB
 //Testing Bundle
 
-var ngHousingTenant = ng.module('ngHousingTenant', ['ngRoute', 'ngMaterial','ngHome', 'supplyModule', 'aptModule', 'maintenanceModule']);
+var ngHousingTenant = ng.module('ngHousingTenant', ['ngRoute', 'ngMaterial', 'ngHome', 'supplyModule', 'aptModule', 'maintenanceModule', 'complaintModule']);
 
 ngHousingTenant.config(['$routeProvider', '$locationProvider', function ($routeProvider, $locationProvider) {
   $routeProvider
@@ -38,7 +40,7 @@ ngHousingTenant.config(['$routeProvider', '$locationProvider', function ($routeP
       templateUrl: 'ngapp/maintenance/partials/template.html'
     })
     .when('/complaints/:aptguid', {
-      controller: 'complaintsCtrl',
+      controller: 'complaintCtrl',
       templateUrl: 'ngapp/complaints/partials/template.html'
     })
     .otherwise({

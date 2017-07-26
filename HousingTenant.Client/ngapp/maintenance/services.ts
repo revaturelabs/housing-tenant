@@ -3,7 +3,7 @@ import { maintenanceModule as mm } from './module';
 var maintenanceService = mm.factory('maintenanceRequestService', ['$http', function ($http) {
   return {
     getRequestList: function (aptguid, scope) {
-      $http.get('http://housingtenantbusiness.azurewebsites.net/api/request/id', { params: aptguid }).then(
+      $http.get('http://housingtenantbusiness.azurewebsites.net/api/request/id?=' + aptguid).then(
         function (res) {
           scope.reqList = [];
           res.data.forEach(element => {
