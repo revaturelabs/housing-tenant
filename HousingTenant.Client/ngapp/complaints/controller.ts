@@ -21,8 +21,9 @@ var complaintController = cm.controller('complaintCtrl', ['aptFactory', 'complai
    aptFactory.getApartment($scope, address);
 
    $scope.addComplaintRequest = function (form) {
+      console.log(form);
       var request = {
-         accused: form.accussed.$modelValue,
+         accused: form.accused.$modelValue,
          description: form.description.$modelValue,
          initiator: 'Current User',
          datesubmitted: Date.now(),
@@ -30,7 +31,6 @@ var complaintController = cm.controller('complaintCtrl', ['aptFactory', 'complai
       }
 
       complaintRequestService.postRequest(request);
-      $scope.customDescription = "";
       $scope.cancel();
    }
 

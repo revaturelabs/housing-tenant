@@ -76410,15 +76410,15 @@ var complaintController = module_1.complaintModule.controller('complaintCtrl', [
         //aptFactory.getApartmentByGuid($scope, aptGuid);
         aptFactory.getApartment($scope, address);
         $scope.addComplaintRequest = function (form) {
+            console.log(form);
             var request = {
-                accused: form.accussed.$modelValue,
+                accused: form.accused.$modelValue,
                 description: form.description.$modelValue,
                 initiator: 'Current User',
                 datesubmitted: Date.now(),
                 urgent: true
             };
             complaintRequestService.postRequest(request);
-            $scope.customDescription = "";
             $scope.cancel();
         };
         $scope.openModal = function (event) {
