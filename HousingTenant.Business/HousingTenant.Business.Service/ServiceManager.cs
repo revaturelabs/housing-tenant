@@ -34,24 +34,25 @@ namespace HousingTenant.Business.Service
          EmailAddress = "tessa@pams.com", PhoneNumber = "(239)123-3256", Gender = GenderEnum.FEMALE, ArrivalDate = DateTime.Now, HasCar = false
       };
 
-      static ARequest request1 = new ComplaintRequest { RequestId = "0", Initiator = person1, Accused = person2, Description = "Person1 is accusing Person2",
+      static ARequest request1 = new ComplaintRequest { RequestId = "0", ApartmentId = "0", Initiator = person1, Accused = person2, Description = "Person1 is accusing Person2",
          DateSubmitted = DateTime.Now, Status = StatusEnum.PENDING, Urgent = false
       };
-      static ARequest request2 = new MaintenanceRequest { RequestId = "0", Initiator = person2, Description = "Need my toilet fixed said person2",
+      static ARequest request2 = new MaintenanceRequest { RequestId = "1", ApartmentId = "0", Initiator = person2, Description = "Need my toilet fixed said person2",
          DateSubmitted = DateTime.Now, Status = StatusEnum.PENDING, Urgent = false
       };
-      static ARequest request3 = new MoveRequest { RequestId = "0", Initiator = person3, Description = "Person3 request move to address2",
+      static ARequest request3 = new MoveRequest { RequestId = "2", ApartmentId = "0", Initiator = person3, Description = "Person3 request move to address2",
          RequestedApartmentAddress = address2, DateSubmitted = DateTime.Now, Status = StatusEnum.PENDING, Urgent = false
       };
-      static ARequest request4 = new SupplyRequest { RequestId = "0", Initiator = person4, Description = "Person4 requesed supplies",
+      static ARequest request4 = new SupplyRequest { RequestId = "3", ApartmentId = "0", Initiator = person4, Description = "Person4 requesed supplies",
          RequestItems = supplyList, DateSubmitted = DateTime.Now, Status = StatusEnum.PENDING, Urgent = false
       };
-      static ARequest request5 = new SupplyRequest { RequestId = "1", Initiator = person5, Description = "Person5 requesed supplies",
+      static ARequest request5 = new SupplyRequest { RequestId = "4", ApartmentId = "1", Initiator = person5, Description = "Person5 requesed supplies",
          RequestItems = supplyList, DateSubmitted = DateTime.Now, Status = StatusEnum.PENDING, Urgent = false
       };
 
       static List<ARequest> reqsList1 = new List<ARequest> { request1, request2, request3, request4 };
       static List<ARequest> reqsList2 = new List<ARequest> { request5 };
+      static List<ARequest> Requests = new List<ARequest> { request1, request2, request3, request4, request5 };
 
       static List<IPerson> Persons = new List<IPerson> { person1, person2, person3, person4, person5, person6 };
       static List<IPerson> persList1 = new List<IPerson> { person1, person2, person3, person4 };
@@ -138,9 +139,21 @@ namespace HousingTenant.Business.Service
          return reqsList1;
       }
 
+      public List<ARequest> GetRequests(string id)
+      {
+         return Requests.FindAll(r => r.ApartmentId == id);
+      }
+
       public ARequest GetRequest(string id)
       {
          var request = new SupplyRequest { RequestId = id };
+         foreach(var r in Requests)
+         {
+            if(r.ApartmentId == id)
+            {
+
+            }
+         }
          //if (reqsList1.Contains(request))
          //{
             return reqsList1.Find(r => r.RequestId == id);

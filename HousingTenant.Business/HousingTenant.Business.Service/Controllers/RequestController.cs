@@ -35,7 +35,7 @@ namespace HousingTenant.Business.Service.Controllers
       }
 
       [Route("id")]
-      public RequestDTO Get([FromQuery]string id)
+      public List<RequestDTO> Get([FromQuery]string id)
       //public async Task<RequestDTO> Get([FromQuery]string id)
       {
          //var uri = string.Format("{0}/{1}", "request", id);
@@ -43,7 +43,7 @@ namespace HousingTenant.Business.Service.Controllers
          //var requestDto = JsonConvert.DeserializeObject<RequestDTO>(request.Content.ReadAsStringAsync().Result);
 
          //return requestDto;
-         return ServiceMapper.MapToRequestDTO(_ServiceManager.GetRequest(id));
+         return ServiceMapper.MapToRequestDTOList(_ServiceManager.GetRequests(id));
       }
 
       [HttpGet]
