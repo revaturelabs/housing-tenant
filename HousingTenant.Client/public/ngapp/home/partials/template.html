@@ -1,26 +1,22 @@
- <section id="mainHome" ng-init="init()">
+<section id="mainHome" ng-init="init()">
 
   <h1>Welcome, {{myPerson.FirstName}} {{myPerson.LastName}}</h1>
 
-  <article>
+  <section>
     <header>
       <h3>My Apartment</h3>
     </header>
 
-    <section>
-      <!-- <p>{{apartment[0].complexName}}</p>
-      <p>Address1: {{apartment[0].address.address1}}</p>
-      <p>Address2: {{apartment[0].address.address2}}</p>
-      <p>City: {{apartment[0].address.city}}</p>
-      <p>State: {{apartment[0].address.state}}</p>
-      <p>Zip: {{apartment[0].address.zipCode}}</p> -->
-
-      <p>{{myAddress.ApartmentNumber}}</p>
-      <p>Address1: {{myAddress.Address1}}</p>
-      <p>Address2: {{myAddress.Address2}}</p>
-      <p>City: {{myAddress.City}}</p>
-      <p>State: {{myAddress.State}}</p>
-      <p>Zip: {{myAddress.ZipCode}}</p>
-    </section>
-  </article>
-</section> 
+    <md-card class="col-md-4" style="background-color: whitesmoke">
+      <md-card-title>
+        <md-card-title-text>
+          <p><b>Address1: </b>{{myPerson.Address.Address1}}</p>
+          <p><b>Address2: </b>{{myPerson.Address.Address2}}</p>
+          <p><b>City: </b>{{myPerson.Address.City}}</p>
+          <p><b>State: </b>{{myPerson.Address.State}}</p>
+          <p><b>Zip: </b>{{myPerson.Address.Zip}}</p>
+        </md-card-title-text>
+      </md-card-title>
+    </md-card>
+  </section>
+</section>
