@@ -31,7 +31,7 @@ footer {
 .logo {
   margin-left: 50px;
   display: inline-block;
-  
+  padding: 20px;
 }
 
 .navLinks{
@@ -75,7 +75,7 @@ footer {
 }
 
 .footer{
-  background-color: gray;
+  background-color: #404040;
   
   width: 100%;
 }
@@ -89,4 +89,14 @@ footer {
 }
 .fLinks{
   padding: 20px;
+}
+.fLinks a{
+  text-decoration: none;
+  color: gray;
+}
+
+.copyright{
+  text-align: center;
+  padding: 20px;
+  color: gray;
 }
