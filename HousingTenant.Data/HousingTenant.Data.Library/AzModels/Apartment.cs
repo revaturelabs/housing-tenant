@@ -5,6 +5,11 @@ namespace HousingTenant.Data.Library.AzModels
 {
     public partial class Apartment
     {
+        public Apartment()
+        {
+            Request = new HashSet<Request>();
+        }
+
         public int ApartmentId { get; set; }
         public Guid Apartmentguid { get; set; }
         public int AddressId { get; set; }
@@ -13,6 +18,7 @@ namespace HousingTenant.Data.Library.AzModels
         public int NumberofBathroom { get; set; }
         public bool Active { get; set; }
 
+        public virtual ICollection<Request> Request { get; set; }
         public virtual Address Address { get; set; }
         public virtual ApartmentComplex ApartmentComplex { get; set; }
     }

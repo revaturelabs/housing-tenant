@@ -12,6 +12,7 @@ namespace HousingTenant.Data.Library.AzModels
 
         public int RequestId { get; set; }
         public Guid Requestguid { get; set; }
+        public int ApartmentId { get; set; }
         public int RequestTypeId { get; set; }
         public bool IsUrgent { get; set; }
         public int Initiator { get; set; }
@@ -23,6 +24,7 @@ namespace HousingTenant.Data.Library.AzModels
         public bool Active { get; set; }
 
         public virtual ICollection<SupplyRequest> SupplyRequest { get; set; }
+        public virtual Apartment Apartment { get; set; }
         public virtual Person InitiatorNavigation { get; set; }
         public virtual Person PersonIdAccusedNavigation { get; set; }
         public virtual RequestType RequestType { get; set; }
