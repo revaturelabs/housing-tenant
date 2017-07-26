@@ -45,13 +45,13 @@ namespace HousingTenant.Data.Service.Controllers
                            IsUrgent = r.IsUrgent,
                            DateModified = r.DateModified,
                            DateSubmitted = r.DateSubmitted,
-                           Initiator = new PersonDAO { PersonGuid = p.Personguid, ArrivalDate = p.ArrivalDate, EmailAddress = p.EmailAddress,
+                           Initiator = new PersonDAO { PersonId = p.Personguid.ToString(), ArrivalDate = p.ArrivalDate, EmailAddress = p.EmailAddress,
                                FirstName = p.FirstName, Gender = g.Gender1, HasCar = p.HasCar, LastName = p.LastName },
                            PersonAccused = (from p2 in Person
                                             join g2 in gender on p2.GenderId equals g2.GenderId
                                             where p2.PersonId == r.PersonIdAccused
                                             select new PersonDAO {
-                                                PersonGuid = p2.Personguid,
+                                                PersonId = p2.Personguid.ToString(),
                                                 ArrivalDate = p2.ArrivalDate,
                                                 EmailAddress = p2.EmailAddress,
                                                 FirstName = p2.FirstName,
