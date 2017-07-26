@@ -8,6 +8,22 @@ var appartmentService = am.factory('aptFactory', ['$http', function ($http) {
             function (res) {
                console.log(res);
                scope.apartment = res.data;
+               scope.supplyReq = 0;
+               scope.maintenanceReq = 0;
+               scope.complaintReq = 0;
+               scope.apartment.requests.forEach(element => {
+                  if (element.type == 1) {
+                     scope.supplyReq++;
+                     console.log(scope.maintenanceReq);
+                  } else if (element.type == 2) {
+                     scope.maintenanceReq++;
+                     console.log(scope.maintenanceReq);
+                  } else {
+                     scope.complaintReq++;
+                     console.log(scope.complaintReq);
+                  };
+               });
+               console.log(scope.apartment);
             }, function (err) {
                console.log(err);
                scope.apartment = {};
@@ -21,15 +37,15 @@ var appartmentService = am.factory('aptFactory', ['$http', function ($http) {
                };
                scope.apartment.beds = 3;
                scope.apartment.bathrooms = 2;
-               scope.apartment.complexname = 'Westerly At Worldgate';
-               scope.apartment.people = [
+               scope.apartment.complexName = 'Westerly At Worldgate';
+               scope.apartment.persons = [
                   {
-                     firstname: 'Julian',
-                     lastname: 'Rojas'
+                     firstName: 'Julian',
+                     lastName: 'Rojas'
                   },
                   {
-                     firstname: 'Jameson',
-                     lastname: 'Bruuuhhh'
+                     firstName: 'Jameson',
+                     lastName: 'Bruuuhhh'
                   }
                ];
                scope.apartment.requests = [
