@@ -51,12 +51,12 @@
               </md-input-container>
               <md-input-container class="md-block">
                 <label for="description">Complaint</label>
-                <textarea name="description" ng-model="description"></textarea>
+                <textarea md-maxlength="2048" name="description" ng-model="description" placeholder="What's going On!?'"></textarea>
               </md-input-container>
             </div>
           </md-dialog-content>
           <md-dialog-actions layout="row">
-            <md-button class="md-raised md-primary" type="button" ng-click="addMaintenanceRequest(maintenanceRequest)">Submit</md-button>
+            <md-button class="md-raised md-primary" type="button" ng-click="addComplaintRequest(complaintRequest)">Submit</md-button>
           </md-dialog-actions>
         </form>
       </md-dialog>

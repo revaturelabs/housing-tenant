@@ -7,8 +7,18 @@ var complaintController = cm.controller('complaintCtrl', ['aptFactory', 'complai
    var aptGuid = $routeParams.aptguid;
    var initiatorId = 0;
 
+   var address = {
+      Address1: "2100 Wilkes Court",
+      Address2: "",
+      ApartmentNumber: "102",
+      City: "Herndon",
+      State: "Virginia",
+      ZipCode: "20170"
+   };
+
    complaintRequestService.getRequestList(aptGuid, $scope, initiatorId);
-   aptFactory.getApartmentByGuid($scope, aptGuid);
+   //aptFactory.getApartmentByGuid($scope, aptGuid);
+   aptFactory.getApartment($scope, address);
 
    $scope.addComplaintRequest = function (form) {
       var request = {
