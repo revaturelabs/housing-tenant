@@ -4,6 +4,8 @@ import './services';
 var maintenanceController = mm.controller('maintenanceCtrl', ['$scope', 'maintenanceRequestService', '$routeParams', '$mdDialog', function ($scope, maintenanceRequestService, $routeParams, $mdDialog) {
   var aptGuid = $routeParams.aptguid;
 
+  //$scope.description = "";
+
   $scope.maintenanceTypes = [
     'Electrical Issues',
     'Slow Internet',
@@ -12,28 +14,37 @@ var maintenanceController = mm.controller('maintenanceCtrl', ['$scope', 'mainten
     'Plumbing: Bathroom',
     'Heating, Ventilation, and Air Conditioning',
     'Other'
-    ];
+  ];
 
-    $scope.otherSelected = "visibility: hidden;"
-
-    $scope.otherDescription = function(type){
-      if(type == 'Other'){
-        $scope.otherSelected = "visibility: visible;";
-      }
+  $scope.checkDescription = function () {
+    if ($scope.description == 'Other') {
+      return true;
     }
+    return false;
+  }
 
   maintenanceRequestService.getRequestList(aptGuid, $scope);
 
   $scope.addMaintenanceRequest = function () {
+    $scope.customDescription = "untouched";
+    $scope.urgent = false;
+    
     var request = {
-      description: $scope.description,
+      description: "",
       initiator: 'Current User',
       datesubmitted: Date.now(),
       urgent: $scope.urgent,
       type: 1
     }
+    if ($scope.checkDescription() == true) {
+      console.log($scope.customDescription);
+      request.description = $scope.customDescription;
+    } else {
+      request.description = $scope.description;
+    }
+
     console.log(request);
-    
+
     maintenanceRequestService.postRequest(request);
     $scope.cancel();
   }

@@ -15,9 +15,9 @@
       </thead>
       <tbody>
         <tr ng-repeat="request in reqList">
-          <td>{{request.initiator}}</td>
+          <td>{{request.initiator.emailAddress}}</td>
           <td>{{request.description}}</td>
-          <td>{{request.datesubmitted}}</td>
+          <td>{{request.dateSubmitted}}</td>
           <td>{{request.status}}</td>
           <td>{{request.urgent}}</td>
         </tr>
@@ -39,31 +39,33 @@
             <md-button ng-click="cancel()">Close</md-button>
           </div>
         </md-toolbar>
-        <md-dialog-content layout-padding>
-          <div class="md-dialog-content">
-            <form name="maintenanceRequest" ng-cloak>
+        <form name="maintenanceRequest" ng-cloak>
+          <md-dialog-content layout-padding>
+            <div class="md-dialog-content">
+
               <md-input-container class="md-block">
                 <label for="description">Select Description</label>
                 <md-select name="description" ng-model="description">
-                  <md-option ng-repeat="type in maintenanceTypes" onchange="otherDescription(type)">{{type}}</md-option>
+                  <md-option ng-repeat="type in maintenanceTypes" value="{{type}}">{{type}}</md-option>
                 </md-select>
               </md-input-container>
-              <md-input-container class="md-block"  style="{{otherSelected}}" >
-                <label for="otherDescription">Enter Description</label>
-                <input type="text" name="otherDescription" ng-model="description">
+              <md-input-container class="md-block" ng-if="description == 'Other'">
+                <label for="customDescription">Enter Description</label>
+                <input name="customDescription" ng-model="customDescription">
+                <p>{{customDescription}}</p>
               </md-input-container>
               <md-input-container class="md-block">
                 <md-checkbox id="urgent" name="urgent" ng-model="urgent">
                   Urgent
                 </md-checkbox>
               </md-input-container>
-            </form>
-          </div>
-        </md-dialog-content>
-        <md-dialog-actions layout="row">
-          <md-button class="md-raised md-primary" type="button" ng-click="addMaintenanceRequest()">Submit</md-button>
-        </md-dialog-actions>
 
+            </div>
+          </md-dialog-content>
+          <md-dialog-actions layout="row">
+            <md-button class="md-raised md-primary" type="button" ng-click="addMaintenanceRequest()">Submit</md-button>
+          </md-dialog-actions>
+        </form>
       </md-dialog>
     </div>
   </div>
