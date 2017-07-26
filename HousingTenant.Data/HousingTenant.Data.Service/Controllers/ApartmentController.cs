@@ -13,7 +13,6 @@ namespace HousingTenant.Data.Service.Controllers
     [Route("api/[controller]")]
     public class ApartmentController : Controller
     {
-        private List<RequestDAO> _List;
         private HousingTenantDBContext _Context;
 
         public ApartmentController(HousingTenantDBContext context)
