@@ -10,6 +10,8 @@ import './home/controller';
 import './supplies/controllers';
 import './apartment/controller';
 import './maintenance/controller';
+import './complaints/controller';
+
 //importing HTML
 import 'file-loader?name=[name].[ext]&outputPath=html/!./html/footer.html';
 import 'file-loader?name=[name].[ext]&outputPath=html/!./html/navbar.html';
