@@ -1,11 +1,11 @@
 import { supplyModule as sm } from './module';
 import './services';
 
-var supplyController = sm.controller('suppliesCtrl', ['$scope', 'supplyRequestListSvc', '$routeParams', '$mdDialog', function ($scope, supplyRequestListSvc, $routeParams, $mdDialog) {
+var supplyController = sm.controller('suppliesCtrl', ['$scope', 'supplyRequestService', '$routeParams', '$mdDialog', function ($scope, supplyRequestService, $routeParams, $mdDialog) {
       var requestModal = document.getElementById('AddRequestModal');
       
       var aptid = $routeParams.aptid; 
-      supplyRequestListSvc.getRequestList(aptid, $scope);
+      supplyRequestService.getRequestList(aptid, $scope);
 
       $scope.addRequest = function (form) {
             var request = {
@@ -19,7 +19,7 @@ var supplyController = sm.controller('suppliesCtrl', ['$scope', 'supplyRequestLi
                         request.requestItems.push(form[element].$name)
                   }
             });
-            supplyRequestListSvc.postRequest(request);
+            supplyRequestService.postRequest(request);
             $scope.cancel();
       }
       $scope.openModal = function(event) {
