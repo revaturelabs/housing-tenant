@@ -54,7 +54,8 @@ namespace HousingTenant.Business.Service.Controllers
 
         [HttpGet]
         [Route("address")]
-        public async Task<IApartment> Get([FromQuery]Address address)
+        public IApartment Get([FromQuery]Address address)
+        //public async Task<IApartment> Get([FromQuery]Address address)
         {
          //var apartmentUrl = string.Format("apartment/{0}", address);
          //var aRequest = await client.GetAsync(apartmentUrl, HttpCompletionOption.ResponseContentRead);
