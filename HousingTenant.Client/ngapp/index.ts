@@ -42,7 +42,7 @@ ngHousingTenant.config(['$routeProvider', '$locationProvider', function ($routeP
       templateUrl: 'ngapp/complaints/partials/template.html'
     })
     .otherwise({
-      redirectTo: '/'
+      redirectTo: '/home'
     });
 
   $locationProvider.html5Mode(false).hashPrefix('!');
