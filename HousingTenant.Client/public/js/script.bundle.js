@@ -117,6 +117,25 @@ var appartmentService = module_1.apartmentModule.factory('aptFactory', ['$http',
                 $http.get('http://housingtenantbusiness.azurewebsites.net/api/apartment/address/', { params: address }).then(function (res) {
                     console.log(res);
                     scope.apartment = res.data;
+                    scope.supplyReq = 0;
+                    scope.maintenanceReq = 0;
+                    scope.complaintReq = 0;
+                    scope.apartment.requests.forEach(function (element) {
+                        if (element.type == 1) {
+                            scope.supplyReq++;
+                            console.log(scope.maintenanceReq);
+                        }
+                        else if (element.type == 2) {
+                            scope.maintenanceReq++;
+                            console.log(scope.maintenanceReq);
+                        }
+                        else {
+                            scope.complaintReq++;
+                            console.log(scope.complaintReq);
+                        }
+                        ;
+                    });
+                    console.log(scope.apartment);
                 }, function (err) {
                     console.log(err);
                     scope.apartment = {};
@@ -130,15 +149,15 @@ var appartmentService = module_1.apartmentModule.factory('aptFactory', ['$http',
                     };
                     scope.apartment.beds = 3;
                     scope.apartment.bathrooms = 2;
-                    scope.apartment.complexname = 'Westerly At Worldgate';
-                    scope.apartment.people = [
+                    scope.apartment.complexName = 'Westerly At Worldgate';
+                    scope.apartment.persons = [
                         {
-                            firstname: 'Julian',
-                            lastname: 'Rojas'
+                            firstName: 'Julian',
+                            lastName: 'Rojas'
                         },
                         {
-                            firstname: 'Jameson',
-                            lastname: 'Bruuuhhh'
+                            firstName: 'Jameson',
+                            lastName: 'Bruuuhhh'
                         }
                     ];
                     scope.apartment.requests = [
@@ -294,7 +313,7 @@ ngHousingTenant.config(['$routeProvider', '$locationProvider', function ($routeP
             templateUrl: 'ngapp/complaints/partials/template.html'
         })
             .otherwise({
-            redirectTo: '/'
+            redirectTo: '/home'
         });
         $locationProvider.html5Mode(false).hashPrefix('!');
     }]);
@@ -75996,17 +76015,6 @@ Object.defineProperty(exports, "__esModule", { value: true });
 var module_1 = __webpack_require__(2);
 __webpack_require__(20);
 __webpack_require__(3);
-var Person = (function () {
-    function Person() {
-        this.FirstName = 'John';
-        this.LastName = 'Doe';
-    }
-    Person.prototype.getPerson = function (res, id) {
-        this.FirstName = res.data[id].firstName;
-        this.LastName = res.data[id].lastName;
-    };
-    return Person;
-}());
 var Address = (function () {
     function Address() {
         this.Address1 = 'NotAvailable';
@@ -76016,23 +76024,29 @@ var Address = (function () {
         this.Zip = 0;
     }
     Address.prototype.getAddress = function (res) {
-        this.Address1 = res.data.Address1;
-        this.Address2 = res.data.Address2;
-        this.City = res.data.City;
-        this.State = res.data.State;
-        this.Zip = res.data.Zip;
+        this.Address1 = res.address1;
+        this.Address2 = res.address2;
+        this.City = res.city;
+        this.State = res.state;
+        this.Zip = res.zipCode;
     };
     return Address;
 }());
+var Person = (function () {
+    function Person() {
+        this.FirstName = 'John';
+        this.LastName = 'Doe';
+    }
+    Person.prototype.getPerson = function (res, id, address) {
+        this.FirstName = res.data[id].firstName;
+        this.LastName = res.data[id].lastName;
+        address.getAddress(res.data[id].address);
+        this.Address = address;
+    };
+    return Person;
+}());
 var myController = module_1.home.controller('homeController', ['$scope', 'homeFactory', 'aptFactory', '$http', function ($scope, homeFactory, aptFactory, $http) {
-        $scope.myAddress = {
-            Address1: "2100 Wilkes Court",
-            Address2: "",
-            ApartmentNumber: "102",
-            City: "Herndon",
-            State: "Virgina",
-            ZipCode: "20105"
-        };
+        $scope.myAddress = new Address();
         $scope.myPerson = new Person();
         $scope.something = 'hello mock';
         $scope.addNumbers = function (n1, n2) {
@@ -76047,10 +76061,10 @@ var myController = module_1.home.controller('homeController', ['$scope', 'homeFa
             homeFactory.getAddress(id, $scope.myAddress);
         };
         $scope.processPerson = function (id) {
-            homeFactory.getPerson(id, $scope.myPerson);
+            homeFactory.getPerson(id, $scope.myPerson, $scope.myAddress);
         };
         $scope.init = function () {
-            $scope.processPerson(0);
+            $scope.processPerson(1);
         };
         aptFactory.getApartment($scope, $scope.myAddress);
     }]);
@@ -76080,11 +76094,11 @@ module_1.home.factory('homeFactory', ['$http', function ($http) {
                     obj.getAddress(res);
                 }, failure);
             },
-            getPerson: function (id, obj) {
+            getPerson: function (id, person, address) {
                 $http.get('http://housingtenantbusiness.azurewebsites.net/api/person' /*+ id*/ + '/').then(function (res) {
                     console.log(res);
                     console.log(res.data[id].firstName);
-                    obj.getPerson(res, id);
+                    person.getPerson(res, id, address);
                 }, failure);
             },
             getSuppliesPage: function () {
@@ -76161,7 +76175,8 @@ var module_1 = __webpack_require__(5);
 var supplyService = module_1.supplyModule.factory('supplyRequestService', ['$http', function ($http) {
         return {
             getRequestList: function (aptidstring, scope) {
-                $http.get('http://housingtenantbusiness.azurewebsites.net/api/request', { params: aptidstring }).then(function (res) {
+                console.log(aptidstring);
+                $http.get('http://housingtenantbusiness.azurewebsites.net/api/request/id', { params: aptidstring }).then(function (res) {
                     console.log(res.data);
                     scope.reqList = [];
                     res.data.forEach(function (element) {
@@ -76233,7 +76248,6 @@ var module_1 = __webpack_require__(6);
 __webpack_require__(28);
 var maintenanceController = module_1.maintenanceModule.controller('maintenanceCtrl', ['$scope', 'maintenanceRequestService', '$routeParams', '$mdDialog', function ($scope, maintenanceRequestService, $routeParams, $mdDialog) {
         var aptGuid = $routeParams.aptguid;
-        //$scope.description = "";
         $scope.maintenanceTypes = [
             'Electrical Issues',
             'Slow Internet',
@@ -76251,13 +76265,11 @@ var maintenanceController = module_1.maintenanceModule.controller('maintenanceCt
         };
         maintenanceRequestService.getRequestList(aptGuid, $scope);
         $scope.addMaintenanceRequest = function (form) {
-            console.log(form);
             var request = {
                 description: "",
                 initiator: 'Current User',
                 datesubmitted: Date.now(),
-                urgent: form.urgent.$modelValue,
-                type: 1
+                urgent: form.urgent.$modelValue
             };
             if ($scope.checkDescription() == true) {
                 request.description = form.customDescription.$modelValue;
@@ -76265,8 +76277,8 @@ var maintenanceController = module_1.maintenanceModule.controller('maintenanceCt
             else {
                 request.description = form.description.$modelValue;
             }
-            console.log(request);
             maintenanceRequestService.postRequest(request);
+            $scope.customDescription = "";
             $scope.cancel();
         };
         $scope.openModal = function (event) {

@@ -3,7 +3,8 @@ import { supplyModule as sm } from './module';
 var supplyService = sm.factory('supplyRequestService', ['$http', function ($http) {
       return {
             getRequestList: function (aptidstring, scope) {
-                  $http.get('http://housingtenantbusiness.azurewebsites.net/api/request', { params: aptidstring }).then(
+                  console.log(aptidstring);
+                  $http.get('http://housingtenantbusiness.azurewebsites.net/api/request/id', { params: aptidstring }).then(
                         function (res) {
                               console.log(res.data);
                               scope.reqList = [];

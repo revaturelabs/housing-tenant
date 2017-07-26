@@ -28,8 +28,7 @@ var maintenanceController = mm.controller('maintenanceCtrl', ['$scope', 'mainten
       description: "",
       initiator: 'Current User',
       datesubmitted: Date.now(),
-      urgent: form.urgent.$modelValue,
-      type: 1
+      urgent: form.urgent.$modelValue
     }
     if ($scope.checkDescription() == true) {
       request.description = form.customDescription.$modelValue;
