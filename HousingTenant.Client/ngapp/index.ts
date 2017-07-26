@@ -44,6 +44,5 @@ ngHousingTenant.config(['$routeProvider', '$locationProvider', function ($routeP
     .otherwise({
       redirectTo: '/home'
     });
-
   $locationProvider.html5Mode(false).hashPrefix('!');
 }]);
