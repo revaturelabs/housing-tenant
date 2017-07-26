@@ -5,8 +5,8 @@ var maintenanceService = mm.factory('maintenanceRequestService', ['$http', funct
     getRequestList: function (aptguid, scope) {
       $http.get('http://housingtenantbusiness.azurewebsites.net/api/request', { params: aptguid }).then(
         function (res) {
-          scope.reqList = {};
-          res.data.array.forEach(element => {
+          scope.reqList = [];
+          res.data.forEach(element => {
             if (element.type === 1) {
               scope.reqList.push(element);
             }

@@ -16,11 +16,11 @@
          <tbody>
             <tr ng-repeat="request in reqList">
                <td>{{request.description}}</td>
-               <td>{{request.initiator}}</td>
-               <td>{{request.datesubmitted}}</td>
+               <td>{{request.initiator.emailAddress}}</td>
+               <td>{{request.dateSubmitted}}</td>
                <td>{{request.status}}</td>
                <td>
-                  <md-list-item ng-repeat="item in request.requestitems">
+                  <md-list-item ng-repeat="item in request.requestItems">
                      <p> {{ item }} </p>
                   </md-list-item>
                </td>
@@ -48,7 +48,7 @@
                   <form name="supplyRequest" ng-cloak>
                      <md-input-container class="md-block">
                         <label for="name">Description</label>
-                        <input type="text" >
+                        <input type="text" ng-model="description" >
                      </md-input-container>
                      <md-input-container class="md-block">
                         <md-checkbox id="soap" name="soap" ng-model="soap">

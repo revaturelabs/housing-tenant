@@ -1,68 +1,70 @@
-<section> 
+<section>
   <div>
-      <h2>Maintenance Requests</h2>
-   </div>
-   <div>
-      <table class="table table-striped table-bordered">
-         <thead class="thead">
-            <tr>
-               <th class="">Request Name</th>
-               <th>Electrical?</th>
-               <th>Internet?</th>
-               <th>Plumbing?</th>
-               <th>Water?</th>
-               <th>Appliance?</th>
-               <th>A/C?</th>
-               <th>Structure?</th>
-            </tr>
-         </thead>
-         <tbody>
-            <tr ng-repeat="request in reqList">
-               <td>{{request.name}}</td>
-               <td><input type="checkbox" ng-model="request.electrical"></input></td>
-               <td><input type="checkbox" ng-model="request.internet"></input></td>
-               <td><input type="checkbox" ng-model="request.plumbing"></input></td>
-               <td><input type="checkbox" ng-model="request.water"></input></td>
-               <td><input type="checkbox" ng-model="request.appliance"></input></td>
-               <td><input type="checkbox" ng-model="request.ac"></input></td>
-               <td><input type="checkbox" ng-model="request.structure"></input></td>
-            </tr>
-         </tbody>  
-      </table>
-      <div>
-         <md-button class="md-raised md-primary" type="button" ng-click="openModal()">New Maintenance Request</md-button>
-      </div>
-   </div>
+    <h2>Maintenance Requests</h2>
+  </div>
+  <div>
+    <table class="table table-striped table-bordered">
+      <thead class="thead">
+        <tr>
+          <th>Initiator</th>
+          <th>Request Description</th>
+          <th>Date Submitted</th>
+          <th>Status</th>
+          <th>Urgent</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr ng-repeat="request in reqList">
+          <td>{{request.initiator}}</td>
+          <td>{{request.description}}</td>
+          <td>{{request.datesubmitted}}</td>
+          <td>{{request.status}}</td>
+          <td>{{request.urgent}}</td>
+        </tr>
+      </tbody>
+    </table>
+    <div>
+      <md-button class="md-raised md-primary" type="button" ng-click="openModal($event)">New Maintenance Request</md-button>
+    </div>
+  </div>
 
-   <div id="AddRequestModal" class="modal">
-      <section class="modal-content">
-         <header class="modal-header">
-            <span class="close" ng-click="closeModal()">&times;</span>
-            <h2>Add New Maintenance Request</h2>
-         </header>
-         <main class="modal-body">
-            <form>
-               <label for="name">Name</label>
-               <input type="text" id="name" ng-model="n">
-               <label for="electrical">Electrical?</label>
-               <input type="checkbox" id="electrical" ng-model="e">
-               <label for="internet">Internet?</label>
-               <input type="checkbox" id="internet" ng-model="i">
-               <label for="plumbing">Plumbing?</label>
-               <input type="checkbox" id="plumbing" ng-model="p">
-               <label for="water">Water?</label>
-               <input type="checkbox" id="water" ng-model="w">
-               <label for="appliance">Appliance?</label>
-               <input type="checkbox" id="appliance" ng-model="a">
-               <label for="ac">A/C?</label>
-               <input type="checkbox" id="ac" ng-model="ac">
-               <label for="structure">Structure?</label>
-               <input type="checkbox" id="structure" ng-model="s">
+
+  <div style="visibility: hidden">
+    <div class="md-dialog-container" id="AddRequestModal">
+      <md-dialog layout-padding>
+        <md-toolbar>
+          <div class="md-toolbar-tools">
+            <h2>New Maintenance Request</h2>
+            <span class="flex"></span>
+            <md-button ng-click="cancel()">Close</md-button>
+          </div>
+        </md-toolbar>
+        <md-dialog-content layout-padding>
+          <div class="md-dialog-content">
+            <form name="maintenanceRequest" ng-cloak>
+              <md-input-container class="md-block">
+                <label for="description">Select Description</label>
+                <md-select name="description" ng-model="description">
+                  <md-option ng-repeat="type in maintenanceTypes" onchange="otherDescription(type)">{{type}}</md-option>
+                </md-select>
+              </md-input-container>
+              <md-input-container class="md-block"  style="{{otherSelected}}" >
+                <label for="otherDescription">Enter Description</label>
+                <input type="text" name="otherDescription" ng-model="description">
+              </md-input-container>
+              <md-input-container class="md-block">
+                <md-checkbox id="urgent" name="urgent" ng-model="urgent">
+                  Urgent
+                </md-checkbox>
+              </md-input-container>
             </form>
-         </main>
-         <footer class="modal-footer">
-            <md-button class="md-raised md-primary" type="button" ng-click="addRequest(n,e,i,p,w,a,ac,s)">Submit</md-button>
-         </footer>
-      </section>
-   </div>
+          </div>
+        </md-dialog-content>
+        <md-dialog-actions layout="row">
+          <md-button class="md-raised md-primary" type="button" ng-click="addMaintenanceRequest()">Submit</md-button>
+        </md-dialog-actions>
+
+      </md-dialog>
+    </div>
+  </div>
 </section>

@@ -60,14 +60,14 @@
 /******/ 	__webpack_require__.p = "";
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 6);
+/******/ 	return __webpack_require__(__webpack_require__.s = 7);
 /******/ })
 /************************************************************************/
 /******/ ([
 /* 0 */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(7);
+__webpack_require__(8);
 module.exports = angular;
 
 
@@ -79,11 +79,11 @@ module.exports = angular;
 __webpack_require__(0);
 
 // Load Angular and dependent libs
-__webpack_require__(10);
-__webpack_require__(12);
+__webpack_require__(11);
+__webpack_require__(13);
 
 // Now load Angular Material
-__webpack_require__(14);
+__webpack_require__(15);
 
 // Export namespace
 module.exports = 'ngMaterial';
@@ -98,7 +98,7 @@ module.exports = 'ngMaterial';
 Object.defineProperty(exports, "__esModule", { value: true });
 var ng = __webpack_require__(0);
 __webpack_require__(1);
-__webpack_require__(18);
+__webpack_require__(19);
 var home = ng.module('ngHome', ['ngMaterial']);
 exports.home = home;
 
@@ -110,11 +110,99 @@ exports.home = home;
 "use strict";
 
 Object.defineProperty(exports, "__esModule", { value: true });
-var ng = __webpack_require__(0);
-__webpack_require__(1);
-__webpack_require__(21);
-var supplyModule = ng.module('supplyModule', ['ngMaterial']);
-exports.supplyModule = supplyModule;
+var module_1 = __webpack_require__(4);
+var appartmentService = module_1.apartmentModule.factory('aptFactory', ['$http', function ($http) {
+        return {
+            getApartment: function (scope, address) {
+                $http.get('http://housingtenantbusiness.azurewebsites.net/api/apartment/address/', { params: address }).then(function (res) {
+                    console.log(res);
+                    scope.apartment = res.data;
+                }, function (err) {
+                    console.log(err);
+                    scope.apartment = {};
+                    scope.apartment.address = {
+                        address1: "123 main",
+                        address2: "suit",
+                        apartmentNumber: "302",
+                        city: "Reston",
+                        state: "Florida",
+                        zipCode: "32792"
+                    };
+                    scope.apartment.beds = 3;
+                    scope.apartment.bathrooms = 2;
+                    scope.apartment.complexname = 'Westerly At Worldgate';
+                    scope.apartment.people = [
+                        {
+                            firstname: 'Julian',
+                            lastname: 'Rojas'
+                        },
+                        {
+                            firstname: 'Jameson',
+                            lastname: 'Bruuuhhh'
+                        }
+                    ];
+                    scope.apartment.requests = [
+                        {
+                            soap: true,
+                            toiletPaper: true,
+                            paperTowels: true,
+                            dishSoap: true,
+                            trashBags: true,
+                            dishwasherDetergent: true,
+                            sponges: true,
+                            type: 1
+                        },
+                        {
+                            soap: true,
+                            toiletPaper: false,
+                            paperTowels: true,
+                            dishSoap: false,
+                            trashBags: true,
+                            dishwasherDetergent: false,
+                            sponges: true,
+                            type: 1
+                        },
+                        {
+                            soap: false,
+                            toiletPaper: false,
+                            paperTowels: false,
+                            dishSoap: false,
+                            trashBags: false,
+                            dishwasherDetergent: false,
+                            sponges: true,
+                            type: 1
+                        },
+                        {
+                            type: 2
+                        },
+                        {
+                            type: 3
+                        }
+                    ];
+                    scope.supplyReq = 0;
+                    scope.maintenanceReq = 0;
+                    scope.complaintReq = 0;
+                    scope.apartment.requests.forEach(function (element) {
+                        if (element.type == 1) {
+                            scope.supplyReq++;
+                            console.log(scope.maintenanceReq);
+                        }
+                        else if (element.type == 2) {
+                            scope.maintenanceReq++;
+                            console.log(scope.maintenanceReq);
+                        }
+                        else {
+                            scope.complaintReq++;
+                            console.log(scope.complaintReq);
+                        }
+                        ;
+                    });
+                    scope.apartment.guid = '03ae80e1-7227-48ef-8f76-30f5ebf6d89d';
+                    console.log(scope.apartment);
+                });
+            }
+        };
+    }]);
 
 
 /***/ }),
@@ -125,7 +213,7 @@ exports.supplyModule = supplyModule;
 
 Object.defineProperty(exports, "__esModule", { value: true });
 var ng = __webpack_require__(0);
-__webpack_require__(24);
+__webpack_require__(21);
 var apartmentModule = ng.module('aptModule', []);
 exports.apartmentModule = apartmentModule;
 
@@ -138,9 +226,10 @@ exports.apartmentModule = apartmentModule;
 
 Object.defineProperty(exports, "__esModule", { value: true });
 var ng = __webpack_require__(0);
-__webpack_require__(27);
-var maintenanceModule = ng.module('maintenanceModule', []);
-exports.maintenanceModule = maintenanceModule;
+__webpack_require__(1);
+__webpack_require__(23);
+var supplyModule = ng.module('supplyModule', ['ngMaterial']);
+exports.supplyModule = supplyModule;
 
 
 /***/ }),
@@ -151,15 +240,29 @@ exports.maintenanceModule = maintenanceModule;
 
 Object.defineProperty(exports, "__esModule", { value: true });
 var ng = __webpack_require__(0);
-__webpack_require__(8);
+__webpack_require__(1);
+__webpack_require__(27);
+var maintenanceModule = ng.module('maintenanceModule', ['ngMaterial']);
+exports.maintenanceModule = maintenanceModule;
+
+
+/***/ }),
+/* 7 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+Object.defineProperty(exports, "__esModule", { value: true });
+var ng = __webpack_require__(0);
+__webpack_require__(9);
 __webpack_require__(1);
 //importing CSS
-__webpack_require__(15);
 __webpack_require__(16);
-//importing TS
 __webpack_require__(17);
-__webpack_require__(20);
-__webpack_require__(23);
+//importing TS
+__webpack_require__(18);
+__webpack_require__(22);
+__webpack_require__(25);
 __webpack_require__(26);
 //importing HTML
 __webpack_require__(29);
@@ -178,15 +281,15 @@ ngHousingTenant.config(['$routeProvider', '$locationProvider', function ($routeP
             controller: 'homeController',
             templateUrl: 'ngapp/home/partials/template.html'
         })
-            .when('/supplies/:aptid', {
+            .when('/supplies/:aptguid', {
             controller: 'suppliesCtrl',
             templateUrl: 'ngapp/supplies/partials/template.html'
         })
-            .when('/maintenance/:aptid', {
+            .when('/maintenance/:aptguid', {
             controller: 'maintenanceCtrl',
             templateUrl: 'ngapp/maintenance/partials/template.html'
         })
-            .when('/complaints/:aptid', {
+            .when('/complaints/:aptguid', {
             controller: 'complaintsCtrl',
             templateUrl: 'ngapp/complaints/partials/template.html'
         })
@@ -198,7 +301,7 @@ ngHousingTenant.config(['$routeProvider', '$locationProvider', function ($routeP
 
 
 /***/ }),
-/* 7 */
+/* 8 */
 /***/ (function(module, exports) {
 
 /**
@@ -34034,15 +34137,15 @@ $provide.value("$locale", {
 !window.angular.$$csp().noInlineStyle && window.angular.element(document.head).prepend('<style type="text/css">@charset "UTF-8";[ng\\:cloak],[ng-cloak],[data-ng-cloak],[x-ng-cloak],.ng-cloak,.x-ng-cloak,.ng-hide:not(.ng-hide-animate){display:none !important;}ng\\:form{display:block;}.ng-animate-shim{visibility:hidden;}.ng-anchor{position:absolute;}</style>');
 
 /***/ }),
-/* 8 */
+/* 9 */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(9);
+__webpack_require__(10);
 module.exports = 'ngRoute';
 
 
 /***/ }),
-/* 9 */
+/* 10 */
 /***/ (function(module, exports) {
 
 /**
@@ -35277,15 +35380,15 @@ function ngViewFillContentFactory($compile, $controller, $route) {
 
 
 /***/ }),
-/* 10 */
+/* 11 */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(11);
+__webpack_require__(12);
 module.exports = 'ngAnimate';
 
 
 /***/ }),
-/* 11 */
+/* 12 */
 /***/ (function(module, exports) {
 
 /**
@@ -39445,15 +39548,15 @@ angular.module('ngAnimate', [], function initAngularHelpers() {
 
 
 /***/ }),
-/* 12 */
+/* 13 */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(13);
+__webpack_require__(14);
 module.exports = 'ngAria';
 
 
 /***/ }),
-/* 13 */
+/* 14 */
 /***/ (function(module, exports) {
 
 /**
@@ -39862,7 +39965,7 @@ ngAriaModule.directive('ngShow', ['$aria', function($aria) {
 
 
 /***/ }),
-/* 14 */
+/* 15 */
 /***/ (function(module, exports) {
 
 /*!
@@ -75872,32 +75975,37 @@ angular.module("material.core").constant("$MD_THEME_CSS", "md-autocomplete.md-TH
 })(window, window.angular);;window.ngMaterial={version:{full: "1.1.4"}};
 
 /***/ }),
-/* 15 */
+/* 16 */
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports = __webpack_require__.p + "css/index.css";
 
 /***/ }),
-/* 16 */
+/* 17 */
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports = __webpack_require__.p + "css/modal.css";
 
 /***/ }),
-/* 17 */
+/* 18 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 Object.defineProperty(exports, "__esModule", { value: true });
 var module_1 = __webpack_require__(2);
-__webpack_require__(19);
-var Entity = (function () {
-    function Entity(t, v) {
-        this.text = t;
-        this.value = v;
+__webpack_require__(20);
+__webpack_require__(3);
+var Person = (function () {
+    function Person() {
+        this.FirstName = 'John';
+        this.LastName = 'Doe';
     }
-    return Entity;
+    Person.prototype.getPerson = function (res, id) {
+        this.FirstName = res.data[id].firstName;
+        this.LastName = res.data[id].lastName;
+    };
+    return Person;
 }());
 var Address = (function () {
     function Address() {
@@ -75916,11 +76024,16 @@ var Address = (function () {
     };
     return Address;
 }());
-var myController = module_1.home.controller('homeController', ['$scope', 'homeFactory', '$http', function ($scope, homeFactory, $http) {
-        $scope.myAddress = new Address();
-        $scope.entities = [
-            new Entity('Address', 'Address')
-        ];
+var myController = module_1.home.controller('homeController', ['$scope', 'homeFactory', 'aptFactory', '$http', function ($scope, homeFactory, aptFactory, $http) {
+        $scope.myAddress = {
+            Address1: "2100 Wilkes Court",
+            Address2: "",
+            ApartmentNumber: "102",
+            City: "Herndon",
+            State: "Virgina",
+            ZipCode: "20105"
+        };
+        $scope.myPerson = new Person();
         $scope.something = 'hello mock';
         $scope.addNumbers = function (n1, n2) {
             return n1 + n2;
@@ -75933,17 +76046,24 @@ var myController = module_1.home.controller('homeController', ['$scope', 'homeFa
         $scope.processRequest = function (id) {
             homeFactory.getAddress(id, $scope.myAddress);
         };
+        $scope.processPerson = function (id) {
+            homeFactory.getPerson(id, $scope.myPerson);
+        };
+        $scope.init = function () {
+            $scope.processPerson(0);
+        };
+        aptFactory.getApartment($scope, $scope.myAddress);
     }]);
 
 
 /***/ }),
-/* 18 */
+/* 19 */
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports = __webpack_require__.p + "ngapp/home/partials/template.html";
 
 /***/ }),
-/* 19 */
+/* 20 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -75956,8 +76076,15 @@ function failure(err) {
 module_1.home.factory('homeFactory', ['$http', function ($http) {
         return {
             getAddress: function (id, obj) {
-                $http.get('http://localhost:53948/api/address/getaddress' /*+ id*/ + '/').then(function (res) {
+                $http.get('http://housingtenantbusiness.azurewebsites.net/api/address/' /*+ id*/ + '/').then(function (res) {
                     obj.getAddress(res);
+                }, failure);
+            },
+            getPerson: function (id, obj) {
+                $http.get('http://housingtenantbusiness.azurewebsites.net/api/person' /*+ id*/ + '/').then(function (res) {
+                    console.log(res);
+                    console.log(res.data[id].firstName);
+                    obj.getPerson(res, id);
                 }, failure);
             },
             getSuppliesPage: function () {
@@ -75970,31 +76097,38 @@ module_1.home.factory('homeFactory', ['$http', function ($http) {
 
 
 /***/ }),
-/* 20 */
+/* 21 */
+/***/ (function(module, exports, __webpack_require__) {
+
+module.exports = __webpack_require__.p + "ngapp/apartment/partials/template.html";
+
+/***/ }),
+/* 22 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 Object.defineProperty(exports, "__esModule", { value: true });
-var module_1 = __webpack_require__(3);
-__webpack_require__(22);
-var supplyController = module_1.supplyModule.controller('suppliesCtrl', ['$scope', 'supplyRequestListSvc', '$routeParams', '$mdDialog', function ($scope, supplyRequestListSvc, $routeParams, $mdDialog) {
-        var requestModal = document.getElementById('AddRequestModal');
-        var aptid = $routeParams.aptid;
-        supplyRequestListSvc.getRequestList(aptid, $scope);
+var module_1 = __webpack_require__(5);
+__webpack_require__(24);
+var supplyController = module_1.supplyModule.controller('suppliesCtrl', ['$scope', 'supplyRequestService', '$routeParams', '$mdDialog', function ($scope, supplyRequestService, $routeParams, $mdDialog) {
+        var aptGuid = $routeParams.aptguid;
+        supplyRequestService.getRequestList(aptGuid, $scope);
         $scope.addRequest = function (form) {
             var request = {
                 description: $scope.description,
                 initiator: 'Current User',
                 requestItems: [],
-                datesubmitted: Date.now()
+                datesubmitted: Date.now(),
+                apartmentId: aptGuid,
+                type: 3
             };
             Object.keys(form).forEach(function (element) {
                 if (form[element] != null && form[element] != undefined && form[element].$viewValue == true) {
                     request.requestItems.push(form[element].$name);
                 }
             });
-            supplyRequestListSvc.postRequest(request);
+            supplyRequestService.postRequest(request);
             $scope.cancel();
         };
         $scope.openModal = function (event) {
@@ -76011,27 +76145,28 @@ var supplyController = module_1.supplyModule.controller('suppliesCtrl', ['$scope
 
 
 /***/ }),
-/* 21 */
+/* 23 */
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports = __webpack_require__.p + "ngapp/supplies/partials/template.html";
 
 /***/ }),
-/* 22 */
+/* 24 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 Object.defineProperty(exports, "__esModule", { value: true });
-var module_1 = __webpack_require__(3);
-var supplyService = module_1.supplyModule.factory('supplyRequestListSvc', ['$http', function ($http) {
+var module_1 = __webpack_require__(5);
+var supplyService = module_1.supplyModule.factory('supplyRequestService', ['$http', function ($http) {
         return {
             getRequestList: function (aptidstring, scope) {
-                $http.get('http://housingtenantbusiness.azurewebsites.net/api/request/', { params: aptidstring }).then(function (res) {
+                $http.get('http://housingtenantbusiness.azurewebsites.net/api/request', { params: aptidstring }).then(function (res) {
                     console.log(res.data);
-                    scope.reqList = {};
+                    scope.reqList = [];
                     res.data.forEach(function (element) {
-                        if (element.type == 3) {
+                        console.log(element);
+                        if (element.type === 3) {
                             scope.reqList.push(element);
                         }
                     });
@@ -76044,7 +76179,7 @@ var supplyService = module_1.supplyModule.factory('supplyRequestListSvc', ['$htt
                 console.log(request);
                 $http({
                     method: 'POST',
-                    url: 'http://housingtenantbusiness.azurewebsites.net/api/request/',
+                    url: 'http://housingtenantbusiness.azurewebsites.net/api/request/supplyrequest/',
                     withCredentials: true,
                     headers: {
                         'Access-Control-Allow-Origin': '*',
@@ -76064,14 +76199,14 @@ var supplyService = module_1.supplyModule.factory('supplyRequestListSvc', ['$htt
 
 
 /***/ }),
-/* 23 */
+/* 25 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 Object.defineProperty(exports, "__esModule", { value: true });
 var module_1 = __webpack_require__(4);
-__webpack_require__(25);
+__webpack_require__(3);
 var address = {
     Address1: "2100 Wilkes Court",
     Address2: "",
@@ -76088,134 +76223,53 @@ var apartmentController = module_1.apartmentModule.controller('aptCtrl', ['$scop
 
 
 /***/ }),
-/* 24 */
-/***/ (function(module, exports, __webpack_require__) {
-
-module.exports = __webpack_require__.p + "ngapp/apartment/partials/template.html";
-
-/***/ }),
-/* 25 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-Object.defineProperty(exports, "__esModule", { value: true });
-var module_1 = __webpack_require__(4);
-var appartmentService = module_1.apartmentModule.factory('aptFactory', ['$http', function ($http) {
-        return {
-            getApartment: function (scope, address) {
-                $http.get('http://housingtenantbusiness.azurewebsites.net/api/apartment/address/', { params: address }).then(function (res) {
-                    console.log(res);
-                    scope.apartment = res.data;
-                }, function (err) {
-                    console.log(err);
-                    scope.apartment = {};
-                    scope.apartment.address = {
-                        address1: "123 main",
-                        address2: "suit",
-                        apartmentNumber: "302",
-                        city: "Reston",
-                        state: "Florida",
-                        zipCode: "32792"
-                    };
-                    scope.apartment.beds = 3;
-                    scope.apartment.bathrooms = 2;
-                    scope.apartment.complexname = 'Westerly At Worldgate';
-                    scope.apartment.people = [
-                        {
-                            firstname: 'Julian',
-                            lastname: 'Rojas'
-                        },
-                        {
-                            firstname: 'Jameson',
-                            lastname: 'Bruuuhhh'
-                        }
-                    ];
-                    scope.apartment.requests = [
-                        {
-                            soap: true,
-                            toiletPaper: true,
-                            paperTowels: true,
-                            dishSoap: true,
-                            trashBags: true,
-                            dishwasherDetergent: true,
-                            sponges: true,
-                            type: 1
-                        },
-                        {
-                            soap: true,
-                            toiletPaper: false,
-                            paperTowels: true,
-                            dishSoap: false,
-                            trashBags: true,
-                            dishwasherDetergent: false,
-                            sponges: true,
-                            type: 1
-                        },
-                        {
-                            soap: false,
-                            toiletPaper: false,
-                            paperTowels: false,
-                            dishSoap: false,
-                            trashBags: false,
-                            dishwasherDetergent: false,
-                            sponges: true,
-                            type: 1
-                        },
-                        {
-                            type: 2
-                        },
-                        {
-                            type: 3
-                        }
-                    ];
-                    scope.supplyReq = 0;
-                    scope.maintenanceReq = 0;
-                    scope.complaintReq = 0;
-                    scope.apartment.requests.forEach(function (element) {
-                        if (element.type == 1) {
-                            scope.supplyReq++;
-                            console.log(scope.maintenanceReq);
-                        }
-                        else if (element.type == 2) {
-                            scope.maintenanceReq++;
-                            console.log(scope.maintenanceReq);
-                        }
-                        else {
-                            scope.complaintReq++;
-                            console.log(scope.complaintReq);
-                        }
-                        ;
-                    });
-                    scope.apartment.guid = '03ae80e1-7227-48ef-8f76-30f5ebf6d89d';
-                    console.log(scope.apartment);
-                });
-            }
-        };
-    }]);
-
-
-/***/ }),
 /* 26 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 Object.defineProperty(exports, "__esModule", { value: true });
-var module_1 = __webpack_require__(5);
+var module_1 = __webpack_require__(6);
 __webpack_require__(28);
-var maintenanceController = module_1.maintenanceModule.controller('maintenanceCtrl', ['$scope', 'maintenanceRequestListSvc', function ($scope, maintenanceRequestListSvc) {
-        var requestModal = document.getElementById('AddRequestModal');
-        $scope.openModal = function () {
-            requestModal.style.display = 'block';
-        };
-        $scope.closeModal = function () {
-            requestModal.style.display = 'none';
-        };
-        window.onclick = function (event) {
-            if (event.target == requestModal) {
-                requestModal.style.display = 'none';
+var maintenanceController = module_1.maintenanceModule.controller('maintenanceCtrl', ['$scope', 'maintenanceRequestService', '$routeParams', '$mdDialog', function ($scope, maintenanceRequestService, $routeParams, $mdDialog) {
+        var aptGuid = $routeParams.aptguid;
+        $scope.maintenanceTypes = [
+            'Electrical Issues',
+            'Slow Internet',
+            'No Internet',
+            'Plumbing: Kitchen',
+            'Plumbing: Bathroom',
+            'Heating, Ventilation, and Air Conditioning',
+            'Other'
+        ];
+        $scope.otherSelected = "visibility: hidden;";
+        $scope.otherDescription = function (type) {
+            if (type == 'Other') {
+                $scope.otherSelected = "visibility: visible;";
             }
+        };
+        maintenanceRequestService.getRequestList(aptGuid, $scope);
+        $scope.addMaintenanceRequest = function () {
+            var request = {
+                description: $scope.description,
+                initiator: 'Current User',
+                datesubmitted: Date.now(),
+                urgent: $scope.urgent,
+                type: 1
+            };
+            console.log(request);
+            maintenanceRequestService.postRequest(request);
+            $scope.cancel();
+        };
+        $scope.openModal = function (event) {
+            $mdDialog.show({
+                contentElement: '#AddRequestModal',
+                parent: document.body,
+                targetEvent: event,
+            });
+        };
+        $scope.cancel = function () {
+            $mdDialog.cancel();
         };
     }]);
 
@@ -76233,9 +76287,40 @@ module.exports = __webpack_require__.p + "ngapp/maintenance/partials/template.ht
 "use strict";
 
 Object.defineProperty(exports, "__esModule", { value: true });
-var module_1 = __webpack_require__(5);
-var maintenanceService = module_1.maintenanceModule.factory('maintenanceRequestListSvc', ['$http', function ($http) {
-        return {};
+var module_1 = __webpack_require__(6);
+var maintenanceService = module_1.maintenanceModule.factory('maintenanceRequestService', ['$http', function ($http) {
+        return {
+            getRequestList: function (aptguid, scope) {
+                $http.get('http://housingtenantbusiness.azurewebsites.net/api/request', { params: aptguid }).then(function (res) {
+                    scope.reqList = [];
+                    res.data.forEach(function (element) {
+                        if (element.type === 1) {
+                            scope.reqList.push(element);
+                        }
+                    });
+                }, function (err) {
+                    console.log(err);
+                });
+            },
+            postRequest: function (request) {
+                $http({
+                    method: 'POST',
+                    url: 'http://housingtenantbusiness.azurewebsites.net/api/request/maintenancerequest/',
+                    withCredentials: true,
+                    headers: {
+                        'Access-Control-Allow-Origin': '*',
+                        'Content-Type': 'application/json',
+                        'Access-Control-Allow-Credentials': 'true',
+                        'Access-Control-Allow-Methods': 'POST'
+                    },
+                    data: { request: request }
+                }).then(function (res) {
+                    console.log(res);
+                }, function (err) {
+                    console.log(err);
+                });
+            }
+        };
     }]);
 
 
