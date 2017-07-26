@@ -8,7 +8,7 @@ var complaintController = cm.controller('complaintCtrl', ['aptFactory', 'complai
    var initiatorId = 0;
 
    complaintRequestService.getRequestList(aptGuid, $scope, initiatorId);
-   aptFactory.getApartmentbyGuid($scope, aptGuid);
+   aptFactory.getApartmentByGuid($scope, aptGuid);
 
    $scope.addComplaintRequest = function (form) {
       var request = {
