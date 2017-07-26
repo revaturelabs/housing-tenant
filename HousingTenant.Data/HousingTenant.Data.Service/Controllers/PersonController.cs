@@ -188,8 +188,6 @@ namespace HousingTenant.Data.Service.Controllers
             return list.ToList();
         }
 
-
-
         // POST api/values
         [HttpPost]
         public bool Post([FromBody]PersonDAO value)
