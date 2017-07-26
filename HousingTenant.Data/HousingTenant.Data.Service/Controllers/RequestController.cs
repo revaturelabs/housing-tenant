@@ -31,34 +31,38 @@ namespace HousingTenant.Data.Service.Controllers
             var status = _Context.Status;
             var gender = _Context.Gender;
             var apart = _Context.Apartment;
+            var address = _Context.Address;
 
             var main = from r in req
                        join rt in reqType on r.RequestTypeId equals rt.RequestTypeId
                        join stat in status on r.StatusId equals stat.StatusId
                        join p in Person on r.Initiator equals p.PersonId
                        join g in gender on p.GenderId equals g.GenderId
-                       join a in apart on p.AddressId equals a.AddressId
+                       join add in address on p.AddressId equals add.AddressId
+                       join a in apart on add.AddressId equals a.AddressId
                        select new RequestDAO
                        {
-                           Requestguid = r.Requestguid,
-                           RequestType = rt.RequestType1,
-                           IsUrgent = r.IsUrgent,
-                           DateModified = r.DateModified,
+                           RequestId = r.Requestguid.ToString(),
+                           Type = rt.RequestType1,
+                           Urgent = r.IsUrgent,
+                           DateModified = r.DateSubmitted,
                            DateSubmitted = r.DateSubmitted,
-                           Initiator = new PersonDAO { PersonId = p.Personguid.ToString(), ArrivalDate = p.ArrivalDate, EmailAddress = p.EmailAddress,
-                               FirstName = p.FirstName, Gender = g.Gender1, HasCar = p.HasCar, LastName = p.LastName },
-                           PersonAccused = (from p2 in Person
-                                            join g2 in gender on p2.GenderId equals g2.GenderId
-                                            where p2.PersonId == r.PersonIdAccused
-                                            select new PersonDAO {
-                                                PersonId = p2.Personguid.ToString(),
-                                                ArrivalDate = p2.ArrivalDate,
-                                                EmailAddress = p2.EmailAddress,
-                                                FirstName = p2.FirstName,
-                                                Gender = g2.Gender1,
-                                                HasCar = p2.HasCar,
-                                                LastName = p2.LastName
-                                            }).ToList (),
+                           Initiator = new PersonDAO { PersonId = p.Personguid.ToString(),
+                               ArrivalDate = p.ArrivalDate,
+                               EmailAddress = p.EmailAddress,
+                               FirstName = p.FirstName,
+                               Gender = g.Gender1,
+                               HasCar = p.HasCar,
+                               LastName = p.LastName,
+                               Address = new AddressDAO {
+                                   Address1 = add.Address1,
+                                   Address2 = add.Address2,
+                                   ApartmentNumber = add.ApartmentNumber,
+                                   City = add.City,
+                                   ZipCode = add.Zip,
+                                   State = add.State
+                               }
+                           },
                            Status = stat.Status1,
                            Description = r.Description,
                            RequestItems = (from r2 in req
@@ -66,10 +70,44 @@ namespace HousingTenant.Data.Service.Controllers
                                            join st in supType on sr.SupplyTypeId equals st.SupplyTypeId
                                            where r.Requestguid == r2.Requestguid
                                            select st.Supply).ToList (),
-                           ApartmentGuid = a.Apartmentguid
+                           ApartmentId = a.Apartmentguid.ToString()
                        };
+
             _List = main.ToList ();
-        }
+
+
+            for (var i = 0; i < _List.Count; i++)
+            {
+                if (_List[i].Type == "Complaint")
+                {
+                    _List[i].Accused =
+                     (from r in req
+                      join p in Person on r.PersonIdAccused equals p.PersonId
+                      join g in gender on p.GenderId equals g.GenderId
+                      join add in address on p.AddressId equals add.AddressId
+                      where r.Requestguid.ToString() == _List[i].RequestId
+                      select new PersonDAO
+                      {
+                          PersonId = p.Personguid.ToString (),
+                          ArrivalDate = p.ArrivalDate,
+                          EmailAddress = p.EmailAddress,
+                          FirstName = p.FirstName,
+                          Gender = g.Gender1,
+                          HasCar = p.HasCar,
+                          LastName = p.LastName,
+                          Address = new AddressDAO
+                          {
+                              Address1 = add.Address1,
+                              Address2 = add.Address2,
+                              ApartmentNumber = add.ApartmentNumber,
+                              City = add.City,
+                              ZipCode = add.Zip,
+                              State = add.State
+                          }
+                      }).ToList ()[0];
+                }
+    }
+}
 
         [HttpGet]
         public List<RequestDAO> Get()
@@ -78,9 +116,9 @@ namespace HousingTenant.Data.Service.Controllers
         }
 
         [HttpGet ("{id}")]
-        public List<RequestDAO> Get(Guid id)
+        public List<RequestDAO> Get(string id)
         {
-            var output = (from l in _List where l.ApartmentGuid == id select l).ToList ();
+            var output = (from l in _List where l.ApartmentId == id select l).ToList ();
             return output;
         }
 
