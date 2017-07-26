@@ -3,9 +3,7 @@ import './services';
 
 var maintenanceController = mm.controller('maintenanceCtrl', ['$scope', 'maintenanceRequestService', '$routeParams', '$mdDialog', function ($scope, maintenanceRequestService, $routeParams, $mdDialog) {
   var aptGuid = $routeParams.aptguid;
-
-  //$scope.description = "";
-
+  
   $scope.maintenanceTypes = [
     'Electrical Issues',
     'Slow Internet',
@@ -26,8 +24,6 @@ var maintenanceController = mm.controller('maintenanceCtrl', ['$scope', 'mainten
   maintenanceRequestService.getRequestList(aptGuid, $scope);
 
   $scope.addMaintenanceRequest = function (form) {
-    console.log(form);
-
     var request = {
       description: "",
       initiator: 'Current User',
@@ -41,9 +37,8 @@ var maintenanceController = mm.controller('maintenanceCtrl', ['$scope', 'mainten
       request.description = form.description.$modelValue;
     }
 
-    console.log(request);
-
     maintenanceRequestService.postRequest(request);
+    $scope.customDescription = "";
     $scope.cancel();
   }
 

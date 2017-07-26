@@ -42,7 +42,6 @@
         <form name="maintenanceRequest" ng-cloak>
           <md-dialog-content layout-padding>
             <div class="md-dialog-content">
-
               <md-input-container class="md-block">
                 <label for="description">Select Description</label>
                 <md-select name="description" ng-model="description">
@@ -52,14 +51,12 @@
               <md-input-container class="md-block" ng-if="description == 'Other'">
                 <label for="customDescription">Enter Description</label>
                 <input name="customDescription" ng-model="customDescription">
-                <p>{{customDescription}}</p>
               </md-input-container>
               <md-input-container class="md-block">
                 <md-checkbox id="urgent" name="urgent" ng-model="urgent">
                   Urgent
                 </md-checkbox>
               </md-input-container>
-
             </div>
           </md-dialog-content>
           <md-dialog-actions layout="row">
