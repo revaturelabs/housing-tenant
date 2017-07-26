@@ -76250,22 +76250,20 @@ var maintenanceController = module_1.maintenanceModule.controller('maintenanceCt
             return false;
         };
         maintenanceRequestService.getRequestList(aptGuid, $scope);
-        $scope.addMaintenanceRequest = function () {
-            $scope.customDescription = "untouched";
-            $scope.urgent = false;
+        $scope.addMaintenanceRequest = function (form) {
+            console.log(form);
             var request = {
                 description: "",
                 initiator: 'Current User',
                 datesubmitted: Date.now(),
-                urgent: $scope.urgent,
+                urgent: form.urgent.$modelValue,
                 type: 1
             };
             if ($scope.checkDescription() == true) {
-                console.log($scope.customDescription);
-                request.description = $scope.customDescription;
+                request.description = form.customDescription.$modelValue;
             }
             else {
-                request.description = $scope.description;
+                request.description = form.description.$modelValue;
             }
             console.log(request);
             maintenanceRequestService.postRequest(request);
