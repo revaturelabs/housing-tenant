@@ -101,6 +101,7 @@ RequestType nvarchar(50) not null
 create table [Request].[Request](
     RequestId int not null identity(1,1),
     Requestguid uniqueidentifier not null default (newid()),
+    ApartmentId int not null,
     RequestTypeId int not null, --FK
     isUrgent bit not null default(0),
     [Initiator] int not null,--FK
@@ -175,7 +176,8 @@ alter table  [Request].[Request]
 alter table  [Request].[Request]
   add constraint FK_Request_Request_RequestTypeId foreign key (RequestTypeId) references [Request].[RequestType] (RequestTypeId);
 
-
+alter table  [Request].[Request]
+  add constraint FK_Request_Request_ApartmentId foreign key (ApartmentId) references [Tenant].[Apartment] (ApartmentId);
 
 insert into [Tenant].[Address](Address1,ApartmentNumber,City,[State],Zip)
 values
@@ -204,9 +206,9 @@ values
 
 insert into [Tenant].[Person](AddressId,GenderId,HasCar,FirstName,LastName,EmailAddress,ArrivalDate)
 values
-(1,1,1,'Tenant1','Lastname1','tenant@email.com','2017-12-01 12:00:00'),
-(1,1,0,'Tenant1','Lastname1','tenant@email.com','2017-12-01 12:00:00'),
-(1,1,1,'Tenant1','Lastname1','tenant@email.com','2017-12-01 12:00:00');
+(1,1,1,'Tenant1','Lastname1','tenant1@email.com','2017-12-01 12:00:01'),
+(1,1,0,'Tenant2','Lastname2','tenant2@email.com','2017-12-01 12:00:02'),
+(1,1,1,'Tenant3','Lastname3','tenant3@email.com','2017-12-01 12:00:03');
 
 
 insert into [Request].[Status]([Status])
@@ -234,13 +236,13 @@ values
 ('New Apartment'),
 ('Complaint');
 
-insert into [Request].[Request](RequestTypeId,isUrgent,[Initiator],[Description])
+insert into [Request].[Request](RequestTypeId,ApartmentId,isUrgent,[Initiator],[Description])
 values
-(1,1,1,'This is a Test Maintenance Request');
+(1,1,1,1,'This is a Test Maintenance Request');
 
-insert into [Request].[Request](RequestTypeId,isUrgent,[Initiator],[Description])
+insert into [Request].[Request](RequestTypeId,ApartmentId,isUrgent,[Initiator],[Description])
 values
-(2,1,1,'This is a Test Supplies Request');
+(2,1,1,1,'This is a Test Supplies Request');
 
 insert into [Request].[SupplyRequest](SupplyTypeId,RequestId)
 values
@@ -248,10 +250,10 @@ values
 (2,2),
 (3,2);
 
-insert into [Request].[Request](RequestTypeId,isUrgent,[Initiator],[Description])
+insert into [Request].[Request](RequestTypeId,ApartmentId,isUrgent,[Initiator],[Description])
 values
-(3,1,1,'This is a Test New Apartment Request');
+(3,1,1,1,'This is a Test New Apartment Request');
 
-insert into [Request].[Request](RequestTypeId,isUrgent,[Initiator],PersonIdAccused,[Description])
+insert into [Request].[Request](RequestTypeId,ApartmentId,isUrgent,[Initiator],PersonIdAccused,[Description])
 values
 (4,1,1,2,'This is a Test Complain Request');
