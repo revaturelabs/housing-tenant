@@ -29,10 +29,15 @@ namespace HousingTenant.Data.Service.Controllers
             var supType = _Context.SupplyType;
             var Person = _Context.Person;
             var status = _Context.Status;
+            var gender = _Context.Gender;
+            var apart = _Context.Apartment;
+
             var main = from r in req
                        join rt in reqType on r.RequestTypeId equals rt.RequestTypeId
                        join stat in status on r.StatusId equals stat.StatusId
                        join p in Person on r.Initiator equals p.PersonId
+                       join g in gender on p.GenderId equals g.GenderId
+                       join a in apart on p.AddressId equals a.AddressId
                        select new RequestDAO
                        {
                            Requestguid = r.Requestguid,
@@ -40,17 +45,28 @@ namespace HousingTenant.Data.Service.Controllers
                            IsUrgent = r.IsUrgent,
                            DateModified = r.DateModified,
                            DateSubmitted = r.DateSubmitted,
-                           Initiator = p.Personguid,
-                           PersonIdAccused = (from p2 in Person
-                                              where p2.PersonId == r.PersonIdAccused
-                                              select p2.Personguid).ToList(),
+                           Initiator = new PersonDAO { PersonGuid = p.Personguid, ArrivalDate = p.ArrivalDate, EmailAddress = p.EmailAddress,
+                               FirstName = p.FirstName, Gender = g.Gender1, HasCar = p.HasCar, LastName = p.LastName },
+                           PersonAccused = (from p2 in Person
+                                            join g2 in gender on p2.GenderId equals g2.GenderId
+                                            where p2.PersonId == r.PersonIdAccused
+                                            select new PersonDAO {
+                                                PersonGuid = p2.Personguid,
+                                                ArrivalDate = p2.ArrivalDate,
+                                                EmailAddress = p2.EmailAddress,
+                                                FirstName = p2.FirstName,
+                                                Gender = g2.Gender1,
+                                                HasCar = p2.HasCar,
+                                                LastName = p2.LastName
+                                            }).ToList (),
                            Status = stat.Status1,
                            Description = r.Description,
                            RequestItems = (from r2 in req
                                            join sr in supReq on r2.RequestId equals sr.RequestId
                                            join st in supType on sr.SupplyTypeId equals st.SupplyTypeId
                                            where r.Requestguid == r2.Requestguid
-                                           select st.Supply).ToList ()
+                                           select st.Supply).ToList (),
+                           ApartmentGuid = a.Apartmentguid
                        };
             _List = main.ToList ();
         }
@@ -62,10 +78,10 @@ namespace HousingTenant.Data.Service.Controllers
         }
 
         [HttpGet ("{id}")]
-        public RequestDAO Get(Guid id)
+        public List<RequestDAO> Get(Guid id)
         {
-            var output = (from l in _List where l.Requestguid == id select l).ToList ();
-            return output[0];
+            var output = (from l in _List where l.ApartmentGuid == id select l).ToList ();
+            return output;
         }
 
         [HttpPost]

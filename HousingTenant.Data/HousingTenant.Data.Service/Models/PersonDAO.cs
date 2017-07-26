@@ -8,12 +8,13 @@ namespace HousingTenant.Data.Service.Models
 {
     public class PersonDAO : IModel
     {
-        public int Gender { get; set; }
+        public string Gender { get; set; }
         public bool HasCar { get; set; }
         public string FirstName { set; get; }
         public string LastName { get; set; }
         public string EmailAddress { get; set; }
         public string PhoneNumber { get; set; }
         public DateTime ArrivalDate { get; set; }
+        public Guid PersonGuid { get; set; }
     }
 }
