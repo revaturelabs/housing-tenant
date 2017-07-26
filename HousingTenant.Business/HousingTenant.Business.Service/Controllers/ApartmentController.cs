@@ -54,7 +54,7 @@ namespace HousingTenant.Business.Service.Controllers
 
         [HttpGet]
         [Route("address")]
-        public IApartment Get([FromQuery]Address address)
+        public ApartmentDTO Get([FromQuery]Address address)
         //public async Task<IApartment> Get([FromQuery]Address address)
         {
          //var apartmentUrl = string.Format("apartment/{0}", address);
@@ -73,7 +73,7 @@ namespace HousingTenant.Business.Service.Controllers
 
          //return apartment as Apartment;
 
-         return _ServiceManager.GetApartment(address);
+         return ServiceMapper.MapToApartmentDTO((Apartment)_ServiceManager.GetApartment(address));
       }
 
         // POST api/values
