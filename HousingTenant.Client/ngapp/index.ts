@@ -12,6 +12,7 @@ import './supplies/controllers';
 import './apartment/controller';
 import './maintenance/controller';
 import './complaints/controller';
+import './move/controller'
 
 //importing HTML
 import 'file-loader?name=[name].[ext]&outputPath=html/!./html/footer.html';
@@ -20,7 +21,7 @@ import 'file-loader?name=[name].[ext]&outputPath=html/!./html/sidebar.html';
 //Testing GITLAB
 //Testing Bundle
 
-var ngHousingTenant = ng.module('ngHousingTenant', ['AdalAngular', 'ngRoute', 'ngMaterial', 'ngHome', 'supplyModule', 'aptModule', 'maintenanceModule', 'complaintModule']);
+var ngHousingTenant = ng.module('ngHousingTenant', ['AdalAngular', 'ngRoute', 'ngMaterial', 'ngHome', 'supplyModule', 'aptModule', 'maintenanceModule', 'complaintModule', 'moveModule']);
 
 ngHousingTenant.config(['$routeProvider', '$locationProvider', '$httpProvider', 'adalAuthenticationServiceProvider', function ($routeProvider, $locationProvider, $httpProvider, adalProvider) {
   $routeProvider
@@ -44,6 +45,10 @@ ngHousingTenant.config(['$routeProvider', '$locationProvider', '$httpProvider', 
     .when('/complaints/:aptguid', {
       controller: 'complaintCtrl',
       templateUrl: 'ngapp/complaints/partials/template.html'
+    })
+    .when('/move/:aptguid', {
+      controller: 'moveCtrl',
+      templateUrl: 'ngapp/move/partials/template.html'
     })
     .otherwise({
       redirectTo: '/home'
