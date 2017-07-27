@@ -76599,7 +76599,7 @@ var myController = module_1.home.controller('homeController', ['$scope', 'homeFa
             adalAuthenticationService.login();
         };
         $scope.signOut = function () {
-            adalAuthenticationService.logout();
+            adalAuthenticationService.logOut();
         };
         $scope.myAddress = new Address();
         $scope.myPerson = new Person();

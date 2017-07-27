@@ -54,7 +54,7 @@ var myController = h.controller('homeController', ['$scope', 'homeFactory', 'apt
     };
 
     $scope.signOut = function () {
-        adalAuthenticationService.logout();
+        adalAuthenticationService.logOut();
     };
   
   $scope.myAddress = new Address();
