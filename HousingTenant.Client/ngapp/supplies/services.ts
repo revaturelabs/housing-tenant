@@ -10,7 +10,7 @@ var supplyService = sm.factory('supplyRequestService', ['$http', function ($http
                               scope.reqList = [];
                               res.data.forEach(element => {
                                     console.log(element);
-                                    if (element.type === 3) {
+                                    if (element.type === "SupplyRequest") {
                                           scope.reqList.push(element);
                                     }
                               });
