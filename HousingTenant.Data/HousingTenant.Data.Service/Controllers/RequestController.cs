@@ -135,10 +135,10 @@ namespace HousingTenant.Data.Service.Controllers
 
             var newRequest = new Request {
                 Active = true,
-                DateModified = value.DateModified,
-                DateSubmitted = value.DateSubmitted,
+                DateModified = DateTime.Now,
+                DateSubmitted = DateTime.Now,
                 Description = value.Description,
-                Requestguid = new Guid(value.RequestId),
+                Requestguid = new Guid(),
                 IsUrgent = value.Urgent,
                 ApartmentId = (from a in apart
                                where a.Apartmentguid.ToString() == value.ApartmentId
