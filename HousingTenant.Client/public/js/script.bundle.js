@@ -76563,6 +76563,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 var module_1 = __webpack_require__(3);
 __webpack_require__(22);
 __webpack_require__(2);
+//import 'adal-angular/lib/adal-angular';
 var Address = (function () {
     function Address() {
         this.Address1 = 'NotAvailable';
@@ -76593,7 +76594,13 @@ var Person = (function () {
     };
     return Person;
 }());
-var myController = module_1.home.controller('homeController', ['$scope', 'homeFactory', 'aptFactory', '$http', function ($scope, homeFactory, aptFactory, $http) {
+var myController = module_1.home.controller('homeController', ['$scope', 'homeFactory', 'aptFactory', '$http', 'adalAuthenticationService', function ($scope, homeFactory, aptFactory, $http, adalAuthenticationService) {
+        $scope.signIn = function () {
+            adalAuthenticationService.login();
+        };
+        $scope.signOut = function () {
+            adalAuthenticationService.logout();
+        };
         $scope.myAddress = new Address();
         $scope.myPerson = new Person();
         $scope.something = 'hello mock';
