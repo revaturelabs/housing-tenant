@@ -84,6 +84,6 @@ var myController = h.controller('homeController', ['$scope', 'homeFactory', 'apt
     $scope.processPerson(1);
   }
 
-  aptFactory.getApartment($scope, $scope.myAddress);
+  //aptFactory.getApartment($scope, $scope.myAddress);
 
 }]);

@@ -76568,7 +76568,7 @@ var myController = module_1.home.controller('homeController', ['$scope', 'homeFa
         $scope.init = function () {
             $scope.processPerson(1);
         };
-        aptFactory.getApartment($scope, $scope.myAddress);
+        //aptFactory.getApartment($scope, $scope.myAddress);
     }]);
 
 
