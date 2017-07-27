@@ -3,11 +3,14 @@ import { complaintModule as mm } from './module';
 var complaintService = mm.factory('complaintRequestService', ['$http', function ($http) {
   return {
     getRequestList: function (aptguid, scope, userguid) {
+      console.log('GET COMPLAINTS');
       $http.get('http://housingtenantbusiness.azurewebsites.net/api/request/id?=' + aptguid).then(
         function (res) {
+          console.log(res.data);
           scope.reqList = [];
           res.data.forEach(element => {
-            if (element.type === 0 && element.initiator.personId === userguid) {
+            console.log(element);
+            if (element.type == 0 && element.initiator.personId == userguid) {
               scope.reqList.push(element);
             }
           });

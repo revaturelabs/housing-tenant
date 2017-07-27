@@ -101,7 +101,6 @@ var appartmentService = module_1.apartmentModule.factory('aptFactory', ['$http',
         return {
             getApartment: function (scope, address) {
                 $http.get('http://housingtenantbusiness.azurewebsites.net/api/apartment/address/', { params: address }).then(function (res) {
-                    console.log(res);
                     scope.apartment = res.data;
                     scope.supplyReq = 0;
                     scope.maintenanceReq = 0;
@@ -109,15 +108,12 @@ var appartmentService = module_1.apartmentModule.factory('aptFactory', ['$http',
                     scope.apartment.requests.forEach(function (element) {
                         if (element.type == 1) {
                             scope.supplyReq++;
-                            console.log(scope.maintenanceReq);
                         }
                         else if (element.type == 2) {
                             scope.maintenanceReq++;
-                            console.log(scope.maintenanceReq);
                         }
                         else {
                             scope.complaintReq++;
-                            console.log(scope.complaintReq);
                         }
                         ;
                     });
@@ -76445,10 +76441,13 @@ var module_1 = __webpack_require__(7);
 var complaintService = module_1.complaintModule.factory('complaintRequestService', ['$http', function ($http) {
         return {
             getRequestList: function (aptguid, scope, userguid) {
+                console.log('GET COMPLAINTS');
                 $http.get('http://housingtenantbusiness.azurewebsites.net/api/request/id?=' + aptguid).then(function (res) {
+                    console.log(res.data);
                     scope.reqList = [];
                     res.data.forEach(function (element) {
-                        if (element.type === 0 && element.initiator.personId === userguid) {
+                        console.log(element);
+                        if (element.type == 0 && element.initiator.personId == userguid) {
                             scope.reqList.push(element);
                         }
                     });

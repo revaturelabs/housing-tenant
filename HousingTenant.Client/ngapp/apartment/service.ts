@@ -6,7 +6,6 @@ var appartmentService = am.factory('aptFactory', ['$http', function ($http) {
       getApartment: function (scope, address) {
          $http.get('http://housingtenantbusiness.azurewebsites.net/api/apartment/address/', { params: address }).then(
             function (res) {
-               console.log(res);
                scope.apartment = res.data;
                scope.supplyReq = 0;
                scope.maintenanceReq = 0;
@@ -14,13 +13,10 @@ var appartmentService = am.factory('aptFactory', ['$http', function ($http) {
                scope.apartment.requests.forEach(element => {
                   if (element.type == 1) {
                      scope.supplyReq++;
-                     console.log(scope.maintenanceReq);
                   } else if (element.type == 2) {
                      scope.maintenanceReq++;
-                     console.log(scope.maintenanceReq);
                   } else {
                      scope.complaintReq++;
-                     console.log(scope.complaintReq);
                   };
                });
                console.log(scope.apartment);
