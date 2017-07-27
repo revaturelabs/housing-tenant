@@ -107,16 +107,16 @@ var appartmentService = module_1.apartmentModule.factory('aptFactory', ['$http',
                     scope.complaintReq = 0;
                     scope.moveReq = 0;
                     scope.apartment.requests.forEach(function (element) {
-                        if (element.type == 0) {
+                        if (element.type == 'ComplaintRequest') {
                             scope.complaintReq++;
                         }
-                        else if (element.type == 1) {
+                        else if (element.type == 'MaintenanceRequest') {
                             scope.supplyReq++;
                         }
-                        else if (element.type == 2) {
+                        else if (element.type == 'MoveRequest') {
                             scope.maintenanceReq++;
                         }
-                        else if (element.type == 3) {
+                        else if (element.type == 'SupplyRequest') {
                             scope.moveReq++;
                         }
                         ;
@@ -215,17 +215,17 @@ var appartmentService = module_1.apartmentModule.factory('aptFactory', ['$http',
                     scope.maintenanceReq = 0;
                     scope.complaintReq = 0;
                     scope.apartment.requests.forEach(function (element) {
-                        if (element.type == 1) {
-                            scope.supplyReq++;
-                            console.log(scope.maintenanceReq);
-                        }
-                        else if (element.type == 2) {
-                            scope.maintenanceReq++;
-                            console.log(scope.maintenanceReq);
-                        }
-                        else {
+                        if (element.type == 'ComplaintRequest') {
                             scope.complaintReq++;
-                            console.log(scope.complaintReq);
+                        }
+                        else if (element.type == 'MaintenanceRequest') {
+                            scope.supplyReq++;
+                        }
+                        else if (element.type == 'MoveRequest') {
+                            scope.maintenanceReq++;
+                        }
+                        else if (element.type == 'SupplyRequest') {
+                            scope.moveReq++;
                         }
                         ;
                     });
@@ -76226,7 +76226,7 @@ var supplyService = module_1.supplyModule.factory('supplyRequestService', ['$htt
                     scope.reqList = [];
                     res.data.forEach(function (element) {
                         console.log(element);
-                        if (element.type === 3) {
+                        if (element.type === "SupplyRequest") {
                             scope.reqList.push(element);
                         }
                     });
@@ -93315,7 +93315,7 @@ var maintenanceService = module_1.maintenanceModule.factory('maintenanceRequestS
                 $http.get('http://housingtenantbusiness.azurewebsites.net/api/request/id?=' + aptguid).then(function (res) {
                     scope.reqList = [];
                     res.data.forEach(function (element) {
-                        if (element.type === 1) {
+                        if (element.type === "MaintenanceRequest") {
                             scope.reqList.push(element);
                         }
                     });
@@ -93411,7 +93411,7 @@ var complaintService = module_1.complaintModule.factory('complaintRequestService
                     scope.reqList = [];
                     res.data.forEach(function (element) {
                         console.log(element);
-                        if (element.type == 0 && element.initiator.personId == userguid) {
+                        if (element.type == "ComplaintRequest" && element.initiator.personId == userguid) {
                             scope.reqList.push(element);
                         }
                     });
