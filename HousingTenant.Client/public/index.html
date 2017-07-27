@@ -27,10 +27,10 @@
 
 <body id="main" data-ng-app="ngHousingTenant">
   <header>
+    <nav ng-include src="'html/navbar.html'"></nav> 
     <div ng-include="'html/sidebar.html'"></div>
   </header>
 
-  <nav ng-include src="'html/navbar.html'"></nav> 
   <div id="content" data-ng-view></div>
 
   <footer ng-include src="'html/footer.html'"></footer>
