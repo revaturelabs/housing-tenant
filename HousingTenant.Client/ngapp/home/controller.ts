@@ -1,6 +1,7 @@
 import { home as h } from './module';
 import './service';
 import '../apartment/service';
+//import 'adal-angular/lib/adal-angular';
 
 
 
@@ -46,8 +47,16 @@ class Person {
   }
 }
 
-var myController = h.controller('homeController', ['$scope', 'homeFactory', 'aptFactory', '$http', function ($scope, homeFactory, aptFactory, $http) {
+var myController = h.controller('homeController', ['$scope', 'homeFactory', 'aptFactory', '$http', 'adalAuthenticationService', function ($scope, homeFactory, aptFactory, $http, adalAuthenticationService) {
 
+  $scope.signIn = function () {
+        adalAuthenticationService.login();
+    };
+
+    $scope.signOut = function () {
+        adalAuthenticationService.logOut();
+    };
+  
   $scope.myAddress = new Address();
   
   $scope.myPerson = new Person();
@@ -76,5 +85,5 @@ var myController = h.controller('homeController', ['$scope', 'homeFactory', 'apt
   }
 
   aptFactory.getApartment($scope, $scope.myAddress);
-  
+
 }]);

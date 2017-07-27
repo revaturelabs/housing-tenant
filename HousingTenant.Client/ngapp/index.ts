@@ -1,6 +1,7 @@
 import * as ng from 'angular';
 import 'angular-route';
 import 'angular-material';
+import 'adal-angular/lib/adal-angular'
 
 //importing CSS
 import './css/index.css';
@@ -19,13 +20,14 @@ import 'file-loader?name=[name].[ext]&outputPath=html/!./html/sidebar.html';
 //Testing GITLAB
 //Testing Bundle
 
-var ngHousingTenant = ng.module('ngHousingTenant', ['ngRoute', 'ngMaterial', 'ngHome', 'supplyModule', 'aptModule', 'maintenanceModule', 'complaintModule']);
+var ngHousingTenant = ng.module('ngHousingTenant', ['AdalAngular', 'ngRoute', 'ngMaterial', 'ngHome', 'supplyModule', 'aptModule', 'maintenanceModule', 'complaintModule']);
 
-ngHousingTenant.config(['$routeProvider', '$locationProvider', function ($routeProvider, $locationProvider) {
+ngHousingTenant.config(['$routeProvider', '$locationProvider', '$httpProvider', 'adalAuthenticationServiceProvider', function ($routeProvider, $locationProvider, $httpProvider, adalProvider) {
   $routeProvider
     .when('/apartment', {
       controller: 'aptCtrl',
-      templateUrl: 'ngapp/apartment/partials/template.html'
+      templateUrl: 'ngapp/apartment/partials/template.html',
+      requireADLogin: true
     })
     .when('/home', {
       controller: 'homeController',
@@ -46,5 +48,10 @@ ngHousingTenant.config(['$routeProvider', '$locationProvider', function ($routeP
     .otherwise({
       redirectTo: '/home'
     });
-  $locationProvider.html5Mode(false).hashPrefix('!');
+  $locationProvider.html5Mode(true).hashPrefix('!');
+
+  adalProvider.init({
+    tenant: 'fredbelotterevature.onmicrosoft.com',
+    clientId: 'b30b8a78-6e98-4bac-afac-3989d56b3551'
+  }, $httpProvider);
 }]);

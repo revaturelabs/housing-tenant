@@ -17,6 +17,10 @@
           <p><b>Zip: </b>{{myPerson.Address.Zip}}</p>
         </md-card-title-text>
       </md-card-title>
+      <md-card-actions layout="row" layout-align="end center">
+        <md-button class="md-raised md-primary" ng-click="signIn()">Sign In</md-button>
+        <md-button class="md-raised md-warn" ng-click="signOut()">Sign Out</md-button>
+      </md-card-actions>
     </md-card>
   </section>
 </section>
