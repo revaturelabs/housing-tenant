@@ -7,7 +7,7 @@ var maintenanceService = mm.factory('maintenanceRequestService', ['$http', funct
         function (res) {
           scope.reqList = [];
           res.data.forEach(element => {
-            if (element.type === 1) {
+            if (element.type === "MaintenanceRequest") {
               scope.reqList.push(element);
             }
           });

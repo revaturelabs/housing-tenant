@@ -10,7 +10,7 @@ var complaintService = mm.factory('complaintRequestService', ['$http', function 
           scope.reqList = [];
           res.data.forEach(element => {
             console.log(element);
-            if (element.type == 0 && element.initiator.personId == userguid) {
+            if (element.type == "ComplaintRequest" && element.initiator.personId == userguid) {
               scope.reqList.push(element);
             }
           });
