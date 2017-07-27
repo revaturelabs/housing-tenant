@@ -69,7 +69,7 @@ namespace HousingTenant.Business.Service.Controllers
          var vARequest = _LibraryManager.ValidateRequest(ServiceMapper.MapToARequest(request));
          if (vARequest != null)
          {
-            client.PostAsJsonAsync("request", vARequest);
+            client.PostAsJsonAsync("request", request);
          }
          //_ServiceManager.AddRequest(ServiceMapper.MapToARequest(request));
       }
@@ -79,6 +79,7 @@ namespace HousingTenant.Business.Service.Controllers
        [Route("complaintrequest")]
        public void PostComplaintRequest([FromBody]RequestDTO request)
        {
+           request.Type = "ComplaintRequest";
            var vARequest = _LibraryManager.ValidateRequest(ServiceMapper.MapToARequest(request));
            if (vARequest != null)
            {
@@ -91,6 +92,7 @@ namespace HousingTenant.Business.Service.Controllers
       [Route("maintenancerequest")]
       public void PostMaintenanceRequest([FromBody]RequestDTO request)
       {
+         request.Type = "MaintenanceRequest";
          var vARequest = _LibraryManager.ValidateRequest(ServiceMapper.MapToARequest(request));
          if (vARequest != null)
          {
@@ -103,6 +105,7 @@ namespace HousingTenant.Business.Service.Controllers
       [Route("moverequest")]
       public void PostMoveRequest([FromBody]RequestDTO request)
       {
+         request.Type = "MoveRequest";
          var vARequest = _LibraryManager.ValidateRequest(ServiceMapper.MapToARequest(request));
          if (vARequest != null)
          {
@@ -115,6 +118,7 @@ namespace HousingTenant.Business.Service.Controllers
       [Route("supplyrequest")]
       public void PostSupplyRequest([FromBody]RequestDTO request)
       {
+         request.Type = "SupplyRequest";
          var vARequest = _LibraryManager.ValidateRequest(ServiceMapper.MapToARequest(request));
          if (vARequest != null)
          {
