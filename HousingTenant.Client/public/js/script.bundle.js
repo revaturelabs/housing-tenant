@@ -159,6 +159,7 @@ var appartmentService = module_1.apartmentModule.factory('aptFactory', ['$http',
             getListApartments: function (scope) {
                 $http.get('http://housingtenantbusiness.azurewebsites.net/api/apartment').then(function (res) {
                     scope.aptList = res.data;
+                    console.log(scope.aptList);
                 }, function (err) {
                     console.log(err);
                 });
@@ -93919,17 +93920,20 @@ var moveController = module_1.moveModule.controller('moveCtrl', ['$scope', '$rou
         aptFactory.getListApartments($scope);
         $scope.addMoveRequest = function (form) {
             console.log(form);
+            console.log($scope.selectedApartment);
             var request = {
                 description: form.reason.$modelValue,
                 initiator: 'currentUser',
                 datesubmitted: Date.now(),
-                requestedApartmentAddress: form.apartment.$modelValue
+                requestedApartmentAddress: $scope.selectedApartmentAddress
             };
+            console.log(request);
             moveService.postRequest(request);
             form.$setUntouched();
             $scope.cancel();
         };
         $scope.openModal = function (event) {
+            console.log($scope.aptList);
             $mdDialog.show({
                 contentElement: '#AddRequestModal',
                 parent: document.body,

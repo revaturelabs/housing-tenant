@@ -63,6 +63,7 @@ var appartmentService = am.factory('aptFactory', ['$http', function ($http) {
             $http.get('http://housingtenantbusiness.azurewebsites.net/api/apartment').then(
                   function(res){
                         scope.aptList = res.data;
+                        console.log(scope.aptList);
                   }, function(err){
                         console.log(err);
                   }

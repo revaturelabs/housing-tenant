@@ -44,14 +44,14 @@
           <md-dialog-content layout-padding>
             <div class="md-dialog-content">
               <md-input-container class="md-block">
-                <label for="apartment">Select New Apartment</label>
-                <md-select name="apartment" ng-model="selectedApartment">
-                  <md-option ng-repeat="apartment in aptList" value="{{apartment}}">{{apartment.address1}}</md-option>
+                <label for="apt">Select New Apartment</label>
+                <md-select name="apt" ng-model="selectedApartmentAddress">
+                  <md-option ng-repeat="apartment in aptList" value="{{apartment.address}}">{{apartment.address.address1}} {{apartment.address.apartmentNumber}}</md-option>
                 </md-select>
               </md-input-container>
               <md-input-container class="md-block">
                 <label for="reason">Reason</label>
-                <textarea name="reason" placeholder="Tell us what's happening" rows="5"></textarea>
+                <textarea name="reason" placeholder="Tell us what's happening" rows="5" ng-model="reason"></textarea>
               </md-input-container>
             </div>
           </md-dialog-content>
