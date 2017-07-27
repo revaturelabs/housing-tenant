@@ -3,13 +3,13 @@ import { apartmentModule as am } from './module';
 
 var appartmentService = am.factory('aptFactory', ['$http', function ($http) {
    return {
-      getApartment: function (scope, address) {
+      getApartment: function (scope, address, getPie) {
          $http.get('http://housingtenantbusiness.azurewebsites.net/api/apartment/address/', { params: address }).then(
             function (res) {
                scope.apartment = res.data;
                scope.supplyReq = 0;
-               scope.maintenanceReq = 0;
-               scope.complaintReq = 0;
+               scope.maintenanceReq = 7;
+               scope.complaintReq = 3;
                scope.moveReq = 0;
                scope.apartment.requests.forEach(element => {
                   if (element.type == 0) {
@@ -22,6 +22,11 @@ var appartmentService = am.factory('aptFactory', ['$http', function ($http) {
                      scope.moveReq++;
                   };
                });
+               
+               var currentData = [{label: 'Complaints', count : scope.complaintReq },{label: 'Maintenance', count : scope.maintenanceReq },{label: 'Move', count : scope.moveReq},{label: 'Supply', count : scope.supplyReq}];
+               console.log(currentData);  
+               getPie(currentData);
+
                console.log(scope.apartment);
             }, function (err) {
                console.log(err);
