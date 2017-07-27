@@ -1,6 +1,6 @@
 <section id="mainHome" ng-init="init()">
 
-  <h1>Welcome, {{myPerson.FirstName}} {{myPerson.LastName}}</h1>
+  <h1>Welcome, {{myPerson.FirstName}} {{myPerson.LastName}} at: {{userInfo.userName}}</h1>
 
   <section>
     <header>
@@ -18,8 +18,8 @@
         </md-card-title-text>
       </md-card-title>
       <md-card-actions layout="row" layout-align="end center">
-        <md-button class="md-raised md-primary" ng-click="signIn()">Sign In</md-button>
-        <md-button class="md-raised md-warn" ng-click="signOut()">Sign Out</md-button>
+        <md-button data-ng-hide="userInfo.isAuthenticated" class="md-raised md-primary" ng-click="signIn()">Sign In</md-button>
+        <md-button data-ng-hide="!userInfo.isAuthenticated" class="md-raised md-warn" ng-click="signOut()">Sign Out</md-button>
       </md-card-actions>
     </md-card>
   </section>
