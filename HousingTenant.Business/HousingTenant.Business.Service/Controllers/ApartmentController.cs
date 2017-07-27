@@ -24,32 +24,34 @@ namespace HousingTenant.Business.Service.Controllers
 
       // GET: api/values
         [HttpGet]
-        public async Task<List<Apartment>> Get()
+        public async Task<List<ApartmentDTO>> Get()
         {
-            var apartments = await client.GetAsync("apartment", HttpCompletionOption.ResponseContentRead);
-            var ApartmentList = JsonConvert.DeserializeObject<List<Apartment>>(apartments.Content.ReadAsStringAsync().Result);
+         //var apartments = await client.GetAsync("apartment", HttpCompletionOption.ResponseContentRead);
+         //var ApartmentList = JsonConvert.DeserializeObject<List<ApartmentDTO>>(apartments.Content.ReadAsStringAsync().Result);
 
-            return ApartmentList;
-        }
+         //return ApartmentList;
+         return ServiceMapper.MapToApartmentDTOList(_ServiceManager.GetApartments());
+      }
         
         [Route("id")]
-        public async Task<IApartment> Get([FromQuery]string id)
+        public async Task<ApartmentDTO> Get([FromQuery]string id)
         {
-            var uri = string.Format("apartment/{0}", id);
-            var aRequest = await client.GetAsync(uri, HttpCompletionOption.ResponseContentRead);
-            var emptyApartment = JsonConvert.DeserializeObject<Apartment>(aRequest.Content.ReadAsStringAsync().Result);
+         //var uri = string.Format("apartment/{0}", id);
+         //var aRequest = await client.GetAsync(uri, HttpCompletionOption.ResponseContentRead);
+         //var emptyApartment = JsonConvert.DeserializeObject<ApartmentDTO>(aRequest.Content.ReadAsStringAsync().Result);
 
-            var personUrl = string.Format("person/{0}", emptyApartment.Address);
-            var pRequest = await client.GetAsync(personUrl, HttpCompletionOption.ResponseContentRead);
-            var persons = JsonConvert.DeserializeObject<List<Person>>(pRequest.Content.ReadAsStringAsync().Result);
+         //var personUrl = string.Format("person/{0}", emptyApartment.Address);
+         //var pRequest = await client.GetAsync(personUrl, HttpCompletionOption.ResponseContentRead);
+         //var persons = JsonConvert.DeserializeObject<List<PersonDTO>>(pRequest.Content.ReadAsStringAsync().Result);
 
-            var requestUrl = string.Format("request/{0}", emptyApartment.Address);
-            var rRequest = await client.GetAsync(requestUrl, HttpCompletionOption.ResponseContentRead);
-            var requests = JsonConvert.DeserializeObject<List<RequestDTO>>(rRequest.Content.ReadAsStringAsync().Result);
+         //var requestUrl = string.Format("request/{0}", emptyApartment.Address);
+         //var rRequest = await client.GetAsync(requestUrl, HttpCompletionOption.ResponseContentRead);
+         //var requests = JsonConvert.DeserializeObject<List<RequestDTO>>(rRequest.Content.ReadAsStringAsync().Result);
 
-            var apartment = _LibraryManager.PackApartment(emptyApartment, ServiceMapper.MapToIPersonList(persons), ServiceMapper.MapToARequestList(requests));
+         //var apartment = _LibraryManager.PackApartment(ServiceMapper.MapToIApartment(emptyApartment), ServiceMapper.MapToIPersonList(persons), ServiceMapper.MapToARequestList(requests));
 
-            return apartment as Apartment;
+         //return ServiceMapper.MapToApartmentDTO((Apartment)apartment);
+         return ServiceMapper.MapToApartmentDTO(_ServiceManager.GetApartment(id));
       }
 
         [HttpGet]
@@ -73,24 +75,24 @@ namespace HousingTenant.Business.Service.Controllers
 
          //return apartment as Apartment;
 
-         return ServiceMapper.MapToApartmentDTO((Apartment)_ServiceManager.GetApartment(address));
+         return ServiceMapper.MapToApartmentDTO(_ServiceManager.GetApartment(address));
       }
 
         // POST api/values
         [HttpPost]
-        public void Post([FromBody]Apartment apartment)
+        public void Post([FromBody]ApartmentDTO apartment)
         {
          //var vApartment = (Apartment)_LibraryManager.ValidateApartment(apartment);
          //client.PostAsJsonAsync("apartment", vApartment);
 
-         _ServiceManager.AddApartment(apartment);
+         _ServiceManager.AddApartment(ServiceMapper.MapToIApartment(apartment));
         }
 
         // PUT api/values/5
         [HttpPut("{address}")]
-        public void Put(int id, [FromBody]Apartment apartment)
+        public void Put(int id, [FromBody]ApartmentDTO apartment)
         {
-            var vApartment = (Apartment)_LibraryManager.ValidateApartment(apartment);
+            var vApartment = (Apartment)_LibraryManager.ValidateApartment(ServiceMapper.MapToIApartment(apartment));
             client.PutAsJsonAsync("apartment", vApartment);
         }
 

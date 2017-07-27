@@ -13,9 +13,9 @@ namespace HousingTenant.Business.Library.Models
             {
                 var otherRequest = other as MaintenanceRequest;
                 var thisRequestString = string.Format("{0} {1} {2}",
-                   Initiator.Address, Description, (Status == StatusEnum.INWORK || Status == StatusEnum.PENDING ? StatusEnum.PENDING : StatusEnum.COMPLETED));
+                   Initiator.Address, Description, (Status == "Hold" || Status == "Pending" ? "Pending" : "Completed"));
                 var otherRequestString = string.Format("{0} {1} {2}",
-                   otherRequest.Initiator.Address, otherRequest.Description, (otherRequest.Status == StatusEnum.INWORK || otherRequest.Status == StatusEnum.PENDING ? StatusEnum.PENDING : StatusEnum.COMPLETED));
+                   otherRequest.Initiator.Address, otherRequest.Description, (otherRequest.Status == "Hold" || otherRequest.Status == "Pending" ? "Pending" : "Completed"));
 
                 return thisRequestString.CompareTo(otherRequestString);
             }

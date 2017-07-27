@@ -13,7 +13,7 @@ namespace HousingTenant.Business.Library.Models
         public string EmailAddress { get; set; }
         public string PhoneNumber { get; set; }
         public Address Address { get; set; }
-        public GenderEnum Gender { get; set; }
+        public string Gender { get; set; } // public GenderEnum Gender { get; set; }
         public DateTime ArrivalDate { get; set; }
 
         public int CompareTo(IPerson other)

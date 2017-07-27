@@ -72,7 +72,7 @@ namespace HousingTenant.Business.Library.Models
 
             foreach (var request in _Requests)
             {
-                if(request.Status != StatusEnum.COMPLETED)
+                if(request.Status != "Completed")
                 {
                     requests.Add(request);
                 }
