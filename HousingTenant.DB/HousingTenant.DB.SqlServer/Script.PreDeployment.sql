@@ -9,6 +9,12 @@
                SELECT * FROM [$(TableName)]					
 --------------------------------------------------------------------------------------
 */
+create database HousingTenantDB;
+go
+
+use HousingTenantDB;
+go
+
 create schema Tenant;
 go
 
