@@ -137,26 +137,29 @@ namespace HousingTenant.Business.Service.Mappers
          {
             switch (requestDto.Type)
             {
-               case "COMPLAINT":
+               case "ComplaintRequest":
                   request = new ComplaintRequest
                   {
                      Accused = requestDto.Accused
                   };
                   break;
-               case "MAINTENANCE":
+               case "MaintenanceRequest":
                   request = new MaintenanceRequest();
                   break;
-               case "MOVE":
+               case "MoveRequest":
                   request = new MoveRequest
                   {
                      RequestedApartmentAddress = requestDto.RequestedApartmentAddress
                   };
                   break;
-               case "SUPPLIES":
+               case "SupplyRequest":
                   request = new SupplyRequest
                   {
                      RequestItems = requestDto.RequestItems
                   };
+                  break;
+               default:
+                  request = new MaintenanceRequest();
                   break;
             }
             request.RequestId = requestDto.RequestId;
@@ -177,21 +180,21 @@ namespace HousingTenant.Business.Service.Mappers
          {
             if (arequest is ComplaintRequest)
             {
-               requestdto.Type = "COMPLAINT";
+               requestdto.Type = "ComplaintRequest";
                requestdto.Accused = (Person)((ComplaintRequest)arequest).Accused;
             }
             else if (arequest is MaintenanceRequest)
             {
-               requestdto.Type = "MAINTENANCE";
+               requestdto.Type = "MaintenanceRequest";
             }
             else if (arequest is MoveRequest)
             {
-               requestdto.Type = "MOVE";
+               requestdto.Type = "MoveRequest";
                requestdto.RequestedApartmentAddress = ((MoveRequest)arequest).RequestedApartmentAddress;
             }
             else
             {
-               requestdto.Type = "SUPPLIES";
+               requestdto.Type = "SupplyRequest";
                requestdto.RequestItems = ((SupplyRequest)arequest).RequestItems;
             }
             requestdto.ApartmentId = arequest.ApartmentId;
