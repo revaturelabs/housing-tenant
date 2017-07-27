@@ -123,9 +123,62 @@ namespace HousingTenant.Data.Service.Controllers
         }
 
         [HttpPost]
-        public bool Post([FromBody]RequestDAO value)
+        public void Post([FromBody]RequestDAO value)
         {
-            return true;
+            var req = _Context.Request;
+            var reqType = _Context.RequestType;
+            var supReq = _Context.SupplyRequest;
+            var supType = _Context.SupplyType;
+            var Person = _Context.Person;
+            var status = _Context.Status;
+            var apart = _Context.Apartment;
+
+            var newRequest = new Request {
+                Active = true,
+                DateModified = value.DateModified,
+                DateSubmitted = value.DateSubmitted,
+                Description = value.Description,
+                Requestguid = new Guid(value.RequestId),
+                IsUrgent = value.Urgent,
+                ApartmentId = (from a in apart
+                               where a.Apartmentguid.ToString() == value.ApartmentId
+                               select a.ApartmentId).ToList()[0],
+                Initiator = (from p in Person
+                             where p.Personguid.ToString() == value.Initiator.PersonId
+                             select p.PersonId).ToList()[0],
+                RequestTypeId = (from rt in reqType
+                                 where rt.RequestType1 == value.Type
+                                 select rt.RequestTypeId).ToList()[0],
+                StatusId = (from s in status
+                            where s.Status1 == value.Status
+                            select s.StatusId).ToList()[0]
+            };
+
+            if(value.Type == "Complaint")
+            {
+                newRequest.PersonIdAccused = (from p in Person
+                                              where p.Personguid == new Guid(value.Accused.PersonId)
+                                              select p.PersonId).ToList()[0];
+            }else if(value.Type == "Supplies")
+            {
+                var temp = new List<SupplyRequest> ();
+
+                foreach(var item in value.RequestItems)
+                {
+                    temp.Add (new SupplyRequest { SupplyTypeId = (from st in supType
+                                                                  where st.Supply == item
+                                                                  select st.SupplyTypeId).ToList()[0],
+                                                  Active = true,
+                                                  
+                                                 });
+                }
+
+                newRequest.SupplyRequest = temp;
+            }
+
+            _Context.Request.Add (newRequest);
+            _Context.SaveChanges ();
+
         }
     }
 }
