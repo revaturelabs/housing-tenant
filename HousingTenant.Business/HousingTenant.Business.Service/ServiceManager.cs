@@ -9,7 +9,7 @@ namespace HousingTenant.Business.Service
     public class ServiceManager
    {
       static string[] GENDER = new string[] { "OTHER", "MALE", "FEMALE" };
-      static string[] STATUS = new string[] { "PENDING", "HOLD", "COMPLETED", "REJECTED" };
+      static string[] STATUS = new string[] { "PENDING", "INWORK", "COMPLETED", "REJECTED" };
       static List<string> supplyList = new List<string> { "Soap", "Dishwashing Liquid", "Scruby Pad", "Paper Towel", "Toilet Paper" };
 
       static Address address1 = new Address { Address1 = "2100 Wilkes Court", ApartmentNumber = "102", City = "Herndon", State = "Virginia", ZipCode = "20170" };

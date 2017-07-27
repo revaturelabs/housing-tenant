@@ -7,6 +7,7 @@ namespace HousingTenant.Business.Library.Models
     public class Person : IPerson
     {
         public bool HasCar { get; set; }
+        public string ApartmentId { get; set; }
         public string PersonId { get; set; }
         public string FirstName { get; set; }
         public string LastName { get; set; }
