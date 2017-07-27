@@ -12,13 +12,13 @@ var appartmentService = am.factory('aptFactory', ['$http', function ($http) {
                scope.complaintReq = 0;
                scope.moveReq = 0;
                scope.apartment.requests.forEach(element => {
-                  if (element.type == 0) {
+                  if (element.type == 'ComplaintRequest') {
                      scope.complaintReq++
-                  } else if (element.type == 1) {
+                  } else if (element.type == 'MaintenanceRequest') {
                      scope.supplyReq++;
-                  } else if (element.type == 2) {
+                  } else if (element.type == 'MoveRequest') {
                      scope.maintenanceReq++;
-                  } else if (element.type == 3) {
+                  } else if (element.type == 'SupplyRequest') {
                      scope.moveReq++;
                   };
                });
@@ -118,15 +118,14 @@ var appartmentService = am.factory('aptFactory', ['$http', function ($http) {
                scope.maintenanceReq = 0;
                scope.complaintReq = 0;
                scope.apartment.requests.forEach(element => {
-                  if (element.type == 1) {
+                  if (element.type == 'ComplaintRequest') {
+                     scope.complaintReq++
+                  } else if (element.type == 'MaintenanceRequest') {
                      scope.supplyReq++;
-                     console.log(scope.maintenanceReq);
-                  } else if (element.type == 2) {
+                  } else if (element.type == 'MoveRequest') {
                      scope.maintenanceReq++;
-                     console.log(scope.maintenanceReq);
-                  } else {
-                     scope.complaintReq++;
-                     console.log(scope.complaintReq);
+                  } else if (element.type == 'SupplyRequest') {
+                     scope.moveReq++;
                   };
                });
                var currentData = [{label: 'Co', count : scope.complaintReq },{label: 'Ma', count : scope.maintenanceReq },{label: 'Mo', count : scope.moveReq},{label: 'Su', count : scope.supplyReq}];               
