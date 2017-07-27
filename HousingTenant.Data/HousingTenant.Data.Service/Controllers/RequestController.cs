@@ -78,7 +78,7 @@ namespace HousingTenant.Data.Service.Controllers
 
             for (var i = 0; i < _List.Count; i++)
             {
-                if (_List[i].Type == "Complaint")
+                if (_List[i].Type == "ComplaintRequest")
                 {
                     _List[i].Accused =
                      (from r in req
@@ -154,12 +154,12 @@ namespace HousingTenant.Data.Service.Controllers
                             select s.StatusId).ToList()[0]
             };
 
-            if(value.Type == "Complaint")
+            if(value.Type == "ComplaintRequest")
             {
                 newRequest.PersonIdAccused = (from p in Person
                                               where p.Personguid == new Guid(value.Accused.PersonId)
                                               select p.PersonId).ToList()[0];
-            }else if(value.Type == "Supplies")
+            }else if(value.Type == "SupplyRequest")
             {
                 var temp = new List<SupplyRequest> ();
 
