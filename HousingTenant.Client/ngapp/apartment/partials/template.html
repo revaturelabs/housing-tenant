@@ -14,14 +14,16 @@
       </span>
       </md-card-title-text>
       <md-card-title-media>
-         <div class="md-media-md card-media">
+         <div class="md-media-lg card-media">
             <img src="http://westerlyworldgateapts.com/assets/images/cache/exterior-4-434f5c656014ca5dd62d77eb78568e9c.jpg">
          </div>
       </md-card-title-media>
    </md-card-title>
+   <div id="chart"></div>
    <md-card-actions layout="row" layout-align="end center">
-      <md-button data-ng-href="#!/supplies/{{apartment.apartmentId}}" data-ng-model="supplyReq">Supplies {{supplyReq}}</md-button>
-      <md-button data-ng-href="#!/maintenance/{{apartment.apartmentId}}" data-ng-model="maintenanceReq">Maintenance {{maintenanceReq}}</md-button>
-      <md-button data-ng-href="#!/complaints/{{apartment.apartmentId}}" data-ng-model="complaintReq">Complaints {{complaintReq}}</md-button>
+      <md-button data-ng-href="#!/supplies/{{apartment.apartmentId}}" data-ng-model="supplyReq">Supplies <span class="badge">{{supplyReq}}</span></md-button>
+      <md-button data-ng-href="#!/maintenance/{{apartment.apartmentId}}" data-ng-model="maintenanceReq">Maintenance <span class="badge">{{maintenanceReq}}</span></md-button>
+      <md-button data-ng-href="#!/complaints/{{apartment.apartmentId}}" data-ng-model="complaintReq">Complaints <span class="badge">{{complaintReq}}</span></md-button>
+      <md-button data-ng-href="#!/move/{{apartment.apartmentId}}" data-ng-model="moveReq">Move Request <span class="badge">{{moveReq}}</span></md-button>
    </md-card-actions>
 </md-card>

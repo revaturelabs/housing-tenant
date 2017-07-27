@@ -3,26 +3,30 @@ import { apartmentModule as am } from './module';
 
 var appartmentService = am.factory('aptFactory', ['$http', function ($http) {
    return {
-      getApartment: function (scope, address) {
+      getApartment: function (scope, address, getPie) {
          $http.get('http://housingtenantbusiness.azurewebsites.net/api/apartment/address/', { params: address }).then(
             function (res) {
-               console.log(res);
                scope.apartment = res.data;
                scope.supplyReq = 0;
                scope.maintenanceReq = 0;
                scope.complaintReq = 0;
+               scope.moveReq = 0;
                scope.apartment.requests.forEach(element => {
-                  if (element.type == 1) {
+                  if (element.type == 0) {
+                     scope.complaintReq++
+                  } else if (element.type == 1) {
                      scope.supplyReq++;
-                     console.log(scope.maintenanceReq);
                   } else if (element.type == 2) {
                      scope.maintenanceReq++;
-                     console.log(scope.maintenanceReq);
-                  } else {
-                     scope.complaintReq++;
-                     console.log(scope.complaintReq);
+                  } else if (element.type == 3) {
+                     scope.moveReq++;
                   };
                });
+               
+               var currentData = [{label: 'Co', count : scope.complaintReq },{label: 'Ma', count : scope.maintenanceReq },{label: 'Mo', count : scope.moveReq},{label: 'Su', count : scope.supplyReq}];
+               
+               getPie(currentData);
+
                console.log(scope.apartment);
             }, function (err) {
                console.log(err);
@@ -106,7 +110,7 @@ var appartmentService = am.factory('aptFactory', ['$http', function ($http) {
             }
          );
       },
-      getApartmentByGuid: function (scope, aptguid) {
+      getApartmentByGuid: function (scope, aptguid, getPie) {
          $http.get('http://housingtenantbusiness.azurewebsites.net/api/apartment/id?=' + aptguid).then(
             function (res) {
                scope.apartment = res.data;
@@ -125,6 +129,9 @@ var appartmentService = am.factory('aptFactory', ['$http', function ($http) {
                      console.log(scope.complaintReq);
                   };
                });
+               var currentData = [{label: 'Co', count : scope.complaintReq },{label: 'Ma', count : scope.maintenanceReq },{label: 'Mo', count : scope.moveReq},{label: 'Su', count : scope.supplyReq}];               
+               getPie(currentData);
+
                console.log(scope.apartment);
             }, function (err) {
                console.log(err);
