@@ -10,13 +10,16 @@ var appartmentService = am.factory('aptFactory', ['$http', function ($http) {
                scope.supplyReq = 0;
                scope.maintenanceReq = 0;
                scope.complaintReq = 0;
+               scope.moveReq = 0;
                scope.apartment.requests.forEach(element => {
-                  if (element.type == 1) {
+                  if (element.type == 0) {
+                     scope.complaintReq++
+                  } else if (element.type == 1) {
                      scope.supplyReq++;
                   } else if (element.type == 2) {
                      scope.maintenanceReq++;
-                  } else {
-                     scope.complaintReq++;
+                  } else if (element.type == 3) {
+                     scope.moveReq++;
                   };
                });
                console.log(scope.apartment);
