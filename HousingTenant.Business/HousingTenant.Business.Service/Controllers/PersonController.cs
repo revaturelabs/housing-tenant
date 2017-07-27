@@ -27,46 +27,45 @@ namespace HousingTenant.Business.Service.Controllers
         [HttpGet]
         public async Task<List<PersonDTO>> Get()
         {
-         //var persons = await client.GetAsync("person", HttpCompletionOption.ResponseContentRead);
-         //var personList = JsonConvert.DeserializeObject<List<PersonDTO>>(persons.Content.ReadAsStringAsync().Result);
+         var persons = await client.GetAsync("person/getall", HttpCompletionOption.ResponseContentRead);
+         var personList = JsonConvert.DeserializeObject<List<PersonDTO>>(persons.Content.ReadAsStringAsync().Result);
 
-         //return personList;
-         return ServiceMapper.MapToPersonDTOList(_ServiceManager.GetPersons());
+         return personList;
+         //return ServiceMapper.MapToPersonDTOList(_ServiceManager.GetPersons());
       }
 
         // GET api/person/5
         [HttpGet("id")]
         public async Task<PersonDTO> Get([FromQuery]string id)
         {
-         //var uri = string.Format("{0}/{1}", "person", id);
-         //var person = await client.GetAsync(uri, HttpCompletionOption.ResponseContentRead);
-         //var deserializedPerson = JsonConvert.DeserializeObject<PersonDTO>(person.Content.ReadAsStringAsync().Result);
+         var uri = string.Format("{0}/{1}", "person", id);
+         var person = await client.GetAsync(uri, HttpCompletionOption.ResponseContentRead);
+         var deserializedPerson = JsonConvert.DeserializeObject<PersonDTO>(person.Content.ReadAsStringAsync().Result);
 
-         //return deserializedPerson;
-         return ServiceMapper.MapToPersonDTO(_ServiceManager.GetPerson(id));
-      }
+         return deserializedPerson;
+         //return ServiceMapper.MapToPersonDTO(_ServiceManager.GetPerson(id));
+        }
         
-        // Get api/persons/address
+        // Get api/person/email
         [HttpGet]
-        [Route("address")]
-        public async Task<List<PersonDTO>> Get([FromQuery]Address address)
+        [Route("email")]
+        public async Task<PersonDTO> GetEmail([FromQuery]string email)
         {
-         //var uri = string.Format("{0}/{1}", "person", address);
-         //var persons = await client.GetAsync(uri, HttpCompletionOption.ResponseContentRead);
-         //var personList = JsonConvert.DeserializeObject<List<PersonDTO>>(persons.Content.ReadAsStringAsync().Result);
+            var uri = string.Format("person/getbyemail/{0}",email);
+            var person = await client.GetAsync(uri, HttpCompletionOption.ResponseContentRead);
+            var response = JsonConvert.DeserializeObject<PersonDTO>(person.Content.ReadAsStringAsync().Result);
 
-         //return personList;
-         return ServiceMapper.MapToPersonDTOList(_ServiceManager.GetPersons(address));
-      }
+            return response;
+        }
 
         // POST api/values
         [HttpPost]
         public void Post([FromBody]PersonDTO person)
         {
-         //var vperson = (Person)_LibraryManager.ValidateTenant(person);
-         //client.PostAsJsonAsync("person", vperson);
+         var vperson = (Person)_LibraryManager.ValidateTenant(ServiceMapper.MapToIPerson(person));
+         client.PostAsJsonAsync("person", vperson);
 
-         _ServiceManager.AddPerson(ServiceMapper.MapToIPerson(person));
+         //_ServiceManager.AddPerson(ServiceMapper.MapToIPerson(person));
         }
 
         // PUT api/values/5

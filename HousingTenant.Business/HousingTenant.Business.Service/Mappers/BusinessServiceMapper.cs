@@ -7,6 +7,8 @@ namespace HousingTenant.Business.Service.Mappers
 {
     public class BusinessServiceMapper
    {
+      static readonly string[] REQUEST_TYPES = { "COMPLAINT", "MAINTENANCE", "MOVE", "SUPPLIES" };
+
       public IApartment MapToIApartment(ApartmentDTO apartmentdto)
       {
          return new Apartment
@@ -74,7 +76,8 @@ namespace HousingTenant.Business.Service.Mappers
             HasCar = person.HasCar,
             LastName = person.LastName,
             PersonId = person.PersonDTOId,
-            PhoneNumber = person.PhoneNumber
+            PhoneNumber = person.PhoneNumber,
+            ApartmentId = person.ApartmentId
          };
       }
 
@@ -107,6 +110,7 @@ namespace HousingTenant.Business.Service.Mappers
                HasCar = person.HasCar,
                PersonDTOId = person.PersonId,
                PhoneNumber = person.PhoneNumber,
+               ApartmentId = person.ApartmentId
             };
          }
          return new PersonDTO();
@@ -133,22 +137,22 @@ namespace HousingTenant.Business.Service.Mappers
          {
             switch (requestDto.Type)
             {
-               case "Complaint":
+               case "COMPLAINT":
                   request = new ComplaintRequest
                   {
                      Accused = requestDto.Accused
                   };
                   break;
-               case "Maintenance":
+               case "MAINTENANCE":
                   request = new MaintenanceRequest();
                   break;
-               case "New Apartment":
+               case "MOVE":
                   request = new MoveRequest
                   {
                      RequestedApartmentAddress = requestDto.RequestedApartmentAddress
                   };
                   break;
-               case "Supplies":
+               case "SUPPLIES":
                   request = new SupplyRequest
                   {
                      RequestItems = requestDto.RequestItems
@@ -173,21 +177,21 @@ namespace HousingTenant.Business.Service.Mappers
          {
             if (arequest is ComplaintRequest)
             {
-               requestdto.Type = "ComplaintRequest";
+               requestdto.Type = "COMPLAINT";
                requestdto.Accused = (Person)((ComplaintRequest)arequest).Accused;
             }
             else if (arequest is MaintenanceRequest)
             {
-               requestdto.Type = "MaintenanceRequest";
+               requestdto.Type = "MAINTENANCE";
             }
             else if (arequest is MoveRequest)
             {
-               requestdto.Type = "MoveRequest";
+               requestdto.Type = "MOVE";
                requestdto.RequestedApartmentAddress = ((MoveRequest)arequest).RequestedApartmentAddress;
             }
             else
             {
-               requestdto.Type = "SupplyRequest";
+               requestdto.Type = "SUPPLIES";
                requestdto.RequestItems = ((SupplyRequest)arequest).RequestItems;
             }
             requestdto.ApartmentId = arequest.ApartmentId;

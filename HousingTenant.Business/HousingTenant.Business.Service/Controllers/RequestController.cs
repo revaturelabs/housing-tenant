@@ -26,23 +26,23 @@ namespace HousingTenant.Business.Service.Controllers
       [HttpGet]
       public async Task<List<RequestDTO>> Get()
       {
-         //var requests = await client.GetAsync("request", HttpCompletionOption.ResponseContentRead);
-         //var requestDtos = JsonConvert.DeserializeObject<List<RequestDTO>>(requests.Content.ReadAsStringAsync().Result);
+         var requests = await client.GetAsync("request", HttpCompletionOption.ResponseContentRead);
+         var requestDtos = JsonConvert.DeserializeObject<List<RequestDTO>>(requests.Content.ReadAsStringAsync().Result);
 
-         //return requestDtos;
-         return ServiceMapper.MapToRequestDTOList(_ServiceManager.GetRequests());
+         return requestDtos;
+         //return ServiceMapper.MapToRequestDTOList(_ServiceManager.GetRequests());
       }
 
       [Route("id")]
       public async Task<List<RequestDTO>> Get([FromQuery]string id)
       {
-         // Collect Request by ApartmentId
-         //var uri = string.Format("{0}/{1}", "request", id);
-         //var request = await client.GetAsync(uri, HttpCompletionOption.ResponseContentRead);
-         //var requestDto = JsonConvert.DeserializeObject<List<RequestDTO>>(request.Content.ReadAsStringAsync().Result);
+         //Collect Request by ApartmentId
+         var uri = string.Format("{0}/{1}", "request", id);
+         var request = await client.GetAsync(uri, HttpCompletionOption.ResponseContentRead);
+         var requestDto = JsonConvert.DeserializeObject<List<RequestDTO>>(request.Content.ReadAsStringAsync().Result);
 
-         //return requestDto;
-         return ServiceMapper.MapToRequestDTOList(_ServiceManager.GetRequests(id));
+         return requestDto;
+         //return ServiceMapper.MapToRequestDTOList(_ServiceManager.GetRequests(id));
       }
 
       [HttpGet]
@@ -66,12 +66,12 @@ namespace HousingTenant.Business.Service.Controllers
       [HttpPost]
       public void Post([FromBody]RequestDTO request)
       {
-         //var vARequest = _LibraryManager.ValidateRequest(ServiceMapper.MapToARequest(request));
-         //if (vARequest != null)
-         //{
-         //   client.PostAsJsonAsync("request", vARequest);
-         //}
-         _ServiceManager.AddRequest(ServiceMapper.MapToARequest(request));
+         var vARequest = _LibraryManager.ValidateRequest(ServiceMapper.MapToARequest(request));
+         if (vARequest != null)
+         {
+            client.PostAsJsonAsync("request", vARequest);
+         }
+         //_ServiceManager.AddRequest(ServiceMapper.MapToARequest(request));
       }
 
        // POST api/values

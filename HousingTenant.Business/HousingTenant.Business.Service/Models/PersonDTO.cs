@@ -7,6 +7,7 @@ namespace HousingTenant.Business.Service.Models
     {
         public string Gender { get; set; } // public int Gender { get; set; }
         public bool HasCar { get; set; }
+        public string ApartmentId { get; set; }
         public string PersonDTOId { get; set; }
         public string FirstName { set; get; }
         public string LastName { get; set; }
