@@ -9,15 +9,6 @@
                SELECT * FROM [$(TableName)]					
 --------------------------------------------------------------------------------------
 */
-use master;
-go
-
-create database HousingTenantDB;
-go
-
-use HousingTenantDB;
-go
-
 create schema Tenant;
 go
 
@@ -179,11 +170,32 @@ alter table  [Request].[Request]
 alter table  [Request].[Request]
   add constraint FK_Request_Request_ApartmentId foreign key (ApartmentId) references [Tenant].[Apartment] (ApartmentId);
 
-insert into [Tenant].[Address](Address1,ApartmentNumber,City,[State],Zip)
+insert into [Tenant].[Address](Address1,Address2,ApartmentNumber,City,[State],Zip,Active)
 values
-('123 Main Street','101','Miami','FL','33161'),
-('321 Main Street','102','Miami','FL','33162'),
-('4321 Main Street','103','Miami','FL','33163');
+    ('11180 Sunrise Valley','Suite 400','','Herndon','VA','20190',1), --BridgeStreet
+    ('13000 Wilkes Way','','','Herndon','VA','20170',1), --Westerly at WorldGate
+    ('508 Pride Avenue','','','Herndon','VA','20170',1), -- The Townes at Herndon Center
+    ('2320 Dulles Station Blvd.','','','Herndon','VA','20171',1), --Camden Dulles Station
+    ('11659 North Shore Drive','','','Herndon','VA','20190',1), --Fairway Apartments
+    ('Sycamore Valley Drive','','','Herndon','VA','20190',1), --The Sycamores
+    --7
+    ('11180 Sunrise Valley','Suite 400','321','Herndon','VA','20190',1), --BridgeStreet Tenant
+    ('11180 Sunrise Valley','Suite 400','322','Herndon','VA','20190',1), --BridgeStreet Tenant
+
+    ('13000 Wilkes Way','','34','Herndon','VA','20170',1), --Westerly at WorldGate Tenant
+    ('13000 Wilkes Way','','35','Herndon','VA','20170',1), --Westerly at WorldGate Tenant
+
+    ('500 Pride Avenue','','633','Herndon','VA','20170',1), -- The Townes at Herndon Center Tenant
+    ('500 Pride Avenue','','634','Herndon','VA','20170',1), -- The Townes at Herndon Center Tenant
+
+    ('2320 Dulles Station Blvd.','','43','Herndon','VA','20171',1), --Camden Dulles Station Tenant
+    ('2320 Dulles Station Blvd.','','44','Herndon','VA','20171',1), --Camden Dulles Station Tenant
+
+    ('11659 North Shore Drive','','102','Herndon','VA','20190',1), --Fairway Apartments Tenant
+    ('11659 North Shore Drive','','103','Herndon','VA','20190',1), --Fairway Apartments Tenant
+
+    ('Sycamore Valley Drive','','7','Herndon','VA','20190',1), --The Sycamores Tenant
+    ('Sycamore Valley Drive','','8','Herndon','VA','20190',1); --The Sycamores Tenant
 
 
 insert into [Tenant].[Gender](Gender)
@@ -194,29 +206,67 @@ values
 
 insert into [Tenant].[ApartmentComplex](AddressId,isWalkingDistance,ComplexName)
 values
-(1,1,'ComplexName Demo'),
-(1,1,'ComplexName2 Demo'),
-(1,1,'ComplexName3 Demo');
+(1,0,'BridgeStreet'),
+(2,0,'Westerly at WorldGate'),
+(3,0,'The Townes at Herndon Center'),
+(4,0,'Camden Dulles Station'),
+(5,1,'Fairway Apartments'),
+(6,1,'The Sycamores');
 
 insert into [Tenant].[Apartment](AddressId,ApartmentComplexId,NumberofBeds,NumberofBathroom)
 values
-(1,1,2,2),
-(2,1,2,2),
-(3,1,2,2);
+(7,1,2,3),
+(8,2,2,3),
+(9,3,2,3),
+(10,4,2,3),
+(11,5,2,3),
+(12,6,2,2);
 
 insert into [Tenant].[Person](AddressId,GenderId,HasCar,FirstName,LastName,EmailAddress,ArrivalDate)
 values
-(1,1,1,'Tenant1','Lastname1','tenant1@email.com','2017-12-01 12:00:01'),
-(1,1,0,'Tenant2','Lastname2','tenant2@email.com','2017-12-01 12:00:02'),
-(1,1,1,'Tenant3','Lastname3','tenant3@email.com','2017-12-01 12:00:03');
+
+(7,1,0,'Curtis','Porterfield','CurtisJPorterfield@rhyta.com','2017-12-01 12:00:02'),
+(7,1,1,'Gary','Paquette','GaryPPaquette@armyspy.com','2017-12-01 12:00:01'),
+(8,2,0,'Sara','Williams','SaraMWilliams@teleworm.us','2017-12-01 12:00:02'),
+(8,2,1,'Shelly','Douglas','ShellyADouglas@teleworm.us','2017-12-01 12:00:01'),
+
+(9,1,1,'Carlos','Hervey','CarlosCHervey@armyspy.com','2017-12-01 12:00:01'),
+(9,1,0,'Steve','Haines','SteveEHaines@dayrep.com','2017-12-01 12:00:02'),
+
+(10,2,1,'Tenant1','Lastname1','tenant1@email.com','2017-12-01 12:00:01'),
+(10,2,0,'Tenant2','Lastname2','tenant2@email.com','2017-12-01 12:00:02'),
+
+(11,1,1,'George','White','GeorgeFWhite@jourrapide.com','2017-12-01 12:00:01'),
+(11,1,0,'Roberto','Hildebrant','RobertoLHildebrant@rhyta.com','2017-12-01 12:00:02'),
+
+(12,2,1,'Agnes','Bailey','AgnesSBailey@dayrep.com','2017-12-01 12:00:01'),
+(12,2,0,'Mary','Criss','MaryMCriss@rhyta.com','2017-12-01 12:00:02'),
+
+(13,1,1,'Daniel','Whitaker','DanielLWhitaker@armyspy.com','2017-12-01 12:00:01'),
+(13,1,0,'Ronald','Moore','RonaldRMoore@armyspy.com','2017-12-01 12:00:02'),
+
+(14,2,1,'Jennifer','Granier','JenniferAGranier@teleworm.us','2017-12-01 12:00:01'),
+(14,2,0,'Rachel','Whelan','RachelJWhelan@teleworm.us','2017-12-01 12:00:02'),
+
+(15,1,1,'Joel','Alford','JoelMAlford@jourrapide.com','2017-12-01 12:00:01'),
+(15,1,0,'John','Wilt','JohnVWilt@jourrapide.com','2017-12-01 12:00:02'),
+
+(16,2,1,'Margie','Banks','MargieRBanks@teleworm.us','2017-12-01 12:00:01'),
+(16,2,0,'Susan','Davis','SusanBDavis@dayrep.com','2017-12-01 12:00:02'),
+
+(17,1,1,'Gerald','Casey','GeraldRCasey@dayrep.com','2017-12-01 12:00:01'),
+(17,1,0,'Pablo','Suazo','PabloSSuazo@armyspy.com','2017-12-01 12:00:02'),
+
+(18,2,1,'Sherry','Partida','SherryKPartida@rhyta.com','2017-12-01 12:00:01'),
+(18,2,0,'June','Cobbs','JuneRCobbs@rhyta.com','2017-12-01 12:00:02');
 
 
 insert into [Request].[Status]([Status])
 values
-    ('Pending'),
-    ('Hold'),
-    ('Completed'),
-    ('Rejected');
+    ('PENDING'),
+    ('INWORK'),
+    ('COMPLETED'),
+    ('REJECTED');
 
 insert into [Request].[SupplyType](Supply)
 values
@@ -231,29 +281,32 @@ values
 
 insert into [Request].[RequestType](RequestType)
 values
-('Maintenance'),
-('Supplies'),
-('New Apartment'),
-('Complaint');
+('MAINTENANCE'),
+('SUPPLIES'),
+('MOVE'),
+('COMPLAINT');
 
 insert into [Request].[Request](RequestTypeId,ApartmentId,isUrgent,[Initiator],[Description])
 values
-(1,1,1,1,'This is a Test Maintenance Request');
+(1,1,1,18,'This is a Test Maintenance Request. The bathroom sink is leaking.');
 
 insert into [Request].[Request](RequestTypeId,ApartmentId,isUrgent,[Initiator],[Description])
 values
-(2,1,1,1,'This is a Test Supplies Request');
+(2,1,1,17,'This is a Test Supplies Request');
 
 insert into [Request].[SupplyRequest](SupplyTypeId,RequestId)
 values
+(1,1),
+(2,1),
+(3,1),
 (1,2),
 (2,2),
 (3,2);
 
 insert into [Request].[Request](RequestTypeId,ApartmentId,isUrgent,[Initiator],[Description])
 values
-(3,1,1,1,'This is a Test New Apartment Request');
+(3,3,1,11,'This is a Test New Apartment Request. I want a new Appartment');
 
 insert into [Request].[Request](RequestTypeId,ApartmentId,isUrgent,[Initiator],PersonIdAccused,[Description])
 values
-(4,1,1,2,'This is a Test Complain Request');
+(4,6,1,10,2,'This is a Test Complain Request. I do not like my roommate.');
