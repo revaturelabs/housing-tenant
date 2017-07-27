@@ -2,13 +2,15 @@ import { moveModule as mm } from './module';
 
 var moveService = mm.factory('moveService', ['$http', function ($http) {
    return {
-      getListRequest: function (scope, aptGuid) {
+      getListRequest: function (scope, aptGuid, userguid) {
          $http.get('http://housingtenantbusiness.azurewebsites.net/api/request?=' + aptGuid).then(
             function (res) {
                scope.reqList = [];
                res.data.forEach(element => {
-
-               });
+                  if (element.type == "MoveRequest" && element.initiator.personId == userguid) {
+                     scope.reqList.push(element);
+                  }
+                  });
                console.log(scope.reqList);
             }, function (err) {
                console.log(err);
