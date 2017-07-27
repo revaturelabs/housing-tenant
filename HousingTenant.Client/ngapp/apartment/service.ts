@@ -23,8 +23,8 @@ var appartmentService = am.factory('aptFactory', ['$http', function ($http) {
                   };
                });
                
-               var currentData = [{label: 'Complaints', count : scope.complaintReq },{label: 'Maintenance', count : scope.maintenanceReq },{label: 'Move', count : scope.moveReq},{label: 'Supply', count : scope.supplyReq}];
-               console.log(currentData);  
+               var currentData = [{label: 'Co', count : scope.complaintReq },{label: 'Ma', count : scope.maintenanceReq },{label: 'Mo', count : scope.moveReq},{label: 'Su', count : scope.supplyReq}];
+               
                getPie(currentData);
 
                console.log(scope.apartment);
@@ -110,7 +110,7 @@ var appartmentService = am.factory('aptFactory', ['$http', function ($http) {
             }
          );
       },
-      getApartmentByGuid: function (scope, aptguid) {
+      getApartmentByGuid: function (scope, aptguid, getPie) {
          $http.get('http://housingtenantbusiness.azurewebsites.net/api/apartment/id?=' + aptguid).then(
             function (res) {
                scope.apartment = res.data;
@@ -129,6 +129,9 @@ var appartmentService = am.factory('aptFactory', ['$http', function ($http) {
                      console.log(scope.complaintReq);
                   };
                });
+               var currentData = [{label: 'Co', count : scope.complaintReq },{label: 'Ma', count : scope.maintenanceReq },{label: 'Mo', count : scope.moveReq},{label: 'Su', count : scope.supplyReq}];               
+               getPie(currentData);
+
                console.log(scope.apartment);
             }, function (err) {
                console.log(err);

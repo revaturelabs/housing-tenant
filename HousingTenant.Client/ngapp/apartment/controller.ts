@@ -11,9 +11,6 @@ var address = {
    ZipCode: "20170"
 };
 
-var x = 5;
-
-
 var apartmentController = am.controller('aptCtrl', ['$scope', 'aptFactory', function ($scope, aptFactory) {
 
    $scope.getPie = function (data) {
@@ -23,16 +20,16 @@ var apartmentController = am.controller('aptCtrl', ['$scope', 'aptFactory', func
       var radius = Math.min(width, height) / 2;
       //color palette
       var color = d3.scaleOrdinal().range(["#2C93E8", "#838690", "#F56C4E"]);
-      console.log(color);
+      //console.log(color);
       //computes angles
       var pie = d3.pie().value(function (d) { return d.count; })(data);
-      console.log(pie);
+      //console.log(pie);
       //arc for chart
       var pieArc = d3.arc().outerRadius(radius - 10).innerRadius(0);
-      console.log(pieArc);
+      //console.log(pieArc);
       //arc for labels
       var labelArc = d3.arc().outerRadius(radius).innerRadius(radius-100);
-      console.log(labelArc);
+      //console.log(labelArc);
       //scalable vector graphic
       var svg = d3.select('#chart')
          .append('svg')
