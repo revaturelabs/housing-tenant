@@ -103,8 +103,8 @@ var appartmentService = module_1.apartmentModule.factory('aptFactory', ['$http',
                 $http.get('http://housingtenantbusiness.azurewebsites.net/api/apartment/address/', { params: address }).then(function (res) {
                     scope.apartment = res.data;
                     scope.supplyReq = 0;
-                    scope.maintenanceReq = 7;
-                    scope.complaintReq = 3;
+                    scope.maintenanceReq = 0;
+                    scope.complaintReq = 0;
                     scope.moveReq = 0;
                     scope.apartment.requests.forEach(function (element) {
                         if (element.type == 0) {
@@ -121,8 +121,7 @@ var appartmentService = module_1.apartmentModule.factory('aptFactory', ['$http',
                         }
                         ;
                     });
-                    var currentData = [{ label: 'Complaints', count: scope.complaintReq }, { label: 'Maintenance', count: scope.maintenanceReq }, { label: 'Move', count: scope.moveReq }, { label: 'Supply', count: scope.supplyReq }];
-                    console.log(currentData);
+                    var currentData = [{ label: 'Co', count: scope.complaintReq }, { label: 'Ma', count: scope.maintenanceReq }, { label: 'Mo', count: scope.moveReq }, { label: 'Su', count: scope.supplyReq }];
                     getPie(currentData);
                     console.log(scope.apartment);
                 }, function (err) {
@@ -209,7 +208,7 @@ var appartmentService = module_1.apartmentModule.factory('aptFactory', ['$http',
                     console.log(scope.apartment);
                 });
             },
-            getApartmentByGuid: function (scope, aptguid) {
+            getApartmentByGuid: function (scope, aptguid, getPie) {
                 $http.get('http://housingtenantbusiness.azurewebsites.net/api/apartment/id?=' + aptguid).then(function (res) {
                     scope.apartment = res.data;
                     scope.supplyReq = 0;
@@ -230,6 +229,8 @@ var appartmentService = module_1.apartmentModule.factory('aptFactory', ['$http',
                         }
                         ;
                     });
+                    var currentData = [{ label: 'Co', count: scope.complaintReq }, { label: 'Ma', count: scope.maintenanceReq }, { label: 'Mo', count: scope.moveReq }, { label: 'Su', count: scope.supplyReq }];
+                    getPie(currentData);
                     console.log(scope.apartment);
                 }, function (err) {
                     console.log(err);
@@ -76275,7 +76276,6 @@ var address = {
     State: "Virginia",
     ZipCode: "20170"
 };
-var x = 5;
 var apartmentController = module_1.apartmentModule.controller('aptCtrl', ['$scope', 'aptFactory', function ($scope, aptFactory) {
         $scope.getPie = function (data) {
             //basic info about the shape
@@ -76283,17 +76283,17 @@ var apartmentController = module_1.apartmentModule.controller('aptCtrl', ['$scop
             var height = 300;
             var radius = Math.min(width, height) / 2;
             //color palette
-            var color = d3.scaleOrdinal().range(["#2C93E8", "#838690", "#F56C4E"]);
-            console.log(color);
+            var color = d3.scaleOrdinal().range(["#2C93E8", "#FF4C4C", "#838690", "#F56C4E"]);
+            //console.log(color);
             //computes angles
             var pie = d3.pie().value(function (d) { return d.count; })(data);
-            console.log(pie);
+            //console.log(pie);
             //arc for chart
             var pieArc = d3.arc().outerRadius(radius - 10).innerRadius(0);
-            console.log(pieArc);
+            //console.log(pieArc);
             //arc for labels
             var labelArc = d3.arc().outerRadius(radius).innerRadius(radius - 100);
-            console.log(labelArc);
+            //console.log(labelArc);
             //scalable vector graphic
             var svg = d3.select('#chart')
                 .append('svg')
@@ -76301,13 +76301,13 @@ var apartmentController = module_1.apartmentModule.controller('aptCtrl', ['$scop
                 .attr('height', height)
                 .append('g')
                 .attr("transform", "translate(" + width / 2 + "," + height / 2 + ")");
-            console.log(svg);
+            //console.log(svg);
             //generate groups to hold paths
             var g = svg.selectAll('arc')
                 .data(pie)
                 .enter().append('g')
                 .attr('class', 'arc');
-            console.log(g);
+            //console.log(g);
             //append colors
             g.append('path')
                 .attr('d', pieArc)

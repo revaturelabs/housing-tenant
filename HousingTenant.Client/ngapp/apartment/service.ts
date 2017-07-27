@@ -8,8 +8,8 @@ var appartmentService = am.factory('aptFactory', ['$http', function ($http) {
             function (res) {
                scope.apartment = res.data;
                scope.supplyReq = 0;
-               scope.maintenanceReq = 7;
-               scope.complaintReq = 3;
+               scope.maintenanceReq = 0;
+               scope.complaintReq = 0;
                scope.moveReq = 0;
                scope.apartment.requests.forEach(element => {
                   if (element.type == 0) {

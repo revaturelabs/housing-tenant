@@ -19,7 +19,7 @@ var apartmentController = am.controller('aptCtrl', ['$scope', 'aptFactory', func
       var height = 300;
       var radius = Math.min(width, height) / 2;
       //color palette
-      var color = d3.scaleOrdinal().range(["#2C93E8", "#838690", "#F56C4E"]);
+      var color = d3.scaleOrdinal().range(["#2C93E8", "#FF4C4C", "#838690", "#F56C4E"]);
       //console.log(color);
       //computes angles
       var pie = d3.pie().value(function (d) { return d.count; })(data);
@@ -37,13 +37,13 @@ var apartmentController = am.controller('aptCtrl', ['$scope', 'aptFactory', func
          .attr('height', height)
          .append('g')
          .attr("transform", "translate(" + width/2 + "," + height/2 +")");
-         console.log(svg);
+         //console.log(svg);
       //generate groups to hold paths
       var g = svg.selectAll('arc')
          .data(pie)
          .enter().append('g')
          .attr('class', 'arc');
-         console.log(g);
+         //console.log(g);
       //append colors
       g.append('path')
          .attr('d', pieArc)
