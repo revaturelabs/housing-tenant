@@ -83,7 +83,7 @@ namespace HousingTenant.Business.Service.Controllers
            var vARequest = _LibraryManager.ValidateRequest(ServiceMapper.MapToARequest(request));
            if (vARequest != null)
            {
-               client.PostAsJsonAsync("request", vARequest);
+               client.PostAsJsonAsync("request", request);
            }
       }
 
@@ -96,7 +96,7 @@ namespace HousingTenant.Business.Service.Controllers
          var vARequest = _LibraryManager.ValidateRequest(ServiceMapper.MapToARequest(request));
          if (vARequest != null)
          {
-            client.PostAsJsonAsync("request", vARequest);
+            client.PostAsJsonAsync("request", request);
          }
       }
 
@@ -109,7 +109,7 @@ namespace HousingTenant.Business.Service.Controllers
          var vARequest = _LibraryManager.ValidateRequest(ServiceMapper.MapToARequest(request));
          if (vARequest != null)
          {
-            client.PostAsJsonAsync("request", vARequest);
+            client.PostAsJsonAsync("request", request);
          }
       }
 
@@ -122,7 +122,7 @@ namespace HousingTenant.Business.Service.Controllers
          var vARequest = _LibraryManager.ValidateRequest(ServiceMapper.MapToARequest(request));
          if (vARequest != null)
          {
-            client.PostAsJsonAsync("request", vARequest);
+            client.PostAsJsonAsync("request", request);
          }
       }
 
@@ -133,7 +133,7 @@ namespace HousingTenant.Business.Service.Controllers
          var vARequest = _LibraryManager.ValidateRequest(ServiceMapper.MapToARequest(request));
          if(vARequest != null)
          {
-            client.PutAsJsonAsync("request", vARequest);
+            client.PutAsJsonAsync("request", request);
          }
       }
 
