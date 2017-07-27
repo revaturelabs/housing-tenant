@@ -277,7 +277,7 @@ __webpack_require__(40);
 __webpack_require__(41);
 //Testing GITLAB
 //Testing Bundle
-var ngHousingTenant = ng.module('ngHousingTenant', ['AdalAngular', 'ngRoute', 'ngMaterial', 'ngHome', 'supplyModule', 'aptModule', 'maintenanceModule', 'complaintModule']);
+var ngHousingTenant = ng.module('ngHousingTenant', ['AdalAngular', 'ngRoute', 'ngMaterial', 'ngHome', 'supplyModule', 'aptModule', 'maintenanceModule', 'complaintModule', 'moveModule']);
 ngHousingTenant.config(['$routeProvider', '$locationProvider', '$httpProvider', 'adalAuthenticationServiceProvider', function ($routeProvider, $locationProvider, $httpProvider, adalProvider) {
         $routeProvider
             .when('/apartment', {
@@ -93918,6 +93918,7 @@ var moveController = module_1.moveModule.controller('moveCtrl', ['$scope', '$rou
         var userGuid = 2;
         aptFactory.getListApartments($scope);
         $scope.addMoveRequest = function (form) {
+            console.log(form);
             var request = {
                 description: form.reason.$modelValue,
                 initiator: 'currentUser',

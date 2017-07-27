@@ -45,8 +45,8 @@
             <div class="md-dialog-content">
               <md-input-container class="md-block">
                 <label for="apartment">Select New Apartment</label>
-                <md-select name="apartment">
-                  <md-option ng-repeat="apartment in aptList" value="{{apartment.address1}}">{{apartment.address1}}</md-option>
+                <md-select name="apartment" ng-model="selectedApartment">
+                  <md-option ng-repeat="apartment in aptList" value="{{apartment}}">{{apartment.address1}}</md-option>
                 </md-select>
               </md-input-container>
               <md-input-container class="md-block">

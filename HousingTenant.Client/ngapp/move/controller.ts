@@ -8,6 +8,7 @@ var moveController = mm.controller('moveCtrl', ['$scope', '$routeParams','$mdDia
    aptFactory.getListApartments($scope);
 
    $scope.addMoveRequest = function(form){
+      console.log(form);
       var request = {
          description: form.reason.$modelValue,
          initiator: 'currentUser',
