@@ -5,7 +5,7 @@ namespace HousingTenant.Business.Service.Models
 {
     public class PersonDTO
     {
-        public int Gender { get; set; }
+        public string Gender { get; set; } // public int Gender { get; set; }
         public bool HasCar { get; set; }
         public string PersonDTOId { get; set; }
         public string FirstName { set; get; }

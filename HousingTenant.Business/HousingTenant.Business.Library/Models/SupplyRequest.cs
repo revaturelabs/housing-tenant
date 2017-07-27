@@ -23,9 +23,9 @@ namespace HousingTenant.Business.Library.Models
             {
                 var otherRequest = other as SupplyRequest;
                 var thisRequestString = string.Format("{0} {1} {2}",
-                   Initiator.Address, DateSubmitted, (Status == StatusEnum.INWORK || Status == StatusEnum.PENDING ? StatusEnum.PENDING : StatusEnum.COMPLETED));
+                   Initiator.Address, DateSubmitted, (Status == "Hold" || Status == "Pending" ? "Pending" : "Completed"));
                 var otherRequestString = string.Format("{0} {1} {2}",
-                   otherRequest.Initiator.Address, DateSubmitted, (otherRequest.Status == StatusEnum.INWORK || otherRequest.Status == StatusEnum.PENDING ? StatusEnum.PENDING : StatusEnum.COMPLETED));
+                   otherRequest.Initiator.Address, DateSubmitted, (otherRequest.Status == "Hold" || otherRequest.Status == "Pending" ? "Pending" : "Completed"));
 
                 return thisRequestString.CompareTo(otherRequestString);
             }

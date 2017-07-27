@@ -24,8 +24,7 @@ namespace HousingTenant.Business.Service.Controllers
 
       // GET: api/values
       [HttpGet]
-      public List<RequestDTO> Get()
-      //public async Task<List<RequestDTO>> Get()
+      public async Task<List<RequestDTO>> Get()
       {
          //var requests = await client.GetAsync("request", HttpCompletionOption.ResponseContentRead);
          //var requestDtos = JsonConvert.DeserializeObject<List<RequestDTO>>(requests.Content.ReadAsStringAsync().Result);
@@ -35,12 +34,12 @@ namespace HousingTenant.Business.Service.Controllers
       }
 
       [Route("id")]
-      public List<RequestDTO> Get([FromQuery]string id)
-      //public async Task<RequestDTO> Get([FromQuery]string id)
+      public async Task<List<RequestDTO>> Get([FromQuery]string id)
       {
+         // Collect Request by ApartmentId
          //var uri = string.Format("{0}/{1}", "request", id);
          //var request = await client.GetAsync(uri, HttpCompletionOption.ResponseContentRead);
-         //var requestDto = JsonConvert.DeserializeObject<RequestDTO>(request.Content.ReadAsStringAsync().Result);
+         //var requestDto = JsonConvert.DeserializeObject<List<RequestDTO>>(request.Content.ReadAsStringAsync().Result);
 
          //return requestDto;
          return ServiceMapper.MapToRequestDTOList(_ServiceManager.GetRequests(id));

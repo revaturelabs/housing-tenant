@@ -13,7 +13,7 @@ namespace HousingTenant.Business.Library.Models
         public Person Initiator { get; set; }
         public DateTime DateSubmitted { get; set; }
         public DateTime DateModified { get; set; }
-        public StatusEnum Status { get; set; }
+        public string Status { get; set; } // public StatusEnum Status { get; set; }
 
         public abstract int CompareTo(ARequest other);
 

@@ -8,7 +8,9 @@ namespace HousingTenant.Business.Tests.RequestTests
 {
     [TestFixture]
     public class BusinessLibraryComplaintRequestTests
-    {
+   {
+        static string[] GENDER = new string[] { "OTHER", "MALE", "FEMALE" };
+        static string[] STATUS = new string[] { "PENDING", "HOLD", "COMPLETED", "REJECTED" };
         [Test]
         public void ComplaintRequestCompareToPositiveTest()
         {
@@ -18,7 +20,7 @@ namespace HousingTenant.Business.Tests.RequestTests
                 Initiator = new Person { FirstName = "Jane", LastName = "Doe" },
                 Description = "He hit me!",
                 DateSubmitted = DateTime.Now,
-                Status = StatusEnum.PENDING
+                Status = STATUS[0]
             };
 
             var request2 = new ComplaintRequest
@@ -27,7 +29,7 @@ namespace HousingTenant.Business.Tests.RequestTests
                 Initiator = new Person { FirstName = "Jane", LastName = "Doe" },
                 Description = "He hit me!",
                 DateSubmitted = DateTime.Now,
-                Status = StatusEnum.PENDING
+                Status = STATUS[0]
             };
 
             Assert.IsTrue(request1.CompareTo(request2) == 0);
@@ -42,7 +44,7 @@ namespace HousingTenant.Business.Tests.RequestTests
                 Initiator = new Person { FirstName = "Jane", LastName = "Doe" },
                 Description = "He hit me!",
                 DateSubmitted = DateTime.Now,
-                Status = StatusEnum.PENDING
+                Status = STATUS[0]
             };
 
             var request2 = new ComplaintRequest
@@ -51,7 +53,7 @@ namespace HousingTenant.Business.Tests.RequestTests
                 Initiator = new Person { FirstName = "James", LastName = "Doe" },
                 Description = "He hit me!",
                 DateSubmitted = DateTime.Now,
-                Status = StatusEnum.PENDING
+                Status = STATUS[0]
             };
 
             Assert.IsFalse(request1.CompareTo(request2) < 0);
@@ -66,7 +68,7 @@ namespace HousingTenant.Business.Tests.RequestTests
                Initiator = new Person { FirstName = "Jane", LastName = "Doe" },
                Description = "He hit me!",
                DateSubmitted = DateTime.Now,
-               Status = StatusEnum.PENDING
+               Status = STATUS[0]
             };
             var actual = request1.ToString();
             Assert.IsNotNull(actual);
