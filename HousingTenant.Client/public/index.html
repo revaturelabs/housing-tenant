@@ -2,6 +2,8 @@
 <html lang="en">
 
 <head>
+  <!--application resolves to root-->
+  <base href="/">
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
@@ -32,6 +34,8 @@
   <div id="content" data-ng-view></div>
 
   <footer ng-include src="'html/footer.html'"></footer>
+  <!--script needed for AUTHORIZATION-->
+  <script src="https://secure.aadcdn.microsoftonline-p.com/lib/1.0.15/js/adal.min.js"></script>
   <script src="js\script.bundle.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/angular-ui-bootstrap/2.5.0/ui-bootstrap-tpls.min.js"></script>
 </body>
