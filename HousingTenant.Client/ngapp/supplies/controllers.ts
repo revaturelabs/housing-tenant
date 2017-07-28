@@ -8,7 +8,7 @@ var supplyController = sm.controller('suppliesCtrl', ['$scope', 'supplyRequestSe
       $scope.addRequest = function (form) {
             var request = {
                   description : $scope.description,
-                  initiator : 'Current User',
+                  initiator: localStorage.getItem('currentUser'),
                   requestItems: [],
                   datesubmitted: Date.now(),
                   apartmentId: aptGuid,

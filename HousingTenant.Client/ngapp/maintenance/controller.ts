@@ -26,7 +26,7 @@ var maintenanceController = mm.controller('maintenanceCtrl', ['$scope', 'mainten
   $scope.addMaintenanceRequest = function (form) {
     var request = {
       description: "",
-      initiator: 'Current User',
+      initiator: localStorage.getItem('currentUser'),
       datesubmitted: Date.now(),
       urgent: form.urgent.$modelValue
     }

@@ -12,7 +12,7 @@ var moveController = mm.controller('moveCtrl', ['$scope', '$routeParams', '$mdDi
       console.log($scope.selectedApartment)
       var request = {
          description: form.reason.$modelValue,
-         initiator: 'currentUser',
+         initiator: localStorage.getItem('currentUser'),
          datesubmitted: Date.now(),
          requestedApartmentAddress: $scope.selectedApartmentAddress
       }

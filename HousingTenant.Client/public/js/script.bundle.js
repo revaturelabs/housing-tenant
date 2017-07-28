@@ -122,7 +122,9 @@ var appartmentService = module_1.apartmentModule.factory('aptFactory', ['$http',
                         ;
                     });
                     var currentData = [{ label: 'Co', count: scope.complaintReq }, { label: 'Ma', count: scope.maintenanceReq }, { label: 'Mo', count: scope.moveReq }, { label: 'Su', count: scope.supplyReq }];
-                    getPie(currentData);
+                    if (getPie != 1) {
+                        getPie(currentData);
+                    }
                     console.log(scope.apartment);
                 }, function (err) {
                     console.log(err);
@@ -151,7 +153,9 @@ var appartmentService = module_1.apartmentModule.factory('aptFactory', ['$http',
                         ;
                     });
                     var currentData = [{ label: 'Co', count: scope.complaintReq }, { label: 'Ma', count: scope.maintenanceReq }, { label: 'Mo', count: scope.moveReq }, { label: 'Su', count: scope.supplyReq }];
-                    getPie(currentData);
+                    if (getPie != 1) {
+                        getPie(currentData);
+                    }
                     console.log(scope.apartment);
                 }, function (err) {
                     console.log(err);
@@ -76605,12 +76609,10 @@ module_1.home.factory('homeFactory', ['$http', 'adalAuthenticationService', func
             },
             getPerson: function (email, person, address) {
                 $http.get('http://housingtenantbusiness.azurewebsites.net/api/person/email?=' + email).then(function (res) {
-                    console.log(res);
                     localStorage.setItem('aptGuid', res.data.apartmentId);
-                    console.log(localStorage);
+                    localStorage.setItem('currentUser', res.data);
                     person.getPerson(res, email, address);
                     adalAuthenticationService.userInfo.apartmentGuid = res.data.apartmentId;
-                    console.log(adalAuthenticationService.userInfo.apartmentGuid);
                 }, failure);
             },
             getSuppliesPage: function () {
@@ -76735,14 +76737,6 @@ Object.defineProperty(exports, "__esModule", { value: true });
 var module_1 = __webpack_require__(4);
 var d3 = __webpack_require__(29);
 __webpack_require__(2);
-var address = {
-    Address1: "2100 Wilkes Court",
-    Address2: "",
-    ApartmentNumber: "102",
-    City: "Herndon",
-    State: "Virginia",
-    ZipCode: "20170"
-};
 var apartmentController = module_1.apartmentModule.controller('aptCtrl', ['$scope', 'aptFactory', function ($scope, aptFactory) {
         $scope.aptGuid = localStorage.getItem('aptGuid');
         $scope.getPie = function (data) {
@@ -76752,16 +76746,12 @@ var apartmentController = module_1.apartmentModule.controller('aptCtrl', ['$scop
             var radius = Math.min(width, height) / 2;
             //color palette
             var color = d3.scaleOrdinal().range(["#2C93E8", "#FF4C4C", "#838690", "#F56C4E"]);
-            //console.log(color);
             //computes angles
             var pie = d3.pie().value(function (d) { return d.count; })(data);
-            //console.log(pie);
             //arc for chart
             var pieArc = d3.arc().outerRadius(radius - 10).innerRadius(0);
-            //console.log(pieArc);
             //arc for labels
             var labelArc = d3.arc().outerRadius(radius).innerRadius(radius - 100);
-            //console.log(labelArc);
             //scalable vector graphic
             var svg = d3.select('#chart')
                 .append('svg')
@@ -76769,13 +76759,11 @@ var apartmentController = module_1.apartmentModule.controller('aptCtrl', ['$scop
                 .attr('height', height)
                 .append('g')
                 .attr("transform", "translate(" + width / 2 + "," + height / 2 + ")");
-            //console.log(svg);
             //generate groups to hold paths
             var g = svg.selectAll('arc')
                 .data(pie)
                 .enter().append('g')
                 .attr('class', 'arc');
-            //console.log(g);
             //append colors
             g.append('path')
                 .attr('d', pieArc)
@@ -93838,14 +93826,13 @@ var complaintController = module_1.complaintModule.controller('complaintCtrl', [
             ZipCode: "20170"
         };
         complaintRequestService.getRequestList(aptGuid, $scope, initiatorId);
-        //aptFactory.getApartmentByGuid($scope, aptGuid);
-        aptFactory.getApartment($scope, address);
+        aptFactory.getApartmentByGuid($scope, localStorage.getItem('aptGuid'), 1);
         $scope.addComplaintRequest = function (form) {
             console.log(form);
             var request = {
                 accused: form.accused.$modelValue,
                 description: form.description.$modelValue,
-                initiator: 'Current User',
+                initiator: localStorage.getItem('currentUser'),
                 datesubmitted: Date.now(),
                 urgent: true
             };

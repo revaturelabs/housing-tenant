@@ -17,15 +17,14 @@ var complaintController = cm.controller('complaintCtrl', ['aptFactory', 'complai
    };
 
    complaintRequestService.getRequestList(aptGuid, $scope, initiatorId);
-   //aptFactory.getApartmentByGuid($scope, aptGuid);
-   aptFactory.getApartment($scope, address);
+   aptFactory.getApartmentByGuid($scope, localStorage.getItem('aptGuid'), 1);
 
    $scope.addComplaintRequest = function (form) {
       console.log(form);
       var request = {
          accused: form.accused.$modelValue,
          description: form.description.$modelValue,
-         initiator: 'Current User',
+         initiator: localStorage.getItem('currentUser'),
          datesubmitted: Date.now(),
          urgent: true
       }
