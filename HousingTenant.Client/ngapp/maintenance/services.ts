@@ -19,6 +19,7 @@ var maintenanceService = mm.factory('maintenanceRequestService', ['$http', funct
       $http({
         method: 'POST',
         url: 'http://housingtenantbusiness.azurewebsites.net/api/request/maintenancerequest/',
+        //url: 'http://localhost:53254/api/request/maintenancerequest/',
         withCredentials: true,
         headers: {
           'Access-Control-Allow-Origin': '*',
@@ -26,7 +27,7 @@ var maintenanceService = mm.factory('maintenanceRequestService', ['$http', funct
           'Access-Control-Allow-Credentials': 'true',
           'Access-Control-Allow-Methods': 'POST'
         },
-        data: {request}
+        data: JSON.stringify(request)
       }). then(function(res){
         console.log(res);
       }, function(err){

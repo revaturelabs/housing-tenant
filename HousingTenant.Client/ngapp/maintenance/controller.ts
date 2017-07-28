@@ -28,7 +28,6 @@ var maintenanceController = mm.controller('maintenanceCtrl', ['adalAuthenticatio
     var request = {
       description: "",
       initiator: currentUser,
-      datesubmitted: Date.now(),
       urgent: form.urgent.$modelValue
     }
     if ($scope.checkDescription() == true) {
