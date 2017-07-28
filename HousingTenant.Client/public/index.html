@@ -16,18 +16,18 @@
   <link type="text/css" rel="stylesheet" href="css/modal.css" />
   <link type="text/css" rel="stylesheet" href="css/index.css" />
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/1.4.4/jquery.min.js"></script>
-  
+
   <script type="text/javascript">
     function openMenu() {
       console.log(window.localStorage.getItem('aptGuid'));
       var currentAptGuid = window.localStorage.getItem('aptGuid');
-      var isGuidAppended = false;
-      if(isGuidAppended != true){
-        $("a#sidebar-link").attr("href", function (i, href) {
-        return href + currentAptGuid;
-        isGuidAppended == true;
-      });
-      }
+
+      $("a#sidebar-link1").attr("href", '/supplies/' + currentAptGuid)
+      //$("a").attr("href", "http://www.google.com/")
+      $("a#sidebar-link2").attr("href",'/maintenance/' + currentAptGuid)
+      $("a#sidebar-link3").attr("href",'/complaints/' + currentAptGuid)
+      $("a#sidebar-link4").attr("href",'/housing/' + currentAptGuid)
+
       document.getElementById("mySidenav").style.width = "250px";
       document.getElementById("main").style.marginLeft = "250px";
     }
