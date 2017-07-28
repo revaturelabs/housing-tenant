@@ -36,8 +36,8 @@ class Person {
   aptGuid: string;
 
   constructor(){
-    this.firstName= 'Fred';
-    this.lastName = 'Bel';
+    this.firstName= 'JULIAN';
+    this.lastName = 'ROJAS';
   }
   
   getPerson(res: any, address: Address){
