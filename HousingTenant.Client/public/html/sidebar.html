@@ -1,11 +1,11 @@
 <div id="mySidenav" class="sidenav">
   <a href="javascript:void(0)" class="closebtn" onclick="closeMenu()">&times;</a>
   <div onclick="closeMenu()">
-    <a data-ng-href="apartment/{{adalAuthenticationService.userInfo.apartmentGuid}}">My Apartment</a>
-    <a data-ng-href="/supplies/{{localStorage.getItem('aptGuid')}}">Supplies</a>
-    <a href="/maintenance">Maintenance</a>
-    <a href="/complaints">Complaints</a>
-    <a href="/housing">Housing</a>
+    <a id="sidebar-link" href="/apartment/">My Apartment</a>
+    <a id="sidebar-link" href="/supplies/">Supplies</a>
+    <a id="sidebar-link" href="/maintenance/">Maintenance</a>
+    <a id="sidebar-link" href="/complaints/">Complaints</a>
+    <a id="sidebar-link" href="/housing">Housing</a>
   </div>
 </div>
 
