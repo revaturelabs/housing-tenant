@@ -39,11 +39,14 @@ class Person {
     this.LastName = 'Doe';
   }
   
-  getPerson(res: any, id: number, address: Address){
-    this.FirstName = res.data[id].firstName;
-    this.LastName = res.data[id].lastName;
-    address.getAddress(res.data[id].address);
-    this.Address = address;
+  getPerson(res: any, address: Address){
+    this.FirstName = res.data.firstName;
+    this.LastName = res.data.lastName;
+    console.log(typeof(address));
+    var address2 = new Address();
+    address2.getAddress(res.data.address);
+    console.log("check2");
+    this.Address = address2;
   }
 }
 
@@ -56,6 +59,8 @@ var myController = h.controller('homeController', ['$scope', 'homeFactory', 'apt
     $scope.signOut = function () {
         adalAuthenticationService.logOut();
     };
+  
+  var email = adalAuthenticationService.userInfo.userName;
   
   $scope.myAddress = new Address();
   
@@ -76,12 +81,13 @@ var myController = h.controller('homeController', ['$scope', 'homeFactory', 'apt
     homeFactory.getAddress(id, $scope.myAddress);
   }
 
-  $scope.processPerson = function(id){
-    homeFactory.getPerson(id, $scope.myPerson, $scope.myAddress);
+  $scope.processPerson = function(email: string){
+    homeFactory.getPerson(email, $scope.myPerson, $scope.myAddress);
   }
 
   $scope.init = function(){
-    $scope.processPerson(1);
+    if(email != "")
+      $scope.processPerson(email);
   }
 
   //aptFactory.getApartment($scope, $scope.myAddress);
