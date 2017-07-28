@@ -5,21 +5,29 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using HousingTenant.Data.Library.AzModels;
 
-// For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
-
 namespace HousingTenant.Data.Service.Controllers
 {
     [Route("api/[controller]")]
     public class SupplyController : Controller
     {
+        /// <summary>
+        /// private field containing the DBContext of the database being used
+        /// </summary>
         HousingTenantDBContext _Context;
 
+        /// <summary>
+        /// Updates _Context to represent the current state of the database being used.
+        /// </summary>
+        /// <param name="context"></param>
         public SupplyController(HousingTenantDBContext context)
         {
             _Context = context;
         }
 
-        // GET: api/values
+        /// <summary>
+        /// Returns a list of supplies one can request for.
+        /// </summary>
+        /// <returns></returns>
         [HttpGet]
         public List<string> Get()
         {
@@ -27,16 +35,19 @@ namespace HousingTenant.Data.Service.Controllers
                     select s.Supply).ToList();
         }
 
-        // POST api/values
+        /// <summary>
+        /// Add a new type of supply to the database.
+        /// </summary>
+        /// <param name="value"></param>
         [HttpPost]
-        public void Post([FromBody]string value)
+        public bool Post([FromBody]string value)
         {
             _Context.SupplyType.Add (new SupplyType
             {
                 Supply = value
             });
 
-            _Context.SaveChanges();
+            return _Context.SaveChanges() > 0;
         }
     }
 }
