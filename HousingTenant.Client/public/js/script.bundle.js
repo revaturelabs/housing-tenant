@@ -76610,9 +76610,9 @@ module_1.home.factory('homeFactory', ['$http', 'adalAuthenticationService', func
             getPerson: function (email, person, address) {
                 $http.get('http://housingtenantbusiness.azurewebsites.net/api/person/email?=' + email).then(function (res) {
                     localStorage.setItem('aptGuid', res.data.apartmentId);
-                    localStorage.setItem('currentUser', res.data);
                     person.getPerson(res, email, address);
                     adalAuthenticationService.userInfo.apartmentGuid = res.data.apartmentId;
+                    adalAuthenticationService.userInfo.currentUser = res.data;
                 }, failure);
             },
             getSuppliesPage: function () {
@@ -76639,13 +76639,14 @@ module.exports = __webpack_require__.p + "ngapp/apartment/partials/template.html
 Object.defineProperty(exports, "__esModule", { value: true });
 var module_1 = __webpack_require__(5);
 __webpack_require__(27);
-var supplyController = module_1.supplyModule.controller('suppliesCtrl', ['$scope', 'supplyRequestService', '$routeParams', '$mdDialog', function ($scope, supplyRequestService, $routeParams, $mdDialog) {
+var supplyController = module_1.supplyModule.controller('suppliesCtrl', ['adalAuthenticationService', '$scope', 'supplyRequestService', '$routeParams', '$mdDialog', function (adalAuthenticationService, $scope, supplyRequestService, $routeParams, $mdDialog) {
         var aptGuid = $routeParams.aptguid;
+        var currentUser = adalAuthenticationService.userInfo.currentUser;
         supplyRequestService.getRequestList(aptGuid, $scope);
         $scope.addRequest = function (form) {
             var request = {
                 description: $scope.description,
-                initiator: localStorage.getItem('currentUser'),
+                initiator: currentUser,
                 requestItems: [],
                 datesubmitted: Date.now(),
                 apartmentId: aptGuid,
@@ -93704,8 +93705,9 @@ Object.defineProperty(exports, '__esModule', { value: true });
 Object.defineProperty(exports, "__esModule", { value: true });
 var module_1 = __webpack_require__(6);
 __webpack_require__(32);
-var maintenanceController = module_1.maintenanceModule.controller('maintenanceCtrl', ['$scope', 'maintenanceRequestService', '$routeParams', '$mdDialog', function ($scope, maintenanceRequestService, $routeParams, $mdDialog) {
+var maintenanceController = module_1.maintenanceModule.controller('maintenanceCtrl', ['adalAuthenticationService', '$scope', 'maintenanceRequestService', '$routeParams', '$mdDialog', function (adalAuthenticationService, $scope, maintenanceRequestService, $routeParams, $mdDialog) {
         var aptGuid = $routeParams.aptguid;
+        var currentUser = adalAuthenticationService.userInfo.currentUser;
         $scope.maintenanceTypes = [
             'Electrical Issues',
             'Slow Internet',
@@ -93725,7 +93727,7 @@ var maintenanceController = module_1.maintenanceModule.controller('maintenanceCt
         $scope.addMaintenanceRequest = function (form) {
             var request = {
                 description: "",
-                initiator: localStorage.getItem('currentUser'),
+                initiator: currentUser,
                 datesubmitted: Date.now(),
                 urgent: form.urgent.$modelValue
             };
@@ -93812,25 +93814,17 @@ Object.defineProperty(exports, "__esModule", { value: true });
 __webpack_require__(34);
 __webpack_require__(2);
 var module_1 = __webpack_require__(7);
-var complaintController = module_1.complaintModule.controller('complaintCtrl', ['aptFactory', 'complaintRequestService', '$routeParams', '$scope', '$mdDialog', function (aptFactory, complaintRequestService, $routeParams, $scope, $mdDialog) {
+var complaintController = module_1.complaintModule.controller('complaintCtrl', ['adalAuthenticationService', 'aptFactory', 'complaintRequestService', '$routeParams', '$scope', '$mdDialog', function (adalAuthenticationService, aptFactory, complaintRequestService, $routeParams, $scope, $mdDialog) {
         var aptGuid = $routeParams.aptguid;
-        var initiatorId = 0;
-        var address = {
-            Address1: "2100 Wilkes Court",
-            Address2: "",
-            ApartmentNumber: "102",
-            City: "Herndon",
-            State: "Virginia",
-            ZipCode: "20170"
-        };
-        complaintRequestService.getRequestList(aptGuid, $scope, initiatorId);
+        var currentUser = adalAuthenticationService.userInfo.currentUser;
+        complaintRequestService.getRequestList(aptGuid, $scope, currentUser.personDTOId);
         aptFactory.getApartmentByGuid($scope, localStorage.getItem('aptGuid'), 1);
         $scope.addComplaintRequest = function (form) {
             console.log(form);
             var request = {
                 accused: form.accused.$modelValue,
                 description: form.description.$modelValue,
-                initiator: localStorage.getItem('currentUser'),
+                initiator: currentUser,
                 datesubmitted: Date.now(),
                 urgent: true
             };
@@ -93911,16 +93905,16 @@ Object.defineProperty(exports, "__esModule", { value: true });
 var module_1 = __webpack_require__(8);
 __webpack_require__(38);
 __webpack_require__(2);
-var moveController = module_1.moveModule.controller('moveCtrl', ['$scope', '$routeParams', '$mdDialog', 'aptFactory', 'moveService', function ($scope, $routeParams, $mdDialog, aptFactory, moveService) {
+var moveController = module_1.moveModule.controller('moveCtrl', ['adalAuthenticationService', '$scope', '$routeParams', '$mdDialog', 'aptFactory', 'moveService', function (adalAuthenticationService, $scope, $routeParams, $mdDialog, aptFactory, moveService) {
         var aptGuid = $routeParams.aptguid;
-        var userGuid = 2;
+        var currentUser = adalAuthenticationService.userInfo.currentUser;
         aptFactory.getListApartments($scope);
         $scope.addMoveRequest = function (form) {
             console.log(form);
             console.log($scope.selectedApartment);
             var request = {
                 description: form.reason.$modelValue,
-                initiator: localStorage.getItem('currentUser'),
+                initiator: currentUser,
                 datesubmitted: Date.now(),
                 requestedApartmentAddress: $scope.selectedApartmentAddress
             };
