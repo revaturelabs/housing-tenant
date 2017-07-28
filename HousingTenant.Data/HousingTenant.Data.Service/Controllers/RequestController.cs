@@ -9,16 +9,26 @@ using HousingTenant.Data.Service.Factory;
 using HousingTenant.Data.Library.AzModels;
 using HousingTenant.Data.Library.DataModels;
 
-
 namespace HousingTenant.Data.Service.Controllers
 {
     [Route("api/[controller]")]
     public class RequestController : Controller
     {
-        //private IBroker<RequestDAO> broker;
+        /// <summary>
+        /// private field containing the list of all the requests in the database.
+        /// </summary>
         private List<RequestDAO> _List;
+
+        /// <summary>
+        /// private field containing the DBContext of the database being used.
+        /// </summary>
         private HousingTenantDBContext _Context;
 
+        /// <summary>
+        /// Updates _Context to represent the current state of the database being used.  
+        /// Also updates _List to include all requests in the database.
+        /// </summary>
+        /// <param name="context"></param>
         public RequestController(HousingTenantDBContext context)
         {
             _Context = context;
@@ -109,12 +119,21 @@ namespace HousingTenant.Data.Service.Controllers
     }
 }
 
+        /// <summary>
+        /// Returns all the Requests in the database.
+        /// </summary>
+        /// <returns></returns>
         [HttpGet]
         public List<RequestDAO> Get()
         {
             return _List;
         }
 
+        /// <summary>
+        /// Returns a list of Request by the Apartment Guid there are asscociated with.
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
         [HttpGet ("{id}")]
         public List<RequestDAO> Get(string id)
         {
@@ -122,6 +141,10 @@ namespace HousingTenant.Data.Service.Controllers
             return output;
         }
 
+        /// <summary>
+        /// Adds a new Request to database.
+        /// </summary>
+        /// <param name="value"></param>
         [HttpPost]
         public void Post([FromBody]RequestDAO value)
         {

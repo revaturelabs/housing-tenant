@@ -6,21 +6,29 @@ using Microsoft.AspNetCore.Mvc;
 using HousingTenant.Data.Service.Models;
 using HousingTenant.Data.Library.AzModels;
 
-// For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
-
 namespace HousingTenant.Data.Service.Controllers
 {
     [Route("api/[controller]")]
     public class ApartmentController : Controller
     {
+        /// <summary>
+        /// private field containing the DBContext of the database being used
+        /// </summary>
         private HousingTenantDBContext _Context;
 
+        /// <summary>
+        /// Updates _Context to represent the current state of the database being used.
+        /// </summary>
+        /// <param name="context"></param>
         public ApartmentController(HousingTenantDBContext context)
         {
             _Context = context;
         }
 
-        // GET: api/values
+        /// <summary>
+        /// Returns all the apartments stored in the database.
+        /// </summary>
+        /// <returns></returns>
         [HttpGet]
         public List<ApartmentDAO> Get()
         {
@@ -46,7 +54,12 @@ namespace HousingTenant.Data.Service.Controllers
             return list.ToList();
         }
 
-        // GET api/values/5
+        /// <summary>
+        /// Returns a single apartment that matches the given Guid value. 
+        /// If there is no match a blank apartment object is returned instead.
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
         [HttpGet("{id}")]
         public ApartmentDAO Get(string id)
         {
@@ -82,7 +95,11 @@ namespace HousingTenant.Data.Service.Controllers
             return output;
         }
 
-        // POST api/values
+        /// <summary>
+        /// Adds a new apartment to the database.
+        /// </summary>
+        /// <param name="value"></param>
+        /// <returns></returns>
         [HttpPost]
         public bool Post([FromBody]ApartmentDAO value)
         {

@@ -6,21 +6,28 @@ using Microsoft.AspNetCore.Mvc;
 using HousingTenant.Data.Service.Models;
 using HousingTenant.Data.Library.AzModels;
 
-// For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
-
 namespace HousingTenant.Data.Service.Controllers
 {
     [Route ("api/[controller]/[action]")]
     public class PersonController : Controller
     {
+        /// <summary>
+        /// private field containing the DBContext of the database being used
+        /// </summary>
         private HousingTenantDBContext _Context;
 
+        /// <summary>
+        /// Updates _Context to represent the current state of the database being used.
+        /// </summary>
+        /// <param name="context"></param>
         public PersonController(HousingTenantDBContext context)
         {
-            _Context = context;
+            _Context = context; 
         }
 
-        // GET: api/values
+        /// <summary>
+        /// Returns all the People that are stored in the database
+        /// </summary>
         [HttpGet]
         [ActionName ("GetAll")]
         public List<PersonDAO> Get()
@@ -58,7 +65,11 @@ namespace HousingTenant.Data.Service.Controllers
             return output.ToList ();
         }
 
-        // GET api/values/5
+        /// <summary>
+        /// Returns a single Person by their email address.
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
         [HttpGet ("{id}")]
         [ActionName ("GetByEmail")]
         public PersonDAO GetByEmail(string id)
@@ -104,6 +115,12 @@ namespace HousingTenant.Data.Service.Controllers
             return output;
         }
 
+
+        /// <summary>
+        /// Returns a single Person by their Guid.
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
         [HttpGet ("{id}")]
         [ActionName ("GetByGuid")]
         public PersonDAO GetByGuid(string id)
@@ -149,6 +166,11 @@ namespace HousingTenant.Data.Service.Controllers
             return output;
         }
 
+        /// <summary>
+        /// Returns a list of People by the Guid of the apartment they reside at.
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
         [HttpGet ("{id}")]
         [ActionName ("GetByApartment")]
         public List<PersonDAO> GetByApartment(string id)
@@ -187,7 +209,11 @@ namespace HousingTenant.Data.Service.Controllers
             return list.ToList();
         }
 
-        // POST api/values
+        /// <summary>
+        /// Adds a new Person to the database.
+        /// </summary>
+        /// <param name="value"></param>
+        /// <returns></returns>
         [HttpPost]
         public bool Post([FromBody]PersonDAO value)
         {
