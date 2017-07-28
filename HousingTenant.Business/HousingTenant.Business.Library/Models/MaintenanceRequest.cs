@@ -24,7 +24,7 @@ namespace HousingTenant.Business.Library.Models
 
         public override bool IsValid()
         {
-            return Description != null;
+            return Initiator != null && Description != null;
         }
       
         public override string ToString()

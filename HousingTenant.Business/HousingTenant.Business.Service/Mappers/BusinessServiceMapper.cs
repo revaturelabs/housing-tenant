@@ -162,13 +162,13 @@ namespace HousingTenant.Business.Service.Mappers
                   request = new MaintenanceRequest();
                   break;
             }
-            request.RequestId = requestDto.RequestId;
-            request.Initiator = requestDto.Initiator;
-            request.Description = requestDto.Description;
+            request.RequestId     = requestDto.RequestId;
+            request.Initiator     = requestDto.Initiator;
+            request.Description   = requestDto.Description;
             request.DateSubmitted = requestDto.DateSubmitted;
-            request.DateModified = requestDto.DateModified;
-            request.Status = requestDto.Status;
-            request.Urgent = requestDto.Urgent;
+            request.DateModified  = requestDto.DateModified;
+            request.Status        = requestDto.Status;
+            request.Urgent        = requestDto.Urgent;
          }
          return request;
       }
