@@ -76645,7 +76645,7 @@ var supplyController = module_1.supplyModule.controller('suppliesCtrl', ['$scope
         $scope.addRequest = function (form) {
             var request = {
                 description: $scope.description,
-                initiator: 'Current User',
+                initiator: localStorage.getItem('currentUser'),
                 requestItems: [],
                 datesubmitted: Date.now(),
                 apartmentId: aptGuid,
@@ -76691,10 +76691,8 @@ var supplyService = module_1.supplyModule.factory('supplyRequestService', ['$htt
             getRequestList: function (aptidstring, scope) {
                 console.log(aptidstring);
                 $http.get('http://housingtenantbusiness.azurewebsites.net/api/request/id?=' + aptidstring).then(function (res) {
-                    console.log(res.data);
                     scope.reqList = [];
                     res.data.forEach(function (element) {
-                        console.log(element);
                         if (element.type === "SupplyRequest") {
                             scope.reqList.push(element);
                         }
@@ -93727,7 +93725,7 @@ var maintenanceController = module_1.maintenanceModule.controller('maintenanceCt
         $scope.addMaintenanceRequest = function (form) {
             var request = {
                 description: "",
-                initiator: 'Current User',
+                initiator: localStorage.getItem('currentUser'),
                 datesubmitted: Date.now(),
                 urgent: form.urgent.$modelValue
             };
@@ -93863,12 +93861,10 @@ var module_1 = __webpack_require__(7);
 var complaintService = module_1.complaintModule.factory('complaintRequestService', ['$http', function ($http) {
         return {
             getRequestList: function (aptguid, scope, userguid) {
-                console.log('GET COMPLAINTS');
                 $http.get('http://housingtenantbusiness.azurewebsites.net/api/request/id?=' + aptguid).then(function (res) {
                     console.log(res.data);
                     scope.reqList = [];
                     res.data.forEach(function (element) {
-                        console.log(element);
                         if (element.type == "ComplaintRequest" && element.initiator.personId == userguid) {
                             scope.reqList.push(element);
                         }
@@ -93924,7 +93920,7 @@ var moveController = module_1.moveModule.controller('moveCtrl', ['$scope', '$rou
             console.log($scope.selectedApartment);
             var request = {
                 description: form.reason.$modelValue,
-                initiator: 'currentUser',
+                initiator: localStorage.getItem('currentUser'),
                 datesubmitted: Date.now(),
                 requestedApartmentAddress: $scope.selectedApartmentAddress
             };
