@@ -11,11 +11,9 @@ h.factory('homeFactory', ['$http', function ($http) {
         obj.getAddress(res);
       }, failure);
     }, 
-    getPerson: function (id: number, person, address) {
-      $http.get('http://housingtenantbusiness.azurewebsites.net/api/person' /*+ id*/ + '/').then(function (res) {
-        console.log(res);
-        console.log(res.data[id].firstName);
-        person.getPerson(res, id, address);
+    getPerson: function (email: string, person, address) {
+      $http.get('http://housingtenantbusiness.azurewebsites.net/api/person/email?=' + email).then(function (res) {
+        person.getPerson(res, email, address);
       }, failure);
     }, 
     getSuppliesPage: function () {
