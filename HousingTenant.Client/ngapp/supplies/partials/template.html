@@ -48,7 +48,7 @@
                   <form name="supplyRequest" ng-cloak>
                      <md-input-container class="md-block">
                         <label for="name">Description</label>
-                        <input type="text" ng-model="description" >
+                        <input type="text" ng-model="description">
                      </md-input-container>
                      <md-input-container class="md-block">
                         <md-checkbox id="soap" name="Soap" ng-model="soap">
@@ -90,6 +90,8 @@
             </md-dialog-content>
             <md-dialog-actions layout="row">
                <md-button class="md-raised md-primary" type="button" ng-click="addRequest(supplyRequest)">Submit</md-button>
+               <span class="flex"></span>
+               <md-button class="md-raised md-warn" data-ng-href="/apartment/">Back</md-button>
             </md-dialog-actions>
 
          </md-dialog>

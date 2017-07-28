@@ -312,7 +312,7 @@ ngHousingTenant.config(['$routeProvider', '$locationProvider', '$httpProvider', 
         $locationProvider.html5Mode(true).hashPrefix('!');
         adalProvider.init({
             tenant: 'fredbelotterevature.onmicrosoft.com',
-            clientId: 'b30b8a78-6e98-4bac-afac-3989d56b3551'
+            clientId: 'b30b8a78-6e98-4bac-afac-3989d56b3551',
         }, $httpProvider);
     }]);
 
@@ -76513,31 +76513,33 @@ __webpack_require__(2);
 //import 'adal-angular/lib/adal-angular';
 var Address = (function () {
     function Address() {
-        this.Address1 = 'NotAvailable';
-        this.Address2 = 'NotAvailable';
-        this.City = 'NotAvailable';
-        this.State = 'NotAvailable';
-        this.Zip = 0;
+        this.address1 = 'NotAvailable';
+        this.address2 = 'NotAvailable';
+        this.city = 'NotAvailable';
+        this.state = 'NotAvailable';
+        this.zipCode = 0;
     }
     Address.prototype.getAddress = function (res) {
-        this.Address1 = res.address1;
-        this.Address2 = res.address2;
-        this.City = res.city;
-        this.State = res.state;
-        this.Zip = res.zipCode;
+        this.address1 = res.address1;
+        this.address2 = res.address2;
+        this.city = res.city;
+        this.state = res.state;
+        this.zipCode = res.zipCode;
     };
     return Address;
 }());
 var Person = (function () {
     function Person() {
-        this.FirstName = 'John';
-        this.LastName = 'Doe';
+        this.firstName = 'Fred';
+        this.lastName = 'Bel';
     }
-    Person.prototype.getPerson = function (res, id, address) {
-        this.FirstName = res.data[id].firstName;
-        this.LastName = res.data[id].lastName;
-        address.getAddress(res.data[id].address);
-        this.Address = address;
+    Person.prototype.getPerson = function (res, address) {
+        this.firstName = res.data.firstName;
+        this.lastName = res.data.lastName;
+        this.aptGuid = res.data.apartmentId;
+        var address2 = new Address();
+        address2.getAddress(res.data.address);
+        this.address = address2;
     };
     return Person;
 }());
@@ -76548,6 +76550,7 @@ var myController = module_1.home.controller('homeController', ['$scope', 'homeFa
         $scope.signOut = function () {
             adalAuthenticationService.logOut();
         };
+        var email = adalAuthenticationService.userInfo.userName;
         $scope.myAddress = new Address();
         $scope.myPerson = new Person();
         $scope.something = 'hello mock';
@@ -76560,15 +76563,18 @@ var myController = module_1.home.controller('homeController', ['$scope', 'homeFa
             });
         };
         $scope.processRequest = function (id) {
+            console.log('entering processRequest');
             homeFactory.getAddress(id, $scope.myAddress);
         };
-        $scope.processPerson = function (id) {
-            homeFactory.getPerson(id, $scope.myPerson, $scope.myAddress);
+        $scope.processPerson = function (email) {
+            console.log('entering processPerson');
+            homeFactory.getPerson(email, $scope.myPerson, $scope.myAddress);
         };
         $scope.init = function () {
-            $scope.processPerson(1);
+            console.log('entering init');
+            if (email != "")
+                $scope.processPerson(email);
         };
-        //aptFactory.getApartment($scope, $scope.myAddress);
     }]);
 
 
@@ -76589,18 +76595,21 @@ var module_1 = __webpack_require__(3);
 function failure(err) {
     console.log(err);
 }
-module_1.home.factory('homeFactory', ['$http', function ($http) {
+module_1.home.factory('homeFactory', ['$http', 'adalAuthenticationService', function ($http, adalAuthenticationService) {
         return {
             getAddress: function (id, obj) {
                 $http.get('http://housingtenantbusiness.azurewebsites.net/api/address/' /*+ id*/ + '/').then(function (res) {
                     obj.getAddress(res);
                 }, failure);
             },
-            getPerson: function (id, person, address) {
-                $http.get('http://housingtenantbusiness.azurewebsites.net/api/person' /*+ id*/ + '/').then(function (res) {
+            getPerson: function (email, person, address) {
+                $http.get('http://housingtenantbusiness.azurewebsites.net/api/person/email?=' + email).then(function (res) {
                     console.log(res);
-                    console.log(res.data[id].firstName);
-                    person.getPerson(res, id, address);
+                    localStorage.setItem('aptGuid', res.data.apartmentId);
+                    console.log(localStorage);
+                    person.getPerson(res, email, address);
+                    adalAuthenticationService.userInfo.apartmentGuid = res.data.apartmentId;
+                    console.log(adalAuthenticationService.userInfo.apartmentGuid);
                 }, failure);
             },
             getSuppliesPage: function () {
@@ -76734,6 +76743,8 @@ var address = {
     ZipCode: "20170"
 };
 var apartmentController = module_1.apartmentModule.controller('aptCtrl', ['$scope', 'aptFactory', function ($scope, aptFactory) {
+        $scope.aptGuid = localStorage.getItem('aptGuid');
+        console.log(localStorage.getItem('aptGuid'));
         $scope.getPie = function (data) {
             //basic info about the shape
             var width = 300;
@@ -76775,7 +76786,7 @@ var apartmentController = module_1.apartmentModule.controller('aptCtrl', ['$scop
                 .text(function (d) { return d.data.label; })
                 .style("fill", "#fff");
         };
-        aptFactory.getApartment($scope, address, $scope.getPie);
+        aptFactory.getApartmentByGuid($scope, $scope.aptGuid, $scope.getPie);
     }]);
 
 

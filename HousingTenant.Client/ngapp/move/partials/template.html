@@ -24,7 +24,9 @@
       </tbody>
     </table>
     <div>
-      <md-button class="md-raised md-primary" type="button" ng-click="openModal($event)">New Maintenance Request</md-button>
+      <md-button class="md-raised md-primary" type="button" ng-click="openModal($event)">New Move Request</md-button>
+      <span class="flex"></span>
+      <md-button class="md-raised md-warn" data-ng-href="/apartment/">Back</md-button>
     </div>
   </div>
 
@@ -57,6 +59,7 @@
           </md-dialog-content>
           <md-dialog-actions layout="row">
             <md-button class="md-raised md-primary" type="button" ng-click="addMoveRequest(moveRequest)">Submit</md-button>
+            <md-button class="md-raised md-warn" data-ng-href="/move/:{{}}">Back</md-button>
           </md-dialog-actions>
         </form>
       </md-dialog>

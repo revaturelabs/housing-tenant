@@ -57,6 +57,7 @@ ngHousingTenant.config(['$routeProvider', '$locationProvider', '$httpProvider', 
 
   adalProvider.init({
     tenant: 'fredbelotterevature.onmicrosoft.com',
-    clientId: 'b30b8a78-6e98-4bac-afac-3989d56b3551'
+    clientId: 'b30b8a78-6e98-4bac-afac-3989d56b3551',
+    //cacheLocation: 'localStorage'
   }, $httpProvider);
 }]);
