@@ -40,14 +40,14 @@ namespace HousingTenant.Data.Service.Controllers
         /// </summary>
         /// <param name="value"></param>
         [HttpPost]
-        public void Post([FromBody]string value)
+        public bool Post([FromBody]string value)
         {
             _Context.SupplyType.Add (new SupplyType
             {
                 Supply = value
             });
 
-            _Context.SaveChanges();
+            return _Context.SaveChanges() > 0;
         }
     }
 }

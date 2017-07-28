@@ -146,7 +146,7 @@ namespace HousingTenant.Data.Service.Controllers
         /// </summary>
         /// <param name="value"></param>
         [HttpPost]
-        public void Post([FromBody]RequestDAO value)
+        public bool Post([FromBody]RequestDAO value)
         {
             var req = _Context.Request;
             var reqType = _Context.RequestType;
@@ -200,7 +200,7 @@ namespace HousingTenant.Data.Service.Controllers
             }
 
             _Context.Request.Add (newRequest);
-            _Context.SaveChanges ();
+            return _Context.SaveChanges () > 0;
 
         }
     }
