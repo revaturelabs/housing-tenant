@@ -21,7 +21,6 @@ namespace HousingTenant.Business.Service.Controllers
         HttpClient client = new HttpClient { BaseAddress = new Uri("https://housingtenantdata.azurewebsites.net/api/") };
         LibraryManager _LibraryManager = new LibraryManager();
         BusinessServiceMapper ServiceMapper = new BusinessServiceMapper();
-        ServiceManager _ServiceManager = new ServiceManager();
 
         // GET: api/persons
         [HttpGet]
@@ -31,7 +30,6 @@ namespace HousingTenant.Business.Service.Controllers
          var personList = JsonConvert.DeserializeObject<List<PersonDTO>>(persons.Content.ReadAsStringAsync().Result);
 
          return personList;
-         //return ServiceMapper.MapToPersonDTOList(_ServiceManager.GetPersons());
       }
 
         // GET api/person/5
@@ -43,7 +41,6 @@ namespace HousingTenant.Business.Service.Controllers
          var deserializedPerson = JsonConvert.DeserializeObject<PersonDTO>(person.Content.ReadAsStringAsync().Result);
 
          return deserializedPerson;
-         //return ServiceMapper.MapToPersonDTO(_ServiceManager.GetPerson(id));
         }
         
         // Get api/person/email
@@ -64,8 +61,6 @@ namespace HousingTenant.Business.Service.Controllers
         {
          var vperson = (Person)_LibraryManager.ValidateTenant(ServiceMapper.MapToIPerson(person));
          client.PostAsJsonAsync("person", vperson);
-
-         //_ServiceManager.AddPerson(ServiceMapper.MapToIPerson(person));
         }
 
         // PUT api/values/5

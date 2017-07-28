@@ -20,7 +20,6 @@ namespace HousingTenant.Business.Service.Controllers
         HttpClient client = new HttpClient { BaseAddress = new Uri("https://housingtenantdata.azurewebsites.net/api/") };
         LibraryManager _LibraryManager = new LibraryManager();
         BusinessServiceMapper ServiceMapper = new BusinessServiceMapper();
-        ServiceManager _ServiceManager = new ServiceManager();
 
       // GET: api/values
         [HttpGet]
@@ -30,7 +29,6 @@ namespace HousingTenant.Business.Service.Controllers
             var ApartmentList = JsonConvert.DeserializeObject<List<ApartmentDTO>>(apartments.Content.ReadAsStringAsync().Result);
 
             return ApartmentList;
-            //return ServiceMapper.MapToApartmentDTOList(_ServiceManager.GetApartments());
         }
         
         [Route("id")]
@@ -51,7 +49,6 @@ namespace HousingTenant.Business.Service.Controllers
             var apartment = _LibraryManager.PackApartment(ServiceMapper.MapToIApartment(emptyApartment), ServiceMapper.MapToIPersonList(persons), ServiceMapper.MapToARequestList(requests));
 
             return ServiceMapper.MapToApartmentDTO((Apartment)apartment);
-            //  return ServiceMapper.MapToApartmentDTO(_ServiceManager.GetApartment(id));
         }
 
         // POST api/values
@@ -60,8 +57,6 @@ namespace HousingTenant.Business.Service.Controllers
         {
             var vApartment = (Apartment)_LibraryManager.ValidateApartment(ServiceMapper.MapToIApartment(apartment));
             client.PostAsJsonAsync("apartment", vApartment);
-
-            // _ServiceManager.AddApartment(ServiceMapper.MapToIApartment(apartment));
         }
 
         // PUT api/values/5
