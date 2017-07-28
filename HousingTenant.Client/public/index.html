@@ -21,9 +21,13 @@
     function openMenu() {
       console.log(window.localStorage.getItem('aptGuid'));
       var currentAptGuid = window.localStorage.getItem('aptGuid');
-      $("a#sidebar-link").attr("href", function (i, href) {
+      var isGuidAppended = false;
+      if(isGuidAppended != true){
+        $("a#sidebar-link").attr("href", function (i, href) {
         return href + currentAptGuid;
+        isGuidAppended == true;
       });
+      }
       document.getElementById("mySidenav").style.width = "250px";
       document.getElementById("main").style.marginLeft = "250px";
     }
