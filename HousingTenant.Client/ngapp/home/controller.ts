@@ -6,45 +6,47 @@ import '../apartment/service';
 
 
 class Address {
-  Address1: string;
-  Address2: string;
-  City: string;
-  State: string;
-  Zip: number;
+  address1: string;
+  address2: string;
+  city: string;
+  state: string;
+  zipCode: number;
 
   constructor() {
-    this.Address1 = 'NotAvailable';
-    this.Address2 = 'NotAvailable';
-    this.City = 'NotAvailable';
-    this.State = 'NotAvailable';
-    this.Zip = 0;
+    this.address1 = 'NotAvailable';
+    this.address2 = 'NotAvailable';
+    this.city = 'NotAvailable';
+    this.state = 'NotAvailable';
+    this.zipCode = 0;
   }
 
   getAddress(res: any){
-    this.Address1 = res.address1;
-    this.Address2 = res.address2;
-    this.City = res.city;
-    this.State = res.state;
-    this.Zip = res.zipCode;
+    this.address1 = res.address1;
+    this.address2 = res.address2;
+    this.city = res.city;
+    this.state = res.state;
+    this.zipCode = res.zipCode;
   }
 }
 
 class Person {
-  FirstName: string;
-  LastName: string;
-  Address: Address;
+  firstName: string;
+  lastName: string;
+  address: Address;
+  aptGuid: string;
 
   constructor(){
-    this.FirstName = 'John';
-    this.LastName = 'Doe';
+    this.firstName= 'Fred';
+    this.lastName = 'Bel';
   }
   
   getPerson(res: any, address: Address){
-    this.FirstName = res.data.firstName;
-    this.LastName = res.data.lastName;
+    this.firstName = res.data.firstName;
+    this.lastName = res.data.lastName;
+    this.aptGuid = res.data.apartmentId;
     var address2 = new Address();
     address2.getAddress(res.data.address);
-    this.Address = address2;
+    this.address = address2;
   }
 }
 
@@ -59,7 +61,6 @@ var myController = h.controller('homeController', ['$scope', 'homeFactory', 'apt
     };
   
   var email = adalAuthenticationService.userInfo.userName;
-  
   $scope.myAddress = new Address();
   
   $scope.myPerson = new Person();
@@ -76,18 +77,20 @@ var myController = h.controller('homeController', ['$scope', 'homeFactory', 'apt
   };
 
   $scope.processRequest = function (id) {
+    console.log('entering processRequest');    
     homeFactory.getAddress(id, $scope.myAddress);
   }
 
   $scope.processPerson = function(email: string){
+    console.log('entering processPerson');
     homeFactory.getPerson(email, $scope.myPerson, $scope.myAddress);
+    
   }
 
   $scope.init = function(){
+    console.log('entering init');    
     if(email != "")
       $scope.processPerson(email);
   }
-
-  //aptFactory.getApartment($scope, $scope.myAddress);
 
 }]);

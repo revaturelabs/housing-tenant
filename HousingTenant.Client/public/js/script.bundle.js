@@ -111,18 +111,20 @@ var appartmentService = module_1.apartmentModule.factory('aptFactory', ['$http',
                             scope.complaintReq++;
                         }
                         else if (element.type == 'MaintenanceRequest') {
-                            scope.supplyReq++;
-                        }
-                        else if (element.type == 'MoveRequest') {
                             scope.maintenanceReq++;
                         }
+                        else if (element.type == 'MoveRequest') {
+                            scope.MoveReq++;
+                        }
                         else if (element.type == 'SupplyRequest') {
-                            scope.moveReq++;
+                            scope.supplyReq++;
                         }
                         ;
                     });
                     var currentData = [{ label: 'Co', count: scope.complaintReq }, { label: 'Ma', count: scope.maintenanceReq }, { label: 'Mo', count: scope.moveReq }, { label: 'Su', count: scope.supplyReq }];
-                    getPie(currentData);
+                    if (getPie != 1) {
+                        getPie(currentData);
+                    }
                     console.log(scope.apartment);
                 }, function (err) {
                     console.log(err);
@@ -134,23 +136,26 @@ var appartmentService = module_1.apartmentModule.factory('aptFactory', ['$http',
                     scope.supplyReq = 0;
                     scope.maintenanceReq = 0;
                     scope.complaintReq = 0;
+                    scope.moveReq = 0;
                     scope.apartment.requests.forEach(function (element) {
                         if (element.type == 'ComplaintRequest') {
                             scope.complaintReq++;
                         }
                         else if (element.type == 'MaintenanceRequest') {
-                            scope.supplyReq++;
-                        }
-                        else if (element.type == 'MoveRequest') {
                             scope.maintenanceReq++;
                         }
+                        else if (element.type == 'MoveRequest') {
+                            scope.MoveReq++;
+                        }
                         else if (element.type == 'SupplyRequest') {
-                            scope.moveReq++;
+                            scope.supplyReq++;
                         }
                         ;
                     });
                     var currentData = [{ label: 'Co', count: scope.complaintReq }, { label: 'Ma', count: scope.maintenanceReq }, { label: 'Mo', count: scope.moveReq }, { label: 'Su', count: scope.supplyReq }];
-                    getPie(currentData);
+                    if (getPie != 1) {
+                        getPie(currentData);
+                    }
                     console.log(scope.apartment);
                 }, function (err) {
                     console.log(err);
@@ -312,7 +317,7 @@ ngHousingTenant.config(['$routeProvider', '$locationProvider', '$httpProvider', 
         $locationProvider.html5Mode(true).hashPrefix('!');
         adalProvider.init({
             tenant: 'fredbelotterevature.onmicrosoft.com',
-            clientId: 'b30b8a78-6e98-4bac-afac-3989d56b3551'
+            clientId: 'b30b8a78-6e98-4bac-afac-3989d56b3551',
         }, $httpProvider);
     }]);
 
@@ -76513,31 +76518,33 @@ __webpack_require__(2);
 //import 'adal-angular/lib/adal-angular';
 var Address = (function () {
     function Address() {
-        this.Address1 = 'NotAvailable';
-        this.Address2 = 'NotAvailable';
-        this.City = 'NotAvailable';
-        this.State = 'NotAvailable';
-        this.Zip = 0;
+        this.address1 = 'NotAvailable';
+        this.address2 = 'NotAvailable';
+        this.city = 'NotAvailable';
+        this.state = 'NotAvailable';
+        this.zipCode = 0;
     }
     Address.prototype.getAddress = function (res) {
-        this.Address1 = res.address1;
-        this.Address2 = res.address2;
-        this.City = res.city;
-        this.State = res.state;
-        this.Zip = res.zipCode;
+        this.address1 = res.address1;
+        this.address2 = res.address2;
+        this.city = res.city;
+        this.state = res.state;
+        this.zipCode = res.zipCode;
     };
     return Address;
 }());
 var Person = (function () {
     function Person() {
-        this.FirstName = 'John';
-        this.LastName = 'Doe';
+        this.firstName = 'Fred';
+        this.lastName = 'Bel';
     }
-    Person.prototype.getPerson = function (res, id, address) {
-        this.FirstName = res.data[id].firstName;
-        this.LastName = res.data[id].lastName;
-        address.getAddress(res.data[id].address);
-        this.Address = address;
+    Person.prototype.getPerson = function (res, address) {
+        this.firstName = res.data.firstName;
+        this.lastName = res.data.lastName;
+        this.aptGuid = res.data.apartmentId;
+        var address2 = new Address();
+        address2.getAddress(res.data.address);
+        this.address = address2;
     };
     return Person;
 }());
@@ -76548,6 +76555,7 @@ var myController = module_1.home.controller('homeController', ['$scope', 'homeFa
         $scope.signOut = function () {
             adalAuthenticationService.logOut();
         };
+        var email = adalAuthenticationService.userInfo.userName;
         $scope.myAddress = new Address();
         $scope.myPerson = new Person();
         $scope.something = 'hello mock';
@@ -76560,15 +76568,18 @@ var myController = module_1.home.controller('homeController', ['$scope', 'homeFa
             });
         };
         $scope.processRequest = function (id) {
+            console.log('entering processRequest');
             homeFactory.getAddress(id, $scope.myAddress);
         };
-        $scope.processPerson = function (id) {
-            homeFactory.getPerson(id, $scope.myPerson, $scope.myAddress);
+        $scope.processPerson = function (email) {
+            console.log('entering processPerson');
+            homeFactory.getPerson(email, $scope.myPerson, $scope.myAddress);
         };
         $scope.init = function () {
-            $scope.processPerson(1);
+            console.log('entering init');
+            if (email != "")
+                $scope.processPerson(email);
         };
-        //aptFactory.getApartment($scope, $scope.myAddress);
     }]);
 
 
@@ -76589,18 +76600,19 @@ var module_1 = __webpack_require__(3);
 function failure(err) {
     console.log(err);
 }
-module_1.home.factory('homeFactory', ['$http', function ($http) {
+module_1.home.factory('homeFactory', ['$http', 'adalAuthenticationService', function ($http, adalAuthenticationService) {
         return {
             getAddress: function (id, obj) {
                 $http.get('http://housingtenantbusiness.azurewebsites.net/api/address/' /*+ id*/ + '/').then(function (res) {
                     obj.getAddress(res);
                 }, failure);
             },
-            getPerson: function (id, person, address) {
-                $http.get('http://housingtenantbusiness.azurewebsites.net/api/person' /*+ id*/ + '/').then(function (res) {
-                    console.log(res);
-                    console.log(res.data[id].firstName);
-                    person.getPerson(res, id, address);
+            getPerson: function (email, person, address) {
+                $http.get('http://housingtenantbusiness.azurewebsites.net/api/person/email?=' + email).then(function (res) {
+                    localStorage.setItem('aptGuid', res.data.apartmentId);
+                    person.getPerson(res, email, address);
+                    adalAuthenticationService.userInfo.apartmentGuid = res.data.apartmentId;
+                    adalAuthenticationService.userInfo.currentUser = res.data;
                 }, failure);
             },
             getSuppliesPage: function () {
@@ -76627,13 +76639,14 @@ module.exports = __webpack_require__.p + "ngapp/apartment/partials/template.html
 Object.defineProperty(exports, "__esModule", { value: true });
 var module_1 = __webpack_require__(5);
 __webpack_require__(27);
-var supplyController = module_1.supplyModule.controller('suppliesCtrl', ['$scope', 'supplyRequestService', '$routeParams', '$mdDialog', function ($scope, supplyRequestService, $routeParams, $mdDialog) {
+var supplyController = module_1.supplyModule.controller('suppliesCtrl', ['adalAuthenticationService', '$scope', 'supplyRequestService', '$routeParams', '$mdDialog', function (adalAuthenticationService, $scope, supplyRequestService, $routeParams, $mdDialog) {
         var aptGuid = $routeParams.aptguid;
+        var currentUser = adalAuthenticationService.userInfo.currentUser;
         supplyRequestService.getRequestList(aptGuid, $scope);
         $scope.addRequest = function (form) {
             var request = {
                 description: $scope.description,
-                initiator: 'Current User',
+                initiator: currentUser,
                 requestItems: [],
                 datesubmitted: Date.now(),
                 apartmentId: aptGuid,
@@ -76679,10 +76692,8 @@ var supplyService = module_1.supplyModule.factory('supplyRequestService', ['$htt
             getRequestList: function (aptidstring, scope) {
                 console.log(aptidstring);
                 $http.get('http://housingtenantbusiness.azurewebsites.net/api/request/id?=' + aptidstring).then(function (res) {
-                    console.log(res.data);
                     scope.reqList = [];
                     res.data.forEach(function (element) {
-                        console.log(element);
                         if (element.type === "SupplyRequest") {
                             scope.reqList.push(element);
                         }
@@ -76725,15 +76736,8 @@ Object.defineProperty(exports, "__esModule", { value: true });
 var module_1 = __webpack_require__(4);
 var d3 = __webpack_require__(29);
 __webpack_require__(2);
-var address = {
-    Address1: "2100 Wilkes Court",
-    Address2: "",
-    ApartmentNumber: "102",
-    City: "Herndon",
-    State: "Virginia",
-    ZipCode: "20170"
-};
 var apartmentController = module_1.apartmentModule.controller('aptCtrl', ['$scope', 'aptFactory', function ($scope, aptFactory) {
+        $scope.aptGuid = localStorage.getItem('aptGuid');
         $scope.getPie = function (data) {
             //basic info about the shape
             var width = 300;
@@ -76741,16 +76745,12 @@ var apartmentController = module_1.apartmentModule.controller('aptCtrl', ['$scop
             var radius = Math.min(width, height) / 2;
             //color palette
             var color = d3.scaleOrdinal().range(["#2C93E8", "#FF4C4C", "#838690", "#F56C4E"]);
-            //console.log(color);
             //computes angles
             var pie = d3.pie().value(function (d) { return d.count; })(data);
-            //console.log(pie);
             //arc for chart
             var pieArc = d3.arc().outerRadius(radius - 10).innerRadius(0);
-            //console.log(pieArc);
             //arc for labels
             var labelArc = d3.arc().outerRadius(radius).innerRadius(radius - 100);
-            //console.log(labelArc);
             //scalable vector graphic
             var svg = d3.select('#chart')
                 .append('svg')
@@ -76758,13 +76758,11 @@ var apartmentController = module_1.apartmentModule.controller('aptCtrl', ['$scop
                 .attr('height', height)
                 .append('g')
                 .attr("transform", "translate(" + width / 2 + "," + height / 2 + ")");
-            //console.log(svg);
             //generate groups to hold paths
             var g = svg.selectAll('arc')
                 .data(pie)
                 .enter().append('g')
                 .attr('class', 'arc');
-            //console.log(g);
             //append colors
             g.append('path')
                 .attr('d', pieArc)
@@ -76772,10 +76770,13 @@ var apartmentController = module_1.apartmentModule.controller('aptCtrl', ['$scop
             //append labels
             g.append("text")
                 .attr("transform", function (d) { return "translate(" + labelArc.centroid(d) + ")"; })
-                .text(function (d) { return d.data.label; })
+                .text(function (d) {
+                if (d.data.count > 0)
+                    return d.data.label;
+            })
                 .style("fill", "#fff");
         };
-        aptFactory.getApartment($scope, address, $scope.getPie);
+        aptFactory.getApartmentByGuid($scope, $scope.aptGuid, $scope.getPie);
     }]);
 
 
@@ -93704,8 +93705,9 @@ Object.defineProperty(exports, '__esModule', { value: true });
 Object.defineProperty(exports, "__esModule", { value: true });
 var module_1 = __webpack_require__(6);
 __webpack_require__(32);
-var maintenanceController = module_1.maintenanceModule.controller('maintenanceCtrl', ['$scope', 'maintenanceRequestService', '$routeParams', '$mdDialog', function ($scope, maintenanceRequestService, $routeParams, $mdDialog) {
+var maintenanceController = module_1.maintenanceModule.controller('maintenanceCtrl', ['adalAuthenticationService', '$scope', 'maintenanceRequestService', '$routeParams', '$mdDialog', function (adalAuthenticationService, $scope, maintenanceRequestService, $routeParams, $mdDialog) {
         var aptGuid = $routeParams.aptguid;
+        var currentUser = adalAuthenticationService.userInfo.currentUser;
         $scope.maintenanceTypes = [
             'Electrical Issues',
             'Slow Internet',
@@ -93725,7 +93727,7 @@ var maintenanceController = module_1.maintenanceModule.controller('maintenanceCt
         $scope.addMaintenanceRequest = function (form) {
             var request = {
                 description: "",
-                initiator: 'Current User',
+                initiator: currentUser,
                 datesubmitted: Date.now(),
                 urgent: form.urgent.$modelValue
             };
@@ -93812,26 +93814,17 @@ Object.defineProperty(exports, "__esModule", { value: true });
 __webpack_require__(34);
 __webpack_require__(2);
 var module_1 = __webpack_require__(7);
-var complaintController = module_1.complaintModule.controller('complaintCtrl', ['aptFactory', 'complaintRequestService', '$routeParams', '$scope', '$mdDialog', function (aptFactory, complaintRequestService, $routeParams, $scope, $mdDialog) {
+var complaintController = module_1.complaintModule.controller('complaintCtrl', ['adalAuthenticationService', 'aptFactory', 'complaintRequestService', '$routeParams', '$scope', '$mdDialog', function (adalAuthenticationService, aptFactory, complaintRequestService, $routeParams, $scope, $mdDialog) {
         var aptGuid = $routeParams.aptguid;
-        var initiatorId = 0;
-        var address = {
-            Address1: "2100 Wilkes Court",
-            Address2: "",
-            ApartmentNumber: "102",
-            City: "Herndon",
-            State: "Virginia",
-            ZipCode: "20170"
-        };
-        complaintRequestService.getRequestList(aptGuid, $scope, initiatorId);
-        //aptFactory.getApartmentByGuid($scope, aptGuid);
-        aptFactory.getApartment($scope, address);
+        var currentUser = adalAuthenticationService.userInfo.currentUser;
+        complaintRequestService.getRequestList(aptGuid, $scope, currentUser.personDTOId);
+        aptFactory.getApartmentByGuid($scope, localStorage.getItem('aptGuid'), 1);
         $scope.addComplaintRequest = function (form) {
             console.log(form);
             var request = {
                 accused: form.accused.$modelValue,
                 description: form.description.$modelValue,
-                initiator: 'Current User',
+                initiator: currentUser,
                 datesubmitted: Date.now(),
                 urgent: true
             };
@@ -93862,12 +93855,10 @@ var module_1 = __webpack_require__(7);
 var complaintService = module_1.complaintModule.factory('complaintRequestService', ['$http', function ($http) {
         return {
             getRequestList: function (aptguid, scope, userguid) {
-                console.log('GET COMPLAINTS');
                 $http.get('http://housingtenantbusiness.azurewebsites.net/api/request/id?=' + aptguid).then(function (res) {
                     console.log(res.data);
                     scope.reqList = [];
                     res.data.forEach(function (element) {
-                        console.log(element);
                         if (element.type == "ComplaintRequest" && element.initiator.personId == userguid) {
                             scope.reqList.push(element);
                         }
@@ -93914,16 +93905,16 @@ Object.defineProperty(exports, "__esModule", { value: true });
 var module_1 = __webpack_require__(8);
 __webpack_require__(38);
 __webpack_require__(2);
-var moveController = module_1.moveModule.controller('moveCtrl', ['$scope', '$routeParams', '$mdDialog', 'aptFactory', 'moveService', function ($scope, $routeParams, $mdDialog, aptFactory, moveService) {
+var moveController = module_1.moveModule.controller('moveCtrl', ['adalAuthenticationService', '$scope', '$routeParams', '$mdDialog', 'aptFactory', 'moveService', function (adalAuthenticationService, $scope, $routeParams, $mdDialog, aptFactory, moveService) {
         var aptGuid = $routeParams.aptguid;
-        var userGuid = 2;
+        var currentUser = adalAuthenticationService.userInfo.currentUser;
         aptFactory.getListApartments($scope);
         $scope.addMoveRequest = function (form) {
             console.log(form);
             console.log($scope.selectedApartment);
             var request = {
                 description: form.reason.$modelValue,
-                initiator: 'currentUser',
+                initiator: currentUser,
                 datesubmitted: Date.now(),
                 requestedApartmentAddress: $scope.selectedApartmentAddress
             };

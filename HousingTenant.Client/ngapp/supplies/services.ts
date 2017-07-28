@@ -6,10 +6,8 @@ var supplyService = sm.factory('supplyRequestService', ['$http', function ($http
                   console.log(aptidstring);
                   $http.get('http://housingtenantbusiness.azurewebsites.net/api/request/id?='+ aptidstring).then(
                         function (res) {
-                              console.log(res.data);
                               scope.reqList = [];
                               res.data.forEach(element => {
-                                    console.log(element);
                                     if (element.type === "SupplyRequest") {
                                           scope.reqList.push(element);
                                     }

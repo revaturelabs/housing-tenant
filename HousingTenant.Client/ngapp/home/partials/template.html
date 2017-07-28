@@ -1,6 +1,6 @@
 <section id="mainHome" ng-init="init()">
 
-  <h1>Welcome, {{myPerson.FirstName}} {{myPerson.LastName}}</h1>
+  <h1>Welcome, {{myPerson.firstName}} {{myPerson.lastName}}</h1>
 
   <section>
     <header>
@@ -9,11 +9,12 @@
     <md-card class="col-md-4" style="background-color: whitesmoke">
       <md-card-title>
         <md-card-title-text>
-          <p><b>Address1: </b>{{myPerson.Address.Address1}}</p>
-          <p><b>Address2: </b>{{myPerson.Address.Address2}}</p>
-          <p><b>City: </b>{{myPerson.Address.City}}</p>
-          <p><b>State: </b>{{myPerson.Address.State}}</p>
-          <p><b>Zip: </b>{{myPerson.Address.Zip}}</p>
+          <p><b>Address1: </b>{{myPerson.address.address1}}</p>
+          <p><b>Address2: </b>{{myPerson.address.address2}}</p>
+          <p><b>City: </b>{{myPerson.address.city}}</p>
+          <p><b>State: </b>{{myPerson.address.state}}</p>
+          <p><b>Zip: </b>{{myPerson.address.zipCode}}</p>
+          <p><b>Apartment GUID: </b>{{myPerson.aptGuid}}</p>
         </md-card-title-text>
       </md-card-title>
       <md-card-actions layout="row" layout-align="end center">
