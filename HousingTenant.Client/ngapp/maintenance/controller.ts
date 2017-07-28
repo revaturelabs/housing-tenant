@@ -1,9 +1,10 @@
 import { maintenanceModule as mm } from './module';
 import './services';
 
-var maintenanceController = mm.controller('maintenanceCtrl', ['$scope', 'maintenanceRequestService', '$routeParams', '$mdDialog', function ($scope, maintenanceRequestService, $routeParams, $mdDialog) {
+var maintenanceController = mm.controller('maintenanceCtrl', ['adalAuthenticationService','$scope', 'maintenanceRequestService', '$routeParams', '$mdDialog', function (adalAuthenticationService, $scope, maintenanceRequestService, $routeParams, $mdDialog) {
   var aptGuid = $routeParams.aptguid;
-  
+  var currentUser = adalAuthenticationService.userInfo.currentUser;
+
   $scope.maintenanceTypes = [
     'Electrical Issues',
     'Slow Internet',
@@ -26,7 +27,7 @@ var maintenanceController = mm.controller('maintenanceCtrl', ['$scope', 'mainten
   $scope.addMaintenanceRequest = function (form) {
     var request = {
       description: "",
-      initiator: localStorage.getItem('currentUser'),
+      initiator: currentUser,
       datesubmitted: Date.now(),
       urgent: form.urgent.$modelValue
     }

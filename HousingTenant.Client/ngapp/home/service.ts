@@ -14,9 +14,10 @@ h.factory('homeFactory', ['$http', 'adalAuthenticationService', function ($http,
     getPerson: function (email: string, person, address) {
       $http.get('http://housingtenantbusiness.azurewebsites.net/api/person/email?=' + email).then(function (res) {
         localStorage.setItem('aptGuid', res.data.apartmentId);
-         localStorage.setItem('currentUser', res.data);       
+        localStorage.setItem('currentUser', res.data);
         person.getPerson(res, email, address);
         adalAuthenticationService.userInfo.apartmentGuid = res.data.apartmentId;
+        adalAuthenticationService.userInfo.currentUser = res.data;
       }, failure);
     },
     getSuppliesPage: function () {
