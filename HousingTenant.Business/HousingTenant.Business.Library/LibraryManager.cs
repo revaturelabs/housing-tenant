@@ -5,8 +5,34 @@ using System.Text;
 
 namespace HousingTenant.Business.Library
 {
+
    public class LibraryManager
    {
+      // Last minute work-around due to changes in the data layer to avoid conflict between UI and data layer -- temp
+      readonly string[] requestItems = { "hand soap", "toilet paper", "paper towels", "dish soap", "trash bags", "dishwasher detergent", "sponges", "light bulbs" };
+
+      public List<string> NormalizeRequestList(List<string> items)
+      {
+
+         if(items != null)
+         {
+            var normalizedList = new List<string>();
+            foreach(var item in items)
+            {
+               foreach(var s in requestItems)
+               {
+                  var lower = item.ToLower();
+                  if(s == lower)
+                  {
+                     normalizedList.Add(lower);
+                     break;
+                  }
+               }
+            }
+            return normalizedList;
+         }
+         return null;
+      }
 
       public IApartment PackApartment(IApartment apartment, List<IPerson> tenants, List<ARequest> requests)
       {
@@ -23,7 +49,7 @@ namespace HousingTenant.Business.Library
              }
              return apartment;
          }
-         return null;
+         return new Apartment();
       }
 
       public IApartment ValidateApartment(IApartment apartment)

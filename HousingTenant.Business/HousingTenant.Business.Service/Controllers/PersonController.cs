@@ -59,16 +59,22 @@ namespace HousingTenant.Business.Service.Controllers
         [HttpPost]
         public void Post([FromBody]PersonDTO person)
         {
-         var vperson = (Person)_LibraryManager.ValidateTenant(ServiceMapper.MapToIPerson(person));
-         client.PostAsJsonAsync("person", vperson);
+            if (person != null)
+            {
+               var vperson = (Person)_LibraryManager.ValidateTenant(ServiceMapper.MapToIPerson(person));
+               client.PostAsJsonAsync("person", vperson);
+            }
         }
 
         // PUT api/values/5
         [HttpPut("{id}")]
         public void Put(int id, [FromBody]PersonDTO person)
         {
-            var vperson = _LibraryManager.ValidateTenant(ServiceMapper.MapToIPerson(person));
-            client.PutAsJsonAsync("person", vperson);
+            if (person != null)
+            {
+               var vperson = _LibraryManager.ValidateTenant(ServiceMapper.MapToIPerson(person));
+               client.PutAsJsonAsync("person", vperson);
+            }
         }
 
         // DELETE api/values/5

@@ -42,7 +42,7 @@ namespace HousingTenant.Business.Service.Controllers
             var pRequest = await client.GetAsync(personUrl, HttpCompletionOption.ResponseContentRead);
             var persons = JsonConvert.DeserializeObject<List<PersonDTO>>(pRequest.Content.ReadAsStringAsync().Result);
 
-            var requestUrl = string.Format("request/{0}",id /*emptyApartment.Address*/);
+            var requestUrl = string.Format("request/{0}",id);
             var rRequest = await client.GetAsync(requestUrl, HttpCompletionOption.ResponseContentRead);
             var requests = JsonConvert.DeserializeObject<List<RequestDTO>>(rRequest.Content.ReadAsStringAsync().Result);
 
