@@ -26,7 +26,7 @@ var maintenanceService = mm.factory('maintenanceRequestService', ['$http', funct
           'Access-Control-Allow-Credentials': 'true',
           'Access-Control-Allow-Methods': 'POST'
         },
-        data: {request}
+        data: JSON.stringify(request)
       }). then(function(res){
         console.log(res);
       }, function(err){

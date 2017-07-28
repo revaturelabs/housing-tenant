@@ -14,7 +14,6 @@ var moveController = mm.controller('moveCtrl', ['adalAuthenticationService','$sc
       var request = {
          description: form.reason.$modelValue,
          initiator: currentUser,
-         datesubmitted: Date.now(),
          requestedApartmentAddress: $scope.selectedApartmentAddress
       }
       console.log(request);

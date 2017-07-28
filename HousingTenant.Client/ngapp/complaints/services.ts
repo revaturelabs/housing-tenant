@@ -27,7 +27,7 @@ var complaintService = mm.factory('complaintRequestService', ['$http', function 
           'Access-Control-Allow-Credentials': 'true',
           'Access-Control-Allow-Methods': 'POST'
         },
-        data: {request}
+        data: JSON.stringify(request)
       }). then(function(res){
         console.log(res);
       }, function(err){

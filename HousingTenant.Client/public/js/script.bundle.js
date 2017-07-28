@@ -76643,14 +76643,13 @@ var supplyController = module_1.supplyModule.controller('suppliesCtrl', ['adalAu
         var aptGuid = $routeParams.aptguid;
         var currentUser = adalAuthenticationService.userInfo.currentUser;
         supplyRequestService.getRequestList(aptGuid, $scope);
+        console.log(currentUser);
         $scope.addRequest = function (form) {
             var request = {
                 description: $scope.description,
                 initiator: currentUser,
                 requestItems: [],
-                datesubmitted: Date.now(),
-                apartmentId: aptGuid,
-                type: 3
+                apartmentId: aptGuid
             };
             Object.keys(form).forEach(function (element) {
                 if (form[element] != null && form[element] != undefined && form[element].$viewValue == true) {
@@ -76691,7 +76690,9 @@ var supplyService = module_1.supplyModule.factory('supplyRequestService', ['$htt
         return {
             getRequestList: function (aptidstring, scope) {
                 console.log(aptidstring);
-                $http.get('http://housingtenantbusiness.azurewebsites.net/api/request/id?=' + aptidstring).then(function (res) {
+                $http.get('http://housingtenantbusiness.azurewebsites.net/api/request/id?=' + aptidstring).then(
+                //$http.get('http://localhost:5000/api/request/id?='+ aptidstring).then(
+                function (res) {
                     scope.reqList = [];
                     res.data.forEach(function (element) {
                         if (element.type === "SupplyRequest") {
@@ -76707,7 +76708,8 @@ var supplyService = module_1.supplyModule.factory('supplyRequestService', ['$htt
                 console.log(request);
                 $http({
                     method: 'POST',
-                    url: 'http://housingtenantbusiness.azurewebsites.net/api/request/supplyrequest/',
+                    //url: 'http://housingtenantbusiness.azurewebsites.net/api/request/supplyrequest/',
+                    url: 'http://localhost:53254/api/request/supplyrequest/',
                     withCredentials: true,
                     headers: {
                         'Access-Control-Allow-Origin': '*',
@@ -76715,7 +76717,7 @@ var supplyService = module_1.supplyModule.factory('supplyRequestService', ['$htt
                         'Access-Control-Allow-Credentials': 'true',
                         'Access-Control-Allow-Methods': 'POST'
                     },
-                    data: { request: request }
+                    data: JSON.stringify(request)
                 }).then(function (res) {
                     console.log(res);
                 }, function (err) {
