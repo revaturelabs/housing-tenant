@@ -111,13 +111,13 @@ var appartmentService = module_1.apartmentModule.factory('aptFactory', ['$http',
                             scope.complaintReq++;
                         }
                         else if (element.type == 'MaintenanceRequest') {
-                            scope.supplyReq++;
-                        }
-                        else if (element.type == 'MoveRequest') {
                             scope.maintenanceReq++;
                         }
+                        else if (element.type == 'MoveRequest') {
+                            scope.MoveReq++;
+                        }
                         else if (element.type == 'SupplyRequest') {
-                            scope.moveReq++;
+                            scope.supplyReq++;
                         }
                         ;
                     });
@@ -134,18 +134,19 @@ var appartmentService = module_1.apartmentModule.factory('aptFactory', ['$http',
                     scope.supplyReq = 0;
                     scope.maintenanceReq = 0;
                     scope.complaintReq = 0;
+                    scope.moveReq = 0;
                     scope.apartment.requests.forEach(function (element) {
                         if (element.type == 'ComplaintRequest') {
                             scope.complaintReq++;
                         }
                         else if (element.type == 'MaintenanceRequest') {
-                            scope.supplyReq++;
-                        }
-                        else if (element.type == 'MoveRequest') {
                             scope.maintenanceReq++;
                         }
+                        else if (element.type == 'MoveRequest') {
+                            scope.MoveReq++;
+                        }
                         else if (element.type == 'SupplyRequest') {
-                            scope.moveReq++;
+                            scope.supplyReq++;
                         }
                         ;
                     });
@@ -76744,7 +76745,6 @@ var address = {
 };
 var apartmentController = module_1.apartmentModule.controller('aptCtrl', ['$scope', 'aptFactory', function ($scope, aptFactory) {
         $scope.aptGuid = localStorage.getItem('aptGuid');
-        console.log(localStorage.getItem('aptGuid'));
         $scope.getPie = function (data) {
             //basic info about the shape
             var width = 300;
@@ -76783,7 +76783,10 @@ var apartmentController = module_1.apartmentModule.controller('aptCtrl', ['$scop
             //append labels
             g.append("text")
                 .attr("transform", function (d) { return "translate(" + labelArc.centroid(d) + ")"; })
-                .text(function (d) { return d.data.label; })
+                .text(function (d) {
+                if (d.data.count > 0)
+                    return d.data.label;
+            })
                 .style("fill", "#fff");
         };
         aptFactory.getApartmentByGuid($scope, $scope.aptGuid, $scope.getPie);

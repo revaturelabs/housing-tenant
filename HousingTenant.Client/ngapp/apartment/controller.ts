@@ -13,7 +13,7 @@ var address = {
 
 var apartmentController = am.controller('aptCtrl', ['$scope', 'aptFactory', function ($scope, aptFactory) {
       $scope.aptGuid = localStorage.getItem('aptGuid');
-      console.log(localStorage.getItem('aptGuid'));
+
       $scope.getPie = function (data) {
             //basic info about the shape
             var width = 300;
@@ -52,7 +52,10 @@ var apartmentController = am.controller('aptCtrl', ['$scope', 'aptFactory', func
             //append labels
             g.append("text")
                   .attr("transform", function (d) { return "translate(" + labelArc.centroid(d) + ")"; })
-                  .text(function (d) { return d.data.label; })
+                  .text(function (d) {
+                        if (d.data.count > 0)
+                              return d.data.label;
+                  })
                   .style("fill", "#fff");
       }
 

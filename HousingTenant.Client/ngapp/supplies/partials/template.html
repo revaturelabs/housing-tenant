@@ -29,6 +29,8 @@
       </table>
       <div>
          <md-button class="md-primary md-raised" type="button" ng-click="openModal($event)">New Supply Request</md-button>
+         <span class="flex"></span>
+         <md-button class="md-raised md-warn" data-ng-href="/apartment/">Back</md-button>
       </div>
 
    </div>
@@ -90,8 +92,6 @@
             </md-dialog-content>
             <md-dialog-actions layout="row">
                <md-button class="md-raised md-primary" type="button" ng-click="addRequest(supplyRequest)">Submit</md-button>
-               <span class="flex"></span>
-               <md-button class="md-raised md-warn" data-ng-href="/apartment/">Back</md-button>
             </md-dialog-actions>
 
          </md-dialog>
