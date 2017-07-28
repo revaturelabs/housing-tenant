@@ -42,10 +42,8 @@ class Person {
   getPerson(res: any, address: Address){
     this.FirstName = res.data.firstName;
     this.LastName = res.data.lastName;
-    console.log(typeof(address));
     var address2 = new Address();
     address2.getAddress(res.data.address);
-    console.log("check2");
     this.Address = address2;
   }
 }
