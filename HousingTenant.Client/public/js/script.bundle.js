@@ -76535,8 +76535,8 @@ var Address = (function () {
 }());
 var Person = (function () {
     function Person() {
-        this.firstName = 'Fred';
-        this.lastName = 'Bel';
+        this.firstName = 'JULIAN';
+        this.lastName = 'ROJAS';
     }
     Person.prototype.getPerson = function (res, address) {
         this.firstName = res.data.firstName;
