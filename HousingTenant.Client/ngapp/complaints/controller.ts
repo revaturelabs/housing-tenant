@@ -16,7 +16,6 @@ var complaintController = cm.controller('complaintCtrl', ['adalAuthenticationSer
          accused: form.accused.$modelValue,
          description: form.description.$modelValue,
          initiator: currentUser,
-         datesubmitted: Date.now(),
          urgent: true
       }
 

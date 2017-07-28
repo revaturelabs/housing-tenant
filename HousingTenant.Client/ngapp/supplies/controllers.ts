@@ -5,15 +5,13 @@ var supplyController = sm.controller('suppliesCtrl', ['adalAuthenticationService
       var aptGuid = $routeParams.aptguid; 
       var currentUser = adalAuthenticationService.userInfo.currentUser;
       supplyRequestService.getRequestList(aptGuid, $scope);
-
+      console.log(currentUser);
       $scope.addRequest = function (form) {
             var request = {
                   description : $scope.description,
                   initiator: currentUser,
                   requestItems: [],
-                  datesubmitted: Date.now(),
-                  apartmentId: aptGuid,
-                  type: 3
+                  apartmentId: aptGuid
             }
             Object.keys(form).forEach(element => {
                   if(form[element] != null && form[element] != undefined &&  form[element].$viewValue == true){

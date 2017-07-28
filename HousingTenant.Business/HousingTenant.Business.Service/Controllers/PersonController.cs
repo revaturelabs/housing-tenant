@@ -21,7 +21,6 @@ namespace HousingTenant.Business.Service.Controllers
         HttpClient client = new HttpClient { BaseAddress = new Uri("https://housingtenantdata.azurewebsites.net/api/") };
         LibraryManager _LibraryManager = new LibraryManager();
         BusinessServiceMapper ServiceMapper = new BusinessServiceMapper();
-        ServiceManager _ServiceManager = new ServiceManager();
 
         // GET: api/persons
         [HttpGet]
@@ -31,7 +30,6 @@ namespace HousingTenant.Business.Service.Controllers
          var personList = JsonConvert.DeserializeObject<List<PersonDTO>>(persons.Content.ReadAsStringAsync().Result);
 
          return personList;
-         //return ServiceMapper.MapToPersonDTOList(_ServiceManager.GetPersons());
       }
 
         // GET api/person/5
@@ -43,7 +41,6 @@ namespace HousingTenant.Business.Service.Controllers
          var deserializedPerson = JsonConvert.DeserializeObject<PersonDTO>(person.Content.ReadAsStringAsync().Result);
 
          return deserializedPerson;
-         //return ServiceMapper.MapToPersonDTO(_ServiceManager.GetPerson(id));
         }
         
         // Get api/person/email
@@ -62,18 +59,22 @@ namespace HousingTenant.Business.Service.Controllers
         [HttpPost]
         public void Post([FromBody]PersonDTO person)
         {
-         var vperson = (Person)_LibraryManager.ValidateTenant(ServiceMapper.MapToIPerson(person));
-         client.PostAsJsonAsync("person", vperson);
-
-         //_ServiceManager.AddPerson(ServiceMapper.MapToIPerson(person));
+            if (person != null)
+            {
+               var vperson = (Person)_LibraryManager.ValidateTenant(ServiceMapper.MapToIPerson(person));
+               client.PostAsJsonAsync("person", vperson);
+            }
         }
 
         // PUT api/values/5
         [HttpPut("{id}")]
         public void Put(int id, [FromBody]PersonDTO person)
         {
-            var vperson = _LibraryManager.ValidateTenant(ServiceMapper.MapToIPerson(person));
-            client.PutAsJsonAsync("person", vperson);
+            if (person != null)
+            {
+               var vperson = _LibraryManager.ValidateTenant(ServiceMapper.MapToIPerson(person));
+               client.PutAsJsonAsync("person", vperson);
+            }
         }
 
         // DELETE api/values/5

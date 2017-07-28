@@ -34,7 +34,7 @@ namespace HousingTenant.Business.Library.Models
 
         public override bool IsValid()
         {
-            return _RequestItems.Count > 0;
+            return Initiator != null && _RequestItems.Count > 0;
         }
 
         public override string ToString()

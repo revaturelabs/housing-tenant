@@ -75,7 +75,7 @@ namespace HousingTenant.Business.Service.Mappers
             Gender = person.Gender,
             HasCar = person.HasCar,
             LastName = person.LastName,
-            PersonId = person.PersonDTOId,
+            PersonId = person.PersonId,
             PhoneNumber = person.PhoneNumber,
             ApartmentId = person.ApartmentId
          };
@@ -108,7 +108,7 @@ namespace HousingTenant.Business.Service.Mappers
                LastName = person.LastName,
                Gender = person.Gender,
                HasCar = person.HasCar,
-               PersonDTOId = person.PersonId,
+               PersonId = person.PersonId,
                PhoneNumber = person.PhoneNumber,
                ApartmentId = person.ApartmentId
             };
@@ -162,13 +162,13 @@ namespace HousingTenant.Business.Service.Mappers
                   request = new MaintenanceRequest();
                   break;
             }
-            request.RequestId = requestDto.RequestId;
-            request.Initiator = requestDto.Initiator;
-            request.Description = requestDto.Description;
+            request.RequestId     = requestDto.RequestId;
+            request.Initiator     = requestDto.Initiator;
+            request.Description   = requestDto.Description;
             request.DateSubmitted = requestDto.DateSubmitted;
-            request.DateModified = requestDto.DateModified;
-            request.Status = requestDto.Status;
-            request.Urgent = requestDto.Urgent;
+            request.DateModified  = requestDto.DateModified;
+            request.Status        = requestDto.Status;
+            request.Urgent        = requestDto.Urgent;
          }
          return request;
       }

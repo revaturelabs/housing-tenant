@@ -76643,14 +76643,13 @@ var supplyController = module_1.supplyModule.controller('suppliesCtrl', ['adalAu
         var aptGuid = $routeParams.aptguid;
         var currentUser = adalAuthenticationService.userInfo.currentUser;
         supplyRequestService.getRequestList(aptGuid, $scope);
+        console.log(currentUser);
         $scope.addRequest = function (form) {
             var request = {
                 description: $scope.description,
                 initiator: currentUser,
                 requestItems: [],
-                datesubmitted: Date.now(),
-                apartmentId: aptGuid,
-                type: 3
+                apartmentId: aptGuid
             };
             Object.keys(form).forEach(function (element) {
                 if (form[element] != null && form[element] != undefined && form[element].$viewValue == true) {
@@ -76691,7 +76690,9 @@ var supplyService = module_1.supplyModule.factory('supplyRequestService', ['$htt
         return {
             getRequestList: function (aptidstring, scope) {
                 console.log(aptidstring);
-                $http.get('http://housingtenantbusiness.azurewebsites.net/api/request/id?=' + aptidstring).then(function (res) {
+                $http.get('http://housingtenantbusiness.azurewebsites.net/api/request/id?=' + aptidstring).then(
+                //$http.get('http://localhost:5000/api/request/id?='+ aptidstring).then(
+                function (res) {
                     scope.reqList = [];
                     res.data.forEach(function (element) {
                         if (element.type === "SupplyRequest") {
@@ -76708,6 +76709,7 @@ var supplyService = module_1.supplyModule.factory('supplyRequestService', ['$htt
                 $http({
                     method: 'POST',
                     url: 'http://housingtenantbusiness.azurewebsites.net/api/request/supplyrequest/',
+                    //url: 'http://localhost:53254/api/request/supplyrequest/',
                     withCredentials: true,
                     headers: {
                         'Access-Control-Allow-Origin': '*',
@@ -76715,7 +76717,7 @@ var supplyService = module_1.supplyModule.factory('supplyRequestService', ['$htt
                         'Access-Control-Allow-Credentials': 'true',
                         'Access-Control-Allow-Methods': 'POST'
                     },
-                    data: { request: request }
+                    data: JSON.stringify(request)
                 }).then(function (res) {
                     console.log(res);
                 }, function (err) {
@@ -93728,7 +93730,6 @@ var maintenanceController = module_1.maintenanceModule.controller('maintenanceCt
             var request = {
                 description: "",
                 initiator: currentUser,
-                datesubmitted: Date.now(),
                 urgent: form.urgent.$modelValue
             };
             if ($scope.checkDescription() == true) {
@@ -93786,6 +93787,7 @@ var maintenanceService = module_1.maintenanceModule.factory('maintenanceRequestS
                 $http({
                     method: 'POST',
                     url: 'http://housingtenantbusiness.azurewebsites.net/api/request/maintenancerequest/',
+                    //url: 'http://localhost:53254/api/request/maintenancerequest/',
                     withCredentials: true,
                     headers: {
                         'Access-Control-Allow-Origin': '*',
@@ -93793,7 +93795,7 @@ var maintenanceService = module_1.maintenanceModule.factory('maintenanceRequestS
                         'Access-Control-Allow-Credentials': 'true',
                         'Access-Control-Allow-Methods': 'POST'
                     },
-                    data: { request: request }
+                    data: JSON.stringify(request)
                 }).then(function (res) {
                     console.log(res);
                 }, function (err) {
@@ -93825,7 +93827,6 @@ var complaintController = module_1.complaintModule.controller('complaintCtrl', [
                 accused: form.accused.$modelValue,
                 description: form.description.$modelValue,
                 initiator: currentUser,
-                datesubmitted: Date.now(),
                 urgent: true
             };
             complaintRequestService.postRequest(request);
@@ -93878,7 +93879,7 @@ var complaintService = module_1.complaintModule.factory('complaintRequestService
                         'Access-Control-Allow-Credentials': 'true',
                         'Access-Control-Allow-Methods': 'POST'
                     },
-                    data: { request: request }
+                    data: JSON.stringify(request)
                 }).then(function (res) {
                     console.log(res);
                 }, function (err) {
@@ -93915,7 +93916,6 @@ var moveController = module_1.moveModule.controller('moveCtrl', ['adalAuthentica
             var request = {
                 description: form.reason.$modelValue,
                 initiator: currentUser,
-                datesubmitted: Date.now(),
                 requestedApartmentAddress: $scope.selectedApartmentAddress
             };
             console.log(request);
@@ -93977,7 +93977,7 @@ var moveService = module_1.moveModule.factory('moveService', ['$http', function 
                         'Access-Control-Allow-Credentials': 'true',
                         'Access-Control-Allow-Methods': 'POST'
                     },
-                    data: { request: request }
+                    data: JSON.stringify(request)
                 }).then(function (res) {
                     console.log(res);
                 }, function (err) {

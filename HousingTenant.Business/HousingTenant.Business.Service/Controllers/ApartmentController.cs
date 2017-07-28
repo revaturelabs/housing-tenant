@@ -20,7 +20,6 @@ namespace HousingTenant.Business.Service.Controllers
         HttpClient client = new HttpClient { BaseAddress = new Uri("https://housingtenantdata.azurewebsites.net/api/") };
         LibraryManager _LibraryManager = new LibraryManager();
         BusinessServiceMapper ServiceMapper = new BusinessServiceMapper();
-        ServiceManager _ServiceManager = new ServiceManager();
 
       // GET: api/values
         [HttpGet]
@@ -30,7 +29,6 @@ namespace HousingTenant.Business.Service.Controllers
             var ApartmentList = JsonConvert.DeserializeObject<List<ApartmentDTO>>(apartments.Content.ReadAsStringAsync().Result);
 
             return ApartmentList;
-            //return ServiceMapper.MapToApartmentDTOList(_ServiceManager.GetApartments());
         }
         
         [Route("id")]
@@ -44,39 +42,14 @@ namespace HousingTenant.Business.Service.Controllers
             var pRequest = await client.GetAsync(personUrl, HttpCompletionOption.ResponseContentRead);
             var persons = JsonConvert.DeserializeObject<List<PersonDTO>>(pRequest.Content.ReadAsStringAsync().Result);
 
-            var requestUrl = string.Format("request/{0}",id /*emptyApartment.Address*/);
+            var requestUrl = string.Format("request/{0}",id);
             var rRequest = await client.GetAsync(requestUrl, HttpCompletionOption.ResponseContentRead);
             var requests = JsonConvert.DeserializeObject<List<RequestDTO>>(rRequest.Content.ReadAsStringAsync().Result);
 
             var apartment = _LibraryManager.PackApartment(ServiceMapper.MapToIApartment(emptyApartment), ServiceMapper.MapToIPersonList(persons), ServiceMapper.MapToARequestList(requests));
 
             return ServiceMapper.MapToApartmentDTO((Apartment)apartment);
-            //  return ServiceMapper.MapToApartmentDTO(_ServiceManager.GetApartment(id));
-      }
-
-        [HttpGet]
-        [Route("address")]
-        public ApartmentDTO Get([FromQuery]Address address)
-        //public async Task<IApartment> Get([FromQuery]Address address)
-        {
-         //var apartmentUrl = string.Format("apartment/{0}", address);
-         //var aRequest = await client.GetAsync(apartmentUrl, HttpCompletionOption.ResponseContentRead);
-         //var emptyApartment = JsonConvert.DeserializeObject<Apartment>(aRequest.Content.ReadAsStringAsync().Result);
-
-         //var personUrl = string.Format("person/{0}", address);
-         //var pRequest = await client.GetAsync(personUrl, HttpCompletionOption.ResponseContentRead);
-         //var persons = JsonConvert.DeserializeObject<List<Person>>(pRequest.Content.ReadAsStringAsync().Result);
-
-         //var requestUrl = string.Format("request/{0}", address);
-         //var rRequest = await client.GetAsync(requestUrl, HttpCompletionOption.ResponseContentRead);
-         //var requests = JsonConvert.DeserializeObject<List<RequestDTO>>(rRequest.Content.ReadAsStringAsync().Result);
-
-         //var apartment = _LibraryManager.PackApartment(emptyApartment, ServiceMapper.MapToIPersonList(persons), ServiceMapper.MapToARequestList(requests));
-
-         //return apartment as Apartment;
-
-         return ServiceMapper.MapToApartmentDTO(_ServiceManager.GetApartment(address));
-      }
+        }
 
         // POST api/values
         [HttpPost]
@@ -84,8 +57,6 @@ namespace HousingTenant.Business.Service.Controllers
         {
             var vApartment = (Apartment)_LibraryManager.ValidateApartment(ServiceMapper.MapToIApartment(apartment));
             client.PostAsJsonAsync("apartment", vApartment);
-
-            // _ServiceManager.AddApartment(ServiceMapper.MapToIApartment(apartment));
         }
 
         // PUT api/values/5
