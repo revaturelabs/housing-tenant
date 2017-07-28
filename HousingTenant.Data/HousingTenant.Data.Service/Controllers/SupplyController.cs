@@ -31,6 +31,12 @@ namespace HousingTenant.Data.Service.Controllers
         [HttpPost]
         public void Post([FromBody]string value)
         {
+            _Context.SupplyType.Add (new SupplyType
+            {
+                Supply = value
+            });
+
+            _Context.SaveChanges();
         }
     }
 }
