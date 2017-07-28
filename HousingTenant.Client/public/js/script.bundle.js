@@ -93786,8 +93786,8 @@ var maintenanceService = module_1.maintenanceModule.factory('maintenanceRequestS
             postRequest: function (request) {
                 $http({
                     method: 'POST',
-                    //url: 'http://housingtenantbusiness.azurewebsites.net/api/request/maintenancerequest/',
-                    url: 'http://localhost:53254/api/request/maintenancerequest/',
+                    url: 'http://housingtenantbusiness.azurewebsites.net/api/request/maintenancerequest/',
+                    //url: 'http://localhost:53254/api/request/maintenancerequest/',
                     withCredentials: true,
                     headers: {
                         'Access-Control-Allow-Origin': '*',
