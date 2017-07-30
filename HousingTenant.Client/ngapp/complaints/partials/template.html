@@ -42,23 +42,23 @@
             <md-button ng-click="cancel()">Close</md-button>
           </div>
         </md-toolbar>
-        <form name="complaintRequest" ng-cloak>
+        <form name="complaintRequest" ng-submit="addComplaintRequest(complaintRequest) && complaintRequest.$valid" ng-cloak>
           <md-dialog-content layout-padding>
             <div class="md-dialog-content">
               <md-input-container class="md-block">
                 <label for="accused">Select Person</label>
-                <md-select name="accused" ng-model="accused">
+                <md-select name="accused" ng-model="accused" required>
                   <md-option ng-repeat="person in apartment.persons" value="{{person}}">{{person.firstName}}</md-option>
                 </md-select>
               </md-input-container>
               <md-input-container class="md-block">
                 <label for="description">Complaint</label>
-                <textarea rows="5" md-maxlength="2048" name="description" ng-model="description" placeholder="What's going On!?'"></textarea>
+                <textarea rows="5" md-maxlength="2048" name="description" ng-model="description" placeholder="What's going On!?'" required></textarea>
               </md-input-container>
             </div>
           </md-dialog-content>
           <md-dialog-actions layout="row">
-            <md-button class="md-raised md-primary" type="button" ng-click="addComplaintRequest(complaintRequest)">Submit</md-button>
+            <md-button class="md-raised md-primary" type="submit" ng-disabled="complaintRequest.$invalid">Submit</md-button>
           </md-dialog-actions>
         </form>
       </md-dialog>
