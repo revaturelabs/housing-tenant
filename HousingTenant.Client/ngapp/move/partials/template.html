@@ -31,7 +31,6 @@
   </div>
 
 
-
   <div style="visibility: hidden">
     <div class="md-dialog-container" id="AddRequestModal">
       <md-dialog layout-padding>
@@ -42,24 +41,23 @@
             <md-button ng-click="cancel()">Close</md-button>
           </div>
         </md-toolbar>
-        <form name="moveRequest" ng-cloak>
+        <form name="moveRequest" ng-submit="addMoveRequest(moveRequest) && moveRequest.$valid" ng-cloak>
           <md-dialog-content layout-padding>
             <div class="md-dialog-content">
               <md-input-container class="md-block">
                 <label for="apt">Select New Apartment</label>
-                <md-select name="apt" ng-model="selectedApartmentAddress">
+                <md-select name="apt" ng-model="selectedApartmentAddress" required>
                   <md-option ng-repeat="apartment in aptList" value="{{apartment.address}}">{{apartment.address.address1}} {{apartment.address.apartmentNumber}}</md-option>
                 </md-select>
               </md-input-container>
               <md-input-container class="md-block">
                 <label for="reason">Reason</label>
-                <textarea name="reason" placeholder="Tell us what's happening" rows="5" ng-model="reason"></textarea>
+                <textarea name="reason" placeholder="Tell us what's happening" rows="5" ng-model="reason" required></textarea>
               </md-input-container>
             </div>
           </md-dialog-content>
           <md-dialog-actions layout="row">
-            <md-button class="md-raised md-primary" type="button" ng-click="addMoveRequest(moveRequest)">Submit</md-button>
-            <md-button class="md-raised md-warn" data-ng-href="/move/:{{}}">Back</md-button>
+            <md-button class="md-raised md-primary" type="submit" ng-disabled="moveRequest.$invalid">Submit</md-button>
           </md-dialog-actions>
         </form>
       </md-dialog>
