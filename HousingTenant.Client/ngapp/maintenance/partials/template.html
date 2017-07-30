@@ -30,7 +30,6 @@
     </div>
   </div>
 
-
   <div style="visibility: hidden">
     <div class="md-dialog-container" id="AddRequestModal">
       <md-dialog layout-padding>
@@ -41,14 +40,17 @@
             <md-button ng-click="cancel()">Close</md-button>
           </div>
         </md-toolbar>
-        <form name="maintenanceRequest" ng-cloak>
+        <form name="maintenanceRequest" ng-submit="addMaintenanceRequest(maintenanceRequest) && maintenanceRequest.$valid" ng-cloak>
           <md-dialog-content layout-padding>
             <div class="md-dialog-content">
               <md-input-container class="md-block">
                 <label for="description">Select Description</label>
-                <md-select name="description" ng-model="description">
+                <md-select name="description" ng-model="description" required>
                   <md-option ng-repeat="type in maintenanceTypes" value="{{type}}">{{type}}</md-option>
                 </md-select>
+                <div ng-messages="maintenanceRequest.description.$error">
+                  <div ng-message="required">This is Required</div>
+                </div>
               </md-input-container>
               <md-input-container class="md-block" ng-if="description == 'Other'">
                 <label for="customDescription">Enter Description</label>
@@ -62,7 +64,7 @@
             </div>
           </md-dialog-content>
           <md-dialog-actions layout="row">
-            <md-button class="md-raised md-primary" type="button" ng-click="addMaintenanceRequest(maintenanceRequest)">Submit</md-button>
+            <md-button class="md-raised md-primary" type="submit" ng-disabled="maintenanceRequest.$invalid">Submit</md-button>
           </md-dialog-actions>
         </form>
       </md-dialog>
