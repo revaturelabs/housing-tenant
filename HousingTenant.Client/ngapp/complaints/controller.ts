@@ -19,7 +19,7 @@ var complaintController = cm.controller('complaintCtrl', ['adalAuthenticationSer
          urgent: true
       }
 
-      complaintRequestService.postRequest(request);
+      complaintRequestService.postRequest(request, $scope);
       $scope.cancel();
    }
 
