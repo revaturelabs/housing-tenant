@@ -16,7 +16,7 @@ var complaintService = mm.factory('complaintRequestService', ['$http', function 
           console.log(err);
         });
     },
-    postRequest: function (request) {
+    postRequest: function (request, scope) {
       $http({
         method: 'POST',
         url: 'http://housingtenantbusiness.azurewebsites.net/api/request/complaintrequest/',
@@ -28,9 +28,12 @@ var complaintService = mm.factory('complaintRequestService', ['$http', function 
           'Access-Control-Allow-Methods': 'POST'
         },
         data: JSON.stringify(request)
-      }). then(function(res){
+      }).then(function (res) {
+        request.dateSubmitted = 'Today';
+        request.status = 'Pending';
+        scope.reqList.push(request);
         console.log(res);
-      }, function(err){
+      }, function (err) {
         console.log(err);
       });
     }

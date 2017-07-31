@@ -36,7 +36,7 @@ var maintenanceController = mm.controller('maintenanceCtrl', ['adalAuthenticatio
       request.description = form.description.$modelValue;
     }
 
-    maintenanceRequestService.postRequest(request);
+    maintenanceRequestService.postRequest(request, $scope);
     $scope.customDescription = "";
     $scope.cancel();
   }

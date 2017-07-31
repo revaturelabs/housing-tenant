@@ -7,7 +7,7 @@ var complaintController = cm.controller('complaintCtrl', ['adalAuthenticationSer
    var aptGuid = $routeParams.aptguid;
    var currentUser = adalAuthenticationService.userInfo.currentUser
 
-   complaintRequestService.getRequestList(aptGuid, $scope, currentUser.personDTOId);
+   complaintRequestService.getRequestList(aptGuid, $scope, currentUser.personId);
    aptFactory.getApartmentByGuid($scope, localStorage.getItem('aptGuid'), 1);
 
    $scope.addComplaintRequest = function (form) {
@@ -19,7 +19,7 @@ var complaintController = cm.controller('complaintCtrl', ['adalAuthenticationSer
          urgent: true
       }
 
-      complaintRequestService.postRequest(request);
+      complaintRequestService.postRequest(request, $scope);
       $scope.cancel();
    }
 

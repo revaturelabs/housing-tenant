@@ -1,101 +1,95 @@
 <section>
-   <div>
-      <h2>Supply Requests</h2>
-   </div>
-   <div>
-      <table class="table table-striped table-bordered">
-         <thead class="thead">
-            <tr>
-               <th>Request Description</th>
-               <th>Initiator</th>
-               <th>Date Submitted</th>
-               <th>Status</th>
-               <th>Items Requested</th>
-            </tr>
-         </thead>
-         <tbody>
-            <tr ng-repeat="request in reqList">
-               <td>{{request.description}}</td>
-               <td>{{request.initiator.emailAddress}}</td>
-               <td>{{request.dateSubmitted}}</td>
-               <td>{{request.status}}</td>
-               <td>
-                  <md-list-item ng-repeat="item in request.requestItems">
-                     <p> {{ item }} </p>
-                  </md-list-item>
-               </td>
-            </tr>
-         </tbody>
-      </table>
-      <div>
-         <md-button class="md-primary md-raised" type="button" ng-click="openModal($event)">New Supply Request</md-button>
-         <span class="flex"></span>
-         <md-button class="md-raised md-warn" data-ng-href="/apartment/">Back</md-button>
-      </div>
+  <div>
+    <h2>Supply Requests</h2>
+  </div>
+  <div>
+    <table class="table table-striped table-bordered">
+      <thead class="thead">
+        <tr>
+          <th>Request Description</th>
+          <th>Initiator</th>
+          <th>Date Submitted</th>
+          <th>Status</th>
+          <th>Items Requested</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr ng-repeat="request in reqList">
+          <td>{{request.description}}</td>
+          <td>{{request.initiator.emailAddress}}</td>
+          <td>{{request.dateSubmitted}}</td>
+          <td>{{request.status}}</td>
+          <td>
+            <md-list-item ng-repeat="item in request.requestItems">
+              <p> {{ item }} </p>
+            </md-list-item>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+    <div>
+      <md-button class="md-primary md-raised" type="button" ng-click="openModal($event)">New Supply Request</md-button>
+      <span class="flex"></span>
+      <md-button class="md-raised md-warn" data-ng-href="/apartment/">Back</md-button>
+    </div>
 
-   </div>
+  </div>
 
-   <div style="visibility: hidden">
-      <div class="md-dialog-container" id="AddRequestModal">
-         <md-dialog layout-padding>
-            <md-toolbar>
-               <div class="md-toolbar-tools">
-                  <h2>New Supply Request</h2>
-                  <span class="flex"></span>
-                  <md-button ng-click="cancel()">Close</md-button>
-               </div>
-            </md-toolbar>
-            <md-dialog-content layout-padding>
-               <div class="md-dialog-content">
-                  <form name="supplyRequest" ng-cloak>
-                     <md-input-container class="md-block">
-                        <label for="name">Description</label>
-                        <input type="text" ng-model="description">
-                     </md-input-container>
-                     <md-input-container class="md-block">
-                        <md-checkbox id="soap" name="Hand Soap" ng-model="soap">
-                           Hand Soap
-                        </md-checkbox>
-                     </md-input-container>
-                     <md-input-container class="md-block">
-                        <md-checkbox id="tp" name="Toilet Paper" ng-model="toiletPaper">
-                           Toilet Paper
-                        </md-checkbox>
-                     </md-input-container>
-                     <md-input-container class="md-block">
-                        <md-checkbox id="ptowel" name="Paper Towels" ng-model="paperTowels" s>
-                           Paper Towels
-                        </md-checkbox>
-                     </md-input-container>
-                     <md-input-container class="md-block">
-                        <md-checkbox id="dsoap" name="Dish Soap" ng-model="dishSoap">
-                           Dish Soap
-                        </md-checkbox>
-                     </md-input-container>
-                     <md-input-container class="md-block">
-                        <md-checkbox id="trash" name="Trash Bags" ng-model="trashBag">
-                           Trash Bags
-                        </md-checkbox>
-                     </md-input-container>
-                     <md-input-container class="md-block">
-                        <md-checkbox id="dish" name="Dishwasher Detergent" ng-model="dishwasherSoap">
-                           Dishwasher Detergent
-                        </md-checkbox>
-                     </md-input-container>
-                     <md-input-container class="md-block">
-                        <md-checkbox id="sponge" name="Sponges" ng-model="sponge">
-                           Sponges
-                        </md-checkbox>
-                     </md-input-container>
-                  </form>
-               </div>
-            </md-dialog-content>
-            <md-dialog-actions layout="row">
-               <md-button class="md-raised md-primary" type="button" ng-click="addRequest(supplyRequest)">Submit</md-button>
-            </md-dialog-actions>
+  <div style="visibility: hidden">
+    <div class="md-dialog-container" id="AddRequestModal">
+      <md-dialog layout-padding>
+        <md-toolbar>
+          <div class="md-toolbar-tools">
+            <h2>New Supply Request</h2>
+            <span class="flex"></span>
+            <md-button ng-click="cancel()">Close</md-button>
+          </div>
+        </md-toolbar>
+        <md-dialog-content layout-padding>
+          <div class="md-dialog-content">
+            <form name="supplyRequest" ng-submit="addRequest(supplyRequest) && supplyRequest.$valid" ng-cloak>
+              <md-input-container class="md-block">
+                <label for="name">Description</label>
+                <input type="text" ng-model="description" required>
+                <div ng-messages="supplyRequest.description.$error">
+                  <div ng-message="required">This is Required</div>
+                </div>
+              </md-input-container>
+              <md-input-container class="md-block">
+                <md-checkbox id="soap" name="Hand Soap" ng-model="soap" ng-required="!(soap || toiletPaper || paperTowels || dishSoap || trashBag || dishwasherSoap || sponge)">
+                  Hand Soap
+                </md-checkbox>
+                <md-checkbox id="tp" name="Toilet Paper" ng-model="toiletPaper" ng-required="!(soap || toiletPaper || paperTowels || dishSoap || trashBag || dishwasherSoap || sponge)">
+                  Toilet Paper
+                </md-checkbox>
+                <md-checkbox id="ptowel" name="Paper Towels" ng-model="paperTowels" ng-required="!(soap || toiletPaper || paperTowels || dishSoap || trashBag || dishwasherSoap || sponge)">
+                  Paper Towels
+                </md-checkbox>
+                <md-checkbox id="dsoap" name="Dish Soap" ng-model="dishSoap" ng-required="!(soap || toiletPaper || paperTowels || dishSoap || trashBag || dishwasherSoap || sponge)">
+                  Dish Soap
+                </md-checkbox>
+                <md-checkbox id="trash" name="Trash Bags" ng-model="trashBag" ng-required="!(soap || toiletPaper || paperTowels || dishSoap || trashBag || dishwasherSoap || sponge)">
+                  Trash Bags
+                </md-checkbox>
+                <md-checkbox id="dish" name="Dishwasher Detergent" ng-model="dishwasherSoap" ng-required="!(soap || toiletPaper || paperTowels || dishSoap || trashBag || dishwasherSoap || sponge)">
+                  Dishwasher Detergent
+                </md-checkbox>
+                <md-checkbox id="sponge" name="Sponges" ng-model="sponge" ng-required="!(soap || toiletPaper || paperTowels || dishSoap || trashBag || dishwasherSoap || sponge)">
+                  Sponges
+                </md-checkbox>
+                <div class="help-block" ng-show="supplyRequest.$invalid">
+                  <div>One of these fields is required to be checked</div>
+                </div>
+              </md-input-container>
+              <md-dialog-actions layout="row">
+                <md-button class="md-raised md-primary" type="submit" ng-disabled="supplyRequest.$invalid">Submit</md-button>
+              </md-dialog-actions>
+            </form>
+          </div>
+        </md-dialog-content>
 
-         </md-dialog>
-      </div>
-   </div>
+      </md-dialog>
+    </div>
+  </div>
 
 </section>

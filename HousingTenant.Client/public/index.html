@@ -21,9 +21,9 @@
     function openMenu() {
       var currentAptGuid = window.localStorage.getItem('aptGuid');
       $("a#sidebar-link1").attr("href", '/supplies/' + currentAptGuid)
-      $("a#sidebar-link2").attr("href",'/maintenance/' + currentAptGuid)
-      $("a#sidebar-link3").attr("href",'/complaints/' + currentAptGuid)
-      $("a#sidebar-link4").attr("href",'/housing/' + currentAptGuid)
+      $("a#sidebar-link2").attr("href", '/maintenance/' + currentAptGuid)
+      $("a#sidebar-link3").attr("href", '/complaints/' + currentAptGuid)
+      $("a#sidebar-link4").attr("href", '/housing/' + currentAptGuid)
       document.getElementById("mySidenav").style.width = "250px";
       document.getElementById("main").style.marginLeft = "250px";
     }
@@ -36,13 +36,48 @@
 
 <body id="main" data-ng-app="ngHousingTenant">
   <header>
-    <nav ng-include src="'html/navbar.html'"></nav>
+    <!-- <nav ng-include src="'html/navbar.html'"></nav> -->
+    <div class="container">
+      <nav>
+        <div class="col-md-8">
+          <div class="logo">
+            <a href="/home">
+                        <img src="https://3g4d13k75x47q7v53surz1gi-wpengine.netdna-ssl.com/wp-content/themes/revature/imgs/logo.png" alt="Revature"/>
+                        </a>
+          </div>
+        </div>
+        <div class="col-md-4">
+          <ul class="navLinks">
+            <li class="links"><a href="http://housingtenant.azurewebsites.net/#!/">TENANT</a></li>
+            <li class="links"><a href="http://housingmanager.azurewebsites.net/#!/">MANAGER</a></li>
+            <li class="links"><a href="http://housingprovider.azurewebsites.net/#!/">PROVIDER</a></li>
+          </ul>
+        </div>
+      </nav>
+    </div>
     <div ng-include="'html/sidebar.html'"></div>
   </header>
 
   <div id="content" data-ng-view></div>
+  <footer>
+    <div class="container" style="background-color: #404040">
+      <div class="col-md-8">
+        <nav class="footer">
+          <ul class="footerLinks">
+            <li class="fLinks"><a href="/eeo-policy/">Equal Employment</a></li>
+            <li class="fLinks"><a href="/privacy-policy/">Privacy Policy</a></li>
+            <li class="fLinks"><a href="/terms-and-conditions/">Terms &amp; Service</a></li>
+            <li class="fLinks"><a href="/revaturepro/#faq">FAQ</a></li>
+          </ul>
+        </nav>
+      </div>
+      <div class="col-xs-4">
+        <p class="copyright">©2017 All rights reserved.</p>
+      </div>
+    </div>
+  </footer>
 
-  <footer ng-include src="'html/footer.html'"></footer>
+  <!-- <footer ng-include src="'html/footer.html'"></footer> -->
   <!--script needed for AUTHORIZATION-->
   <script src="https://secure.aadcdn.microsoftonline-p.com/lib/1.0.15/js/adal.min.js"></script>
   <script src="js\script.bundle.js"></script>
