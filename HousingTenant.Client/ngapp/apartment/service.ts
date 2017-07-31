@@ -23,7 +23,7 @@ var appartmentService = am.factory('aptFactory', ['$http', function ($http) {
             };
           });
 
-          var currentData = [{ label: 'Co', count: scope.complaintReq }, { label: 'Ma', count: scope.maintenanceReq }, { label: 'Mo', count: scope.moveReq }, { label: 'Su', count: scope.supplyReq }];
+          var currentData = [{ label: 'Comp', count: scope.complaintReq }, { label: 'Main', count: scope.maintenanceReq }, { label: 'Move', count: scope.moveReq }, { label: 'Supp', count: scope.supplyReq }];
 
           if (getPie != 1) {
             getPie(currentData);
