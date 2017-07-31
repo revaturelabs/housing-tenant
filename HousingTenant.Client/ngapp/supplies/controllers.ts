@@ -18,7 +18,7 @@ var supplyController = sm.controller('suppliesCtrl', ['adalAuthenticationService
                         request.requestItems.push(form[element].$name)
                   }
             });
-            supplyRequestService.postRequest(request);
+            supplyRequestService.postRequest(request, $scope);
             $scope.cancel();
       }
       $scope.openModal = function(event) {

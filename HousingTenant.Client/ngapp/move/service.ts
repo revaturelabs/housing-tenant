@@ -5,9 +5,13 @@ var moveService = mm.factory('moveService', ['$http', function ($http) {
       getListRequest: function (scope, aptGuid, userguid) {
          $http.get('http://housingtenantbusiness.azurewebsites.net/api/request?=' + aptGuid).then(
             function (res) {
+               console.log('this move reques')               
+               console.log(res)
                scope.reqList = [];
                res.data.forEach(element => {
+                  console.log(element);
                   if (element.type == "MoveRequest" && element.initiator.personId == userguid) {
+                     console.log(element);
                      scope.reqList.push(element);
                   }
                   });
@@ -17,7 +21,7 @@ var moveService = mm.factory('moveService', ['$http', function ($http) {
             }
          )
       },
-      postRequest: function (request) {
+      postRequest: function (request, scope) {
          $http({
             method: 'POST',
             url: 'http://housingtenantbusiness.azurewebsites.net/api/request/moverequest/',
@@ -30,6 +34,7 @@ var moveService = mm.factory('moveService', ['$http', function ($http) {
             },
             data: JSON.stringify(request)
          }).then(function (res) {
+            scope.reqList.push(request);
             console.log(res);
          }, function (err) {
             console.log(err);

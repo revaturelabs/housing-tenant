@@ -5,7 +5,10 @@ import '../apartment/service';
 var moveController = mm.controller('moveCtrl', ['adalAuthenticationService','$scope', '$routeParams', '$mdDialog', 'aptFactory', 'moveService', function (adalAuthenticationService, $scope, $routeParams, $mdDialog, aptFactory, moveService) {
    var aptGuid = $routeParams.aptguid;
    var currentUser = adalAuthenticationService.userInfo.currentUser;
+   console.log(currentUser);
 
+   moveService.getListRequest($scope, aptGuid, currentUser.personId);
+   
    aptFactory.getListApartments($scope);
 
    $scope.addMoveRequest = function (form) {
@@ -18,7 +21,7 @@ var moveController = mm.controller('moveCtrl', ['adalAuthenticationService','$sc
       }
       console.log(request);
 
-      moveService.postRequest(request);
+      moveService.postRequest(request, $scope);
       form.$setUntouched();
       $scope.cancel();
    }

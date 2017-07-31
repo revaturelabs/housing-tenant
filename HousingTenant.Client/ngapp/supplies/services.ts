@@ -18,7 +18,7 @@ var supplyService = sm.factory('supplyRequestService', ['$http', function ($http
           console.log(err);
         });
     },
-    postRequest: function (request) {
+    postRequest: function (request, scope) {
       console.log(request);
       $http({
         method: 'POST',
@@ -33,6 +33,7 @@ var supplyService = sm.factory('supplyRequestService', ['$http', function ($http
         },
         data: JSON.stringify(request)
       }).then(function (res) {
+        scope.reqList.push(request);
         console.log(res);
       }, function (err) {
         console.log(err);

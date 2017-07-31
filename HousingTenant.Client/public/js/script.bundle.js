@@ -121,7 +121,7 @@ var appartmentService = module_1.apartmentModule.factory('aptFactory', ['$http',
                         }
                         ;
                     });
-                    var currentData = [{ label: 'Co', count: scope.complaintReq }, { label: 'Ma', count: scope.maintenanceReq }, { label: 'Mo', count: scope.moveReq }, { label: 'Su', count: scope.supplyReq }];
+                    var currentData = [{ label: 'Comp', count: scope.complaintReq }, { label: 'Main', count: scope.maintenanceReq }, { label: 'Move', count: scope.moveReq }, { label: 'Supp', count: scope.supplyReq }];
                     if (getPie != 1) {
                         getPie(currentData);
                     }
@@ -76535,8 +76535,8 @@ var Address = (function () {
 }());
 var Person = (function () {
     function Person() {
-        this.firstName = 'JULIAN';
-        this.lastName = 'ROJAS';
+        this.firstName = 'User';
+        this.lastName = ' Please Sign in';
     }
     Person.prototype.getPerson = function (res, address) {
         this.firstName = res.data.firstName;
@@ -76656,7 +76656,7 @@ var supplyController = module_1.supplyModule.controller('suppliesCtrl', ['adalAu
                     request.requestItems.push(form[element].$name);
                 }
             });
-            supplyRequestService.postRequest(request);
+            supplyRequestService.postRequest(request, $scope);
             $scope.cancel();
         };
         $scope.openModal = function (event) {
@@ -76704,7 +76704,7 @@ var supplyService = module_1.supplyModule.factory('supplyRequestService', ['$htt
                     console.log(err);
                 });
             },
-            postRequest: function (request) {
+            postRequest: function (request, scope) {
                 console.log(request);
                 $http({
                     method: 'POST',
@@ -76719,6 +76719,7 @@ var supplyService = module_1.supplyModule.factory('supplyRequestService', ['$htt
                     },
                     data: JSON.stringify(request)
                 }).then(function (res) {
+                    scope.reqList.push(request);
                     console.log(res);
                 }, function (err) {
                     console.log(err);
@@ -93738,7 +93739,7 @@ var maintenanceController = module_1.maintenanceModule.controller('maintenanceCt
             else {
                 request.description = form.description.$modelValue;
             }
-            maintenanceRequestService.postRequest(request);
+            maintenanceRequestService.postRequest(request, $scope);
             $scope.customDescription = "";
             $scope.cancel();
         };
@@ -93783,7 +93784,7 @@ var maintenanceService = module_1.maintenanceModule.factory('maintenanceRequestS
                     console.log(err);
                 });
             },
-            postRequest: function (request) {
+            postRequest: function (request, scope) {
                 $http({
                     method: 'POST',
                     url: 'http://housingtenantbusiness.azurewebsites.net/api/request/maintenancerequest/',
@@ -93797,6 +93798,7 @@ var maintenanceService = module_1.maintenanceModule.factory('maintenanceRequestS
                     },
                     data: JSON.stringify(request)
                 }).then(function (res) {
+                    scope.reqList.push(request);
                     console.log(res);
                 }, function (err) {
                     console.log(err);
@@ -93819,7 +93821,7 @@ var module_1 = __webpack_require__(7);
 var complaintController = module_1.complaintModule.controller('complaintCtrl', ['adalAuthenticationService', 'aptFactory', 'complaintRequestService', '$routeParams', '$scope', '$mdDialog', function (adalAuthenticationService, aptFactory, complaintRequestService, $routeParams, $scope, $mdDialog) {
         var aptGuid = $routeParams.aptguid;
         var currentUser = adalAuthenticationService.userInfo.currentUser;
-        complaintRequestService.getRequestList(aptGuid, $scope, currentUser.personDTOId);
+        complaintRequestService.getRequestList(aptGuid, $scope, currentUser.personId);
         aptFactory.getApartmentByGuid($scope, localStorage.getItem('aptGuid'), 1);
         $scope.addComplaintRequest = function (form) {
             console.log(form);
@@ -93829,7 +93831,7 @@ var complaintController = module_1.complaintModule.controller('complaintCtrl', [
                 initiator: currentUser,
                 urgent: true
             };
-            complaintRequestService.postRequest(request);
+            complaintRequestService.postRequest(request, $scope);
             $scope.cancel();
         };
         $scope.openModal = function (event) {
@@ -93868,7 +93870,7 @@ var complaintService = module_1.complaintModule.factory('complaintRequestService
                     console.log(err);
                 });
             },
-            postRequest: function (request) {
+            postRequest: function (request, scope) {
                 $http({
                     method: 'POST',
                     url: 'http://housingtenantbusiness.azurewebsites.net/api/request/complaintrequest/',
@@ -93881,6 +93883,7 @@ var complaintService = module_1.complaintModule.factory('complaintRequestService
                     },
                     data: JSON.stringify(request)
                 }).then(function (res) {
+                    scope.reqList.push(request);
                     console.log(res);
                 }, function (err) {
                     console.log(err);
@@ -93909,6 +93912,8 @@ __webpack_require__(2);
 var moveController = module_1.moveModule.controller('moveCtrl', ['adalAuthenticationService', '$scope', '$routeParams', '$mdDialog', 'aptFactory', 'moveService', function (adalAuthenticationService, $scope, $routeParams, $mdDialog, aptFactory, moveService) {
         var aptGuid = $routeParams.aptguid;
         var currentUser = adalAuthenticationService.userInfo.currentUser;
+        console.log(currentUser);
+        moveService.getListRequest($scope, aptGuid, currentUser.personId);
         aptFactory.getListApartments($scope);
         $scope.addMoveRequest = function (form) {
             console.log(form);
@@ -93919,7 +93924,7 @@ var moveController = module_1.moveModule.controller('moveCtrl', ['adalAuthentica
                 requestedApartmentAddress: $scope.selectedApartmentAddress
             };
             console.log(request);
-            moveService.postRequest(request);
+            moveService.postRequest(request, $scope);
             form.$setUntouched();
             $scope.cancel();
         };
@@ -93955,9 +93960,13 @@ var moveService = module_1.moveModule.factory('moveService', ['$http', function 
         return {
             getListRequest: function (scope, aptGuid, userguid) {
                 $http.get('http://housingtenantbusiness.azurewebsites.net/api/request?=' + aptGuid).then(function (res) {
+                    console.log('this move reques');
+                    console.log(res);
                     scope.reqList = [];
                     res.data.forEach(function (element) {
+                        console.log(element);
                         if (element.type == "MoveRequest" && element.initiator.personId == userguid) {
+                            console.log(element);
                             scope.reqList.push(element);
                         }
                     });
@@ -93966,7 +93975,7 @@ var moveService = module_1.moveModule.factory('moveService', ['$http', function 
                     console.log(err);
                 });
             },
-            postRequest: function (request) {
+            postRequest: function (request, scope) {
                 $http({
                     method: 'POST',
                     url: 'http://housingtenantbusiness.azurewebsites.net/api/request/moverequest/',
@@ -93979,6 +93988,7 @@ var moveService = module_1.moveModule.factory('moveService', ['$http', function 
                     },
                     data: JSON.stringify(request)
                 }).then(function (res) {
+                    scope.reqList.push(request);
                     console.log(res);
                 }, function (err) {
                     console.log(err);
