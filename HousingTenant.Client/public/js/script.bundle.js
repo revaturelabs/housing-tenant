@@ -76646,10 +76646,11 @@ var supplyController = module_1.supplyModule.controller('suppliesCtrl', ['adalAu
         console.log(currentUser);
         $scope.addRequest = function (form) {
             var request = {
+                status: 'Pending',
+                apartmentId: aptGuid,
                 description: $scope.description,
                 initiator: currentUser,
-                requestItems: [],
-                apartmentId: aptGuid
+                requestItems: []
             };
             Object.keys(form).forEach(function (element) {
                 if (form[element] != null && form[element] != undefined && form[element].$viewValue == true) {
@@ -93731,6 +93732,8 @@ var maintenanceController = module_1.maintenanceModule.controller('maintenanceCt
         maintenanceRequestService.getRequestList(aptGuid, $scope);
         $scope.addMaintenanceRequest = function (form) {
             var request = {
+                status: 'Pending',
+                apartmentId: aptGuid,
                 description: "",
                 initiator: currentUser,
                 urgent: form.urgent.$modelValue
@@ -93830,6 +93833,8 @@ var complaintController = module_1.complaintModule.controller('complaintCtrl', [
         $scope.addComplaintRequest = function (form) {
             console.log(form);
             var request = {
+                status: 'Pending',
+                apartmentId: aptGuid,
                 accused: form.accused.$modelValue,
                 description: form.description.$modelValue,
                 initiator: currentUser,
@@ -93926,6 +93931,8 @@ var moveController = module_1.moveModule.controller('moveCtrl', ['adalAuthentica
             $scope.selectedApartment = form.apt.$modelValue;
             console.log($scope.selectedApartment);
             var request = {
+                status: 'Pending',
+                apartmentId: aptGuid,
                 description: form.reason.$modelValue,
                 initiator: currentUser,
                 requestedApartmentAddress: $scope.selectedApartmentAddress

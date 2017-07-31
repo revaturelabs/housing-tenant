@@ -12,8 +12,7 @@ var supplyController = sm.controller('suppliesCtrl', ['adalAuthenticationService
                   apartmentId: aptGuid,
                   description: $scope.description,
                   initiator: currentUser,
-                  requestItems: [],
-                  apartmentId: aptGuid
+                  requestItems: []
             }
             Object.keys(form).forEach(element => {
                   if (form[element] != null && form[element] != undefined && form[element].$viewValue == true) {
