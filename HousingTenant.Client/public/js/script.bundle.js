@@ -152,7 +152,7 @@ var appartmentService = module_1.apartmentModule.factory('aptFactory', ['$http',
                         }
                         ;
                     });
-                    var currentData = [{ label: 'Co', count: scope.complaintReq }, { label: 'Ma', count: scope.maintenanceReq }, { label: 'Mo', count: scope.moveReq }, { label: 'Su', count: scope.supplyReq }];
+                    var currentData = [{ label: 'Comp', count: scope.complaintReq }, { label: 'Main', count: scope.maintenanceReq }, { label: 'Move', count: scope.moveReq }, { label: 'Supp', count: scope.supplyReq }];
                     if (getPie != 1) {
                         getPie(currentData);
                     }
@@ -76719,7 +76719,7 @@ var supplyService = module_1.supplyModule.factory('supplyRequestService', ['$htt
                     },
                     data: JSON.stringify(request)
                 }).then(function (res) {
-                    request.dateSubmitted = Date.now();
+                    request.dateSubmitted = 'Today';
                     request.status = 'Pending';
                     scope.reqList.push(request);
                     console.log(res);
@@ -93800,7 +93800,7 @@ var maintenanceService = module_1.maintenanceModule.factory('maintenanceRequestS
                     },
                     data: JSON.stringify(request)
                 }).then(function (res) {
-                    request.dateSubmitted = Date.now();
+                    request.dateSubmitted = 'Today';
                     request.status = 'Pending';
                     scope.reqList.push(request);
                     console.log(res);
@@ -93887,7 +93887,7 @@ var complaintService = module_1.complaintModule.factory('complaintRequestService
                     },
                     data: JSON.stringify(request)
                 }).then(function (res) {
-                    request.dateSubmitted = Date.now();
+                    request.dateSubmitted = 'Today';
                     request.status = 'Pending';
                     scope.reqList.push(request);
                     console.log(res);
@@ -93995,7 +93995,7 @@ var moveService = module_1.moveModule.factory('moveService', ['$http', function 
                     },
                     data: JSON.stringify(request)
                 }).then(function (res) {
-                    request.dateSubmitted = Date.now();
+                    request.dateSubmitted = 'Today';
                     request.status = 'Pending';
                     scope.reqList.push(request);
                     console.log(res);
