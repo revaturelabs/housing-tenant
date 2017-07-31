@@ -8,13 +8,12 @@
     </header>
     <md-card class="col-md-4" style="background-color: whitesmoke">
       <md-card-title>
-        <md-card-title-text>
+        <md-card-title-text data-ng-hide="!userInfo.isAuthenticated">
           <p><b>Address1: </b>{{myPerson.address.address1}}</p>
           <p><b>Address2: </b>{{myPerson.address.address2}}</p>
           <p><b>City: </b>{{myPerson.address.city}}</p>
           <p><b>State: </b>{{myPerson.address.state}}</p>
           <p><b>Zip: </b>{{myPerson.address.zipCode}}</p>
-          <p><b>Apartment GUID: </b>{{myPerson.aptGuid}}</p>
         </md-card-title-text>
       </md-card-title>
       <md-card-actions layout="row" layout-align="end center">
