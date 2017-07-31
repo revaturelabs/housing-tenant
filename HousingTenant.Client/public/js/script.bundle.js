@@ -76719,6 +76719,8 @@ var supplyService = module_1.supplyModule.factory('supplyRequestService', ['$htt
                     },
                     data: JSON.stringify(request)
                 }).then(function (res) {
+                    request.dateSubmitted = Date.now();
+                    request.status = 'Pending';
                     scope.reqList.push(request);
                     console.log(res);
                 }, function (err) {
@@ -93798,6 +93800,8 @@ var maintenanceService = module_1.maintenanceModule.factory('maintenanceRequestS
                     },
                     data: JSON.stringify(request)
                 }).then(function (res) {
+                    request.dateSubmitted = Date.now();
+                    request.status = 'Pending';
                     scope.reqList.push(request);
                     console.log(res);
                 }, function (err) {
@@ -93883,6 +93887,8 @@ var complaintService = module_1.complaintModule.factory('complaintRequestService
                     },
                     data: JSON.stringify(request)
                 }).then(function (res) {
+                    request.dateSubmitted = Date.now();
+                    request.status = 'Pending';
                     scope.reqList.push(request);
                     console.log(res);
                 }, function (err) {
@@ -93917,6 +93923,7 @@ var moveController = module_1.moveModule.controller('moveCtrl', ['adalAuthentica
         aptFactory.getListApartments($scope);
         $scope.addMoveRequest = function (form) {
             console.log(form);
+            $scope.selectedApartment = form.apt.$modelValue;
             console.log($scope.selectedApartment);
             var request = {
                 description: form.reason.$modelValue,
@@ -93925,7 +93932,7 @@ var moveController = module_1.moveModule.controller('moveCtrl', ['adalAuthentica
             };
             console.log(request);
             moveService.postRequest(request, $scope);
-            form.$setUntouched();
+            //form.$setUntouched();
             $scope.cancel();
         };
         $scope.openModal = function (event) {
@@ -93988,6 +93995,8 @@ var moveService = module_1.moveModule.factory('moveService', ['$http', function 
                     },
                     data: JSON.stringify(request)
                 }).then(function (res) {
+                    request.dateSubmitted = Date.now();
+                    request.status = 'Pending';
                     scope.reqList.push(request);
                     console.log(res);
                 }, function (err) {

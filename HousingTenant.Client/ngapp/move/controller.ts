@@ -13,6 +13,7 @@ var moveController = mm.controller('moveCtrl', ['adalAuthenticationService','$sc
 
    $scope.addMoveRequest = function (form) {
       console.log(form);
+      $scope.selectedApartment = form.apt.$modelValue;
       console.log($scope.selectedApartment)
       var request = {
          description: form.reason.$modelValue,
@@ -22,7 +23,7 @@ var moveController = mm.controller('moveCtrl', ['adalAuthenticationService','$sc
       console.log(request);
 
       moveService.postRequest(request, $scope);
-      form.$setUntouched();
+      //form.$setUntouched();
       $scope.cancel();
    }
 

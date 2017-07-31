@@ -28,10 +28,12 @@ var complaintService = mm.factory('complaintRequestService', ['$http', function 
           'Access-Control-Allow-Methods': 'POST'
         },
         data: JSON.stringify(request)
-      }). then(function(res){
+      }).then(function (res) {
+        request.dateSubmitted = 'Today';
+        request.status = 'Pending';
         scope.reqList.push(request);
         console.log(res);
-      }, function(err){
+      }, function (err) {
         console.log(err);
       });
     }
