@@ -1,7 +1,7 @@
 import { maintenanceModule as mm } from './module';
 import './services';
 
-var maintenanceController = mm.controller('maintenanceCtrl', ['adalAuthenticationService','$scope', 'maintenanceRequestService', '$routeParams', '$mdDialog', function (adalAuthenticationService, $scope, maintenanceRequestService, $routeParams, $mdDialog) {
+var maintenanceController = mm.controller('maintenanceCtrl', ['adalAuthenticationService', '$scope', 'maintenanceRequestService', '$routeParams', '$mdDialog', function (adalAuthenticationService, $scope, maintenanceRequestService, $routeParams, $mdDialog) {
   var aptGuid = $routeParams.aptguid;
   var currentUser = adalAuthenticationService.userInfo.currentUser;
 
@@ -26,6 +26,8 @@ var maintenanceController = mm.controller('maintenanceCtrl', ['adalAuthenticatio
 
   $scope.addMaintenanceRequest = function (form) {
     var request = {
+      status: 'Pending',
+      apartmentId: aptGuid,
       description: "",
       initiator: currentUser,
       urgent: form.urgent.$modelValue

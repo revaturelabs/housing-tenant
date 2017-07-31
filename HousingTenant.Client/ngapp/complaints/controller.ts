@@ -13,6 +13,8 @@ var complaintController = cm.controller('complaintCtrl', ['adalAuthenticationSer
    $scope.addComplaintRequest = function (form) {
       console.log(form);
       var request = {
+         status: 'Pending',
+         apartmentId: aptGuid,
          accused: form.accused.$modelValue,
          description: form.description.$modelValue,
          initiator: currentUser,
